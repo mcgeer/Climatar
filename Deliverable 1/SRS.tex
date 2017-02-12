@@ -24,9 +24,14 @@
 
 % Title Details
 %------------------------------------------------------------------------------
-\title{Deliverable \#1 Template}
+\title{Deliverable \#1 T02 Group 2}
 \author{SE 3A04: Software Design II -- Large System Design}
-\date{}                               
+\date{\today}                               
+%------------------------------------------------------------------------------
+
+% Graphics
+%------------------------------------------------------------------------------
+\graphicspath{ {figures/} }
 %------------------------------------------------------------------------------
 
 % Document
@@ -105,24 +110,38 @@ Existing products related to Climatar include:
 			\item The over arching goal is to show feasible world reactions to events, elimination of C02 emissions thus is not the only simulation feature.
 			\item Each play through of Climate Challenge is identical, at each phase of the simulation the same options are available. Climatar is to engage users interaction and knowledge growth by ensuring different instances of the simulation will play through differently based on previous actions, illustrating long term effects of decisions.
 		\end{itemize}
-	%\item \textbf{http://www.bbc.co.uk/sn/hottopics/climatechange/climate_challenge/}
-	%\item \textbf{http://monash.edu/research/simple-climate-model/mscm/greb/cgi-bin/scny_i18n.py?scenario=28&variable=02&locale=EN&activetab=undefined}
-	%\item \textbf{https://play.google.com/store/apps/details?id=com.gz.EnergyWars}
+	
+	\item \textbf{Climate Models of Earth}
+		%LINK http://monash.edu/research/simple-climate-model/mscm/greb/cgi-bin/scny_i18n.py?scenario=28&variable=02&locale=EN&activetab=undefined 
+		Software illustrations of Climate predictions such as the Simple Climate Model by Monash, utilize mathematical predictions through data extrapolation on climate change to illustrate predictions on future climate if all growth rates remain constant with population, C02 levels, average temperature, etc.\\
+	Climatar contrasts this application through the following points:
+		\begin{itemize}
+			\item Climatar simulations do not assume constant growth rates, instead all system components like climate simulate and react with on another, causing complex predictions to events to be explored.
+			\item Applications that model the earth are designed for  research use. Climatar is to educate the general public on the effects actions have both long and short term with respect to complex systems which could include, but is not limited to: environment, political toil, sea level, etc.
+			\item The simulations executed in Climatar will however try and be as accurate to real physical systems, allowing for user analysis of reactions to events in a similar to real world way.
+		\end{itemize}	 
+
+	\item \textbf{Energy Wars} 
+		%LINK https://play.google.com/store/apps/details?id=com.gz.EnergyWars
+		Is a Android game where users control the worlds demand for energy through development of green, and pollutant energy generation schemas. Event responses include natural disasters and war. The game itself is designed to be a puzzle to solve within each provided stage.\\
+		Climatar contrasts this application through the following points:
+		\begin{itemize}
+			\item Climatar is to be a simulation solution of the complex systems interacting and handling aspects of regional events and how they effect other regions, whereas Energy wars is designed as a game to and the simulation of the world in the game is non realistic, such that the game moves at a fast pace.
+			\item Both systems utilize the Android platform.
+			\item The user of Climatar is not omnipotent, they may only react to the changing system through events, whereas in Energy Wars users control energy production of every single region, advancements in one relate to advancements in another.
+			\item As opposed to the game modelling the earth, Climatar Models the world present in the Avatar universe. Changing the setting removes the restrictions to the real world, allowing for  simulations of generated regions to occur not as the world is, forcing adaptability to the game play aspects of Climatar.
+		\end{itemize}
 \end{itemize}
 
-Although many more solutions exist, the above outline all of the main elements to current systems which contrast to Climatar's place in the family of world simulation software solutions.
+Although many more solutions exist, the above outline all of the main elements to current systems which contrast to Climatar's place in the family of world simulation software solutions.\\
 
 Climatar is a self-contained software solution with respect to the Android system it is running on. No external databases, servers, or systems are required for Climatar to work. The System itself contains layers for world containment, world components (i.e. Climate, Greenhouse gas levels and emissions, political stances etc.), and event interaction. Depending on the simulated world, each of the sub layers interact differently. Furthermore the System interacts with the android platform utilizing the features available to applications on android devices. The following diagram illustrates the interaction of layers within the system:
-
-
-
-
-\begin{enumerate}[a)]
-	\item Put the product into perspective with other related products, i.e., context
-	\item If the product is independent and totally self-contained, it should be stated here
-	\item If the SRS defines a product that is a component of a larger system, as frequently occurs, then this subsection should relate the requirements of that larger system to functionality of the software and should identify interfaces between that system and the software
-	\item A block diagram showing the major components of the larger system, interconnections, and external interfaces can be helpful
-\end{enumerate}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=14cm]{SRS_Interaction_Layers}
+  \caption{High Level System Interaction Layers.}
+\end{figure}
+\newpage
 % End SubSection
 
 \subsection{Product Functions}
@@ -136,7 +155,7 @@ The functionality Climatar is to present as a product is:
 	\item User interactions occur with an emphasis on not being omnipotent in how the world works, only in reactions to events within the world itself. In short users are given the ability to react to the changing world, propagating further changes, however they are not given the ability to command all aspects of the world.
 	\item The application presents the user information allowing them to make needed decisions.
 	\item Climatar allows for regional analysis, showing specific attributes of regions allowing for contrast in benefits versus disadvantages of regional reactions to changes made.
-	\item Climatar is a tool to have users think about reactions to events on a global scale at an accelerated time scale.
+	\item Climatar is a tool to have users think about reactions to events on a global scale in a non real-time scale to show long term effects to event reactions unfold quickly.
 \end{enumerate}
 % End SubSection
 
