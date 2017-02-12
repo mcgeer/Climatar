@@ -12,6 +12,7 @@
 \usepackage{graphicx}
 \usepackage{extarrows}
 \usepackage{setspace}
+\usepackage{hyperref}
 %------------------------------------------------------------------------------
 
 % Header and Footer
@@ -89,15 +90,31 @@ This section outlines all details prefacing the requirements for the Climatar pr
 \subsection{Product Perspective}
 \label{sub:product_perspective}
 % Begin SubSection
-Climatar is a self-contained software solution with respect to the Android system it is running on. No external databases, servers, or systems are required for the system itself to work. The System itself contains layers for world containment, world component models (i.e. Climate, Greenhouse gas levels and emissions, political stances etc.), event generation, and event interaction. Depending on  the simulated world, each of the sub layers interact differently. Furthermore the System interacts with the android platform utilizing the features available to applications on android devices. The following diagram illustrates the interaction of layers within the system:
+
+Climate and world simulation as a software solution is not a new idea, however Climatar as a solution to world events is distinct from the current off-the-shelf solutions, appealing to a new client base, as well as utilizing current solution features to provide an enhanced software system for those using existing off-the-shelf solutions.
+
+Existing products related to Climatar include: 
+\begin{itemize}
+	\item \textbf{BBC - Climate Challenge} 
+	%LINK: http://www.bbc.co.uk/sn/hottopics/climatechange/climate_challenge/
+		Is a web application for simulating the effects on controlling Great Britain. The application advances with 10 year turns, each turn allows a specific set of decisions to be made. Each decision effects just Great Britain. The overall goal is to become a no-emissions country within 200 years. \\
+		Climatar contrasts this application through the following points:
+		\begin{itemize}
+			\item Climatar is for use on android devices. Android web players do not support the application BBC - Climate Challenge.
+			\item Climatar allows different political regions to influence the world attributes, out of the control of the user.
+			\item The over arching goal is to show feasible world reactions to events, elimination of C02 emissions thus is not the only simulation feature.
+			\item Each play through of Climate Challenge is identical, at each phase of the simulation the same options are available. Climatar is to engage users interaction and knowledge growth by ensuring different instances of the simulation will play through differently based on previous actions, illustrating long term effects of decisions.
+		\end{itemize}
+	%\item \textbf{http://www.bbc.co.uk/sn/hottopics/climatechange/climate_challenge/}
+	%\item \textbf{http://monash.edu/research/simple-climate-model/mscm/greb/cgi-bin/scny_i18n.py?scenario=28&variable=02&locale=EN&activetab=undefined}
+	%\item \textbf{https://play.google.com/store/apps/details?id=com.gz.EnergyWars}
+\end{itemize}
+
+Although many more solutions exist, the above outline all of the main elements to current systems which contrast to Climatar's place in the family of world simulation software solutions.
+
+Climatar is a self-contained software solution with respect to the Android system it is running on. No external databases, servers, or systems are required for Climatar to work. The System itself contains layers for world containment, world components (i.e. Climate, Greenhouse gas levels and emissions, political stances etc.), and event interaction. Depending on the simulated world, each of the sub layers interact differently. Furthermore the System interacts with the android platform utilizing the features available to applications on android devices. The following diagram illustrates the interaction of layers within the system:
 
 
-In the past Climate simulation software systems have been developed and used for some of the objectives held by Climatar. Simple solutions such as 
-
-
-A climate simulation software system is not a new idea, and has infact been done in many different ways in the past. However Climatar solves unique issues not addressed by previous solutions, providing usability to a projected user base that cannot be obtained from off the shelf solutions.
-
-Climatar is a self-contained solution for andriod 
 
 
 \begin{enumerate}[a)]
@@ -168,7 +185,10 @@ The following list of assumptions hold for the entirety of the SRS, any changes 
 \subsection{Apportioning of Requirements}
 \label{sub:apportioning_of_requirements}
 % Begin SubSection
-\textit{N/A}
+Requirements being delayed, thus not included within the SRS are as follows:
+\begin{enumerate}
+	\item Online capabilities of the system are not included within the requirements however are alluded to as possible features.
+\end{enumerate}
 % End SubSection
 
 % End Section
