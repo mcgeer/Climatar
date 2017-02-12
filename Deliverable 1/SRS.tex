@@ -84,11 +84,22 @@
 \label{sec:overall_description}
 % Begin Section
 
-This section of the SRS should describe the general factors that affect the product and its requirements. It does not state specific requirements; it provides a background for those requirements and makes them easier to understand.
+This section outlines all details prefacing the requirements for the Climatar project. These details are to be understood prior to the functional and non-functional requirements for the system.
 
 \subsection{Product Perspective}
 \label{sub:product_perspective}
 % Begin SubSection
+Climatar is a self-contained software solution with respect to the Android system it is running on. No external databases, servers, or systems are required for the system itself to work. The System itself contains layers for world containment, world component models (i.e. Climate, Greenhouse gas levels and emissions, political stances etc.), event generation, and event interaction. Depending on  the simulated world, each of the sub layers interact differently. Furthermore the System interacts with the android platform utilizing the features available to applications on android devices. The following diagram illustrates the interaction of layers within the system:
+
+
+In the past Climate simulation software systems have been developed and used for some of the objectives held by Climatar. Simple solutions such as 
+
+
+A climate simulation software system is not a new idea, and has infact been done in many different ways in the past. However Climatar solves unique issues not addressed by previous solutions, providing usability to a projected user base that cannot be obtained from off the shelf solutions.
+
+Climatar is a self-contained solution for andriod 
+
+
 \begin{enumerate}[a)]
 	\item Put the product into perspective with other related products, i.e., context
 	\item If the product is independent and totally self-contained, it should be stated here
@@ -100,57 +111,68 @@ This section of the SRS should describe the general factors that affect the prod
 \subsection{Product Functions}
 \label{sub:product_functions}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Provide a summary of the major functions that the software will perform.
-	\begin{itemize}
-		\item \textbf{Example}: An SRS for an accounting program may use this part to address customer account maintenance, customer statement, and invoice preparation without mentioning the vast amount of detail that each of those functions requires.
-	\end{itemize}
-	\item Functions should be organized in a way that makes the list of functions understandable to the customer or to anyone else reading the document for the first time
-	\item Textual or graphical methods can be used to show the different functions and their relationships
-	\begin{itemize}
-		\item Such a diagram is not intended to show a design of a product, but simply shows the logical relationships among variables
-	\end{itemize} 
+The functionality Climatar is to present as a product is:
+%List of Product functions for Climatar
+\begin{enumerate}
+	\item Climatar is to present the ability to simulate regions of a world based on regional, political, general climate, and pollution levels of the world under simulation.
+	\item As a part of simulating the world, news items are presented as attributes of the world, it is up to the user to react to news.
+	\item User interactions occur with an emphasis on not being omnipotent in how the world works, only in reactions to events within the world itself. In short users are given the ability to react to the changing world, propagating further changes, however they are not given the ability to command all aspects of the world.
+	\item The application presents the user information allowing them to make needed decisions.
+	\item Climatar allows for regional analysis, showing specific attributes of regions allowing for contrast in benefits versus disadvantages of regional reactions to changes made.
+	\item Climatar is a tool to have users think about reactions to events on a global scale at an accelerated time scale.
 \end{enumerate}
 % End SubSection
 
 \subsection{User Characteristics}
 \label{sub:user_characteristics}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Describe those general characteristics of the intended users of the product including educational level, experience, and technical expertise
-	\item Do not state specific requirements, but rather provide the reasons why certain specific requirements are later specified
-\end{enumerate}
+The general characteristics of a user of Climatar are as follows:
+\begin{itemize}
+	\item Able to read and comprehend English.
+	\item Understands how to navigate and use an Android system, as 	well as the controls provided by an Android system.
+	\item The ability to see the system; including:
+	\begin{enumerate}[-]
+		\item Ability to view objects, and distinct elements on the device.
+		\item Differentiate colouration of components such as red from blue.
+	\end{enumerate}
+\end{itemize}
 % End SubSection
 
 \subsection{Constraints}
 \label{sub:constraints}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Provide a general description of any other items that will limit the developer's options
+\begin{enumerate}
+	\item Climatar is to be restricted to android platforms.
+	\item Programming language(s) used must be supported by SL4A
+	\item  Climatar must implement a system that is composed of at least three sub-systems, each dealing with diverse environments from which the stimuli are received.
+	\item Each sub-system must be modularized and easily swappable.
+	\item Climatar must be able to customize the views to a specific set of sub-systems on the fly.
+	\item  Climatar must react to specific stimuli in a way that respects the modelled domain.  Each subsystem must have at least one possible stimuli.
 \end{enumerate}
 % End SubSection
 
 \subsection{Assumptions and Dependencies}
 \label{sub:assumptions_and_dependencies}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item List each of the factors that affect the requirements stated in the SRS
-	\item These factors are not design constraints on the software but are, rather, any changes to them that can affect the requirements in the SRS
-	\begin{itemize}
-		\item \textbf{Example}: An assumption may be that a specific operating system will be available on the hardware designated for the software product. If, in fact, the operating system is not available, the SRS would then have to change accordingly.
-	\end{itemize}
-\end{enumerate}
+The following list of assumptions hold for the entirety of the SRS, any changes to the below list must be reflective throughout the SRS for it the be considered stable.
+\begin{itemize}
+	\item The use of the system assumes that the hardware utilizing the software is running at least Android KitKat 4.4.
+	\item Use of the Java Development Kit 1.8.0 features are available to the system.
+	\item Hardware under use is assumed to have a resolution of at least 720p.
+	\item Climatar is to be granted any system accessibility requests by the user for the system to respond as stated to all requirements.
+	\item Battery life of devices is assumed to remain consistent, the program assumes that the phone does not enter a power down state suddenly.
+	\item Climatar is not planned for release on other platforms apart from Android KitKat 4.4+. Thus all requirements for the system do not include any need for porting the application beyond newer Android versions.
+\end{itemize}
 % End SubSection
 
 \subsection{Apportioning of Requirements}
 \label{sub:apportioning_of_requirements}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Identify requirements that may be delayed until future versions of the system
-\end{enumerate}
+\textit{N/A}
 % End SubSection
 
 % End Section
+
 
 \section{Functional Requirements}
 \label{sec:functional_requirements}
