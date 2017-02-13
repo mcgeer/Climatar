@@ -218,18 +218,18 @@ Requirements being delayed, thus not included within the SRS are as follows:
 	\begin{enumerate}[{VP1}.1]
 		\item User Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item N/A
 			\end{enumerate}
 		\item Hardware Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The underlying hardware shall create an graphics context. If the device is unable to create a graphics context, the application should close gracefully with an appropriate error message.
+				\item The underlying hardware shall be initialized to respond to any touch input from the user.
+				\item The hardware shall be able to load files that contain user data and save data, If the hardware fail to load the required files, the application should ask user to create a new game.
+				\item The hardware should be able to render the start menu and refresh at realtime (24 FPS). 
 			\end{enumerate}
 		\item Game World Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item N/A
 			\end{enumerate}
 			
 	\end{enumerate}
@@ -237,18 +237,20 @@ Requirements being delayed, thus not included within the SRS are as follows:
 	\begin{enumerate}[{VP2}.1]
 	\item User Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The user should be capable of quitting the game at any time using the back button.
+
+				\item The user should have the option of saving a game at any time.
+				\item The user should be capable of enabling an autosaving option.
 			\end{enumerate}
 		\item Hardware Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The hardware shall dispose of the graphics context.
+				\item Touch events received from the hardware shall be ignored.
+				\item If the autosaving option is enabled, the hardware will save the game files if capable, else display an appropriate error notification.
 			\end{enumerate}
 		\item Game World Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item N/A
 			\end{enumerate}
 		%\item \dots
 	\end{enumerate}
@@ -256,37 +258,36 @@ Requirements being delayed, thus not included within the SRS are as follows:
 	\begin{enumerate}[{VP3}.1]
 		\item User Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The user should be capable of saving the game while it is paused.
 			\end{enumerate}
 		\item Hardware Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The graphics context shall be updated to display the pause screen.
+				\item If the back button event is captured by the hardware, the game shall resume.
 			\end{enumerate}
 		\item Game World Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The system shall stop generating game events.
+				\item The system shall stop the game timer.
 			\end{enumerate}
+			
 					%\item \dots
 	\end{enumerate}
 		\item Resume Game
 	\begin{enumerate}[{VP4}.1]
 		\item User Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item N/A
 			\end{enumerate}
 		\item Hardware Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item N/A
 			\end{enumerate}
 		\item Game World Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The System shall start generating events.
+
+				\item The System shall resume the timer.
 			\end{enumerate}
 			
 		\end{enumerate}
@@ -294,18 +295,30 @@ Requirements being delayed, thus not included within the SRS are as follows:
 	\begin{enumerate}[{VP5}.1]
 		\item User Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The user should be able load a previous saved game.
+				\item The user should be able to start a new game by selecting a game mode.
+				\item There shall be two game modes:
+				\begin{enumerate}
+					\item Survival mode
+					\item Overlord mode
+				\end{enumerate}
+				\item The user should be allowed to respond to any game events by selecting ?YES? or ?NO? in the UI.
 			\end{enumerate}
 		\item Hardware Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The hardware shall load the game file which is selected by the user.
+				\item The hardware shall load any graphics assets which are required for rendering the game world.
+				\item While the assets are loading, a loading screen shall be presented to the user.
+				\item After all assets are loaded, the game world and any UI shall be rendered in the graphics context.
+				\item The hardware shall update the graphics context to display any new game events that occur.
 			\end{enumerate}
 		\item Game World Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The game world shall initialize data when a new game is started.
+				\item If the game world is loaded, the game world state shall reflect that of the loaded game file.
+				\item The game world shall begin the game timer.
+				\item The game world shall simulate and begin generating game events once it is started or loaded, based on the current game world state.
+				\item Game events shall be yes or no questions which result in an increase or decrease of the chaos, temperature and or money.
 			\end{enumerate}			
 		%\item \dots
 	\end{enumerate}
@@ -313,18 +326,16 @@ Requirements being delayed, thus not included within the SRS are as follows:
 		\begin{enumerate}[{VP6}.1]
 			\item User Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The user should be able to move the map with the finger.
 			\end{enumerate}
 		\item Hardware Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The hardware should be capable to accept user?s finger input.
+				\item The graphics context shall be updated to display the movement of map with realtime (24FPS).
 			\end{enumerate}
 		\item Game World Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item N/A
 			\end{enumerate}			
 		%\item \dots
 	\end{enumerate}
@@ -332,18 +343,18 @@ Requirements being delayed, thus not included within the SRS are as follows:
 	\begin{enumerate}[{VP7}.1]
 		\item User Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The user shall respond to game events by selecting ?YES? or ?NO?.
 			\end{enumerate}
 		\item Hardware Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The hardware shall update the chaos, politics and money values on screen.
 			\end{enumerate}
 		\item Game World Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The game world shall appropriately increase or decreases the chaos, politics, and money values based on the decision of the user.
+				\item  The game world shall check for lose conditions by checking if the following is truth: (chaos > 100 percent OR money <= 0 OR temp >= 100 percent).
+				\item If the lose conditions are truthy, the game shall display the gameover screen.
+
 			\end{enumerate}
 					%\item \dots
 	\end{enumerate}
@@ -351,18 +362,16 @@ Requirements being delayed, thus not included within the SRS are as follows:
 	\begin{enumerate}[{VP9}.1]
 		\item User Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The user shall choose yes or now to confirm reseting the game world.
 			\end{enumerate}
 		\item Hardware Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The hardware shall render and update the display with new map and initialized UI.
 			\end{enumerate}
 		\item Game World Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The System shall initialize all data and generate new map.
+				\item The System shall start generating game events.
 			\end{enumerate}
 			
 		%\item \dots
@@ -371,24 +380,20 @@ Requirements being delayed, thus not included within the SRS are as follows:
 	\begin{enumerate}[{VP9}.1]
 		\item User Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item N/A
 			\end{enumerate}
 		\item Hardware Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
-			\end{enumerate}
+				\item The graphics context shall be updated to display the game over screen with score, highest score, restart button and quit button.
+				\end{enumerate}
 		\item Game World Viewpoint
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
+				\item The system shall be terminated and all temporary data shall be cleaned.
 			\end{enumerate}			
 		%\item \dots
 	\end{enumerate}
 	
 \end{enumerate}
-
 
 
 % End Section
