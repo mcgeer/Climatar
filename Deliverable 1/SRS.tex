@@ -216,86 +216,184 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \section{Functional Requirements}
 \label{sec:functional_requirements}
 % Begin Section
-This section of the SRS should contain all of the software requirements to a level of detail sufficient to enable designers to design a system to satisfy those requirements, and testers to test that the system satisfies those requirements. Throughout this section, every stated requirement should be externally perceivable by users, operators, or other external systems. These requirements should include at a minimum a description of every input (stimulus) into the system, every output (response) from the system, and all functions performed by the system in response to an input or in support of an output.
 
-You normally have two options for organizing your functional requirements:
-\begin{enumerate}
-	\item Organize first by \emph{business events}, then by \emph{viewpoints}
-	\item Organize first by \emph{viewpoints}, then by \emph{business events}
-\end{enumerate}
-Choose the one which makes the most sense.
-
-For example, if you wish to organization by business events:
 \begin{enumerate}[{BE}1.]
-	\item Business Event
+	\item Start Application
 	\begin{enumerate}[{VP1}.1]
-		\item Viewpoint
+		\item User Viewpoint
 			\begin{enumerate}
 				\item Requirement
 				\item Requirement
-				\item \dots
 			\end{enumerate}
-		\item Viewpoint
+		\item Hardware Viewpoint
 			\begin{enumerate}
 				\item Requirement
 				\item Requirement
-				\item \dots
 			\end{enumerate}
-		\item \dots
+		\item Game World Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+			
 	\end{enumerate}
-	\item Business Event
+	\item Terminate Application
 	\begin{enumerate}[{VP2}.1]
-		\item Viewpoint
+	\item User Viewpoint
 			\begin{enumerate}
 				\item Requirement
 				\item Requirement
-				\item \dots
 			\end{enumerate}
-		\item Viewpoint
+		\item Hardware Viewpoint
 			\begin{enumerate}
 				\item Requirement
 				\item Requirement
-				\item \dots
 			\end{enumerate}
-		\item \dots
+		\item Game World Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		%\item \dots
 	\end{enumerate}
+		\item Pause Game
+	\begin{enumerate}[{VP3}.1]
+		\item User Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Hardware Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Game World Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+					%\item \dots
+	\end{enumerate}
+		\item Resume Game
+	\begin{enumerate}[{VP4}.1]
+		\item User Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Hardware Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Game World Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+			
+		\end{enumerate}
+		\item Start Game
+	\begin{enumerate}[{VP5}.1]
+		\item User Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Hardware Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Game World Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}			
+		%\item \dots
+	\end{enumerate}
+	\item Move map
+		\begin{enumerate}[{VP6}.1]
+			\item User Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Hardware Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Game World Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}			
+		%\item \dots
+	\end{enumerate}
+		\item Input of decision
+	\begin{enumerate}[{VP7}.1]
+		\item User Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Hardware Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Game World Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+					%\item \dots
+	\end{enumerate}
+		\item Reset Game
+	\begin{enumerate}[{VP9}.1]
+		\item User Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Hardware Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Game World Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+			
+		%\item \dots
+	\end{enumerate}
+		\item The game ends
+	\begin{enumerate}[{VP9}.1]
+		\item User Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Hardware Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}
+		\item Game World Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+			\end{enumerate}			
+		%\item \dots
+	\end{enumerate}
+	
 \end{enumerate}
 
-\underline{OR}, if you wish to organization by viewpoints:
-\begin{enumerate}[{VP}1.]
-	\item Viewpoint 
-	\begin{enumerate}[{BE1}.1]
-		\item Business Event
-		\begin{enumerate}
-			\item Requirement
-			\item Requirement
-			\item \dots
-		\end{enumerate}
-		\item Business Event
-		\begin{enumerate}
-			\item Requirement
-			\item Requirement
-			\item \dots
-		\end{enumerate}
-		\item \dots
-	\end{enumerate}
-	\item Viewpoint
-	\begin{enumerate}[{BE2}.1]
-		\item Business Event
-		\begin{enumerate}
-			\item Requirement
-			\item Requirement
-			\item \dots
-		\end{enumerate}
-		\item Business Event
-		\begin{enumerate}
-			\item Requirement
-			\item Requirement
-			\item \dots
-		\end{enumerate}
-		\item \dots
-	\end{enumerate}
-\end{enumerate}
+
 
 % End Section
 
