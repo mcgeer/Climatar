@@ -13,6 +13,8 @@
 \usepackage{extarrows}
 \usepackage{setspace}
 \usepackage{hyperref}
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\section*{\refname}}{}{}{}
 %------------------------------------------------------------------------------
 
 % Header and Footer
@@ -52,9 +54,9 @@
 \subsection{Scope}
 \label{sub:scope}
 % Begin SubSection
-	“Climatar” is a UI based mobile game, designed for Android OS, that simulates climate change as experienced by the world made popular by animated TV series, Avatar: The Last Airbender. The game generates news events, which describe real world actions, policies and decisions, which either contribute to or deter climate change, influencing variables that make the environment.These news events are influenced by factors such as energy consumption, political stance, lifestyle and economic motivation and the enactment of these events are determined by the user.
+	“Climatar” is a UI based mobile game, designed for Android OS, that simulates climate change as experienced by the world made popular by animated TV series, Avatar: The Last Airbender. The game generates news events, which describe real world actions, policies and decisions, which either contribute to or deter climate change, influencing variables that monitor the environmental sphere of the world.These news events are influenced by factors such as energy consumption, political stance, lifestyle and economic motivation and the enactment of these events are determined by the user.
  
-	The geography of the model world is divided into four independent nations: Air Nomads, Water Tribe, Fire Nation and Earth Kingdom. The user has the option to chose one of these nations, enacting the news events pertaining to chosen nation or to play god, enacting the news events pertaining to all four nations. Each nation uses the element specified in its name as its primary source of energy. The game ends once the model world has been destroyed due to global warming.
+	\cite{WoA}The geography of the model world is divided into four independent nations: Air Nomads, Water Tribe, Fire Nation and Earth Kingdom. The user has the option to chose one of these nations, enacting the news events pertaining to chosen nation or to play god, enacting the news events pertaining to all four nations. Each nation follows a unique political system, culture and lifestyle, and uses the element specified in its name as its primary source of energy. These elements are utilized by special portion of the population known as benders, who have the ability to naturally manipulate a specific element. The game ends once the model world has experienced sufficient damage due to climate change, severly changing the world's eco-system. 
 
 	The application shall provide users with a save and load game option, allowing the user to play the game, as when they please. The game should be available for download through an application store or public repository.	
 % End SubSection
@@ -62,25 +64,20 @@
 \subsection{Definitions, Acronyms, and Abbreviations}
 \label{sub:definitions_acronyms_and_abbreviations}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Provide the definitions of all terms, acronyms, and abbreviations required to properly interpret the SRS
-\end{enumerate}
+
 % End SubSection
 
 \subsection{References}
 \label{sub:references}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Provide a complete list of all documents referenced elsewhere in the SRS
-	\item Identify each document by title, report number (if applicable), date, and publishing organization
-	\item Specify the sources from which the references can be obtained
-\end{enumerate}
+\bibliographystyle{ieeetran}
+\bibliography{SRS}
 % End SubSection
 
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-	The rest of the document is divided into three sections. The second section provides an abstract overview of the product and its major functionality. The section defines the constraints for the system and the assumptions that affect the system’s requirements. The third section provides a detailed description of the functional requirements perceived, which describe the specific behavior of the system. The contents of this section are classified as business events and viewpoints. The fourth and final section provides a detailed description of the non functional requirements, which provide a detailed description on specific areas of operation of the system.  
+	The rest of the document is divided into three sections. The second section provides an abstract overview of the product and its major functionality. The section defines the constraints for the system and the assumptions that affect the system’s requirements, all the while highlighting the proposed system's benefits that distinguish it from simillar products available. The third section provides a detailed description of the functional requirements perceived, which describe the specific behavior of the system. The contents of this section are classified as business events and viewpoints. The fourth and final section provides a detailed description of the non functional requirements, which provide a detailed description on specific areas of operation of the system.  
 
 % End SubSection
 
@@ -101,8 +98,8 @@ Climate and world simulation as a software solution is not a new idea, however C
 Existing products related to Climatar include: 
 \begin{itemize}
 	\item \textbf{BBC - Climate Challenge} 
-	%LINK: http://www.bbc.co.uk/sn/hottopics/climatechange/climate_challenge/
-		Is a web application for simulating the effects on controlling Great Britain. The application advances with 10 year turns, each turn allows a specific set of decisions to be made. Each decision effects just Great Britain. The overall goal is to become a no-emissions country within 200 years. \\
+		
+		\cite{BBC}Is a web application for simulating the effects on controlling Great Britain. The application advances with 10 year turns, each turn allows a specific set of decisions to be made. Each decision effects just Great Britain. The overall goal is to become a no-emissions country within 200 years. \\
 		Climatar contrasts this application through the following points:
 		\begin{itemize}
 			\item Climatar is for use on android devices. Android web players do not support the application BBC - Climate Challenge.
@@ -112,8 +109,8 @@ Existing products related to Climatar include:
 		\end{itemize}
 	
 	\item \textbf{Climate Models of Earth}
-		%LINK http://monash.edu/research/simple-climate-model/mscm/greb/cgi-bin/scny_i18n.py?scenario=28&variable=02&locale=EN&activetab=undefined 
-		Software illustrations of Climate predictions such as the Simple Climate Model by Monash, utilize mathematical predictions through data extrapolation on climate change to illustrate predictions on future climate if all growth rates remain constant with population, C02 levels, average temperature, etc.\\
+
+		Software illustrations of Climate predictions such as the Simple Climate Model by Monash, utilize mathematical predictions through data extrapolation on climate change to illustrate predictions on future climate if all growth rates remain constant with population, C02 levels, average temperature, etc\cite{ClimM}.\\
 	Climatar contrasts this application through the following points:
 		\begin{itemize}
 			\item Climatar simulations do not assume constant growth rates, instead all system components like climate simulate and react with on another, causing complex predictions to events to be explored.
@@ -122,8 +119,7 @@ Existing products related to Climatar include:
 		\end{itemize}	 
 
 	\item \textbf{Energy Wars} 
-		%LINK https://play.google.com/store/apps/details?id=com.gz.EnergyWars
-		Is a Android game where users control the worlds demand for energy through development of green, and pollutant energy generation schemas. Event responses include natural disasters and war. The game itself is designed to be a puzzle to solve within each provided stage.\\
+		Is a Android game\cite{EW} where users control the worlds demand for energy through development of green, and pollutant energy generation schemas. Event responses include natural disasters and war. The game itself is designed to be a puzzle to solve within each provided stage.\\
 		Climatar contrasts this application through the following points:
 		\begin{itemize}
 			\item Climatar is to be a simulation solution of the complex systems interacting and handling aspects of regional events and how they effect other regions, whereas Energy wars is designed as a game to and the simulation of the world in the game is non realistic, such that the game moves at a fast pace.
@@ -699,7 +695,8 @@ n.a
 % Begin Section
 Include a Division of Labour sheet which indicates the contributions of each team member. This sheet must be signed by all team members.
 % End Section
-
+\nocite{MDes}
+\nocite{CAQ}
 \newpage
 \section*{IMPORTANT NOTES}
 \begin{itemize}
