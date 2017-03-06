@@ -95,9 +95,6 @@
 \section{Overall Description}
 \label{sec:overall_description}
 % Begin Section
-
-This section outlines all details prefacing the requirements for the Climatar project. These details are to be understood prior to the functional and non-functional requirements for the system.
-
 \subsection{Product Perspective}
 \label{sub:product_perspective}
 % Begin SubSection
@@ -108,7 +105,7 @@ Existing products related to Climatar include:
 \begin{itemize}
 	\item \textbf{BBC - Climate Challenge} 
 		
-		\cite{BBC}Is a web application for simulating the effects on controlling Great Britain. The application advances with 10 year turns, each turn allows a specific set of decisions to be made. Each decision effects just Great Britain. The overall goal is to become a no-emissions country within 200 years. \\
+		\cite{BBC}Is a web application for simulating the effects on controlling taxation, laws, and government spending for the country of Great Britain. The major areas where the user may act are: military, food and water supplies, energy, the environment, and political relations. The application advances with 10 year turns, each turn allows a specific set of decisions to be made within the major areas the user governs. Each decision affects just Great Britain. The overall goal is to become a no-emissions country within 200 years. \\
 		Climatar contrasts this application through the following points:
 		\begin{itemize}
 			\item Climatar is for use on android devices. Android web players do not support the application BBC - Climate Challenge.
@@ -124,11 +121,11 @@ Existing products related to Climatar include:
 		\begin{itemize}
 			\item Climatar simulations do not assume constant growth rates, instead all system components like climate simulate and react with on another, causing complex predictions to events to be explored.
 			\item Applications that model the earth are designed for  research use. Climatar is to educate the general public on the effects actions have both long and short term with respect to complex systems which could include, but is not limited to: environment, political toil, sea level, etc.
-			\item The simulations executed in Climatar will however try and be as accurate to real physical systems, allowing for user analysis of reactions to events in a similar to real world way.
+			\item The simulations executed in Climatar will however try to be as accurate to real physical systems, allowing for user analysis of reactions to events in a similar to real world way.
 		\end{itemize}	 
 
 	\item \textbf{Energy Wars} 
-		Is a Android game\cite{EW} where users control the worlds demand for energy through development of green, and pollutant energy generation schemas. Event responses include natural disasters and war. The game itself is designed to be a puzzle to solve within each provided stage.\\
+		Is an Android game\cite{EW} where users control the worlds demand for energy through development of green energy schemas such as Wind, and Solar generation stations, as well as pollutant energy generation schemas such as Coal, Natural Gas, and Oil. The world is ever responding to the state of the worlds climate, such event responses include natural disasters and war. The game itself is designed to be a puzzle to solve within each provided stage. Providing points for quickness of completeness and the state of the world after a given challenge has been met.\\
 		Climatar contrasts this application through the following points:
 		\begin{itemize}
 			\item Climatar is to be a simulation solution of the complex systems interacting and handling aspects of regional events and how they effect other regions, whereas Energy wars is designed as a game to and the simulation of the world in the game is non realistic, such that the game moves at a fast pace.
@@ -140,13 +137,7 @@ Existing products related to Climatar include:
 
 Although many more solutions exist, the above outline all of the main elements to current systems which contrast to Climatar's place in the family of world simulation software solutions.\\
 
-Climatar is a self-contained software solution with respect to the Android system it is running on. No external databases, servers, or systems are required for Climatar to work. The System itself contains layers for world containment, world components (i.e. Climate, Greenhouse gas levels and emissions, political stances etc.), and event interaction. Depending on the simulated world, each of the sub layers interact differently. Furthermore the System interacts with the android platform utilizing the features available to applications on android devices. The following diagram illustrates the interaction of layers within the system:
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=14cm]{SRS_Interaction_Layers}
-  \caption{High Level System Interaction Layers.}
-\end{figure}
-\newpage
+Climatar is a self-contained software solution with respect to the Android system it is running on. No external databases, servers, or systems are required for Climatar to work. The system itself contains layers for world containment, world components (i.e. Climate, Greenhouse gas levels and emissions, political stances etc.), and event interaction. Depending on the simulated world, each of the sub layers interact differently. Furthermore the System interacts with the Android platform utilizing the features available to applications on Android devices.
 % End SubSection
 
 \subsection{Product Functions}
