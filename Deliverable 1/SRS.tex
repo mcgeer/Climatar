@@ -415,11 +415,7 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \label{ssub:appearance_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LF}1. ]
-	\item The product's interface shall be designed in a way such that it can be easily adapted to different screen sizes.
 	\item The product shall minimize the use of visual adornments that would otherwise clutter the interface.
-	\item The product shall use common navigational elements (ie. status bar, tab bar, hamburger menu) to help usability amongst new users.
-	\item The product shall use common iconography to help usability amongst new users. 
-	\item The product shall make heavy use of contrast to help it's usability amongst colour blind users.
 	\item The product shall predominantly use a single colour to help develop and maintain it's brand identity.
 	\holdEnum
 \end{enumerate}
@@ -431,8 +427,6 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \begin{enumerate}[{LF}1.]
 	\resumeEnum
 	%TODO: Reference the google material design guidelines in section 1.4
-	\item Where it can, the product shall conform to Google's material design guidelines.
-	\item The product shall use primarily sans-serif fonts.
 	\item The product's app icon shall be designed in the common negative-space style to help it sit better amongst other popular app icons.  
 \end{enumerate}
 % End SubSubSection
@@ -448,7 +442,6 @@ Requirements being delayed, thus not included within the SRS are as follows:
 % Begin SubSubSection
 \begin{enumerate}[{UH}1. ]
 	\item The product shall be usable by anyone fluent in the English language.
-	\item The product's navigational elements should be found in under 2 seconds by new users.
 	\item The product's navigational elements shall behave in the ways standard to the Android operating system. This should make the app more intuitive to use for new users. 
 	\item The product's functions shall be designed a way such that they require a minimum number of gestures from the user.
 	\item Where it makes sense, the product shall favour input elements such as sliders over raw text input.
@@ -458,13 +451,13 @@ Requirements being delayed, thus not included within the SRS are as follows:
 
 \subsubsection{Personalization and Internationalization Requirements}
 \label{ssub:personalization_and_internationalization_requirements}
+n.a
 % Begin SubSubSection
-\begin{enumerate}[{UH}1. ]
-	\resumeEnum
-	\item The product shall favour the use of icons such that, when needed, it can be more easily adapted to different languages and cultures.
-	\item The product shall use Android SDK best practices so that the user's global accessibility settings (text size, text-to-speech etc...) will take effect in the app. 
-	\holdEnum
-\end{enumerate}
+%\begin{enumerate}[{SR}1. ]
+%	\resumeEnum
+%	\item 
+%	\holdEnum
+%\end{enumerate}
 % End SubSubSection
 
 \subsubsection{Learning Requirements}
@@ -473,7 +466,6 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \begin{enumerate}[{UH}1. ]
 	\resumeEnum
 	\item By using standard Android navigational elements, the product should not take more than 10 minutes for a new user to become adept with it.
-	\item For any non-traditional feature, the product shall use short tutorial text to educate the user about it's functionality.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -484,6 +476,8 @@ Requirements being delayed, thus not included within the SRS are as follows:
 % Begin SubSubSection
 \begin{enumerate}[{UH}1. ]
  	\resumeEnum
+	\item The product shall use common navigational elements (ie. status bar, tab bar, hamburger menu) to help usability amongst new users.
+	\item The product shall use common iconography to help usability amongst new users. 
 	\item The product shall contain no language or ideas inappropriate for an elementary school level user.
 	\holdEnum
 \end{enumerate}
@@ -494,7 +488,8 @@ Requirements being delayed, thus not included within the SRS are as follows:
 % Begin SubSubSe ction
 \begin{enumerate}[{UH}1. ]
 	\resumeEnum
-	\item The product's interface shall use intractable elements at a minimum of 60x60points in size to help users with reduced motor skills.
+	\item The product shall make heavy use of contrast to help it's usability amongst colour blind users.
+	\item The product's interface shall use intractable elements at a minimum of 1.5x1.5 cm in size to help users with reduced motor skills.
 	\item By employing standard Android SDK best practices as mentioned in LF7, the product shall adapt the user's global accessibility settings such as TTS (text to speech) and increased/decreased font sizes. 
 	\item The product shall make heavy use of contrast and minimize the use of multiple colours to help colour blind users (This is also mentioned in LF5).
 \end{enumerate}
@@ -510,12 +505,11 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \label{ssub:speed_and_latency_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{PR}1. ]
-	\item Any network requests made by the product will be dispatched and listened to on a background thread so that the user interface (driven by the main thread) does not stall.
 	\item Each user interaction shall be followed up by a visual change on screen. The time between these two events should never exceed half a second.
 	\item Procedural world generation for a new game should take no longer than 2 seconds.
 	\item Loading an in-progress game should take no longer than 1 second.
-	\item The app should launch in no longer than 2 seconds.
-	\item The app should resume from background in no longer than 1 second.
+	\item The app should launch in no longer than 2 seconds on a Samsung Galaxy S6.
+	\item The app should resume from background in no longer than 1 second on a Samsung Galaxy S6.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -547,7 +541,6 @@ n.a
 	\resumeEnum
 	\item The product shall not require an active internet connection (ie. it will be available offline).
 	\item In any case that the device is running under normal circumstances, the app shall be available.
-	\item Under any normal use case, the app should not crash.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -565,22 +558,24 @@ n.a
 
 \subsubsection{Capacity Requirements}
 \label{ssub:capacity_requirements}
+n.a
 % Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\resumeEnum
-	\item The product shall allow the user to save up to 10 in-progress games. This does not include the game temporarily saved in the event that the app terminates unexpectedly (PR11).
-	\holdEnum
-\end{enumerate}
+%\begin{enumerate}[{SR}1. ]
+%	\resumeEnum
+%	\item 
+%	\holdEnum
+%\end{enumerate}
 % End SubSubSection
 
 \subsubsection{Scalability or Extensibility Requirements}
 \label{ssub:scalability_or_extensibility_requirements}
+n.a
 % Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\resumeEnum
-	\item The product is planned to feature an online versus mode in the future in which it will allow for up to 4 concurrent players per session. 
-	\holdEnum
-\end{enumerate}
+%\begin{enumerate}[{SR}1. ]
+%	\resumeEnum
+%	\item 
+%	\holdEnum
+%\end{enumerate}
 % End SubSubSection
 
 \subsubsection{Longevity Requirements}
@@ -613,8 +608,6 @@ n.a
 \begin{enumerate}[{OE}1. ]
 	\resumeEnum
 	\item The product shall work on any smartphone running Android 4.4 (KitKat) and later.
-	\item As an online feature is planned for sometime in the future, the app shall take into consideration architectures for interfacing with a socket based web server.
-	\item Future updates to the app shall not invalidate game saves made on previous versions.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -627,7 +620,6 @@ n.a
 	% TODO: Link to the google play store in section 1.4.
 	\item The product shall be installable directly from the Google Play Store.
 	\item The product shall have 5 screenshots and a short text description to advertise it on the Google Play Store.
-	\item The product shall be no bigger than 15MB. 
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -653,6 +645,7 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{MS}1. ]
 	\item Hotfixes must available to publish within a day of them being made.
+	\item The code shall be architected modularly such that it can be more easily maintained.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -673,9 +666,8 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{MS}1. ]
 	\resumeEnum
+	\item The product's interface shall be designed in a way such that it can be easily adapted to different screen sizes.
 	\item The product is expected to run on version of Android 4.4 (KitKat) and later.
-	\item The product may be ported to iOS and Windows Phone in the future.
-	\item The product may be adapted to accommodate different screen sizes and aspect ratios in the future.
 \end{enumerate}
 % End SubSubSection
 
@@ -748,8 +740,8 @@ n.a
 \label{ssub:cultural_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{CP}1. ]
+	\item The product shall favour the use of icons such that, when needed, it can be more easily adapted to different languages and cultures.
 	\item The product shall aim to not offend any ethnic or religious groups.
-	\item The product shall hold seasonal events celebrating holidays from a variety of ethnic and religious backgrounds.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -783,6 +775,8 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{LR}1. ]
 	\resumeEnum
+	\item The product shall use Android SDK best practices so that for instance the user's global accessibility settings (text size, text-to-speech etc...) will take effect in the app. 
+	\item Where it can, the product shall conform to Google's material design guidelines.
 	\item The app will conform with acceptable performance standards for games and simulations.
 	\item The app will conform to the Android Core App Quality standards to minimize turnover approval time and to increase the chances of being featured in the Google Play Store.
 \end{enumerate}
