@@ -176,10 +176,6 @@ The general characteristics of a user of Climatar are as follows:
 \begin{enumerate}
 	\item Climatar is to be restricted to android platforms.
 	\item Programming language(s) used must be supported by SL4A
-	\item  Climatar must implement a system that is composed of at least three sub-systems, each dealing with diverse environments from which the stimuli are received.
-	\item Each sub-system must be modularized and easily swappable.
-	\item Climatar must be able to customize the views to a specific set of sub-systems on the fly.
-	\item  Climatar must react to specific stimuli in a way that respects the modelled domain.  Each subsystem must have at least one possible stimuli.
 \end{enumerate}
 % End SubSection
 
@@ -189,11 +185,9 @@ The general characteristics of a user of Climatar are as follows:
 The following list of assumptions hold for the entirety of the SRS, any changes to the below list must be reflective throughout the SRS for it the be considered stable.
 \begin{itemize}
 	\item The use of the system assumes that the hardware utilizing the software is running at least Android KitKat 4.4.
-	\item Use of the Java Development Kit 1.8.0 features are available to the system.
 	\item Hardware under use is assumed to have a resolution of at least 720p.
 	\item Climatar is to be granted any system accessibility requests by the user for the system to respond as stated to all requirements.
-	\item Battery life of devices is assumed to remain consistent, the program assumes that the phone does not enter a power down state suddenly.
-	\item Climatar is not planned for release on other platforms apart from Android KitKat 4.4+. Thus all requirements for the system do not include any need for porting the application beyond newer Android versions.
+	\item The program assumes the power of the system is not immediately set to off without the operating system notifying all applications.
 \end{itemize}
 % End SubSection
 
