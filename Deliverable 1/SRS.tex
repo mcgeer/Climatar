@@ -48,17 +48,17 @@
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-	The purpose of the document is to provide a detailed description of the requirements of the application "Climatar". It serves to highlight objectives and key features, the application is perceived to embody, while also describing the scope, constraints and interface of the applicarion. This document is intended for the members of the development team (ie. authors of the document) as reference throughout the various stages of the SDLC.
+	The purpose of the document is to provide a detailed description of the requirements of the software application desribed in the scope. It serves to highlight objectives and key features of the application, while also describing constraints and interface of the system-to-be, and it's environment. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commisioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (ie. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference. 
 % End SubSection
 
 \subsection{Scope}
 \label{sub:scope}
 % Begin SubSection
-	“Climatar” is a UI based mobile game, designed for Android OS, that simulates climate change as experienced by the world made popular by animated TV series, Avatar: The Last Airbender. The game generates news events, which describe real world actions, policies and decisions, which either contribute to or deter climate change, influencing variables that monitor the environmental sphere of the world.These news events are influenced by factors such as energy consumption, political stance, lifestyle and economic motivation and the enactment of these events are determined by the user.
- 
-	\cite{WoA}The geography of the model world is divided into four independent nations: Air Nomads, Water Tribe, Fire Nation and Earth Kingdom. The user has the option to chose one of these nations, enacting the news events pertaining to chosen nation or to play god, enacting the news events pertaining to all four nations. Each nation follows a unique political system, culture and lifestyle, and uses the element specified in its name as its primary source of energy. These elements are utilized by special portion of the population known as benders, who have the ability to naturally manipulate a specific element. The game ends once the model world has experienced sufficient damage due to climate change, severly changing the world's eco-system. 
+	“Climatar” is a UI based mobile game, designed for Android OS, that simulates climate change as experienced by the world made popular by animated TV series, Avatar: The Last Airbender. The game generates news events, which describe real world actions, policies and decisions, which either contribute to or deter climate change, influencing variables that monitor the environmental sphere of the applications model world. The objective of the game is to regulate news events, in order to minimize the effects of greenhouse gasses and because of gloabal warming.
 
-	The application shall provide users with a save and load game option, allowing the user to play the game, as when they please. The game should be available for download through an application store or public repository.	
+The world of Avatar has been selected as the application's model world as it provides a fictional backdrop for the game and the world's political, social and economic environment describes a simpler model of the contemporary world. This ensures that the consequences of the news events are enforced on the world independent of each other .\cite{WoA}The geography of the model world is divided into four independent nations: Air Nomads, Water Tribe, Fire Nation and Earth Kingdom. The user will have the option to choose one of these nations, enacting the news events pertaining to the chosen nation or to play god, enacting the news events pertaining to all four nations. Each nation follows a unique political system, culture and lifestyle, and uses the element specified in its name as its primary source of energy. 
+
+The objective of the game is to regulate news events, in order to minimize the effects of greenhouse gasses and because of gloabal warming. The game ends once the model world has experienced sufficient damage due to climate change, severly changing the world's eco-system, and resulting the user with a loss. The application shall provide users with a save and load game option, allowing the user to play the game, as when they please. The game should be available for download through an application store or public repository.	
 % End SubSection
 
 \subsection{Definitions, Acronyms, and Abbreviations}
@@ -86,8 +86,7 @@
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-	The rest of the document is divided into three sections. The second section provides an abstract overview of the product and its major functionality. The section defines the constraints for the system and the assumptions that affect the system’s requirements, all the while highlighting the proposed system's benefits that distinguish it from simillar products available. The third section provides a detailed description of the functional requirements perceived, which describe the specific behavior of the system. The contents of this section are classified as business events and viewpoints. The fourth and final section provides a detailed description of the non functional requirements, which describe specific areas of operation of the system.  
-
+	The rest of the document is divided into three sections. The second section provides an abstract overview of the product and its major functionality. The section defines the constraints for the system and the assumptions that affect the system’s requirements, all the while highlighting the proposed system's benefits that distinguish it from simillar products available. The third section provides a detailed description of the functional requirements perceived, which describe the specific behavior of the system. The contents of this section are classified as business events and viewpoints. The fourth and final section provides a detailed description of the non-functional requirements, which describe the quality attributes of the system. The plan for implementing functional and non-functional requirements will be detailed in system design and system architecture documents. 
 % End SubSection
 
 % End Section
@@ -105,7 +104,11 @@ Existing products related to Climatar include:
 \begin{itemize}
 	\item \textbf{BBC - Climate Challenge} 
 		
+<<<<<<< HEAD
+		Is a web application for simulating the effects on controlling Great Britain\cite{BBC}. The application advances with 10 year turns, each turn allows a specific set of decisions to be made. Each decision effects just Great Britain. The overall goal is to become a no-emissions country within 200 years. \\
+=======
 		\cite{BBC}Is a web application for simulating the effects on controlling taxation, laws, and government spending for the country of Great Britain. The major areas where the user may act are: military, food and water supplies, energy, the environment, and political relations. The application advances with 10 year turns, each turn allows a specific set of decisions to be made within the major areas the user governs. Each decision affects just Great Britain. The overall goal is to become a no-emissions country within 200 years. \\
+>>>>>>> 9ee38bfd57529bf1fc5595c4527730e2146f5200
 		Climatar contrasts this application through the following points:
 		\begin{itemize}
 			\item Climatar is for use on android devices. Android web players do not support the application BBC - Climate Challenge.
@@ -400,11 +403,7 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \label{ssub:appearance_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LF}1. ]
-	\item The product's interface shall be designed in a way such that it can be easily adapted to different screen sizes.
 	\item The product shall minimize the use of visual adornments that would otherwise clutter the interface.
-	\item The product shall use common navigational elements (ie. status bar, tab bar, hamburger menu) to help usability amongst new users.
-	\item The product shall use common iconography to help usability amongst new users. 
-	\item The product shall make heavy use of contrast to help it's usability amongst colour blind users.
 	\item The product shall predominantly use a single colour to help develop and maintain it's brand identity.
 	\holdEnum
 \end{enumerate}
@@ -416,8 +415,6 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \begin{enumerate}[{LF}1.]
 	\resumeEnum
 	%TODO: Reference the google material design guidelines in section 1.4
-	\item Where it can, the product shall conform to Google's material design guidelines.
-	\item The product shall use primarily sans-serif fonts.
 	\item The product's app icon shall be designed in the common negative-space style to help it sit better amongst other popular app icons.  
 \end{enumerate}
 % End SubSubSection
@@ -433,7 +430,6 @@ Requirements being delayed, thus not included within the SRS are as follows:
 % Begin SubSubSection
 \begin{enumerate}[{UH}1. ]
 	\item The product shall be usable by anyone fluent in the English language.
-	\item The product's navigational elements should be found in under 2 seconds by new users.
 	\item The product's navigational elements shall behave in the ways standard to the Android operating system. This should make the app more intuitive to use for new users. 
 	\item The product's functions shall be designed a way such that they require a minimum number of gestures from the user.
 	\item Where it makes sense, the product shall favour input elements such as sliders over raw text input.
@@ -443,13 +439,13 @@ Requirements being delayed, thus not included within the SRS are as follows:
 
 \subsubsection{Personalization and Internationalization Requirements}
 \label{ssub:personalization_and_internationalization_requirements}
+n.a
 % Begin SubSubSection
-\begin{enumerate}[{UH}1. ]
-	\resumeEnum
-	\item The product shall favour the use of icons such that, when needed, it can be more easily adapted to different languages and cultures.
-	\item The product shall use Android SDK best practices so that the user's global accessibility settings (text size, text-to-speech etc...) will take effect in the app. 
-	\holdEnum
-\end{enumerate}
+%\begin{enumerate}[{SR}1. ]
+%	\resumeEnum
+%	\item 
+%	\holdEnum
+%\end{enumerate}
 % End SubSubSection
 
 \subsubsection{Learning Requirements}
@@ -458,7 +454,6 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \begin{enumerate}[{UH}1. ]
 	\resumeEnum
 	\item By using standard Android navigational elements, the product should not take more than 10 minutes for a new user to become adept with it.
-	\item For any non-traditional feature, the product shall use short tutorial text to educate the user about it's functionality.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -469,6 +464,8 @@ Requirements being delayed, thus not included within the SRS are as follows:
 % Begin SubSubSection
 \begin{enumerate}[{UH}1. ]
  	\resumeEnum
+	\item The product shall use common navigational elements (ie. status bar, tab bar, hamburger menu) to help usability amongst new users.
+	\item The product shall use common iconography to help usability amongst new users. 
 	\item The product shall contain no language or ideas inappropriate for an elementary school level user.
 	\holdEnum
 \end{enumerate}
@@ -479,7 +476,8 @@ Requirements being delayed, thus not included within the SRS are as follows:
 % Begin SubSubSe ction
 \begin{enumerate}[{UH}1. ]
 	\resumeEnum
-	\item The product's interface shall use intractable elements at a minimum of 60x60points in size to help users with reduced motor skills.
+	\item The product shall make heavy use of contrast to help it's usability amongst colour blind users.
+	\item The product's interface shall use intractable elements at a minimum of 1.5x1.5 cm in size to help users with reduced motor skills.
 	\item By employing standard Android SDK best practices as mentioned in LF7, the product shall adapt the user's global accessibility settings such as TTS (text to speech) and increased/decreased font sizes. 
 	\item The product shall make heavy use of contrast and minimize the use of multiple colours to help colour blind users (This is also mentioned in LF5).
 \end{enumerate}
@@ -495,12 +493,11 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \label{ssub:speed_and_latency_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{PR}1. ]
-	\item Any network requests made by the product will be dispatched and listened to on a background thread so that the user interface (driven by the main thread) does not stall.
 	\item Each user interaction shall be followed up by a visual change on screen. The time between these two events should never exceed half a second.
 	\item Procedural world generation for a new game should take no longer than 2 seconds.
 	\item Loading an in-progress game should take no longer than 1 second.
-	\item The app should launch in no longer than 2 seconds.
-	\item The app should resume from background in no longer than 1 second.
+	\item The app should launch in no longer than 2 seconds on a Samsung Galaxy S6.
+	\item The app should resume from background in no longer than 1 second on a Samsung Galaxy S6.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -532,7 +529,6 @@ n.a
 	\resumeEnum
 	\item The product shall not require an active internet connection (ie. it will be available offline).
 	\item In any case that the device is running under normal circumstances, the app shall be available.
-	\item Under any normal use case, the app should not crash.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -550,22 +546,24 @@ n.a
 
 \subsubsection{Capacity Requirements}
 \label{ssub:capacity_requirements}
+n.a
 % Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\resumeEnum
-	\item The product shall allow the user to save up to 10 in-progress games. This does not include the game temporarily saved in the event that the app terminates unexpectedly (PR11).
-	\holdEnum
-\end{enumerate}
+%\begin{enumerate}[{SR}1. ]
+%	\resumeEnum
+%	\item 
+%	\holdEnum
+%\end{enumerate}
 % End SubSubSection
 
 \subsubsection{Scalability or Extensibility Requirements}
 \label{ssub:scalability_or_extensibility_requirements}
+n.a
 % Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\resumeEnum
-	\item The product is planned to feature an online versus mode in the future in which it will allow for up to 4 concurrent players per session. 
-	\holdEnum
-\end{enumerate}
+%\begin{enumerate}[{SR}1. ]
+%	\resumeEnum
+%	\item 
+%	\holdEnum
+%\end{enumerate}
 % End SubSubSection
 
 \subsubsection{Longevity Requirements}
@@ -598,8 +596,6 @@ n.a
 \begin{enumerate}[{OE}1. ]
 	\resumeEnum
 	\item The product shall work on any smartphone running Android 4.4 (KitKat) and later.
-	\item As an online feature is planned for sometime in the future, the app shall take into consideration architectures for interfacing with a socket based web server.
-	\item Future updates to the app shall not invalidate game saves made on previous versions.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -612,7 +608,6 @@ n.a
 	% TODO: Link to the google play store in section 1.4.
 	\item The product shall be installable directly from the Google Play Store.
 	\item The product shall have 5 screenshots and a short text description to advertise it on the Google Play Store.
-	\item The product shall be no bigger than 15MB. 
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -638,6 +633,7 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{MS}1. ]
 	\item Hotfixes must available to publish within a day of them being made.
+	\item The code shall be architected modularly such that it can be more easily maintained.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -658,9 +654,8 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{MS}1. ]
 	\resumeEnum
+	\item The product's interface shall be designed in a way such that it can be easily adapted to different screen sizes.
 	\item The product is expected to run on version of Android 4.4 (KitKat) and later.
-	\item The product may be ported to iOS and Windows Phone in the future.
-	\item The product may be adapted to accommodate different screen sizes and aspect ratios in the future.
 \end{enumerate}
 % End SubSubSection
 
@@ -733,8 +728,8 @@ n.a
 \label{ssub:cultural_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{CP}1. ]
+	\item The product shall favour the use of icons such that, when needed, it can be more easily adapted to different languages and cultures.
 	\item The product shall aim to not offend any ethnic or religious groups.
-	\item The product shall hold seasonal events celebrating holidays from a variety of ethnic and religious backgrounds.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -768,6 +763,8 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{LR}1. ]
 	\resumeEnum
+	\item The product shall use Android SDK best practices so that for instance the user's global accessibility settings (text size, text-to-speech etc...) will take effect in the app. 
+	\item Where it can, the product shall conform to Google's material design guidelines.
 	\item The app will conform with acceptable performance standards for games and simulations.
 	\item The app will conform to the Android Core App Quality standards to minimize turnover approval time and to increase the chances of being featured in the Google Play Store.
 \end{enumerate}
