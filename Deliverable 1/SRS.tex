@@ -48,30 +48,30 @@
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-	The purpose of the document is to provide a detailed description of the requirements of the software application desribed in the scope. It serves to highlight objectives and key features of the application, while also describing constraints and interface of the system-to-be, and it's environment. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commisioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (ie. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference. 
+	The purpose of the document is to provide a detailed description of the requirements for the software application described in the scope. It serves to highlight objectives and key features of the application, while also describing constraints and the interface of the system-to-be, and it's environment. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commissioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (ie. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference. 
 % End SubSection
 
 \subsection{Scope}
 \label{sub:scope}
 % Begin SubSection
-	“Climatar” is a UI based mobile game, designed for Android OS, that simulates climate change as experienced by the world made popular by animated TV series, Avatar: The Last Airbender. The game generates news events, which describe real world actions, policies and decisions, which either contribute to or deter climate change, influencing variables that monitor the environmental sphere of the applications model world. The objective of the game is to regulate news events, in order to minimize the effects of greenhouse gasses and because of gloabal warming.
+	“Climatar” is a UI based mobile game, designed for Android OS, that simulates climate change as experienced by the world made popular by animated TV series, Avatar: The Last Airbender. The game generates news events, which describe real world actions, policies and decisions, which either contribute to or deter climate change, influencing variables that monitor the environmental sphere of the applications model world. The objective of the game is to regulate news events, in order to minimize the effects of greenhouse gasses and global warming.
 
-The world of Avatar has been selected as the application's model world as it provides a fictional backdrop for the game and the world's political, social and economic environment describes a simpler model of the contemporary world. This ensures that the consequences of the news events are enforced on the world independent of each other .\cite{WoA}The geography of the model world is divided into four independent nations: Air Nomads, Water Tribe, Fire Nation and Earth Kingdom. The user will have the option to choose one of these nations, enacting the news events pertaining to the chosen nation or to play god, enacting the news events pertaining to all four nations. Each nation follows a unique political system, culture and lifestyle, and uses the element specified in its name as its primary source of energy. 
+The world of Avatar has been selected as the application's model world as it provides a fictional backdrop for the game and the world's political, social, and economic environment describes a simpler model of the contemporary world. This ensures that the consequences of the news events are enforced on the world independent of prior news events. \cite{WoA}The geography of the model world is divided into four independent nations: Air Nomads, Water Tribe, Fire Nation and Earth Kingdom. The user will have the option to choose one of these nations, enacting the news events pertaining to the chosen nation through a role of governance. Actions taken on news events further enact long and short term consequences pertaining to all four nations. Each nation follows a unique political system, culture, and lifestyle; whilst using the element specified in its name as the nations primary source of energy. 
 
-The objective of the game is to regulate news events, in order to minimize the effects of greenhouse gasses and because of gloabal warming. The game ends once the model world has experienced sufficient damage due to climate change, severly changing the world's eco-system, and resulting the user with a loss. The application shall provide users with a save and load game option, allowing the user to play the game, as when they please. The game should be available for download through an application store or public repository.	
+The objective of the game is to regulate news events in order to minimize the effects of greenhouse gasses and mitigate global warming. The game ends once the model world has experienced sufficient damage due to climate change, severely changing the world's ecosystem, and resulting the user with a loss. The application shall provide users with a save and load game option, allowing the user to play the game when they please without loss of data. The game should be available for download through an application store or public repository.	
 % End SubSection
 
 \subsection{Definitions, Acronyms, and Abbreviations}
 \label{sub:definitions_acronyms_and_abbreviations}
 % Begin SubSection
 \begin{enumerate}
-\item \textbf{BBC}: British Brodcasting Services, a public service broadcaster based in the UK.
-\item \textbf{Climate Change}: Extended and permananet change, as experienced by long term weather patterns.
-\item \textbf{GHG}: Greenhouse Gases, classification for gases in the atmosphere that absorb and emit radiation within the thermal infrared range. Major contributor of Global Warming.
-\item \textbf{Global Warming}: Gradual incease in average surface temperature of Earth.
-\item\textbf{FPS}: Frames per second,  frequency at which a series of images (frames) are displayed, consecutively.gi
-\item \textbf{SDLC}: Software Development Life Cycle, described as the frameowrk used to define the hierarchy of tasks to be performed at each stage of the software development process.
-\item \textbf{SL4A}:  Scripting Layer for Android, library used for creating and executing various scripting languages, based in Android systems.
+\item \textbf{BBC}: British Broadcasting Corporation, a public service broadcaster based in the UK.
+\item \textbf{Climate Change}: Extended and permanent change, as experienced by long term weather patterns.
+\item \textbf{GHG}: Greenhouse Gases, classification for gases in the atmosphere that absorb and emit radiation within the thermal infra-red light range. Major contributor of Global Warming.
+\item \textbf{Global Warming}: Gradual increase in average surface temperature of Earth.
+\item\textbf{FPS}: Frames per second,  frequency at which a series of images (frames) are displayed, consecutively.
+\item \textbf{SDLC}: Software Development Life Cycle, described as the framework used to define the hierarchy of tasks to be performed at each stage of the software development process.
+\item \textbf{SL4A}:  Scripting Layer for Android, library used for creating and executing various scripting languages based in Android systems.
 \item \textbf{TTS}: Text to speech.
 \end{enumerate}
 % End SubSection
@@ -86,7 +86,7 @@ The objective of the game is to regulate news events, in order to minimize the e
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-	The rest of the document is divided into three sections. The second section provides an abstract overview of the product and its major functionality. The section defines the constraints for the system and the assumptions that affect the system’s requirements, all the while highlighting the proposed system's benefits that distinguish it from simillar products available. The third section provides a detailed description of the functional requirements perceived, which describe the specific behavior of the system. The contents of this section are classified as business events and viewpoints. The fourth and final section provides a detailed description of the non-functional requirements, which describe the quality attributes of the system. The plan for implementing functional and non-functional requirements will be detailed in system design and system architecture documents. 
+	The rest of the document is divided into three main sections: Overall Description, Functional Requirements, and Non-Functional Requirements. The Overall description of the project provides an abstract overview of the product and its major functionality. The section defines the constraints for the system and the assumptions that affect the system's requirements, all the while highlighting the proposed system's benefits that distinguish it from similar products available. The Functional Requirements section provides a detailed description of the functional requirements perceived, which describe the specific behaviour of the system. The contents of this section are classified as business events and viewpoints. The final section, Non-functional Requirements, provides a detailed description of the non-functional requirements, which describe the quality attributes of the system. The plan for implementing functional and non-functional requirements will be detailed in system design and system architecture documents. 
 % End SubSection
 
 % End Section
@@ -320,7 +320,7 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \begin{enumerate}[{LF}1.]
 	\resumeEnum
 	%TODO: Reference the google material design guidelines in section 1.4
-	\item The product's app icon shall be designed in the common negative-space style to help it sit better amongst other popular app icons.  
+	\item The product's application icon shall be designed in the common negative-space style to help it sit better amongst other popular application icons.  
 \end{enumerate}
 % End SubSubSection
 
@@ -335,7 +335,7 @@ Requirements being delayed, thus not included within the SRS are as follows:
 % Begin SubSubSection
 \begin{enumerate}[{UH}1. ]
 	\item The product shall be usable by anyone fluent in the English language.
-	\item The product's navigational elements shall behave in the ways standard to the Android operating system. This should make the app more intuitive to use for new users. 
+	\item The product's navigational elements shall behave in the ways standard to the Android operating system. This should make the application more intuitive to use for new users. 
 	\item The product's functions shall be designed a way such that they require a minimum number of gestures from the user.
 	\item Where it makes sense, the product shall favour input elements such as sliders over raw text input.
 	\holdEnum
@@ -401,8 +401,8 @@ n.a
 	\item Each user interaction shall be followed up by a visual change on screen. The time between these two events should never exceed half a second.
 	\item Procedural world generation for a new game should take no longer than 2 seconds.
 	\item Loading an in-progress game should take no longer than 1 second.
-	\item The app should launch in no longer than 2 seconds on a Samsung Galaxy S6.
-	\item The app should resume from background in no longer than 1 second on a Samsung Galaxy S6.
+	\item The application should launch in no longer than 2 seconds on a Samsung Galaxy S6.
+	\item The application should resume from background in no longer than 1 second on a Samsung Galaxy S6.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -422,7 +422,7 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{PR}1. ]
 	\resumeEnum
-	\item When performing floating-point arithmetic, the app shall favour the use double precision to minimize rounding error.
+	\item When performing floating-point arithmetic, the application shall favour the use double precision to minimize rounding error.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -433,7 +433,7 @@ n.a
 \begin{enumerate}[{PR}1. ]
 	\resumeEnum
 	\item The product shall not require an active internet connection (ie. it will be available offline).
-	\item In any case that the device is running under normal circumstances, the app shall be available.
+	\item In any case that the device is running under normal circumstances, the application shall be available.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -443,8 +443,8 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{PR}1. ]
 	\resumeEnum
-	\item The app shall temporarily save an ongoing game in the event that it is terminated unexpectedly by the user or by the operating system in the event that memory needs to be freed. 
-	\item The app shall reopen the saved game from PR11 in the event that it is launched following an unexpected termination.
+	\item The application shall temporarily save an ongoing game in the event that it is terminated unexpectedly by the user or by the operating system in the event that memory needs to be freed. 
+	\item The application shall reopen the saved game from PR11 in the event that it is launched following an unexpected termination.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -490,7 +490,7 @@ n.a
 \label{ssub:expected_physical_environment}
 % Begin SubSubSection
 \begin{enumerate}[{OE}1. ]
-	\item As the app operates within the Android environment and introduces no restriction under which it operates within that environment, the product shall be usable under circumstances where the Android operating system allows it.
+	\item As the application operates within the Android environment and introduces no restriction under which it operates within that environment, the product shall be usable under circumstances where the Android operating system allows it.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -670,8 +670,8 @@ n.a
 	\resumeEnum
 	\item The product shall use Android SDK best practices so that for instance the user's global accessibility settings (text size, text-to-speech etc...) will take effect in the app. 
 	\item Where it can, the product shall conform to Google's material design guidelines.
-	\item The app will conform with acceptable performance standards for games and simulations.
-	\item The app will conform to the Android Core App Quality standards to minimize turnover approval time and to increase the chances of being featured in the Google Play Store.
+	\item The application will conform with acceptable performance standards for games and simulations.
+	\item The application will conform to the Android Core Application Quality standards to minimize turnover approval time and to increase the chances of being featured in the Google Play Store.
 \end{enumerate}
 % End SubSubSection
 
