@@ -19,16 +19,16 @@
 
 % Header and Footer
 %------------------------------------------------------------------------------
-\pagestyle{plain}  
-\renewcommand\headrulewidth{0.4pt}                                      
-\renewcommand\footrulewidth{0.4pt}                                    
+\pagestyle{plain}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
 %------------------------------------------------------------------------------
 
 % Title Details
 %------------------------------------------------------------------------------
 \title{Deliverable \#1 T02 Group 2}
 \author{SE 3A04: Software Design II -- Large System Design}
-\date{\today}                               
+\date{\today}
 %------------------------------------------------------------------------------
 
 % Graphics
@@ -40,7 +40,7 @@
 %------------------------------------------------------------------------------
 \begin{document}
 
-\maketitle	
+\maketitle
 
 \section{Introduction}
 \label{sec:introduction}
@@ -48,30 +48,30 @@
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-	The purpose of the document is to provide a detailed description of the requirements of the software application desribed in the scope. It serves to highlight objectives and key features of the application, while also describing constraints and interface of the system-to-be, and it's environment. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commisioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (ie. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference. 
+	The purpose of the document is to provide a detailed description of the requirements for the software application described in the scope. It serves to highlight objectives and key features of the application, while also describing constraints and the interface of the system-to-be, and it's environment. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commissioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (ie. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference.
 % End SubSection
 
 \subsection{Scope}
 \label{sub:scope}
 % Begin SubSection
-	“Climatar” is a UI based mobile game, designed for Android OS, that simulates climate change as experienced by the world made popular by animated TV series, Avatar: The Last Airbender. The game generates news events, which describe real world actions, policies and decisions, which either contribute to or deter climate change, influencing variables that monitor the environmental sphere of the applications model world. The objective of the game is to regulate news events, in order to minimize the effects of greenhouse gasses and because of gloabal warming.
+	“Climatar” is a UI based mobile game, designed for Android OS, that simulates climate change as experienced by the world made popular by animated TV series, Avatar: The Last Airbender. The game generates news events, which describe real world actions, policies and decisions, which either contribute to or deter climate change, influencing variables that monitor the environmental sphere of the applications model world. 
 
-The world of Avatar has been selected as the application's model world as it provides a fictional backdrop for the game and the world's political, social and economic environment describes a simpler model of the contemporary world. This ensures that the consequences of the news events are enforced on the world independent of each other .\cite{WoA}The geography of the model world is divided into four independent nations: Air Nomads, Water Tribe, Fire Nation and Earth Kingdom. The user will have the option to choose one of these nations, enacting the news events pertaining to the chosen nation or to play god, enacting the news events pertaining to all four nations. Each nation follows a unique political system, culture and lifestyle, and uses the element specified in its name as its primary source of energy. 
+The world of Avatar has been selected as the application's model world as it provides a fictional backdrop for the game and the world's political, social, and economic environment describes a simpler model of the contemporary world. This ensures that the consequences of the news events are enforced on the world independent of prior news events. \cite{WoA}The geography of the model world is divided into four independent nations: Air Nomads, Water Tribe, Fire Nation and Earth Kingdom. The user will have the option to choose one of these nations, enacting the news events pertaining to the chosen nation through a role of governance. Actions taken on news events further enact long and short term consequences pertaining to all four nations. Each nation follows a unique political system, culture, and lifestyle; whilst using the element specified in its name as the nations primary source of energy.
 
-The objective of the game is to regulate news events, in order to minimize the effects of greenhouse gasses and because of gloabal warming. The game ends once the model world has experienced sufficient damage due to climate change, severly changing the world's eco-system, and resulting the user with a loss. The application shall provide users with a save and load game option, allowing the user to play the game, as when they please. The game should be available for download through an application store or public repository.	
+The objective of the game is to regulate news events in order to minimize the effects of greenhouse gasses and mitigate global warming. The game ends once the model world has experienced sufficient damage due to climate change, severely changing the world's ecosystem, and resulting the user with a loss. The application shall provide users with a save and load game option, allowing the user to play the game when they please without loss of data. The game should be available for download through an application store.
 % End SubSection
 
 \subsection{Definitions, Acronyms, and Abbreviations}
 \label{sub:definitions_acronyms_and_abbreviations}
 % Begin SubSection
 \begin{enumerate}
-\item \textbf{BBC}: British Brodcasting Services, a public service broadcaster based in the UK.
-\item \textbf{Climate Change}: Extended and permananet change, as experienced by long term weather patterns.
-\item \textbf{GHG}: Greenhouse Gases, classification for gases in the atmosphere that absorb and emit radiation within the thermal infrared range. Major contributor of Global Warming.
-\item \textbf{Global Warming}: Gradual incease in average surface temperature of Earth.
-\item\textbf{FPS}: Frames per second,  frequency at which a series of images (frames) are displayed, consecutively.gi
-\item \textbf{SDLC}: Software Development Life Cycle, described as the frameowrk used to define the hierarchy of tasks to be performed at each stage of the software development process.
-\item \textbf{SL4A}:  Scripting Layer for Android, library used for creating and executing various scripting languages, based in Android systems.
+\item \textbf{BBC}: British Broadcasting Corporation, a public service broadcaster based in the UK.
+\item \textbf{Climate Change}: Extended and permanent change, as experienced by long term weather patterns.
+\item \textbf{GHG}: Greenhouse Gases, classification for gases in the atmosphere that absorb and emit radiation within the thermal infra-red light range. Major contributor of Global Warming.
+\item \textbf{Global Warming}: Gradual increase in average surface temperature of Earth.
+\item\textbf{FPS}: Frames per second,  frequency at which a series of images (frames) are displayed, consecutively.
+\item \textbf{SDLC}: Software Development Life Cycle, described as the framework used to define the hierarchy of tasks to be performed at each stage of the software development process.
+\item \textbf{SL4A}:  Scripting Layer for Android, library used for creating and executing various scripting languages based in Android systems.
 \item \textbf{TTS}: Text to speech.
 \end{enumerate}
 % End SubSection
@@ -86,7 +86,7 @@ The objective of the game is to regulate news events, in order to minimize the e
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-	The rest of the document is divided into three sections. The second section provides an abstract overview of the product and its major functionality. The section defines the constraints for the system and the assumptions that affect the system’s requirements, all the while highlighting the proposed system's benefits that distinguish it from simillar products available. The third section provides a detailed description of the functional requirements perceived, which describe the specific behavior of the system. The contents of this section are classified as business events and viewpoints. The fourth and final section provides a detailed description of the non-functional requirements, which describe the quality attributes of the system. The plan for implementing functional and non-functional requirements will be detailed in system design and system architecture documents. 
+	The rest of the document is divided into three main sections: Overall Description, Functional Requirements, and Non-Functional Requirements. The Overall description of the project provides an abstract overview of the product and its major functionality. The section defines the constraints for the system and the assumptions that affect the system's requirements, all the while highlighting the proposed system's benefits that distinguish it from similar products available. The Functional Requirements section provides a detailed description of the functional requirements perceived, which describe the specific behaviour of the system. The contents of this section are classified as business events and viewpoints. The final section, Non-functional Requirements, provides a detailed description of the non-functional requirements, which describe the quality attributes of the system. The plan for implementing functional and non-functional requirements will be detailed in system design and system architecture documents.
 % End SubSection
 
 % End Section
@@ -100,9 +100,9 @@ The objective of the game is to regulate news events, in order to minimize the e
 
 Climate and world simulation as a software solution is not a new idea, however Climatar as a solution to world events is distinct from the current off-the-shelf solutions, appealing to a new client base, as well as utilizing current solution features to provide an enhanced software system for those using existing off-the-shelf solutions.
 
-Existing products related to Climatar include: 
+Existing products related to Climatar include:
 \begin{itemize}
-	\item \textbf{BBC - Climate Challenge} 	
+	\item \textbf{BBC - Climate Challenge}
 		\cite{BBC}Is a web application for simulating the effects on controlling taxation, laws, and government spending for the country of Great Britain. The major areas where the user may act are: military, food and water supplies, energy, the environment, and political relations. The application advances with 10 year turns, each turn allows a specific set of decisions to be made within the major areas the user governs. Each decision affects just Great Britain. The overall goal is to become a no-emissions country within 200 years. \\
 		Climatar contrasts this application through the following points:
 		\begin{itemize}
@@ -111,7 +111,7 @@ Existing products related to Climatar include:
 			\item The over arching goal is to show feasible world reactions to events, elimination of C02 emissions thus is not the only simulation feature.
 			\item Each play through of Climate Challenge is identical, at each phase of the simulation the same options are available. Climatar is to engage users interaction and knowledge growth by ensuring different instances of the simulation will play through differently based on previous actions, illustrating long term effects of decisions.
 		\end{itemize}
-	
+
 	\item \textbf{Climate Models of Earth}
 
 		Software illustrations of Climate predictions such as the Simple Climate Model by Monash, utilize mathematical predictions through data extrapolation on climate change to illustrate predictions on future climate if all growth rates remain constant with population, C02 levels, average temperature, etc\cite{ClimM}.\\
@@ -120,9 +120,9 @@ Existing products related to Climatar include:
 			\item Climatar simulations do not assume constant growth rates, instead all system components like climate simulate and react with on another, causing complex predictions to events to be explored.
 			\item Applications that model the earth are designed for  research use. Climatar is to educate the general public on the effects actions have both long and short term with respect to complex systems which could include, but is not limited to: environment, political toil, sea level, etc.
 			\item The simulations executed in Climatar will however try to be as accurate to real physical systems, allowing for user analysis of reactions to events in a similar to real world way.
-		\end{itemize}	 
+		\end{itemize}
 
-	\item \textbf{Energy Wars} 
+	\item \textbf{Energy Wars}
 		Is an Android game\cite{EW} where users control the worlds demand for energy through development of green energy schemas such as Wind, and Solar generation stations, as well as pollutant energy generation schemas such as Coal, Natural Gas, and Oil. The world is ever responding to the state of the worlds climate, such event responses include natural disasters and war. The game itself is designed to be a puzzle to solve within each provided stage. Providing points for quickness of completeness and the state of the world after a given challenge has been met.\\
 		Climatar contrasts this application through the following points:
 		\begin{itemize}
@@ -197,7 +197,7 @@ Requirements being delayed, thus not included within the SRS are as follows:
 % Begin Section
 % Begin business event list
 \begin{enumerate}[{BE}1.]
-   
+
     %
     % Business Event Template
     %
@@ -209,10 +209,10 @@ Requirements being delayed, thus not included within the SRS are as follows:
     %   \end{enumerate}
     % \end{enumerate}
     %
-   
+
     %---------------------------%
     %   Business Event
-    %---------------------------%  
+    %---------------------------%
     \item User wants to start the game
     \begin{enumerate}[{VP1}.1]
       \item User
@@ -220,11 +220,11 @@ Requirements being delayed, thus not included within the SRS are as follows:
         \item The user shall be able load a previous saved game.
         \item The user shall be able to start a new game by selecting a game mode.
         \item There shall be survival mode and overlord mode avaliable to choose
-        \item Upon starting the game, the user shall be periodically prompted with yes-no questions.
+        \item Upon starting the game, the user shall be periodically prompted with news events.
         \item The user shall be able to see a loading screen while loading.
       \end{enumerate}
     \end{enumerate}
- 
+
     %---------------------------%
     %   Business Event
     %---------------------------%
@@ -236,21 +236,21 @@ Requirements being delayed, thus not included within the SRS are as follows:
         \item The user shall have the option of saving a game at any time.
       \end{enumerate}
     \end{enumerate}
- 
+
     %---------------------------%
     %   Business Event
     %---------------------------%
-    \item User wants to respond to yes-no question
+    \item User wants to respond to a news event
     \begin{enumerate}[{VP1}.1]
       \item User
       \begin{enumerate}
-        \item The user shall be able to respond to the game by selecting yes or no.
+        \item The user shall be able to select one of the options presented in the news event.
         \item The user shall be presented with a game over screen if losing conditions are fulfilled.
         \item The user shall be presented with a game win screen if winning conditions are fulfilled.
         \item UI elements shall be updated based on the progress made by the user.
       \end{enumerate}
     \end{enumerate}
- 
+
     %---------------------------%
     %   Business Event
     %---------------------------%
@@ -261,7 +261,7 @@ Requirements being delayed, thus not included within the SRS are as follows:
         \item The user shall be able to move the game view around.
       \end{enumerate}
     \end{enumerate}
- 
+
     %---------------------------%
     %   Business Event
     %---------------------------%
@@ -272,7 +272,7 @@ Requirements being delayed, thus not included within the SRS are as follows:
         \item The user shall be able to pause the game at any time he want while the game is running.
       \end{enumerate}
     \end{enumerate}
- 
+
     %---------------------------%
     %   Business Event
     %---------------------------%
@@ -283,8 +283,8 @@ Requirements being delayed, thus not included within the SRS are as follows:
         \item The user shall be able to resume the game when the game is paused.
       \end{enumerate}
     \end{enumerate}
- 
- 
+
+
 % End busines event list %
 \end{enumerate}
 
@@ -320,7 +320,7 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \begin{enumerate}[{LF}1.]
 	\resumeEnum
 	%TODO: Reference the google material design guidelines in section 1.4
-	\item The product's app icon shall be designed in the common negative-space style to help it sit better amongst other popular app icons.  
+	\item The product's application icon shall be designed in the common negative-space style to help it sit better amongst other popular application icons.
 \end{enumerate}
 % End SubSubSection
 
@@ -335,7 +335,7 @@ Requirements being delayed, thus not included within the SRS are as follows:
 % Begin SubSubSection
 \begin{enumerate}[{UH}1. ]
 	\item The product shall be usable by anyone fluent in the English language.
-	\item The product's navigational elements shall behave in the ways standard to the Android operating system. This should make the app more intuitive to use for new users. 
+	\item The product's navigational elements shall behave in the ways standard to the Android operating system. This should make the application more intuitive to use for new users.
 	\item The product's functions shall be designed a way such that they require a minimum number of gestures from the user.
 	\item Where it makes sense, the product shall favour input elements such as sliders over raw text input.
 	\holdEnum
@@ -348,7 +348,7 @@ n.a
 % Begin SubSubSection
 %\begin{enumerate}[{SR}1. ]
 %	\resumeEnum
-%	\item 
+%	\item
 %	\holdEnum
 %\end{enumerate}
 % End SubSubSection
@@ -370,7 +370,7 @@ n.a
 \begin{enumerate}[{UH}1. ]
  	\resumeEnum
 	\item The product shall use common navigational elements (ie. status bar, tab bar, hamburger menu) to help usability amongst new users.
-	\item The product shall use common iconography to help usability amongst new users. 
+	\item The product shall use common iconography to help usability amongst new users.
 	\item The product shall contain no language or ideas inappropriate for an elementary school level user.
 	\holdEnum
 \end{enumerate}
@@ -400,8 +400,8 @@ n.a
 	\item Each user interaction shall be followed up by a visual change on screen. The time between these two events should never exceed half a second.
 	\item Procedural world generation for a new game should take no longer than 2 seconds.
 	\item Loading an in-progress game should take no longer than 1 second.
-	\item The app should launch in no longer than 2 seconds on a Samsung Galaxy S6.
-	\item The app should resume from background in no longer than 1 second on a Samsung Galaxy S6.
+	\item The application should launch in no longer than 2 seconds on a Samsung Galaxy S6.
+	\item The application should resume from background in no longer than 1 second on a Samsung Galaxy S6.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -412,7 +412,7 @@ n.a
 n.a
 % Begin SubSubSection
 %\begin{enumerate}[{PR}1. ]
-%	\item 
+%	\item
 %\end{enumerate}
 % End SubSubSection
 
@@ -421,7 +421,7 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{PR}1. ]
 	\resumeEnum
-	\item When performing floating-point arithmetic, the app shall favour the use double precision to minimize rounding error.
+	\item When performing floating-point arithmetic, the application shall favour the use double precision to minimize rounding error.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -432,7 +432,7 @@ n.a
 \begin{enumerate}[{PR}1. ]
 	\resumeEnum
 	\item The product shall not require an active internet connection (ie. it will be available offline).
-	\item In any case that the device is running under normal circumstances, the app shall be available.
+	\item In any case that the device is running under normal circumstances, the application shall be available.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -442,8 +442,8 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{PR}1. ]
 	\resumeEnum
-	\item The app shall temporarily save an ongoing game in the event that it is terminated unexpectedly by the user or by the operating system in the event that memory needs to be freed. 
-	\item The app shall reopen the saved game from PR11 in the event that it is launched following an unexpected termination.
+	\item The application shall temporarily save an ongoing game in the event that it is terminated unexpectedly by the user or by the operating system in the event that memory needs to be freed.
+	\item The application shall reopen the saved game from PR11 in the event that it is launched following an unexpected termination.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -454,7 +454,7 @@ n.a
 % Begin SubSubSection
 %\begin{enumerate}[{SR}1. ]
 %	\resumeEnum
-%	\item 
+%	\item
 %	\holdEnum
 %\end{enumerate}
 % End SubSubSection
@@ -465,7 +465,7 @@ n.a
 % Begin SubSubSection
 %\begin{enumerate}[{SR}1. ]
 %	\resumeEnum
-%	\item 
+%	\item
 %	\holdEnum
 %\end{enumerate}
 % End SubSubSection
@@ -489,7 +489,7 @@ n.a
 \label{ssub:expected_physical_environment}
 % Begin SubSubSection
 \begin{enumerate}[{OE}1. ]
-	\item As the app operates within the Android environment and introduces no restriction under which it operates within that environment, the product shall be usable under circumstances where the Android operating system allows it.
+	\item As the application operates within the Android environment and introduces no restriction under which it operates within that environment, the product shall be usable under circumstances where the Android operating system allows it.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -518,12 +518,13 @@ n.a
 
 \subsubsection{Release Requirements}
 \label{ssub:release_requirements}
+n.a
 % Begin SubSubSection
-\begin{enumerate}[{OE}1. ]
-	\resumeEnum
-	\item Maintenance and new content updates will be published at the end of each month.
-	\holdEnum
-\end{enumerate}
+% \begin{enumerate}[{OE}1. ]
+% 	\resumeEnum
+% 	\item
+% 	\holdEnum
+% \end{enumerate}
 % End SubSubSection
 
 % End SubSection
@@ -584,7 +585,7 @@ n.a
 \begin{enumerate}[{SR}1. ]
 	\resumeEnum
 	\item The product shall guard against the introduction of incorrect data to, for example, guard against an attacker spoofing high scores numbers.
-	\item When online features are introduced in the future, the product shall guard against the automated generation of user accounts. 
+	\item When online features are introduced in the future, the product shall guard against the automated generation of user accounts.
 	\holdEnum
 \end{enumerate}
 % End SubSubSection
@@ -607,7 +608,7 @@ n.a
 % Begin SubSubSection
 %\begin{enumerate}[{SR}1. ]
 %	\resumeEnum
-%	\item 
+%	\item
 %	\holdEnum
 %\end{enumerate}
 % End SubSubSection
@@ -643,7 +644,7 @@ n.a
 n.a
 % Begin SubSubSection
 %\begin{enumerate}[{CP}1. ]
-%	\item 
+%	\item
 %\end{enumerate}
 % End SubSubSection
 
@@ -667,10 +668,10 @@ n.a
 % Begin SubSubSection
 \begin{enumerate}[{LR}1. ]
 	\resumeEnum
-	\item The product shall use Android SDK best practices so that for instance the user's global accessibility settings (text size, text-to-speech etc...) will take effect in the app. 
+	\item The product shall use Android SDK best practices so that for instance the user's global accessibility settings (text size, text-to-speech etc...) will take effect in the app.
 	\item Where it can, the product shall conform to Google's material design guidelines.
-	\item The app will conform with acceptable performance standards for games and simulations.
-	\item The app will conform to the Android Core App Quality standards to minimize turnover approval time and to increase the chances of being featured in the Google Play Store.
+	\item The application will conform with acceptable performance standards for games and simulations.
+	\item The application will conform to the Android Core Application Quality standards to minimize turnover approval time and to increase the chances of being featured in the Google Play Store.
 \end{enumerate}
 % End SubSubSection
 
