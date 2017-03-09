@@ -195,187 +195,97 @@ Requirements being delayed, thus not included within the SRS are as follows:
 \section{Functional Requirements}
 \label{sec:functional_requirements}
 % Begin Section
-
+% Begin business event list
 \begin{enumerate}[{BE}1.]
-	\item Start Application
-	\begin{enumerate}[{VP1}.1]
-		\item User Viewpoint
-			\begin{enumerate}
-				\item N/A
-			\end{enumerate}
-		\item Hardware Viewpoint
-			\begin{enumerate}
-				\item The underlying hardware shall create an graphics context. If the device is unable to create a graphics context, the application should close gracefully with an appropriate error message.
-				\item The underlying hardware shall be initialized to respond to any touch input from the user.
-				\item The hardware shall be able to load files that contain user data and save data, If the hardware fail to load the required files, the application should ask user to create a new game.
-				\item The hardware should be able to render the start menu and refresh at realtime (24 FPS). 
-			\end{enumerate}
-		\item Game World Viewpoint
-			\begin{enumerate}
-				\item N/A
-			\end{enumerate}
-			
-	\end{enumerate}
-	\item Terminate Application
-	\begin{enumerate}[{VP2}.1]
-	\item User Viewpoint
-			\begin{enumerate}
-				\item The user should be capable of quitting the game at any time using the back button.
-
-				\item The user should have the option of saving a game at any time.
-				\item The user should be capable of enabling an autosaving option.
-			\end{enumerate}
-		\item Hardware Viewpoint
-			\begin{enumerate}
-				\item The hardware shall dispose of the graphics context.
-				\item Touch events received from the hardware shall be ignored.
-				\item If the autosaving option is enabled, the hardware will save the game files if capable, else display an appropriate error notification.
-			\end{enumerate}
-		\item Game World Viewpoint
-			\begin{enumerate}
-				\item N/A
-			\end{enumerate}
-		%\item \dots
-	\end{enumerate}
-		\item Pause Game
-	\begin{enumerate}[{VP3}.1]
-		\item User Viewpoint
-			\begin{enumerate}
-				\item The user should be capable of saving the game while it is paused.
-			\end{enumerate}
-		\item Hardware Viewpoint
-			\begin{enumerate}
-				\item The graphics context shall be updated to display the pause screen.
-				\item If the back button event is captured by the hardware, the game shall resume.
-			\end{enumerate}
-		\item Game World Viewpoint
-			\begin{enumerate}
-				\item The system shall stop generating game events.
-				\item The system shall stop the game timer.
-			\end{enumerate}
-			
-					%\item \dots
-	\end{enumerate}
-		\item Resume Game
-	\begin{enumerate}[{VP4}.1]
-		\item User Viewpoint
-			\begin{enumerate}
-				\item N/A
-			\end{enumerate}
-		\item Hardware Viewpoint
-			\begin{enumerate}
-				\item N/A
-			\end{enumerate}
-		\item Game World Viewpoint
-			\begin{enumerate}
-				\item The System shall start generating events.
-
-				\item The System shall resume the timer.
-			\end{enumerate}
-			
-		\end{enumerate}
-		\item Start Game
-	\begin{enumerate}[{VP5}.1]
-		\item User Viewpoint
-			\begin{enumerate}
-				\item The user should be able load a previous saved game.
-				\item The user should be able to start a new game by selecting a game mode.
-				\item There shall be two game modes:
-				\begin{enumerate}
-					\item Survival mode
-					\item Overlord mode
-				\end{enumerate}
-				\item The user should be allowed to respond to any game events by selecting ?YES? or ?NO? in the UI.
-			\end{enumerate}
-		\item Hardware Viewpoint
-			\begin{enumerate}
-				\item The hardware shall load the game file which is selected by the user.
-				\item The hardware shall load any graphics assets which are required for rendering the game world.
-				\item While the assets are loading, a loading screen shall be presented to the user.
-				\item After all assets are loaded, the game world and any UI shall be rendered in the graphics context.
-				\item The hardware shall update the graphics context to display any new game events that occur.
-			\end{enumerate}
-		\item Game World Viewpoint
-			\begin{enumerate}
-				\item The game world shall initialize data when a new game is started.
-				\item If the game world is loaded, the game world state shall reflect that of the loaded game file.
-				\item The game world shall begin the game timer.
-				\item The game world shall simulate and begin generating game events once it is started or loaded, based on the current game world state.
-				\item Game events shall be yes or no questions which result in an increase or decrease of the chaos, temperature and or money.
-			\end{enumerate}			
-		%\item \dots
-	\end{enumerate}
-	\item Move map
-		\begin{enumerate}[{VP6}.1]
-			\item User Viewpoint
-			\begin{enumerate}
-				\item The user should be able to move the map with the finger.
-			\end{enumerate}
-		\item Hardware Viewpoint
-			\begin{enumerate}
-				\item The hardware should be capable to accept user?s finger input.
-				\item The graphics context shall be updated to display the movement of map with realtime (24FPS).
-			\end{enumerate}
-		\item Game World Viewpoint
-			\begin{enumerate}
-				\item N/A
-			\end{enumerate}			
-		%\item \dots
-	\end{enumerate}
-		\item Input of decision
-	\begin{enumerate}[{VP7}.1]
-		\item User Viewpoint
-			\begin{enumerate}
-				\item The user shall respond to game events by selecting ?YES? or ?NO?.
-			\end{enumerate}
-		\item Hardware Viewpoint
-			\begin{enumerate}
-				\item The hardware shall update the chaos, politics and money values on screen.
-			\end{enumerate}
-		\item Game World Viewpoint
-			\begin{enumerate}
-				\item The game world shall appropriately increase or decreases the chaos, politics, and money values based on the decision of the user.
-				\item  The game world shall check for lose conditions by checking if the following is truth: (chaos > 100 percent OR money <= 0 OR temp >= 100 percent).
-				\item If the lose conditions are truthy, the game shall display the gameover screen.
-
-			\end{enumerate}
-					%\item \dots
-	\end{enumerate}
-		\item Reset Game
-	\begin{enumerate}[{VP9}.1]
-		\item User Viewpoint
-			\begin{enumerate}
-				\item The user shall choose yes or now to confirm reseting the game world.
-			\end{enumerate}
-		\item Hardware Viewpoint
-			\begin{enumerate}
-				\item The hardware shall render and update the display with new map and initialized UI.
-			\end{enumerate}
-		\item Game World Viewpoint
-			\begin{enumerate}
-				\item The System shall initialize all data and generate new map.
-				\item The System shall start generating game events.
-			\end{enumerate}
-			
-		%\item \dots
-	\end{enumerate}
-		\item The game ends
-	\begin{enumerate}[{VP9}.1]
-		\item User Viewpoint
-			\begin{enumerate}
-				\item N/A
-			\end{enumerate}
-		\item Hardware Viewpoint
-			\begin{enumerate}
-				\item The graphics context shall be updated to display the game over screen with score, highest score, restart button and quit button.
-				\end{enumerate}
-		\item Game World Viewpoint
-			\begin{enumerate}
-				\item The system shall be terminated and all temporary data shall be cleaned.
-			\end{enumerate}			
-		%\item \dots
-	\end{enumerate}
-	
+   
+    %
+    % Business Event Template
+    %
+    % \item BE
+    % \begin{enumerate}[{VP1}.1]
+    %   \item VP
+    %   \begin{enumerate}
+    %       \item description
+    %   \end{enumerate}
+    % \end{enumerate}
+    %
+   
+    %---------------------------%
+    %   Business Event
+    %---------------------------%  
+    \item User wants to start the game
+    \begin{enumerate}[{VP1}.1]
+      \item User
+      \begin{enumerate}
+        \item The user shall be able load a previous saved game.
+        \item The user shall be able to start a new game by selecting a game mode.
+        \item There shall be survival mode and overlord mode avaliable to choose
+        \item Upon starting the game, the user shall be periodically prompted with yes-no questions.
+        \item The user shall be able to see a loading screen while loading.
+      \end{enumerate}
+    \end{enumerate}
+ 
+    %---------------------------%
+    %   Business Event
+    %---------------------------%
+    \item User wants to quit the game
+    \begin{enumerate}[{VP1}.1]
+      \item User
+      \begin{enumerate}
+        \item The user shall be capable of quitting the game at any time.
+        \item The user shall have the option of saving a game at any time.
+      \end{enumerate}
+    \end{enumerate}
+ 
+    %---------------------------%
+    %   Business Event
+    %---------------------------%
+    \item User wants to respond to yes-no question
+    \begin{enumerate}[{VP1}.1]
+      \item User
+      \begin{enumerate}
+        \item The user shall be able to respond to the game by selecting yes or no.
+        \item The user shall be presented with a game over screen if losing conditions are fulfilled.
+        \item The user shall be presented with a game win screen if winning conditions are fulfilled.
+        \item UI elements shall be updated based on the progress made by the user.
+      \end{enumerate}
+    \end{enumerate}
+ 
+    %---------------------------%
+    %   Business Event
+    %---------------------------%
+    \item User wants to interacts with game view
+    \begin{enumerate}[{VP1}.1]
+      \item User
+      \begin{enumerate}
+        \item The user shall be able to move the game view around.
+      \end{enumerate}
+    \end{enumerate}
+ 
+    %---------------------------%
+    %   Business Event
+    %---------------------------%
+    \item User wants to pause the game
+    \begin{enumerate}[{VP1}.1]
+      \item User
+      \begin{enumerate}
+        \item The user shall be able to pause the game at any time he want while the game is running.
+      \end{enumerate}
+    \end{enumerate}
+ 
+    %---------------------------%
+    %   Business Event
+    %---------------------------%
+    \item User wants to resume the game
+    \begin{enumerate}[{VP1}.1]
+      \item User
+      \begin{enumerate}
+        \item The user shall be able to resume the game when the game is paused.
+      \end{enumerate}
+    \end{enumerate}
+ 
+ 
+% End busines event list %
 \end{enumerate}
 
 
