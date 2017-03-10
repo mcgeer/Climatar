@@ -23,7 +23,7 @@
 
 % Title Details
 %------------------------------------------------------------------------------
-\title{Deliverable \#2 Template}
+\title{Deliverable \#2 Group \#1 T02}
 \author{SE 3A04: Software Design II -- Large System Design}
 \date{}                               
 %------------------------------------------------------------------------------
@@ -38,32 +38,23 @@
 \label{sec:introduction}
 % Begin Section
 
-This section should provide an brief overview of the entire document.
-
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Delineate the purpose of the document
-	\item Specify the intended audience for the document
-\end{enumerate}
+The purpose of the document is to provide a high level design for the system architecture and class composition. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commissioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (ie. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference.
+
 % End SubSection
 
 \subsection{System Description}
 \label{sub:system_description}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Give a brief description of the system. This could be a paragraph or two to give some context to this document.
-\end{enumerate}
+Climatar is a world simulation software system illustrating the long term and short term effects of actions with respect to climate, greenhouse gas levels, economic stability and social relations with the governing bodies in the model world. The model world is based in the Avatar: The Last Airbender universe. Users are given governance of one of the four tribes in the Avatar universe: Air, Water, Fire, and Earth. Based on the state of the world and the regions that compose it, news events will be posed to the user that require action. Depending on their decisions the world will morph around the change and consequences will propagate throughout the simulation. All decisions have consequences associated with them, and the user can only react to events pertaining to their region, removing the omnipotent aspect of control, users must react to the changing world dynamically.
 % End SubSection
 
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Describe what the rest of the document contains 
-	\item Explain how the document is organised
-\end{enumerate}
+The remainder of the document outlines the high level system design specifically outlining how the system will be structured by outlining the Use Case Diagram, Analysis Class Diagram, the inherent Architecture Design, and Class Responsibilities. The document first outlines the use cases for Climatar. The use cases illustrate the business events pertaining to the system and layout the system functionality. Descriptions of each use case aide in formalizing the system functionality from the view points identified previously in the SRS. From the Use Cases a Noun-Verb Analysis was completed to create an Analysis Class Diagram. The Analysis Class Diagram acts as a starting point for the major classes the system will be composed of. The following section, Architecture Design, utilizes the information gained from the analysis class diagram to develop a system architecture to layout the system is a way such that each sub system has high cohesion and low coupling. Finally a Class Responsibility Collaboration (CRC) Card is developed for each class to formally outline the responsibilities, and dependencies for a given class.
 % End SubSection
 
 % End Section
@@ -71,6 +62,7 @@ This section should provide an brief overview of the entire document.
 \section{Use Case Diagram}
 \label{sec:use_case_diagram}
 % Begin Section
+
 This section should provide a use case diagram for your application. 
 \begin{enumerate}[a)]
 	\item Each use case appearing in the diagram should be accompanied by a text description. 
@@ -87,17 +79,17 @@ This section should provide an analysis class diagram for your application.
 \section{Architectural Design}
 \label{sec:architectural_design}
 % Begin Section
-This section should provide an overview of the overall architectural design of your application. You overall architecture should show the division of the system into subsystems with high cohesion and low coupling.
+%This section should provide an overview of the overall architectural design of your application. You overall architecture should show the division of the system into subsystems with high cohesion and low coupling.
 
 \subsection{System Architecture}
 \label{sub:system_architecture}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Identify and explain the overall architecture of your system
-	\item Be sure to clearly state the name of the architecture
-	\item Provide the reasoning and justification of the choice
-	\item Provide a structural architecture diagram showing the relationship among the subsystems (if appropriate)
-\end{enumerate}
+The system is divided into a GUI, World and sub system. The World subsystem further divides into Weather, Green House Gases (GHG), Political, and News Event subsystems. The GUI and World sub systems connect to one another but their controls run asynchronously to one another. The selected software architecture for the development of Climatar is Presentation-Abstraction-Control, PAC. 
+
+PAC is optimal for the software architecture for Climatar for the aspects as it helps abstract the subsystems and allow for an ease of concurrency between the subsystems, as well as ensuring all modules are loosely coupled such that changes do not propagate through the system. This forces the system to be in a state of being easily maintainable post development. Furthermore, the project has a development time line of approximately one week for the coding portion. PAC allows developers to work in contained subsystems independent of other developers, thus the parallelism for development is optimal.
+
+\textbf{Provide a structural architecture diagram showing the relationship among the subsystems (if appropriate)}
+
 % End SubSection
 
 \subsection{Subsystems}
@@ -139,6 +131,27 @@ This section should contain all of your CRC cards.
 \label{sec:division_of_labour}
 % Begin Section
 Include a Division of Labour sheet which indicates the contributions of each team member. This sheet must be signed by all team members.
+
+\begin{tabular}{ | l | l | }
+\hline
+	\textbf{Contributor Name} & \textbf{Contributions}  \\
+  	\hline
+  	Wenbin Yuan & \\		
+  	\hline
+  	Haris Khan &  \\
+  	\hline
+  	Riley McGee & Original draft of 1.* and 4.*\\
+  	\hline
+  	Vishesh Gulatee & \\
+  	\hline
+  	James Taylor & \\
+  	\hline
+\end{tabular}
+\\
+\\
+By signing below you agree to the work divisions stated above correctly representing all contributions made:
+
+
 % End Section
 
 \newpage
