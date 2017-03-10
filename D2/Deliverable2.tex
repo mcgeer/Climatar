@@ -45,7 +45,7 @@
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-The purpose of the document is to provide a high level design for the system architecture and class composition. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commissioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (ie. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference.
+The purpose of the document is to provide a high level design for the system architecture and class composition. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commissioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (i.e. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference.
 
 % End SubSection
 
@@ -59,7 +59,7 @@ The game can occur in one of two modes, survival and overlord. In survival mode,
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-The remainder of the document pertains to the high level system design specifically outlining how the system will be structured as illustrated by the Use Case Diagram, Analysis Class Diagram, the inherent Architecture Design, and Class Responsibilities. The document first outlines the use cases for Climatar. The use cases illustrate the business events pertaining to the system and layout the system functionality. Descriptions of each use case aide in formalizing the system functionality from the view points identified previously in the SRS. From the Use Case Descriptions, a Noun-Verb Analysis was completed to create an Analysis Class Diagram. The Analysis Class Diagram acts as a starting point from which the major classes of the system will be extracted. The following section, Architecture Design, utilizes the information gained from the analysis class diagram to develop a system architecture to layout the system is a way such that each sub system has high cohesion and low coupling. Finally a Class Responsibility Collaboration (CRC) Card is developed for each class to formally outline the responsibilities, and dependencies for a given class.
+The remainder of the document pertains to the high level system design specifically outlining how the system will be structured as illustrated by the Use Case Diagram, Analysis Class Diagram, the inherent Architecture Design, and Class Responsibilities. The document first outlines the use cases for Climatar. The use cases illustrate the business events pertaining to the system and layout the system functionality. Descriptions of each use case aide in formalizing the system functionality from the view points identified previously in the SRS. From the Use Case Descriptions, a Noun-Verb Analysis was completed to create an Analysis Class Diagram. The Analysis Class Diagram acts as a starting point from which the major classes of the system will be extracted. The following section, Architecture Design, utilizes the information gained from the analysis class diagram to develop a system architecture to layout the system is a way such that each subsystem has high cohesion and low coupling. Finally a Class Responsibility Collaboration (CRC) Card is developed for each class to formally outline the responsibilities, and dependencies for a given class.
 % End SubSection
 
 \vspace{20mm}
@@ -128,7 +128,7 @@ The remainder of the document pertains to the high level system design specifica
 \label{sub:system_architecture}
 % Begin SubSection
 
-The system is divided into the GUI and World subsystems. The World subsystem further divides into Weather, Green House Gases (GHG), Political, and News Event subsystems. The GUI and World sub systems connect to one another but their controls run asynchronously to one another. The selected software architecture for the development of Climatar is Presentation-Abstraction-Control, PAC.
+The system is divided into the GUI and World subsystems. The World subsystem further divides into Weather, Green House Gases (GHG), Political, and News Event subsystems. The GUI and World subsystems connect to one another but their controls run asynchronously to one another. The selected software architecture for the development of Climatar is Presentation-Abstraction-Control, PAC.
 
 \vspace{3mm}
 
@@ -274,6 +274,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
+			Retrieve WorldState information from the WorldSimulator & - \\
 	    Modify current GHG levels & GHGSystemModel \\
 	Check if GHG levels are within safe levels & GHGSystemModel \\
 	Update GHG statistics in simulator & WorldSimulator \\
@@ -363,8 +364,6 @@ This section should contain all of your CRC cards.
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
 	    Accepts and responds to Resume Game Request & MenuScreenController \\
-	Accepts and responds to Mute music request & MenuScreenController \\
-	Accepts and responds to Mute sounds request & MenuScreenController \\
 
 	    \hline
 	  \end{tabular}
@@ -380,8 +379,6 @@ This section should contain all of your CRC cards.
 	    \hline
 	    Opens the menu screen & MenuScreen \\
 	Closes the menu screen & MenuScreen \\
-	Mutes and unmutes sound & ApplicationController \\
-	Mutes and unmutes music & ApplicationController \\
 	Set game mode & GameMode \\
 	Display game mode selection view & GameModeSelectView \\
 	Accepts and responds to Save Game request & FileHandlerControler \\
@@ -511,8 +508,9 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
+			Retrieve WorldState information from the WorldSimulator & - \\
 	    Modify current political levels & PoliticalSystemModel \\
-	Check if political levels are within safe levels & PoliticalSystemModel \\
+			Check if political relations are within safe levels & PoliticalSystemModel \\
 	Update political statistics in simulator & WorldSimulator \\
 
 	    \hline
@@ -527,7 +525,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Maintain political atmosphere data & - \\
+			Maintain political data & - \\
 
 	    \hline
 	  \end{tabular}
@@ -541,7 +539,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Display political statistics data & - \\
+			Display political statistics & - \\
 
 	    \hline
 	  \end{tabular}
@@ -554,10 +552,13 @@ This section should contain all of your CRC cards.
 	     \multicolumn{2}{|l|}{\textbf{Class Name:  WeatherSystemController}} \\
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
-	    \hline
+			\hline
+			Retrieve WorldState information from the WorldSimulator & - \\
 	    Modify current temperature levels & WeatherSystemModel \\
-	Check if temperature levels are within safe levels & WeatherSystemModel \\
-	Update Weather statistics in simulator & WorldSimulator \\
+			Check if temperature levels are within safe threshold & WeatherSystemModel \\
+			Modify current precipitation levels & WeatherSystemModel \\
+			Track accumulated precipitation over time & WeatherSystemModel \\
+			Update Weather statistics in simulator & WorldSimulator \\
 
 	    \hline
 	  \end{tabular}
@@ -571,7 +572,8 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Maintain temperature level data & - \\
+	    Maintain temperature data & - \\
+			Maintain precipitation data & - \\
 
 	    \hline
 	  \end{tabular}
@@ -585,7 +587,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Display weather/temperature statistics & - \\
+			Display weather statistics & - \\
 
 	    \hline
 	  \end{tabular}
@@ -600,9 +602,7 @@ This section should contain all of your CRC cards.
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
 	    Store current world information & - \\
-	Send world state information to the WorldSimulator & WorldSimulator \\
-	Retrieve calculated world state info from WorldSimulator & WorldSimulator \\
-
+	
 	    \hline
 	  \end{tabular}
 	% CRC Card End %
@@ -617,7 +617,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    Retrieves user interaction with World state & PlayScreenController \\
 	Retrieves user interaction with World Subsystems & PlayScreenController \\
-
+			Displays regional or global statistics to the user & PlayScreenController \\
 	    \hline
 	  \end{tabular}
 	% CRC Card End %
@@ -630,7 +630,15 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Generate news events & WeatherSystemController, GHGSystemController, PoliticalSystemController, NewsSystemController \\
+			Prompt the NewsEventGenerator to display a news event periodically & NewsEventGenerator \\
+			Modify the world state based on a news event & NewsEventGenerator \\
+			Expose the world state such that it can be accessed by Weather/Political/GHG System Controllers. & WeatherSystemController, PoliticalSystemController, GHGSystemController \\
+			Retrieve weather state information from the WeatherSystemController & WeatherSystemController \\
+			Retrieve political state information from the PoliticalSystemController & PoliticalSystemController \\
+			Retrieve green hous gas state information from the GHGSystemController & GHGSystemController \\
+			Retrieve world state information from the WorldState. & WorldState \\
+			Push new updated world state information to the WorldState. & WorldState \\
+			Push world state information to the StateView for display. & WorldState \\
 
 	    Invoke update for running subsystems Political, GHG, Weather, and News & WeaterSystemController, GHGSystemController, PoliticalSystemController, NewsSystemController \\
 		Controls timing and rate of subsystem updates. & - \\
@@ -638,7 +646,7 @@ This section should contain all of your CRC cards.
 	  \end{tabular}
 	% CRC Card End %
 
-	
+
 \end{enumerate}
 % End Section
 
@@ -652,15 +660,15 @@ Include a Division of Labour sheet which indicates the contributions of each tea
 \hline
 	\textbf{Contributor Name} & \textbf{Contributions}  \\
   	\hline
-  	Wenbin Yuan & \\
+  	Wenbin Yuan & Uses Cases and CRC cards. Revised the document. \\
   	\hline
-  	Haris Khan &  \\
+  	Haris Khan &  CRC cards, initial draft of use cases. \\
   	\hline
-  	Riley McGee & Original draft of 1.* and 4.* including figures for Module Uses Relation and Architecture\\
+		Riley McGee & Original draft of 1.* and 4.* including figures for Module Uses Relation and Architecture. Document revision.\\
   	\hline
-  	Vishesh Gulatee & \\
+		Vishesh Gulatee & Use Cases, CRC cards, and document revision. \\
   	\hline
-  	James Taylor & \\
+		James Taylor & Analysis Class Diagram, use case diagram refinement and document revision. \\
   	\hline
 \end{tabular}
 \\
