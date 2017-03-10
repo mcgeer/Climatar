@@ -92,7 +92,11 @@ The system is divided into a GUI, World and sub system. The World subsystem furt
 
 PAC is optimal for the software architecture for Climatar for the aspects as it helps abstract the subsystems and allow for an ease of concurrency between the subsystems, as well as ensuring all modules are loosely coupled such that changes do not propagate through the system. This forces the system to be in a state of being easily maintainable post development. Furthermore, the project has a development time line of approximately one week for the coding portion. PAC allows developers to work in contained subsystems independent of other developers, thus the parallelism for development is optimal.
 
-\textbf{Provide a structural architecture diagram showing the relationship among the subsystems (if appropriate)}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=150mm]{ClimatarPACArchitecture}
+\caption{System Architecture, PAC\label{usesrelation}}
+\end{figure}
 
 % End SubSection
 
@@ -103,8 +107,8 @@ PAC is optimal for the software architecture for Climatar for the aspects as it 
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=120mm]{UsesRelation.png}
-%\caption{Use Case Diagram \label{usecase}}
+\includegraphics[width=120mm]{ClimatarUsesRelation}
+\caption{Module Uses Relation \label{usesrelation}}
 \end{figure}
 
 \begin{enumerate}[a)]
