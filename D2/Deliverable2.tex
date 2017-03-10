@@ -551,8 +551,10 @@ This section should contain all of your CRC cards.
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
 	    Modify current temperature levels & WeatherSystemModel \\
-	Check if temperature levels are within safe levels & WeatherSystemModel \\
-	Update Weather statistics in simulator & WorldSimulator \\
+			Check if temperature levels are within safe threshold & WeatherSystemModel \\
+			Modify current precipitation levels & WeatherSystemModel \\
+			Track accumulated precipitation over time & WeatherSystemModel \\
+			Update Weather statistics in simulator & WorldSimulator \\
 
 	    \hline
 	  \end{tabular}
@@ -566,7 +568,8 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Maintain temperature level data & - \\
+	    Maintain temperature data & - \\
+			Maintain precipitation data & - \\
 
 	    \hline
 	  \end{tabular}
@@ -580,7 +583,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Display weather/temperature statistics & - \\
+			Display weather statistics & - \\
 
 	    \hline
 	  \end{tabular}
