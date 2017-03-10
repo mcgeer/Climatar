@@ -123,16 +123,34 @@ This section should contain all of your CRC cards.
 	\item Provide a CRC Card for each identified class
 	\item Please use the format outlined in tutorial, i.e., 
 	\begin{table}[ht]
+	
+		% NewsEventGenerator
 		\centering
-		\begin{tabular}{|p{5cm}|p{5cm}|}
+		\begin{tabular}{|p{10cm}|p{4cm}|}
 		\hline 
-		 \multicolumn{2}{|l|}{\textbf{Class Name:}} \\
+		 \multicolumn{2}{|l|}{\textbf{Class Name: NewsEventGenerator}} \\
 		\hline
 		\textbf{Responsibility:} & \textbf{Collaborators:} \\
 		\hline
-		\vspace{1in} & \\
+		Knows how to generate a news event. & NewsEvent \\
+		Can pass a news event to the NewsEventControl to be displayed. & NewsEventControl \\
+		Can forward a news events selected action to the WorldSimulator. & WorldSimulator \\ 
 		\hline
 		\end{tabular}
+
+		% NewsEvent
+		\begin{tabular}{|p{10cm}|p{4cm}|}
+		\hline 
+		 \multicolumn{2}{|l|}{\textbf{Class Name: NewsEvent}} \\
+		\hline
+		\textbf{Responsibility:} & \textbf{Collaborators:} \\
+		\hline
+		Knows the textual description of the news event. & \\
+		Knows a set of actions that can the user can select in response to the news event. & \\ 
+		\hline
+		\end{tabular}
+		
+		
 	\end{table}
 	
 \end{enumerate}
