@@ -16,16 +16,16 @@
 
 % Header and Footer
 %------------------------------------------------------------------------------
-\pagestyle{plain}  
-\renewcommand\headrulewidth{0.4pt}                                      
-\renewcommand\footrulewidth{0.4pt}                                    
+\pagestyle{plain}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
 %------------------------------------------------------------------------------
 
 % Title Details
 %------------------------------------------------------------------------------
 \title{Deliverable \#2 Group \#1 T02}
 \author{SE 3A04: Software Design II -- Large System Design}
-\date{}                               
+\date{}
 %------------------------------------------------------------------------------
 
 % Graphix
@@ -36,7 +36,7 @@
 %------------------------------------------------------------------------------
 \begin{document}
 
-\maketitle	
+\maketitle
 
 \section{Introduction}
 \label{sec:introduction}
@@ -127,7 +127,7 @@ The remainder of the document outlines the high level system design specifically
 \label{sub:system_architecture}
 % Begin SubSection
 
-The system is divided into the GUI and World subsystems. The World subsystem further divides into Weather, Green House Gases (GHG), Political, and News Event subsystems. The GUI and World sub systems connect to one another but their controls run asynchronously to one another. The selected software architecture for the development of Climatar is Presentation-Abstraction-Control, PAC. 
+The system is divided into the GUI and World subsystems. The World subsystem further divides into Weather, Green House Gases (GHG), Political, and News Event subsystems. The GUI and World sub systems connect to one another but their controls run asynchronously to one another. The selected software architecture for the development of Climatar is Presentation-Abstraction-Control, PAC.
 
 \vspace{3mm}
 
@@ -147,25 +147,25 @@ PAC is the optimal software architecture for Climatar as it helps abstract and m
 The following subsystems compose Climatar:
 \begin{itemize}
 	\item \textbf{Application:} The Application subsystem is the entry point for the system, and acts as a top level controller for Climatar. This subsystem responds to user stimulus and passes command to the subsystem responsible for handling the stimulus, however this module can only command the World, Menu, and Play subsystems, which compose the control of the remaining subsystems.
-	
+
 	\item \textbf{Play:} The Play subsystem is responsible for displaying all elements composing the games view. Control is passed to this subsystem from Application.
-	
+
 	\item \textbf{Menu:} The Menu subsystem is responsible for all controls and UI components associated with the Main Menu/Title Screen for Climatar, and the game mode the game will be activated in. The Menu is given control by the Application subsystem and can control the FileHandler for loading and saving game instance requests.
-	
-	\item \textbf{FileHandler:} The FileHandler subsystem is controlled by the Menu for load and save game requests. 
-	
+
+	\item \textbf{FileHandler:} The FileHandler subsystem is controlled by the Menu for load and save game requests.
+
 	\item \textbf{World:} The World subsystem is responsible for simulating the world in a Climatar game instance, this includes the information retrieval and interpretation from all world creating subsystems. Regions/Nations are linked to their corresponding subsystems.
-	
+
 	\item \textbf{News:} The News subsystem is responsible for storing possible news events, and responding to news event requests through passing an appropriate event given a specified criteria.
-	
+
 	\item \textbf{Map:} The Map subsystem is responsible for the generation and holding of the current map for a given game instance.
-	
+
 	\item \textbf{Weather:} The Weather subsystem is responsible for the simulation of the weather of a region. This subsystem can be disconnected from the major system and not effect its ability to work, weather will just not be a factor in the simulations.
-	
+
 	\item \textbf{GHG:} The GHG subsystem is responsible for the simulation of the green house gas levels and the rate of change of green house gas levels of a region. This subsystem can be disconnected from the major system and not effect its ability to work, green house gases will just not be a factor in the simulations.
-	
+
 	\item \textbf{Political:} The Political subsystem is responsible for the simulation of the economical aspects of a region and a nations relations with the other nations. This subsystem can be disconnected from the major system and not effect its ability to work, political factors will simply not partake the simulations.
-	
+
 \end{itemize}
 A visual representation of the high level system composition can be seen in Figure \ref{usesrelation}.
 \begin{figure}[ht!]
@@ -176,45 +176,465 @@ A visual representation of the high level system composition can be seen in Figu
 % End SubSection
 
 % End Section
-	
+
 \section{Class Responsibility Collaboration (CRC) Cards}
 \label{sec:class_responsibility_collaboration_crc_cards}
 % Begin Section
 This section should contain all of your CRC cards.
 
-\begin{enumerate}[a)]
-	\item Provide a CRC Card for each identified class
-	\item Please use the format outlined in tutorial, i.e., 
-	\begin{table}[ht]
-	
-		% NewsEventGenerator
-		\centering
-		\begin{tabular}{|p{10cm}|p{4cm}|}
-		\hline 
-		 \multicolumn{2}{|l|}{\textbf{Class Name: NewsEventGenerator}} \\
-		\hline
-		\textbf{Responsibility:} & \textbf{Collaborators:} \\
-		\hline
-		Knows how to generate a news event. & NewsEvent \\
-		Can pass a news event to the NewsEventControl to be displayed. & NewsEventControl \\
-		Can forward a news events selected action to the WorldSimulator. & WorldSimulator \\ 
-		\hline
-		\end{tabular}
+\begin{enumerate}[1.]
 
-		% NewsEvent
-		\begin{tabular}{|p{10cm}|p{4cm}|}
-		\hline 
-		 \multicolumn{2}{|l|}{\textbf{Class Name: NewsEvent}} \\
-		\hline
-		\textbf{Responsibility:} & \textbf{Collaborators:} \\
-		\hline
-		Knows the textual description of the news event. & \\
-		Knows a set of actions that can the user can select in response to the news event. & \\ 
-		\hline
-		\end{tabular}
-		
-		
-	\end{table}
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  ApplicationController}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Display the menu screen & MenuScreenController \\
+	Display the play screen & PlayScreenController \\
+	Change the application view & - \\
+	Start the world simulator & WorldSimulator \\
+	Stop the world simulator & WorldSimulator \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  ApplicationView}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Accept and respond to user inputs and preferences & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  FileHandlerController}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Maps a game’s state into text format & - \\
+	Saves a game file to the hardware’s persistent storage. & - \\
+	Reads a game file from the hardware’s persistent storage. & - \\
+	Maps a game file’s text data to a game state. & - \\
+	Displays a LoadView prompt. & LoadView \\
+	Displays a SaveView prompt. & SaveView \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  LoadView}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Displays a list of save game files. & - \\
+	Allows selection of a save game file. & - \\
+	Displays a success indicator. & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  SaveView}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Displays a success indicator. & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  GHGSystemController}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Modify current GHG levels & GHGSystemModel \\
+	Check if GHG levels are within safe levels & GHGSystemModel \\
+	Update GHG statistics in simulator & WorldSimulator \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  GHGSystemModel}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Maintain GHG level data & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  GHGSystemView}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Display GHG statistical data & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  MapView}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Retrieves user interaction with World Map & Play Screen Co ntroller \\
+	Display map & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  MapGenerator}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Can generate a new game world. & - \\
+	Uses a MapGenerationModel to procedurally generate a game world. & MapGenerationModel \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  MapGenerationModel}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Knows parameters that alter how a game world is generated. & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  MenuScreen}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Accepts and responds to Resume Game Request & MenuScreenController \\
+	Accepts and responds to Mute music request & MenuScreenController \\
+	Accepts and responds to Mute sounds request & MenuScreenController \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  MenuScreenController}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Opens the menu screen & MenuScreen \\
+	Closes the menu screen & MenuScreen \\
+	Mutes and unmutes sound & ApplicationController \\
+	Mutes and unmutes music & ApplicationController \\
+	Set game mode & GameMode \\
+	Display game mode selection view & GameModeSelectView \\
+	Accepts and responds to Save Game request & FileHandlerControler \\
+	Accepts and responds to New Game request & - \\
+	Accepts and responds to Load Game Request & FileHandlerControler \\
+	Accepts and responds to Quit Game Request & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  GameMode}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Receive user’s mode selection & MenuScreenController \\
+	Store current mode selection & - \\
+	Send constraint for user base on the mode to the MenuScreenController & MenuScreenController \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  GameModeSelectView}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Accept and respond to game mode selection & MenuScreenController \\
+	Display game modes & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  NewsEventControl}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Retrievers user interaction with news events & PlayScreenController \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  NewsEventGenerator}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Knows how to generate a news event. & NewsEvent \\
+	Can pass a news event to the NewsEventControl to be displayed. & NewsEventControl \\
+	Can forward a news events selected action to the WorldSimulator. & WorldSimulator \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  NewsEvent}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Knows the textual description of the news event & - \\
+	Knows a set of actions that the user can select in response to the news event. & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  PlayScreen}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Displays state of the World & PlayScreenController \\
+	Display Menu & PlayScreenController \\
+	Displays state of subsystems & PlayScreenController \\
+	Displays World Map & PlayScreenController \\
+	Accepts and responds to news events requests & - \\
+	Accepts and responds to world map requests & - \\
+	Accepts and responds to Pause Game Request & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  PlayScreenController}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Display GHG, Weather, Political and News statistic data & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  PoliticalSystemController}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Modify current political levels & PoliticalSystemModel \\
+	Check if political levels are within safe levels & PoliticalSystemModel \\
+	Update political statistics in simulator & WorldSimulator \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  PoliticalSystemModel}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Maintain political atmosphere data & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  PoliticalSystemView}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Display political statistics data & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  WeatherSystemController}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Modify current temperature levels & WeatherSystemModel \\
+	Check if temperature levels are within safe levels & WeatherSystemModel \\
+	Update Weather statistics in simulator & WorldSimulator \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  WeatherSystemModel}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Maintain temperature level data & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  WeatherSystemView}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Display weather/temperature statistics & - \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  WorldState}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Store current world information & - \\
+	Send world state information to the WorldSimulator & WorldSimulator \\
+	Retrieve calculated world state info from WorldSimulator & WorldSimulator \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  StateView}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Retrievers user interaction with World state & PlayScreenController \\
+	Retrieves user interaction with World Subsystems & PlayScreenController \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
+	% CRC Card Begin %
+	\item
+	\begin{tabular}{|p{10cm}|p{4cm}|}
+	    \hline
+	     \multicolumn{2}{|l|}{\textbf{Class Name:  WorldSimulator}} \\
+	    \hline
+	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
+	    \hline
+	    Generate news events & WeatherSystemController, GHGSystemController, PoliticalSystemController, NewsSystemController \\
+
+	    \hline
+	  \end{tabular}
+	% CRC Card End %
+
 	
 \end{enumerate}
 % End Section
@@ -229,7 +649,7 @@ Include a Division of Labour sheet which indicates the contributions of each tea
 \hline
 	\textbf{Contributor Name} & \textbf{Contributions}  \\
   	\hline
-  	Wenbin Yuan & \\		
+  	Wenbin Yuan & \\
   	\hline
   	Haris Khan &  \\
   	\hline
