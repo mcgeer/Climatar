@@ -88,9 +88,12 @@ This section should provide an analysis class diagram for your application.
 \subsection{System Architecture}
 \label{sub:system_architecture}
 % Begin SubSection
-The system is divided into a GUI, World and sub system. The World subsystem further divides into Weather, Green House Gases (GHG), Political, and News Event subsystems. The GUI and World sub systems connect to one another but their controls run asynchronously to one another. The selected software architecture for the development of Climatar is Presentation-Abstraction-Control, PAC. 
 
-PAC is optimal for the software architecture for Climatar for the aspects as it helps abstract the subsystems and allow for an ease of concurrency between the subsystems, as well as ensuring all modules are loosely coupled such that changes do not propagate through the system. This forces the system to be in a state of being easily maintainable post development. Furthermore, the project has a development time line of approximately one week for the coding portion. PAC allows developers to work in contained subsystems independent of other developers, thus the parallelism for development is optimal.
+The system is divided into the GUI and World subsystems. The World subsystem further divides into Weather, Green House Gases (GHG), Political, and News Event subsystems. The GUI and World sub systems connect to one another but their controls run asynchronously to one another. The selected software architecture for the development of Climatar is Presentation-Abstraction-Control, PAC. 
+
+\vspace{3mm}
+
+PAC is the optimal software architecture for Climatar as it helps abstract and modularize the subsystems, allowing also for concurrency between them. Using PAC will also ensure that modules are loosely coupled such that changes do not propagate throughout the system. This principle of loose coupling will make the system more maintainable and extensible in the future. Furthermore, the project has a development time line of approximately one week in which all code will be written. PAC's inherently modular nature allows developers to work in contained subsystems independent of other developers, thus the parallelism for development is optimal.
 
 \begin{figure}[ht!]
 \centering
