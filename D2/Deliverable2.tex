@@ -274,7 +274,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-			Retrieve WorldState information from the WorldSimulator & - \\
+			Retrieve WorldState information from the WorldSimulator & WorldSimulator \\
 	    Modify current GHG levels & GHGSystemModel \\
 	Check if GHG levels are within safe levels & GHGSystemModel \\
 	Update GHG statistics in simulator & WorldSimulator \\
@@ -508,7 +508,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-			Retrieve WorldState information from the WorldSimulator & - \\
+			Retrieve WorldState information from the WorldSimulator & WorldSimulator \\
 	    Modify current political levels & PoliticalSystemModel \\
 			Check if political relations are within safe levels & PoliticalSystemModel \\
 	Update political statistics in simulator & WorldSimulator \\
@@ -553,7 +553,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 			\hline
-			Retrieve WorldState information from the WorldSimulator & - \\
+			Retrieve WorldState information from the WorldSimulator & WorldSimulator \\
 	    Modify current temperature levels & WeatherSystemModel \\
 			Check if temperature levels are within safe threshold & WeatherSystemModel \\
 			Modify current precipitation levels & WeatherSystemModel \\
@@ -615,8 +615,6 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Retrieves user interaction with World state & PlayScreenController \\
-	Retrieves user interaction with World Subsystems & PlayScreenController \\
 			Displays regional or global statistics to the user & PlayScreenController \\
 	    \hline
 	  \end{tabular}
