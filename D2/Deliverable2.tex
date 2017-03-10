@@ -52,7 +52,8 @@ The purpose of the document is to provide a high level design for the system arc
 \subsection{System Description}
 \label{sub:system_description}
 % Begin SubSection
-Climatar is a world simulation software system illustrating the long term and short term effects of actions with respect to climate, greenhouse gas levels, economic stability and social relations with the governing bodies in the model world. The model world is based in the Avatar: The Last Airbender universe. Users are given governance of one of the four tribes in the Avatar universe: Air, Water, Fire, and Earth. Based on the state of the world and the regions that compose it, news events will be posed to the user that require action. Depending on their decisions the world will morph around the change and consequences will propagate throughout the simulation. All decisions have consequences associated with them, and the user can only react to events pertaining to their region, removing the omnipotent aspect of control, users must react to the changing world dynamically.
+Climatar is a world simulation software system illustrating the long-term and short-term effects of actions with respect to climate, greenhouse gas levels, economic stability and social relations with the governing bodies in the model world. The model world is based in the Avatar: The Last Airbender universe. 
+The game can occur in one of two modes, survival and overlord. In survival mode, users are given governance of one of the four tribes in the Avatar universe: Air, Water, Fire, and Earth. Whereas in overloard mode, the user controls all four nations. Based on the state of the world and the regions that compose it, news events will be posed to the user that require action. Depending on their decisions the world will morph around the change and consequences will propagate throughout the simulation. All decisions have consequences associated with them, and the user can only react to events pertaining to their region(s) that are non passive. Passive events are those that occur and consequences are applied without any actions being made by the user. The aspects of events occurring that the user cannot act on remove the omnipotent aspect of control the game would otherwise give, users must react to the changing world dynamically.
 % End SubSection
 
 \subsection{Overview}
@@ -76,7 +77,7 @@ The remainder of the document pertains to the high level system design specifica
 \end{figure}
 
 \begin{enumerate}[a)]
-	\item the main menu screen, the user taps on the start game button which gives the user the option to select the survival game mode or overlord game mode. Selecting one of these options initializes the game world, and switches to the play screen where the user is presented with news events periodically.
+	\item The main menu screen, the user taps on the start game button which gives the user the option to select the survival game mode or overlord game mode. Selecting one of these options initializes the game world, and switches to the play screen where the user is presented with news events periodically.
 \end{enumerate}
 
 \begin{enumerate}[b)]
@@ -164,13 +165,13 @@ The following subsystems compose Climatar:
 
 	\item \textbf{GHG:} The GHG subsystem is responsible for the simulation of the green house gas levels and the rate of change of green house gas levels of a region. This subsystem can be disconnected from the major system and not effect its ability to work, green house gases will just not be a factor in the simulations.
 
-	\item \textbf{Political:} The Political subsystem is responsible for the simulation of the economical aspects of a region and a nations relations with the other nations. This subsystem can be disconnected from the major system and not effect its ability to work, political factors will simply not partake the simulations.
+	\item \textbf{Political:} The Political subsystem is responsible for the simulation of the economical aspects of a region and a nations relations with the other nations. This subsystem can be disconnected from the major system and not effect its ability to work, political factors will simply not partake in the simulations.
 
 \end{itemize}
 A visual representation of the high level system composition can be seen in Figure \ref{usesrelation}.
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=120mm]{ClimatarUsesRelation}
+\includegraphics[width=140mm]{ClimatarUsesRelation}
 \caption{Module Uses Relation \label{usesrelation}}
 \end{figure}
 % End SubSection
@@ -317,7 +318,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Retrieves user interaction with World Map & Play Screen Co ntroller \\
+	    Retrieves user interaction with World Map & Play Screen Controller \\
 	Display map & - \\
 
 	    \hline
@@ -614,7 +615,7 @@ This section should contain all of your CRC cards.
 	    \hline
 	    \textbf{Responsibility:} & \textbf{Collaborators:} \\
 	    \hline
-	    Retrievers user interaction with World state & PlayScreenController \\
+	    Retrieves user interaction with World state & PlayScreenController \\
 	Retrieves user interaction with World Subsystems & PlayScreenController \\
 
 	    \hline
@@ -631,6 +632,8 @@ This section should contain all of your CRC cards.
 	    \hline
 	    Generate news events & WeatherSystemController, GHGSystemController, PoliticalSystemController, NewsSystemController \\
 
+	    Invoke update for running subsystems Political, GHG, Weather, and News & WeaterSystemController, GHGSystemController, PoliticalSystemController, NewsSystemController \\
+		Controls timing and rate of subsystem updates. & - \\
 	    \hline
 	  \end{tabular}
 	% CRC Card End %
