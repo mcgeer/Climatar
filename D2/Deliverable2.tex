@@ -45,7 +45,7 @@
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-The purpose of the document is to provide a high level design for the system architecture and class composition. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commissioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (ie. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference.
+The purpose of the document is to provide a high level design for the system architecture and class composition. This document is intended for use by the stakeholders of the project as reference throughout the various stages of the SDLC. The primary stakeholders include Prof. Ridha Khedri, who has commissioned this project as part of Software Engineering course SE3A04 as provided by McMaster University, Tutorial Assistants for SE3A04, who are responsible with oversight and review of the deliverables of the project and members of the development team (i.e. authors of the document). Other stakeholders include any future teams of developers and managers, that may maintain the application or use this project application as an open source reference.
 
 % End SubSection
 
@@ -58,7 +58,7 @@ Climatar is a world simulation software system illustrating the long term and sh
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-The remainder of the document pertains to the high level system design specifically outlining how the system will be structured as illustrated by the Use Case Diagram, Analysis Class Diagram, the inherent Architecture Design, and Class Responsibilities. The document first outlines the use cases for Climatar. The use cases illustrate the business events pertaining to the system and layout the system functionality. Descriptions of each use case aide in formalizing the system functionality from the view points identified previously in the SRS. From the Use Case Descriptions, a Noun-Verb Analysis was completed to create an Analysis Class Diagram. The Analysis Class Diagram acts as a starting point from which the major classes of the system will be extracted. The following section, Architecture Design, utilizes the information gained from the analysis class diagram to develop a system architecture to layout the system is a way such that each sub system has high cohesion and low coupling. Finally a Class Responsibility Collaboration (CRC) Card is developed for each class to formally outline the responsibilities, and dependencies for a given class.
+The remainder of the document pertains to the high level system design specifically outlining how the system will be structured as illustrated by the Use Case Diagram, Analysis Class Diagram, the inherent Architecture Design, and Class Responsibilities. The document first outlines the use cases for Climatar. The use cases illustrate the business events pertaining to the system and layout the system functionality. Descriptions of each use case aide in formalizing the system functionality from the view points identified previously in the SRS. From the Use Case Descriptions, a Noun-Verb Analysis was completed to create an Analysis Class Diagram. The Analysis Class Diagram acts as a starting point from which the major classes of the system will be extracted. The following section, Architecture Design, utilizes the information gained from the analysis class diagram to develop a system architecture to layout the system is a way such that each subsystem has high cohesion and low coupling. Finally a Class Responsibility Collaboration (CRC) Card is developed for each class to formally outline the responsibilities, and dependencies for a given class.
 % End SubSection
 
 \vspace{20mm}
@@ -127,7 +127,7 @@ The remainder of the document pertains to the high level system design specifica
 \label{sub:system_architecture}
 % Begin SubSection
 
-The system is divided into the GUI and World subsystems. The World subsystem further divides into Weather, Green House Gases (GHG), Political, and News Event subsystems. The GUI and World sub systems connect to one another but their controls run asynchronously to one another. The selected software architecture for the development of Climatar is Presentation-Abstraction-Control, PAC.
+The system is divided into the GUI and World subsystems. The World subsystem further divides into Weather, Green House Gases (GHG), Political, and News Event subsystems. The GUI and World subsystems connect to one another but their controls run asynchronously to one another. The selected software architecture for the development of Climatar is Presentation-Abstraction-Control, PAC.
 
 \vspace{3mm}
 
