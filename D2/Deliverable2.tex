@@ -95,7 +95,7 @@ PAC is optimal for the software architecture for Climatar for the aspects as it 
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=150mm]{ClimatarPACArchitecture}
-\caption{System Architecture, PAC\label{usesrelation}}
+\caption{System Architecture, PAC\label{pacarch}}
 \end{figure}
 
 % End SubSection
@@ -103,8 +103,30 @@ PAC is optimal for the software architecture for Climatar for the aspects as it 
 \subsection{Subsystems}
 \label{sub:subsystems}
 % Begin SubSection
-
-
+The following subsystems compose Climatar:
+\begin{itemize}
+	\item \textbf{Application:} The Application subsystem is the entry point for the system, and acts as a top level controller for Climatar. This subsystem responds to user stimulus and passes command to the subsystem responsible for handling the stimulus, however this module can only command the World, Menu, and Play subsystems, which compose the control of the remaining subsystems.
+	
+	\item \textbf{Play:} The Play subsystem is responsible for displaying all elements composing the games view. Control is passed to this subsystem from Application.
+	
+	\item \textbf{Menu:} The Menu subsystem is responsible for all controls and UI components associated with the Main Menu/Title Screen for Climatar, and the game mode the game will be activated in. The Menu is given control by the Application subsystem and can control the FileHandler for loading and saving game instance requests.
+	
+	\item \textbf{FileHandler:} The FileHandler subsystem is controlled by the Menu for load and save game requests. 
+	
+	\item \textbf{World:} The World subsystem is responsible for simulating the world in a Climatar game instance, this includes the information retrieval and interpretation from all world creating subsystems. Regions/Nations are linked to their corresponding subsystems.
+	
+	\item \textbf{News:} The News subsystem is responsible for storing possible news events, and responding to news event requests through passing an appropriate event given a specified criteria.
+	
+	\item \textbf{Map:} The Map subsystem is responsible for the generation and holding of the current map for a given game instance.
+	
+	\item \textbf{Weather:} The Weather subsystem is responsible for the simulation of the weather of a region. This subsystem can be disconnected from the major system and not effect its ability to work, weather will just not be a factor in the simulations.
+	
+	\item \textbf{GHG:} The GHG subsystem is responsible for the simulation of the green house gas levels and the rate of change of green house gas levels of a region. This subsystem can be disconnected from the major system and not effect its ability to work, green house gases will just not be a factor in the simulations.
+	
+	\item \textbf{Political:} The Political subsystem is responsible for the simulation of the economical aspects of a region and a nations relations with the other nations. This subsystem can be disconnected from the major system and not effect its ability to work, political factors will simply not partake the simulations.
+	
+\end{itemize}
+A visual representation of the high level system composition can be seen in Figure \ref{usesrelation}.
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=120mm]{ClimatarUsesRelation}
