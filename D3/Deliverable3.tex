@@ -38,33 +38,77 @@
 \label{sec:introduction}
 % Begin Section
 
-This section should provide an brief overview of the entire document.
-
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Delineate the purpose of the document
-	\item Specify the intended audience for the document
-\end{enumerate}
+It is the intention of this document to serve as an exhaustive overview of Climatars architectural design, and thus its implementation of the PAC architecture pattern. This serves to say that all classes, including their respective states, interfaces and behaviour adjacent to other classes of the system should be well described. Such completeness aims to achieve that an initial implementation of the system comes with as little overhead as possible.
+
+\vspace{5mm}
+\noindent
+As such, at its foremost, this document is intended to be used as
+reference by any developer implementing, extending, or maintaining the
+Climatar codebase. As this document describes Climatars architecture
+via UML (Unified Modelling Language) diagrams, it should also serve as
+use to any technically inclined stakeholders involved.
+
 % End SubSection
 
 \subsection{System Description}
 \label{sub:system_description}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Give a brief description of the system. This could be a paragraph or two to give some context to this document.
-\end{enumerate}
+Climatar is a world simulation software system illustrating both the
+long and short term effects that actions have on climate change,
+greenhouse gas levels, economic stability and social relations with
+the governing bodies in a model world. The model world derives most of
+its themes from the Avatar: The Last Airbender universe. For those
+unfamiliar with the series, it suffices to know that there are in
+essence four nations: Fire, Earth, Water and Air. These nations are
+not dissimilar to countries on Earth. 
+
+\vspace{5mm}
+\noindent
+The game can either be played in survival or overlord mode. In
+survival mode, users are given governance of one of the four nations.
+Overlord mode however sees the user take control of all nations. Based
+on the state of the world and the regions that compose it, news events
+will be posed to the user that require action. Decisions made by the
+player will oftentimes result in a direct impact on the world, which
+will in turn morph around the change with its consequences propagating
+throughout the simulation. All decisions have consequences associated
+with them, and the user can only react to events pertaining to their
+region(s) that are non passive. Passive events are those that occur
+and consequences are applied without any actions being made by the
+player. The aspects of events occurring that the user cannot act on
+remove the omnipotent aspect of control the game would otherwise give,
+with the player needing to react a dynamically changing world.
 % End SubSection
 
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Describe what the rest of the document contains 
-	\item Explain how the document is organised
-\end{enumerate}
+This document contains a variety of UML (Unified Modelling Language)
+diagrams serving to organize and illustrate Climatars architectural
+design. By section, these will include State Charts for Controller
+Classes, Sequence Diagrams, and finally a Detailed Class
+Diagram. Details on the intentions of each diagram are widely
+available but for completeness they will be summarized as follows.
 
+\vspace{5mm}
+\noindent
+The State Charts describe how the state specific to a controller class
+changes and evolves over time in response to actions or events.
+
+\vspace{5mm}
+\noindent
+The Sequence Diagram relates Climatars use cases to a series of sequential
+(and sometimes parallelized) steps undergone by the system to respond to 
+said use case.
+
+\vspace{5mm}
+\noindent
+The Detailed Class Diagram gives light to both the public and private
+interface of each class in the system. It should describe all methods
+and variables for each said class.
 % End SubSection
 
 % End Section
