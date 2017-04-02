@@ -1,15 +1,40 @@
 package game.climatar.systems.weather;
-
+import com.kotcrab.vis.ui.widget.VisLabel;
+import java.util.HashMap;
+import game.climatar.map.Nation;
 
 
 public class WeatherSystemController {
 
-    private Integer BadPercipitation = 20;
-    private double BadTemperature = 50;
+    private HashMap<Nation, WeatherSystemModel> modelLink;
+    private HashMap<Nation, WeatherSystemView> viewLink;
+
+    private static final int BadPercipitation = 25;
+    private static final double BadTemperature = 50;
+    private int initialPercipitationFN = 50, initialPercipitationAN = 50, initialPercipitationWN = 50, initialPercipitationEN = 50;
+    private double initialTemperatureFN = 35, initialTempertureAN = 5, initialTemperatureWN = -10,initialTemperatureEN = 28;
+
+    public WeatherSystemController(){
+        modelLink = new HashMap<Nation, WeatherSystemModel>();
+        viewLink = new HashMap<Nation, WeatherSystemView>();
+
+        //Initialize Fire
+        modelLink.put(Nation.FIRE, new WeatherSystemModel(initialPercipitationFN, initialTemperatureFN));
+        viewLink.put(Nation.FIRE, new WeatherSystemView());
+        //Initialize Air
+        modelLink.put(Nation.AIR, new WeatherSystemModel(initialPercipitationAN, initialTempertureAN));
+        viewLink.put(Nation.AIR, new WeatherSystemView());
+        //Initialize Water
+        modelLink.put(Nation.WATER, new WeatherSystemModel(initialPercipitationWN, initialTemperatureWN));
+        viewLink.put(Nation.WATER, new WeatherSystemView());
+        //Initialize Earth
+        modelLink.put(Nation.EARTH, new WeatherSystemModel(initialPercipitationEN, initialTemperatureEN));
+        viewLink.put(Nation.EARTH, new WeatherSystemView());
+    }
 
 
-    public boolean IsSafeTemperature(nation Nation){
-        if (GetTemperatureLevel(Nation)>BadTemperature){
+    public boolean IsSafeTemperature(Nation nation){
+        if (GetTemperatureLevel(nation)>BadTemperature){
             return false;
         }
         else
@@ -17,19 +42,26 @@ public class WeatherSystemController {
 
     }
 
-    public boolean IsDrought(nation Nation) {
-        if (GetPercipitationLevel(Nation) < BadPercipitation)
+    public boolean IsDrought(Nation nation) {
+        if (GetPercipitationLevel(nation) < BadPercipitation)
             return true;
 
         else
             return false;
     }
 
-    public Double GetTemperatureLevel(nation Nation){
-        return Nation.temperature;
+    public Double GetTemperatureLevel(Nation nation){
+
+        return modelLink.get(nation).gettemperature();
+
+
     }
 
-    public Integer GetPercipitationLevel(nation Nation){
-        return Nation.Percipitation;
+    public int GetPercipitationLevel(Nation nation){
+        return modelLink.get(nation).getPercipitation();
+    }
+
+    public void GetWeatherLabel (Nation nation){
+        VisLabel weatherlabel = new VisLabel("Current Temperature: "+ GetTemperatureLevel(nation));
     }
 }

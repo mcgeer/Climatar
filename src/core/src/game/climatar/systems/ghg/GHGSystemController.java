@@ -22,7 +22,7 @@ public class GHGSystemController {
         modelLink.put(Nation.FIRE, new GHGSystemModel(initialValueFN));
         viewLink.put(Nation.FIRE, new GHGSystemView());
         //Initialize Air
-        modelLink.put(Nation.AIR, new GHGSystemModel(initialValueFN));
+        modelLink.put(Nation.AIR, new GHGSystemModel(initialValueAN));
         viewLink.put(Nation.AIR, new GHGSystemView());
         //Initialize Water
         modelLink.put(Nation.WATER, new GHGSystemModel(initialValueWN));
