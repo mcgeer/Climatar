@@ -1,18 +1,19 @@
 package game.climatar.systems.ghg;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Set;
-
 import game.climatar.map.Nation;
 
 public class GHGSystemController {
 
-    HashMap<Nation, GHGSystemModel> modelLink;
-    HashMap<Nation, GHGSystemView> viewLink;
+    //Refs to models and views
+    private HashMap<Nation, GHGSystemModel> modelLink;
+    private HashMap<Nation, GHGSystemView> viewLink;
 
     private int initialValueFN = 50, initialValueEN = 35, initialValueWN = 25, initialValueAN = 10;
 
+    /**
+     * Generate a new GHGSystem Controller for each Nation
+     */
     public GHGSystemController(){
         modelLink = new HashMap<Nation, GHGSystemModel>();
         viewLink = new HashMap<Nation, GHGSystemView>();
@@ -29,6 +30,32 @@ public class GHGSystemController {
         //Initialize Earth
         modelLink.put(Nation.EARTH, new GHGSystemModel(initialValueEN));
         viewLink.put(Nation.EARTH, new GHGSystemView());
-}
+    }
+
+    /**
+     * Update the emissions in the system
+     * @return Total pollution being added to the world
+     */
+    public int Update(){
+        int ret = 0;
+
+        //Update all Nations GHG Levels
+        for (Nation n: Nation.values()) {
+            ret += modelLink.get(n).Update();
+            //TODO Update View Labels
+        }
+
+        return  ret;
+    }
+
+    /**
+     * Set a change to be in effect on next update for a nations emissions
+     * @param n Nation who is consequently having a change in emissions
+     * @param deltaEmissions Change being applied int in [-10, 10] - {0}
+     */
+    public void setDeltaEmissions(Nation n, int deltaEmissions){
+        modelLink.get(n).updateGHGPerUpdate(deltaEmissions);
+    }
+
 
 }
