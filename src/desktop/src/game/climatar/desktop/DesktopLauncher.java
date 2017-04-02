@@ -7,7 +7,8 @@ import game.climatar.ApplicationController;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		//config.fullscreen = true;
+		config.width = 200;
+		config.height = config.width*16/9;
 		new LwjglApplication(new ApplicationController(), config);
 	}
 }
