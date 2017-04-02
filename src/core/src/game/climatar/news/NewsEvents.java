@@ -1,6 +1,8 @@
 package game.climatar.news;
 import java.util.List;
 
+import game.climatar.map.Nation;
+
 public enum NewsEvents {
 	POLITICAL,
 	WEATHER,
