@@ -2,10 +2,10 @@ package game.climatar.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -27,8 +27,13 @@ public class MenuScreen implements Screen {
 	private static final String TITLE_TEXT = "Climatar";
 
 	private float hudScale;
+
+	private MenuScreenController menuScreenController;
 	
-	public MenuScreen(float hudScale) {
+	private BitmapFont titleFont;
+	
+	public MenuScreen(MenuScreenController menuScreenController, float hudScale) {
+		this.menuScreenController = menuScreenController;
 		this.hudScale = hudScale;
 	}
 	
@@ -38,6 +43,7 @@ public class MenuScreen implements Screen {
 	
 	@Override
 	public void show() {
+		titleFont = new BitmapFont(Gdx.files.internal("fonts/title-font.fnt"), Gdx.files.internal("fonts/title-font.png"), false);
 		stage = new Stage(new ScreenViewport());
 		
 		buildMenuScreen();
@@ -48,21 +54,32 @@ public class MenuScreen implements Screen {
 		
 		float cellWidth = Gdx.graphics.getWidth();
 		float cellHeight = Gdx.graphics.getHeight()/8f;
-		float fontScale = 3f;
 		
-		GlyphLayout layout = new GlyphLayout(VisUI.getSkin().get(LabelStyle.class).font, TITLE_TEXT);
+		GlyphLayout layout = new GlyphLayout(titleFont, TITLE_TEXT);
+		float titleScale = hudScale / 4;
+		
+		LabelStyle labelStyle = VisUI.getSkin().get(LabelStyle.class);
+		labelStyle.font = titleFont;
 		titleLabel = new VisLabel(TITLE_TEXT);
-		titleLabel.setFontScale(fontScale);
-		titleLabel.setPosition(Gdx.graphics.getWidth()/2f - (layout.width*fontScale)/2, 2*Gdx.graphics.getHeight()/3);
+		titleLabel.setFontScale(titleScale);
+		titleLabel.setScale(titleScale);
+		titleLabel.setPosition(Gdx.graphics.getWidth()/2f - (layout.width*titleScale)/2, 2*Gdx.graphics.getHeight()/3);
 		
-		startGameButton = new VisTextButton("Start Game", new ChangeListener() {
+		startGameButton = new VisTextButton("Play", new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				
 			}
-			
 		});
-		loadGameButton = new VisTextButton("Load Game");
+		startGameButton.getLabel().setFontScale(hudScale);
+		
+		loadGameButton = new VisTextButton("Load", new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
+		loadGameButton.getLabel().setFontScale(hudScale);
 		
 		buttonsTable = new VisTable();
 		buttonsTable.add(startGameButton).pad(0, 10f, 10f, 10f).height(cellHeight).width(cellWidth - 2 * 10f).row();
