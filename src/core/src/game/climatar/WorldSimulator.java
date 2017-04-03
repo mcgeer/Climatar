@@ -3,6 +3,7 @@ package game.climatar;
 import java.util.Map;
 
 import game.climatar.map.GameState;
+import game.climatar.map.Nation;
 import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGSystemController;
 import game.climatar.systems.political.PoliticalSystemController;
@@ -30,7 +31,7 @@ public class WorldSimulator {
      * @param monitoringWeather Is the Weather system being monitored
      * @param monitoringPolitical Is the Political system being monitored
      */
-    public WorldSimulator(boolean monitoringGHG, boolean monitoringWeather, boolean monitoringPolitical){
+    public WorldSimulator(Nation player, boolean monitoringGHG, boolean monitoringWeather, boolean monitoringPolitical){
         //Set up what systems are being used
         ghgIsActive = monitoringGHG;
         weatherIsActive = monitoringWeather;
@@ -42,16 +43,52 @@ public class WorldSimulator {
         politicalSystems = new PoliticalSystemController();
 
         //Set up the Game State
-        gameState = new GameState();
-    }
+        gameState = new GameState(player);
 
+    }
 
     /**
      * Update Function to handle all requests to step the state of the world
      */
     public void Simulate(){
+        //GENERATE NEWS
+        //REACT TO NEWS
+
+        //UPDATE Sub Systems
+        if(ghgIsActive)
+            GameState.UpdateWorldGHG(ghgSystems.Update());
+        //TODO if(weatherIsActive)
+        //TODO    weatherSystems.Update();
+        if(politicalIsActive)
+            GameState.UpdateWorldPlayerPolitics(politicalSystems.update(gameState.getPlayer()));
+
 
     }
 
+    //========================================================
+    //=============== Set Activated Systems ==================
 
+    /**
+     * Enable/Disable GHG Sub System
+     * @param ghgIsActive Enable/Disable
+     */
+    public void setGhgIsActive(boolean ghgIsActive){
+        this.ghgIsActive = ghgIsActive;
+    }
+
+    /**
+     * Enable/Disable Weather Sub System
+     * @param weatherIsActive Enable/Disable
+     */
+    public void setWeatherIsActive(boolean weatherIsActive){
+        this.weatherIsActive = weatherIsActive;
+    }
+
+    /**
+     * Enable/Disable Political Sub System
+     * @param politicalIsActive Enable/Disable
+     */
+    public void setPoliticalIsActive(boolean politicalIsActive){
+        this.politicalIsActive = politicalIsActive;
+    }
 }
