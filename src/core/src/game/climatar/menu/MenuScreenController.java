@@ -4,17 +4,18 @@ import com.badlogic.gdx.Screen;
 
 public class MenuScreenController {
 	
+	private GameModeSelectView gameModeSelectView;
 	private MenuScreen menuScreenView;
 	
 	private float hudScale;
 	
-	public void setHudScale(float hudScale) {
-		menuScreenView.setHudScale(hudScale);
+	public MenuScreenController(float hudScale) {
+		menuScreenView = new MenuScreen(hudScale);
 		this.hudScale = hudScale;
 	}
 	
-	public MenuScreenController(float hudScale) {
-		menuScreenView = new MenuScreen(hudScale);
+	public void setHudScale(float hudScale) {
+		menuScreenView.setHudScale(hudScale);
 		this.hudScale = hudScale;
 	}
 
