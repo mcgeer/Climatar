@@ -1,5 +1,7 @@
 package game.climatar.menu;
 
-public class LoadView {
+import com.badlogic.gdx.scenes.scene2d.Stage;
+
+public class LoadView extends Stage {
 
 }
