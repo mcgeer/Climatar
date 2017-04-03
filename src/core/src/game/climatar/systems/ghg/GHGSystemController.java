@@ -57,5 +57,9 @@ public class GHGSystemController {
         modelLink.get(n).updateGHGPerUpdate(deltaEmissions);
     }
 
+    public int GetGHG(Nation n){
+        return modelLink.get(n).Update();
+    }
+
 
 }
