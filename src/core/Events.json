@@ -1,27 +1,185 @@
 {
-  "Events": [
-    {
-      "E1": {
-        "type": "Passive",
-        "nation": "AIR",
-        "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits",
-        "consequences": {
-          "political": 0.45,
-          "wallet": -100,
-          "ghg": -8,
-          "temp": -12,
-          "percip": -10
-        }
-      },
-      "E2": {
-        "type": "",
-        "nation": "",
-        "desc": "",
-        "consequences": {
-          
-        }  
-      }
-	  "E25": {
+    "Events": [
+        {
+            "E1": {
+                "type": "Passive",
+                "headline": "Northern Winds Spirit Festival",
+                "nation": "AIR",
+                "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
+                "consequences": {
+                    "political": 0.45,
+                    "wallet": -100,
+                    "ghg": -8,
+                    "temp": -2,
+                    "percip": -10
+                }
+            },
+            "E2": {
+                "type": "Passive",
+                "headline": "Glacier Spirit Festival",
+                "nation": "WATER",
+                "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
+                "consequences": {
+                    "political": 0.45,
+                    "wallet": -100,
+                    "ghg": -8,
+                    "temp": -2,
+                    "percip": -10
+                }
+            },
+            "E3": {
+                "type": "Passive",
+                "headline": "Blue Moon Celebration",
+                "nation": "WATER",
+                "desc": "First New Moon of the Year",
+                "consequences": {
+                    "political": 0.45,
+                    "wallet": -100,
+                    "percip": 15
+                }
+            },
+            "E4": {
+                "type": "Passive",
+                "headline": "Lion Turtle Festival",
+                "nation": "EARTH",
+                "desc": "A day to honour the revered Lionturtle.",
+                "consequences": {
+                    "political": 0.45,
+                    "wallet": -100,
+                    "temp": 4,
+                    "percip": -4
+                }
+            },
+            "E5": {
+                "type": "Passive",
+                "headline": "Tsungi Horn Awards",
+                "nation": "EARTH",
+                "desc": "Award Ceremony that honors the best talent in the music industry.",
+                "consequences": {
+                    "political": 1.5,
+                    "wallet": -75
+                }
+            },
+            "E6": {
+                "type": "Passive",
+                "headline": "Sozin's Comet",
+                "nation": "FIRE",
+                "desc": "A day that celebrates when everything changed, because the Fire Nation attacked.",
+                "consequences": {
+                    "political": -3,
+                    "wallet": -100,
+                    "percip": -3
+                }
+            },
+            "E7": {
+                "type": "Passive",
+                "headline": "Dragon Warrior Festival",
+                "nation": "FIRE",
+                "desc": "Festival in honor for Fire Nations best warriors dragons and wagons.",
+                "consequences": {
+                    "political": 1,
+                    "wallet": -70,
+                    "ghg": 4, 
+                    "percip": -3
+                }
+            },
+            "E8": {
+                "type": "Passive",
+                "headline": "Yangchen Festival",
+                "nation": "AIR",
+                "desc": "Festival that celeberates the spirit protector Yangchen and Old Iron.",
+                "consequences": {
+                    "political": 1,
+                    "wallet": -50,
+                    "ghg": -4,
+                    "percip": 5 
+                }
+            },
+            "E9": {
+                "type": "Passive",
+                "headline": "Avatar Day",
+                "nation": "ALL",
+                "desc": "Festival that celebrates the birth of the Avatar.",
+                "consequences": {
+                    "political": 0.5,
+                    "ghg": -4,
+                    "percip": 5,
+                    "temp": -2 
+                }
+            },
+            "E10": {
+                "type": "Passive",
+                "headline": "Pro-Bending Tournament",
+                "nation": "ALL",
+                "desc": "Lose in a Pro-bending Tournament, the most popular sport in the World of Avatar.",
+                "consequences": {
+                    "wallet": -35
+                }
+            },
+            "E11": {
+                "type": "Passive",
+                "headline": "Pro-Bending Tournament",
+                "nation": "PLAYER",
+                "desc": "Win in a Pro-bending Tournament, the most popular sport in the World of Avatar.",
+                "consequences": {
+                    "wallet": 200
+                }
+            },
+            "E12": {
+                "type": "Passive",
+                "headline": "Midnight Ang Festival",
+                "nation": "PLAYER",
+                "desc": "Non bender revolution against benders, which involves them holding a shyamalamalam at midnight.",
+                "consequences": {
+                    "political": -5
+                }
+            },
+            "E13": {
+                "type": "Passive",
+                "headline": "Bloodbending Celebrations",
+                "nation": "WATER",
+                "desc": "Water tribe tradition of celeberating the forbidden art of bloodbending.",
+                "consequences": {
+                    "political": -5
+                }
+            },
+            "E14": {
+                "type": "Passive",
+                "headline": "Wan Shi Tong Film Festival",
+                "nation": "EARTH",
+                "desc": "Water tribe tradition of celeberating the forbidden art of bloodbending.",
+                "consequences": {
+                    "wallet": 100
+                }
+            },
+            "E15": {
+                "type": "Passive",
+                "headline": "Ba Sing Sei Manuscript Convention",
+                "nation": "EARTH",
+                "desc": "Global Festival that showcases the best written work for that year.",
+                "consequences": {
+                    "wallet": 50
+                }
+            },   
+            "E16": {
+                "type": "Passive",
+                "headline": "Blue Lotus Conference",
+                "nation": "ALL",
+                "desc": "Annual Blue Conference between leaders of all nations.",
+                "consequences": {
+                    "political": 3
+                }
+            },   
+            "E17": {
+                "type": "Passive",
+                "headline": "Blue Lotus Conference",
+                "nation": "ALL",
+                "desc": "Annual Blue Conference between leaders of all nations. The Nations left angered.",
+                "consequences": {
+                    "political": -2
+                }
+            },
+             "E25": {
 		"headline": "Trade Poultry and Livestock"
         "type": "Active",
         "nation": "FIRE",
@@ -33,7 +191,7 @@
           "temp": 3
           
         }  
-      }
+      },
 	    "E26": {
 		"headline": "Trade Precious Metals"
         "type": "Active",
@@ -45,7 +203,7 @@
           "ghg": 1,
           
         }  
-      }
+      },
 	    "E27": {
 		"headline": "Fire Nation picks up production of glass"
         "type": "Active",
@@ -58,7 +216,7 @@
           "temp": 3,
 		  "percip": 2
         }  
-      }
+      },
 	    "E28": {
 		"headline": "Fire Nation starts new trade deal with Earth Kingdom"
         "type": "Active",
@@ -70,7 +228,7 @@
           "ghg": 2,
           
         }  
-      }
+      },
 	  "E29": {
 		"headline": "Uproar in the Fire Nation, as Truferno raises taxes"
         "type": "Active",
@@ -82,7 +240,7 @@
           "ghg": -6,
           
         }  
-      }
+      },
 	    "E30": {
 		"headline": "Fire Nation starts working on urbanization project"
         "type": "Active",
@@ -95,7 +253,7 @@
 		  "temp": 4,
 		  "percip": 5          
         }  
-      }
+      },
 	   "E31": {
 		"headline": "Inventor from the Fire Nations builds the first automobile engine that runs on fuel"
         "type": "Active",
@@ -108,7 +266,7 @@
 		  "temp": 4,
 		  "percip": 5   
     }
-	}
+	},
 	   "E32": {
 		"headline": "Coal Mine collapses, 100 miners trapped, 20 dead and counting."
         "type": "Active",
@@ -120,7 +278,7 @@
           "ghg": 2,
 		  "percip": 3   
     }
-	}
+	},
 	   "E33": {
 		"headline": "Fire Nation trades machines and engines that can be used by non benders"
         "type": "Active",
@@ -133,7 +291,7 @@
 		  "temp": 1,
 		  "percip": 1   
     }
-	}
+	},
 	
 	   "E34": {
 		"headline": "Fire Nation experiences Steel Industry Boom with the help of Earth corporate leaders"
@@ -147,7 +305,7 @@
 		  "temp": 1,
 		  "percip": 1   
     }
-	}
+	},
 	
 	   "E35": {
 		"headline": "Non bender protest turns violent after police intervention"
@@ -160,7 +318,7 @@
 		  "temp": 2,
 		  "percip": 3   
     }
-	}
+	},
 	"E36": {
 		"headline": "Trade Poultry and Livestock"
         "type": "Active",
@@ -174,6 +332,7 @@
 		   "percip": 4
           
         }  
-      }
-	
+      },
+	  }
+	]
 }
