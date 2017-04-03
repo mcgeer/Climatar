@@ -11,7 +11,7 @@ public class PoliticalSystemModel {
     private Nation nation;
     //Economic stance
     private int wallet;
-    //Relations with contries
+    //Relations with countries
     private HashMap<Nation, Double> relationsWith;
 
     /**
@@ -33,10 +33,10 @@ public class PoliticalSystemModel {
 
     /**
      * Return the average of relations for the nation with all others
-     * @return
+     * @return total relations in the world summed against this nation
      */
-    public int Update(){
-        int ret = 0;
+    public Double Update(){
+        Double ret = 0.0;
         for (Nation n: Nation.values()) {
             if(n.equals(nation))
                 continue;
@@ -64,6 +64,7 @@ public class PoliticalSystemModel {
         if(n.equals(nation))
             throw new EnumConstantNotPresentException(Nation.class, "Relation between nations n and r, where n == r is invalid.");
         Double rel = relationsWith.get(n) + delta;
+        //Limit the relation to be between 0 and 100 inclusive, it is a percent
         relationsWith.put(n, (rel < 0)? 0 : (rel > 100) ? 100 : rel );
     }
 
