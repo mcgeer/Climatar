@@ -39,7 +39,7 @@ public class MidpointDisplacement {
 	float sum;
 	int count;
   
-	// h determines the fineness of the scale it is working on.  After every step, h
+	// h determines the fineness of the scale it is working on. After every step, h
 	// is decreased by a factor of "smoothness"
 	float h = 1;
   
