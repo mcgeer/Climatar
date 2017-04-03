@@ -10,7 +10,7 @@ public class DesktopLauncher {
 	
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 200;
+		config.width = 300;
 		config.height = config.width*16/9;
 		new LwjglApplication(new ApplicationController(HUD_SCALE), config);
 	}
