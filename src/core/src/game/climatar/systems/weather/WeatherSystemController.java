@@ -9,11 +9,16 @@ public class WeatherSystemController {
     private HashMap<Nation, WeatherSystemModel> modelLink;
     private HashMap<Nation, WeatherSystemView> viewLink;
 
+    //Set the limit for bad conditions
     private static final int BadPercipitation = 25;
     private static final double BadTemperature = 50;
+
+    //set initial values for each nation
     private int initialPercipitationFN = 50, initialPercipitationAN = 50, initialPercipitationWN = 50, initialPercipitationEN = 50;
     private double initialTemperatureFN = 35, initialTempertureAN = 5, initialTemperatureWN = -10,initialTemperatureEN = 28;
 
+
+    //initialize the controller
     public WeatherSystemController(){
         modelLink = new HashMap<Nation, WeatherSystemModel>();
         viewLink = new HashMap<Nation, WeatherSystemView>();
@@ -62,6 +67,7 @@ public class WeatherSystemController {
     }
 
     public void GetWeatherLabel (Nation nation){
-        VisLabel weatherlabel = new VisLabel("Current Temperature: "+ GetTemperatureLevel(nation));
+        VisLabel weathertemperaturelabel = new VisLabel("Current Temperature: "+ GetTemperatureLevel(nation)+"Degree");
+        VisLabel weatherPercipitationlabel = new VisLabel("Current Percipitation: "+GetPercipitationLevel(nation)+"mm");
     }
 }
