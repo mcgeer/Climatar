@@ -56,11 +56,11 @@ public class WorldSimulator {
 
         //UPDATE Sub Systems
         if(ghgIsActive)
-            GameState.UpdateWorldGHG(ghgSystems.Update());
+            gameState.updateWorldGHG(ghgSystems.Update());
         //TODO if(weatherIsActive)
         //TODO    weatherSystems.Update();
         if(politicalIsActive)
-            GameState.UpdateWorldPlayerPolitics(politicalSystems.update(gameState.getPlayer()));
+            gameState.updateWorldPlayerPolitics(politicalSystems.update(gameState.getPlayer()));
 
 
     }
