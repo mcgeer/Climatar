@@ -109,7 +109,7 @@ public final class TitlePresentation extends Presentation {
 	buttonsTable.add(loadGameButton).pad(0, 10f, 10f, 10f).height(heightVal).width(widthVal).row();
 	buttonsTable.pack();
 
-	// group.addActor(map);
+	group.addActor(map);
 	group.addActor(buttonsTable);
 	group.addActor(titleLabel);
 		
