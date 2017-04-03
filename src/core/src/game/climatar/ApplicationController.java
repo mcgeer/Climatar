@@ -32,7 +32,7 @@ public class ApplicationController extends Game {
 		weatherController = new WeatherSystemController();
 		politicalController = new PoliticalSystemController();
 		
-		menuScreenController = new MenuScreenController(HUD_SCALE, FADE_OUT_DURATION);
+		menuScreenController = new MenuScreenController(hudScale, FADE_OUT_DURATION);
 	}
 	
 	@Override
