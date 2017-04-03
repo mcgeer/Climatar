@@ -58,7 +58,7 @@ public final class TitlePresentation extends Presentation {
     }
 	
     private float getTitleScale() {
-	return getHudScale() / 4;
+	return getHudScale() / 3;
     }
 	
     @Override
