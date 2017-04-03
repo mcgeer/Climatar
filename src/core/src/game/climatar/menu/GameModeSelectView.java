@@ -1,5 +1,6 @@
 package game.climatar.menu;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -35,6 +36,8 @@ public class GameModeSelectView extends Stage {
 		table.addActor(overlordModeButton);
 		
 		addActor(table);
+		
+		table.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
 	}
 	
 }

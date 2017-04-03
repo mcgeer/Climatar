@@ -23,7 +23,7 @@ public class ApplicationController extends Game {
 	
 	private MenuScreenController menuScreenController;
 	
-	public ApplicationController() {
+	public ApplicationController(float hudScale) {
 		ghgController = new GHGSystemController();
 		weatherController = new WeatherSystemController();
 		politicalController = new PoliticalSystemController();

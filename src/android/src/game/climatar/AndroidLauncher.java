@@ -1,16 +1,18 @@
 package game.climatar;
 
-import android.os.Bundle;
-
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import game.climatar.ApplicationController;
+
+import android.os.Bundle;
 
 public class AndroidLauncher extends AndroidApplication {
+	
+	public static final float HUD_SCALE = 6f;
+	
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		initialize(new ApplicationController(), config);
+		initialize(new ApplicationController(HUD_SCALE), config);
 	}
 }
