@@ -39,7 +39,6 @@ public class ApplicationController extends Game {
 	public void create() {
 		VisUI.load(); // load the UI skin
 		setScreen(menuScreenController.getView());
-		setScreen(map)
 	}
 	
 	@Override

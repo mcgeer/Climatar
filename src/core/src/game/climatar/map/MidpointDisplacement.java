@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class MidpointDisplacement {
 
     // the thresholds which determine cutoffs for different terrain types
-    private static float iceThreshold = 0.25f;
+    private static float iceThreshold = 0.3f;
     private static float deepWaterThreshold = 0.5f;
     private static float shallowWaterThreshold = 0.55f;
     private static float desertThreshold = 0.58f;
