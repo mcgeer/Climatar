@@ -66,6 +66,4 @@ public class PoliticalSystemController {
         modelLink.get(n1).deltaRelation(n2, delta);
         modelLink.get(n2).deltaRelation(n1, delta);
     }
-
-
 }
