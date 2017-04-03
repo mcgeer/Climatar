@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class MidpointDisplacement {
 
     // the thresholds which determine cutoffs for different terrain types
+    private static float iceThreshold = 0.3f;
     private static float deepWaterThreshold = 0.5f;
     private static float shallowWaterThreshold = 0.55f;
     private static float desertThreshold = 0.58f;
@@ -15,7 +16,6 @@ public class MidpointDisplacement {
     private static float grasslandThreshold = 0.7f;
     private static float forestThreshold = 0.8f;
     private static float hillsThreshold = 0.88f;
-    private static float mountainsThreshold = 0.95f;
 
     public static void main(String[] args) {
 	for (int[] arr: getMap(7, 6, 4, 2f)) {
@@ -107,14 +107,15 @@ public class MidpointDisplacement {
 	for(int row = 0; row < map.length; row++){
 	    for(int col = 0; col < map[row].length; col++){
 		map[row][col] = (map[row][col]-min)/(max-min);
-		if (map[row][col] < deepWaterThreshold) returnMap[row][col] = 0;
-		else if (map[row][col] < shallowWaterThreshold) returnMap[row][col] = 1;
-		else if (map[row][col] < desertThreshold) returnMap[row][col] = 2;
-		else if (map[row][col] < plainsThreshold) returnMap[row][col] = 3;
-		else if (map[row][col] < grasslandThreshold) returnMap[row][col] = 4;
-		else if (map[row][col] < forestThreshold) returnMap[row][col] = 5;
-		else if (map[row][col] < hillsThreshold) returnMap[row][col] = 6;
-		else if (map[row][col] < mountainsThreshold) returnMap[row][col] = 7;
+		if (map[row][col] < iceThreshold) returnMap[row][col] = 0;
+		else if (map[row][col] < deepWaterThreshold) returnMap[row][col] = 1;
+		else if (map[row][col] < shallowWaterThreshold) returnMap[row][col] = 2;
+		else if (map[row][col] < desertThreshold) returnMap[row][col] = 3;
+		else if (map[row][col] < plainsThreshold) returnMap[row][col] = 4;
+		else if (map[row][col] < grasslandThreshold) returnMap[row][col] = 5;
+		else if (map[row][col] < forestThreshold) returnMap[row][col] = 6;
+		else if (map[row][col] < hillsThreshold) returnMap[row][col] = 7;
+		// mountains
 		else returnMap[row][col] = 8;
 	    }
 	}
