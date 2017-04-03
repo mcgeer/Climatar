@@ -30,6 +30,7 @@ public class MapView extends Actor {
 	// setup the camera
         camera = new OrthographicCamera();
         camera.setToOrtho(false, width, height);
+	camera.translate(200, 0);
         camera.update();
 
 	// build the tile map with the tile specifications
@@ -67,6 +68,8 @@ public class MapView extends Actor {
     public void draw (Batch batch, float parentAlpha) {
 	Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
 	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	camera.zoom = 5f;
+	    
 	camera.update();
 	renderer.setView(camera);
 	renderer.render();

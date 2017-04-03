@@ -8,12 +8,12 @@ import java.util.Arrays;
 public class MidpointDisplacement {
 
     // the thresholds which determine cutoffs for different terrain types
-    private static float iceThreshold = 0.3f;
-    private static float deepWaterThreshold = 0.5f;
-    private static float shallowWaterThreshold = 0.55f;
-    private static float desertThreshold = 0.58f;
-    private static float plainsThreshold = 0.62f;
-    private static float grasslandThreshold = 0.7f;
+    private static float iceThreshold = 0.205f;
+    private static float deepWaterThreshold = 0.34f;
+    private static float shallowWaterThreshold = 0.4f;
+    private static float desertThreshold = 0.45f;
+    private static float plainsThreshold = 0.54f;
+    private static float grasslandThreshold = 0.75f;
     private static float forestThreshold = 0.8f;
     private static float hillsThreshold = 0.88f;
 
@@ -100,6 +100,14 @@ public class MidpointDisplacement {
 	    for (float d : row) {
 		if (d > max) max = d;
 		if (d < min) min = d;
+	    }
+	}
+
+	// apply weighting for northern and southern water tribes
+	for (int row = 0; row < map.length; row++) {
+	    float f = (float) Math.sin(Math.PI*(float)row/map.length);
+	    for (int col = 0; col < map[row].length; col++) {
+		map[row][col] = map[row][col] * f;
 	    }
 	}
   
