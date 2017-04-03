@@ -47,12 +47,11 @@ public class MenuScreen implements Screen {
 		
 		float cellWidth = Gdx.graphics.getWidth();
 		float cellHeight = Gdx.graphics.getHeight()/8f;
-		float fontScale = 3f;
 		
 		GlyphLayout layout = new GlyphLayout(VisUI.getSkin().get(LabelStyle.class).font, TITLE_TEXT);
 		titleLabel = new VisLabel(TITLE_TEXT);
-		titleLabel.setFontScale(fontScale);
-		titleLabel.setPosition(Gdx.graphics.getWidth()/2f - (layout.width*fontScale)/2, 2*Gdx.graphics.getHeight()/3);
+		titleLabel.setFontScale(hudScale);
+		titleLabel.setPosition(Gdx.graphics.getWidth()/2f - (layout.width*hudScale)/2, 2*Gdx.graphics.getHeight()/3);
 		
 		startGameButton = new VisTextButton("Play", new ChangeListener() {
 			@Override
