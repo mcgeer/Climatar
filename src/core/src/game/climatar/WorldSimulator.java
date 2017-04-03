@@ -1,7 +1,5 @@
 package game.climatar;
 
-import java.util.Map;
-
 import game.climatar.map.GameState;
 import game.climatar.map.Nation;
 import game.climatar.news.NewsEventControl;
@@ -61,8 +59,6 @@ public class WorldSimulator {
         //TODO    weatherSystems.Update();
         if(politicalIsActive)
             gameState.updateWorldPlayerPolitics(politicalSystems.update(gameState.getPlayer()));
-
-
     }
 
     //========================================================
