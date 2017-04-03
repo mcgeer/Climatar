@@ -16,7 +16,7 @@ public class ApplicationController extends Game {
 	public static final int WIDTH = 200;
 	public static final int HEIGHT = WIDTH * 16 / 9;
 	
-	public static final float HUD_SCALE = 2f;
+	public static final float HUD_SCALE = 5f;
 	
 	private static final Color BG_COLOUR = Color.BLACK;
 	
