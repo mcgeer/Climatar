@@ -5,7 +5,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -55,14 +54,18 @@ public class MenuScreen implements Screen {
 		titleLabel.setFontScale(fontScale);
 		titleLabel.setPosition(Gdx.graphics.getWidth()/2f - (layout.width*fontScale)/2, 2*Gdx.graphics.getHeight()/3);
 		
-		startGameButton = new VisTextButton("Start Game", new ChangeListener() {
+		startGameButton = new VisTextButton("Play", new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
 				
 			}
-			
 		});
-		loadGameButton = new VisTextButton("Load Game");
+		loadGameButton = new VisTextButton("Load", new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				
+			}
+		});
 		
 		buttonsTable = new VisTable();
 		buttonsTable.add(startGameButton).pad(0, 10f, 10f, 10f).height(cellHeight).width(cellWidth - 2 * 10f).row();
