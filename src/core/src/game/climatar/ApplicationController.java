@@ -2,6 +2,7 @@ package game.climatar;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.kotcrab.vis.ui.VisUI;
 
@@ -16,6 +17,8 @@ public class ApplicationController extends Game {
 	public static final int HEIGHT = WIDTH * 16 / 9;
 	
 	public static final float HUD_SCALE = 2f;
+	
+	private static final Color BG_COLOUR = Color.BLACK;
 	
 	private GHGSystemController ghgController;
 	private WeatherSystemController weatherController;
@@ -39,7 +42,7 @@ public class ApplicationController extends Game {
 	
 	@Override
 	public void render() {
-		Gdx.gl.glClearColor(0.1f, 0f, 0f, 1f);
+		Gdx.gl.glClearColor(BG_COLOUR.r, BG_COLOUR.g, BG_COLOUR.b, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		super.render();
 	}

@@ -2,6 +2,7 @@ package game.climatar.menu;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -26,8 +27,13 @@ public class MenuScreen implements Screen {
 	private static final String TITLE_TEXT = "Climatar";
 
 	private float hudScale;
+
+	private MenuScreenController menuScreenController;
 	
-	public MenuScreen(float hudScale) {
+	private BitmapFont titleFont;
+	
+	public MenuScreen(MenuScreenController menuScreenController, float hudScale) {
+		this.menuScreenController = menuScreenController;
 		this.hudScale = hudScale;
 	}
 	
@@ -37,6 +43,7 @@ public class MenuScreen implements Screen {
 	
 	@Override
 	public void show() {
+		titleFont = new BitmapFont(Gdx.files.internal("fonts/title-font.fnt"), Gdx.files.internal("fonts/title-font.png"), false);
 		stage = new Stage(new ScreenViewport());
 		
 		buildMenuScreen();
@@ -48,9 +55,11 @@ public class MenuScreen implements Screen {
 		float cellWidth = Gdx.graphics.getWidth();
 		float cellHeight = Gdx.graphics.getHeight()/8f;
 		
-		GlyphLayout layout = new GlyphLayout(VisUI.getSkin().get(LabelStyle.class).font, TITLE_TEXT);
-		float titleScale = hudScale * 2;
+		GlyphLayout layout = new GlyphLayout(titleFont, TITLE_TEXT);
+		float titleScale = hudScale / 4;
 		
+		LabelStyle labelStyle = VisUI.getSkin().get(LabelStyle.class);
+		labelStyle.font = titleFont;
 		titleLabel = new VisLabel(TITLE_TEXT);
 		titleLabel.setFontScale(titleScale);
 		titleLabel.setScale(titleScale);

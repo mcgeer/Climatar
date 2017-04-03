@@ -10,7 +10,7 @@ public class MenuScreenController {
 	private float hudScale;
 	
 	public MenuScreenController(float hudScale) {
-		menuScreenView = new MenuScreen(hudScale);
+		menuScreenView = new MenuScreen(this, hudScale);
 		this.hudScale = hudScale;
 	}
 	
