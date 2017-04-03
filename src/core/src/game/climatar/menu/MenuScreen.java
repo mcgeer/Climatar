@@ -5,26 +5,23 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-import game.climatar.map.MapView;
+import game.climatar.map.MapPresentation;
 
 public class MenuScreen implements Screen {
 	
     private MenuScreenController controller;
     private Stage stage;
 
-    private TitlePresentation titlePresentation;
-	
     private float hudScale;
-    private float fadeOutDuration;
 
-    // for the background map
-    private int[][] tileSpec;
-	
+    private MapPresentation mapPresentation;
+    private TitlePresentation titlePresentation;
+    
     public MenuScreen(MenuScreenController menuScreenController, float hudScale, float fadeOutDuration, int[][] tileSpec) {
 	this.controller = menuScreenController;
 	this.hudScale = hudScale;
-	this.fadeOutDuration = fadeOutDuration;
-	this.tileSpec = tileSpec;
+	this.mapPresentation = new MapPresentation(hudScale, fadeOutDuration, tileSpec);
+	this.titlePresentation = new TitlePresentation(controller, stage, hudScale, fadeOutDuration);
     }
 
     public void setHudScale(float hudScale) {
@@ -36,7 +33,7 @@ public class MenuScreen implements Screen {
     public void show() {
 	stage = new Stage(new ScreenViewport());
 
-	titlePresentation = new TitlePresentation(controller, stage, hudScale, fadeOutDuration, tileSpec);
+	mapPresentation.addTo(stage);
 	titlePresentation.addTo(stage);
 
 	Gdx.input.setInputProcessor(stage);

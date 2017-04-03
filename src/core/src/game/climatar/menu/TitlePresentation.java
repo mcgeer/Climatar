@@ -19,7 +19,6 @@ import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import game.climatar.view.Presentation;
-import game.climatar.map.MapView;
 
 public final class TitlePresentation extends Presentation {
 	
@@ -27,22 +26,19 @@ public final class TitlePresentation extends Presentation {
     private MenuScreenController controller;
 	
     // components
-    private MapView map;
     private VisTextButton startGameButton;
     private VisTextButton loadGameButton;
     private VisTable buttonsTable;
     private VisLabel titleLabel;
 
-    private int[][] tileSpec;	
     private static final String TITLE_TEXT = "Climatar";
     
     private BitmapFont titleFont;
 	
-    public TitlePresentation(MenuScreenController controller, Stage stage, float hudScale, float fadeDuration, int[][] tileSpec) {
+    public TitlePresentation(MenuScreenController controller, Stage stage, float hudScale, float fadeDuration) {
 	super(hudScale, fadeDuration);
 		
 	this.controller = controller;
-	this.tileSpec = tileSpec;
     }
 	
     private float cellWidth() {
@@ -67,8 +63,6 @@ public final class TitlePresentation extends Presentation {
 		
 	LabelStyle labelStyle = VisUI.getSkin().get(LabelStyle.class);
 	labelStyle.font = titleFont;
-
-	map = new MapView(tileSpec);
 
 	titleLabel = new VisLabel(TITLE_TEXT);
 	titleLabel.setScale(getTitleScale());
@@ -109,7 +103,6 @@ public final class TitlePresentation extends Presentation {
 	buttonsTable.add(loadGameButton).pad(0, 10f, 10f, 10f).height(heightVal).width(widthVal).row();
 	buttonsTable.pack();
 
-	group.addActor(map);
 	group.addActor(buttonsTable);
 	group.addActor(titleLabel);
 		
