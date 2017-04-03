@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<events>
+	<event>
+		<type>PASSIVE</type>
+		<headline>Northern Winds Spirit Festival</headline>
+		<nation>AIR</nation>
+		<description>
+			Winter is Coming, and the shifting winds come with the migration of the
+			spirits
+		</description>
+		<consequences>
+		<political>+0.45</political>
+		<wallet>-100</wallet>
+		<ghg>-8</ghg>
+		<temp>-12</temp>
+		<pers>-10</pers>
+		</consequences>
+	</event>
+	
+	<event>
+		<type>PASSIVE</type>
+		<headline>Glacier Spirit Festival</headline>
+		<nation>WATER</nation>
+		<description>
+		Winter is Coming, and the shifting tides come with the migration of the spirits|
+		</description>
+		<consequences>P +0.45</consequences>
+		<consequences>W -500</consequences>
+		<consequences>G -8</consequences>
+		<consequences>T -2</consequences>
+		<consequences>I -2</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline>Blue Moon Celebration</headline>
+		<nation>WATER</nation>
+		<description>
+		First New Moon of the Year
+		</description>
+		<consequences>P +0.75</consequences>
+		<consequences>W -500</consequences>
+		<consequences>T +5</consequences>
+		<consequences>I +5</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline>Tsungi Horn Awards</headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+	<event>
+		<type>PASSIVE</type>
+		<headline></headline>
+		<nation></nation>
+		<description>
+		</description>
+		<consequences>
+		</consequences>
+	</event>
+
+</events>

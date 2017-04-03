@@ -14,6 +14,14 @@ task run(dependsOn: classes, type: JavaExec) {
     ignoreExitValue = true
 }
 
+task testMap(dependsOn: classes, type: JavaExec) {
+    main = "game.climatar.map.MidpointDisplacement"
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = project.assetsDir
+    ignoreExitValue = true
+}
+
 task debug(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath

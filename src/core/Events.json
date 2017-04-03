@@ -1,0 +1,26 @@
+{
+  "Events": [
+    {
+      "E1": {
+        "type": "Passive",
+        "nation": "AIR",
+        "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits",
+        "consequences": {
+          "political": 0.45,
+          "wallet": -100,
+          "ghg": -8,
+          "temp": -12,
+          "percip": -10
+        }
+      },
+      "E2": {
+        "type": "",
+        "nation": "",
+        "desc": "",
+        "consequences": {
+          
+        }  
+      }
+    }
+  ]
+}
