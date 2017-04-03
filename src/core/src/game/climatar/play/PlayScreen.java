@@ -4,9 +4,12 @@ import com.badlogic.gdx.Screen;
 
 public class PlayScreen implements Screen {
 
+    private float hudscale;
+    private PlayScreenController controller;
+
     public PlayScreen(PlayScreenController playScreenController, float hudScale) {
-        this.playScreenController = playScreenController;
-        this.hudScale = hudScale;
+        this.controller = playScreenController;
+        this.hudscale = hudScale;
     }
 
     @Override

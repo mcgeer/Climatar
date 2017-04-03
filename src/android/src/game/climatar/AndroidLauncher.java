@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class AndroidLauncher extends AndroidApplication {
 	
-	public static final float HUD_SCALE = 6f;
+	public static final float HUD_SCALE = 200f;
 	
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {

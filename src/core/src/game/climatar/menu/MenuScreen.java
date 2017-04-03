@@ -12,25 +12,25 @@ public class MenuScreen implements Screen {
 
 	private TitlePresentation titlePresentation;
 	
-	private float hudScale;
+	private float HudScale;
 	private float fadeOutDuration;
 	
 	public MenuScreen(MenuScreenController menuScreenController, float hudScale, float fadeOutDuration) {
 		this.controller = menuScreenController;
-		this.hudScale = hudScale;
+		this.HudScale = hudScale;
 		this.fadeOutDuration = fadeOutDuration;
 	}
 
 	public void setHudScale(float hudScale) {
 		titlePresentation.setHudScale(hudScale);
-		this.hudScale = hudScale;
+		this.HudScale = hudScale;
 	}
 	
 	@Override
 	public void show() {
 		stage = new Stage(new ScreenViewport());
 		
-		titlePresentation = new TitlePresentation(controller, stage, hudScale, fadeOutDuration);
+		titlePresentation = new TitlePresentation(controller, stage, HudScale, fadeOutDuration);
 		titlePresentation.addTo(stage);
 		
 		Gdx.input.setInputProcessor(stage);
