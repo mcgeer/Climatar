@@ -10,11 +10,13 @@
 		</description>
 		<consequences>
 		<political>+0.45</political>
-		<consequences>W -100</consequences>
-		<consequences>G -8</consequences>
-		<consequences>T -12</consequences>
-		<consequences>I -10</consequences>
+		<wallet>-100</wallet>
+		<ghg>-8</ghg>
+		<temp>-12</temp>
+		<pers>-10</pers>
+		</consequences>
 	</event>
+	
 	<event>
 		<type>PASSIVE</type>
 		<headline>Glacier Spirit Festival</headline>
