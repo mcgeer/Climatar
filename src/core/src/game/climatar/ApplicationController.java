@@ -7,9 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.kotcrab.vis.ui.VisUI;
 
 import game.climatar.menu.MenuScreenController;
-import game.climatar.systems.ghg.GHGSystemController;
-import game.climatar.systems.political.PoliticalSystemController;
-import game.climatar.systems.weather.WeatherSystemController;
 
 public class ApplicationController extends Game {
 	
@@ -20,17 +17,10 @@ public class ApplicationController extends Game {
 	private static final float FADE_OUT_DURATION = 0.2f;
 	
 	private static final Color BG_COLOUR = Color.BLACK;
-	
-	private GHGSystemController ghgController;
-	private WeatherSystemController weatherController;
-	private PoliticalSystemController politicalController;
-	
+
 	private MenuScreenController menuScreenController;
 	
 	public ApplicationController(float hudScale) {
-		ghgController = new GHGSystemController();
-		weatherController = new WeatherSystemController();
-		politicalController = new PoliticalSystemController();
 		
 		menuScreenController = new MenuScreenController(hudScale, FADE_OUT_DURATION);
 	}
