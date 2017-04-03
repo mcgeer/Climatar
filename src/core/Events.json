@@ -1,26 +1,185 @@
 {
-  "Events": [
-    {
-      "E1": {
-        "type": "Passive",
-        "nation": "AIR",
-        "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits",
-        "consequences": {
-          "political": 0.45,
-          "wallet": -100,
-          "ghg": -8,
-          "temp": -12,
-          "percip": -10
+    "Events": [
+        {
+            "E1": {
+                "type": "Passive",
+                "headline": "Northern Winds Spirit Festival",
+                "nation": "AIR",
+                "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
+                "consequences": {
+                    "political": 0.45,
+                    "wallet": -100,
+                    "ghg": -8,
+                    "temp": -2,
+                    "percip": -10
+                }
+            },
+            "E2": {
+                "type": "Passive",
+                "headline": "Glacier Spirit Festival",
+                "nation": "WATER",
+                "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
+                "consequences": {
+                    "political": 0.45,
+                    "wallet": -100,
+                    "ghg": -8,
+                    "temp": -2,
+                    "percip": -10
+                }
+            },
+            "E3": {
+                "type": "Passive",
+                "headline": "Blue Moon Celebration",
+                "nation": "WATER",
+                "desc": "First New Moon of the Year",
+                "consequences": {
+                    "political": 0.45,
+                    "wallet": -100,
+                    "percip": 15
+                }
+            },
+            "E4": {
+                "type": "Passive",
+                "headline": "Lion Turtle Festival",
+                "nation": "EARTH",
+                "desc": "A day to honour the revered Lionturtle.",
+                "consequences": {
+                    "political": 0.45,
+                    "wallet": -100,
+                    "temp": 4,
+                    "percip": -4
+                }
+            },
+            "E5": {
+                "type": "Passive",
+                "headline": "Tsungi Horn Awards",
+                "nation": "EARTH",
+                "desc": "Award Ceremony that honors the best talent in the music industry.",
+                "consequences": {
+                    "political": 1.5,
+                    "wallet": -75
+                }
+            },
+            "E6": {
+                "type": "Passive",
+                "headline": "Sozin's Comet",
+                "nation": "FIRE",
+                "desc": "A day that celebrates when everything changed, because the Fire Nation attacked.",
+                "consequences": {
+                    "political": -3,
+                    "wallet": -100,
+                    "percip": -3
+                }
+            },
+            "E7": {
+                "type": "Passive",
+                "headline": "Dragon Warrior Festival",
+                "nation": "FIRE",
+                "desc": "Festival in honor for Fire Nations best warriors dragons and wagons.",
+                "consequences": {
+                    "political": 1,
+                    "wallet": -70,
+                    "ghg": 4, 
+                    "percip": -3
+                }
+            },
+            "E8": {
+                "type": "Passive",
+                "headline": "Yangchen Festival",
+                "nation": "AIR",
+                "desc": "Festival that celeberates the spirit protector Yangchen and Old Iron.",
+                "consequences": {
+                    "political": 1,
+                    "wallet": -50,
+                    "ghg": -4,
+                    "percip": 5 
+                }
+            },
+            "E9": {
+                "type": "Passive",
+                "headline": "Avatar Day",
+                "nation": "ALL",
+                "desc": "Festival that celebrates the birth of the Avatar.",
+                "consequences": {
+                    "political": 0.5,
+                    "ghg": -4,
+                    "percip": 5,
+                    "temp": -2 
+                }
+            },
+            "E10": {
+                "type": "Passive",
+                "headline": "Pro-Bending Tournament",
+                "nation": "ALL",
+                "desc": "Lose in a Pro-bending Tournament, the most popular sport in the World of Avatar.",
+                "consequences": {
+                    "wallet": -35
+                }
+            },
+            "E11": {
+                "type": "Passive",
+                "headline": "Pro-Bending Tournament",
+                "nation": "PLAYER",
+                "desc": "Win in a Pro-bending Tournament, the most popular sport in the World of Avatar.",
+                "consequences": {
+                    "wallet": 200
+                }
+            },
+            "E12": {
+                "type": "Passive",
+                "headline": "Midnight Ang Festival",
+                "nation": "PLAYER",
+                "desc": "Non bender revolution against benders, which involves them holding a shyamalamalam at midnight.",
+                "consequences": {
+                    "political": -5
+                }
+            },
+            "E13": {
+                "type": "Passive",
+                "headline": "Bloodbending Celebrations",
+                "nation": "WATER",
+                "desc": "Water tribe tradition of celeberating the forbidden art of bloodbending.",
+                "consequences": {
+                    "political": -5
+                }
+            },
+            "E14": {
+                "type": "Passive",
+                "headline": "Wan Shi Tong Film Festival",
+                "nation": "EARTH",
+                "desc": "Water tribe tradition of celeberating the forbidden art of bloodbending.",
+                "consequences": {
+                    "wallet": 100
+                }
+            },
+            "E15": {
+                "type": "Passive",
+                "headline": "Ba Sing Sei Manuscript Convention",
+                "nation": "EARTH",
+                "desc": "Global Festival that showcases the best written work for that year.",
+                "consequences": {
+                    "wallet": 50
+                }
+            },   
+            "E16": {
+                "type": "Passive",
+                "headline": "Blue Lotus Conference",
+                "nation": "ALL",
+                "desc": "Annual Blue Conference between leaders of all nations.",
+                "consequences": {
+                    "political": 3
+                }
+            },   
+            "E17": {
+                "type": "Passive",
+                "headline": "Blue Lotus Conference",
+                "nation": "ALL",
+                "desc": "Annual Blue Conference between leaders of all nations. The Nations left angered.",
+                "consequences": {
+                    "political": -2
+                }
+            }
+            
         }
-      },
-      "E2": {
-        "type": "",
-        "nation": "",
-        "desc": "",
-        "consequences": {
-          
-        }  
-      }
-    }
-  ]
+    ]
 }
