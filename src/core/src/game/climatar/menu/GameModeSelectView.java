@@ -10,6 +10,12 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 
 public class GameModeSelectView extends Stage {
 	
+	private MenuScreenController controller;
+
+	public GameModeSelectView(MenuScreenController controller) {
+		this.controller = controller;
+	}
+	
 	public GameModeSelectView(Viewport viewport) {
 		super(viewport);
 		
@@ -19,14 +25,14 @@ public class GameModeSelectView extends Stage {
 		VisTextButton overlordModeButton = new VisTextButton("Overlord", new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				controller.overlordMode();
 			}
 		});
 		
 		VisTextButton survivalModeButton = new VisTextButton("Survival", new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				
+				controller.survivalMode();
 			}
 		});
 		

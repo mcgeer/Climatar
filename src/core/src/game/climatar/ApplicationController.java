@@ -16,7 +16,8 @@ public class ApplicationController extends Game {
 	public static final int WIDTH = 200;
 	public static final int HEIGHT = WIDTH * 16 / 9;
 	
-	public static final float HUD_SCALE = 5f;
+	public static final float HUD_SCALE = 2f;
+	private static final float FADE_OUT_DURATION = 0.2f;
 	
 	private static final Color BG_COLOUR = Color.BLACK;
 	
@@ -31,7 +32,7 @@ public class ApplicationController extends Game {
 		weatherController = new WeatherSystemController();
 		politicalController = new PoliticalSystemController();
 		
-		menuScreenController = new MenuScreenController(HUD_SCALE);
+		menuScreenController = new MenuScreenController(HUD_SCALE, FADE_OUT_DURATION);
 	}
 	
 	@Override
