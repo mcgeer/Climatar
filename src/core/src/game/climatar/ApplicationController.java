@@ -1,42 +1,37 @@
 package game.climatar;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.kotcrab.vis.ui.VisUI;
 
-import game.climatar.menu.MenuScreenController;
+import game.climatar.architecture.ControllerManager;
+import game.climatar.menu.TitleController;
+import game.climatar.play.PlayController;
 
-public class ApplicationController extends Game {
-	private static final Color BACKGROUND_COLOUR = Color.BLACK;
-	
-	private MenuScreenController menuScreenController;
+public class ApplicationController extends ControllerManager {
 
-	private float hudScale;
-	
-	public ApplicationController(float hudScale) {
-		this.hudScale = hudScale;
-	}
-	
+	private TitleController titleController;
+	private PlayController playController;
+
 	@Override
 	public void create() {
-		VisUI.load(); // load the UI skin
-		
-		menuScreenController = new MenuScreenController();
-		menuScreenController.setHudScale(hudScale);
-		
-		setScreen(menuScreenController.getView());
+		VisUI.load(); // load the UI skin (now it can be used everywhere)
+
+		/*
+		 * Manages all controllers declared in this class => Initializes the
+		 * controller, its views, binds the controller with the view, and binds
+		 * the model in the controller with the view
+		 */
+		initialize(this);
+
+		addViewController(titleController);
+		addViewController(playController);
 	}
 	
-	@Override
-	public void render() {
-		// Clear screen
-		Gdx.gl.glClearColor(BACKGROUND_COLOUR.r, BACKGROUND_COLOUR.g, BACKGROUND_COLOUR.b, 1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-		
-		// Render current screen.
-		super.render();
+	public void play() {
+		removeViewController(titleController);
 	}
 	
+	public void title() {
+		removeViewController(titleController);
+	}
+
 }

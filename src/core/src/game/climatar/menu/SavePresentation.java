@@ -2,9 +2,10 @@ package game.climatar.menu;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
 
-import game.climatar.view.Presentation;
+import game.climatar.architecture.Model;
+import game.climatar.architecture.View;
 
-public class SavePresentation extends Presentation {
+public class SavePresentation extends View {
 
 	@Override
 	public void layout(float x, float y, float widht, float height) {
@@ -13,7 +14,7 @@ public class SavePresentation extends Presentation {
 	}
 
 	@Override
-	public void update() {
+	public void update(Model model) {
 		// TODO Auto-generated method stub
 		
 	}
