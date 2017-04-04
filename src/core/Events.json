@@ -79,7 +79,7 @@
                 "consequences": {
                     "political": 1,
                     "wallet": -70,
-                    "ghg": 4, 
+                    "ghg": 4,
                     "percip": -3
                 }
             },
@@ -92,7 +92,7 @@
                     "political": 1,
                     "wallet": -50,
                     "ghg": -4,
-                    "percip": 5 
+                    "percip": 5
                 }
             },
             "E9": {
@@ -104,7 +104,7 @@
                     "political": 0.5,
                     "ghg": -4,
                     "percip": 5,
-                    "temp": -2 
+                    "temp": -2
                 }
             },
             "E10": {
@@ -160,7 +160,7 @@
                 "consequences": {
                     "wallet": 50
                 }
-            },   
+            },
             "E16": {
                 "type": "Passive",
                 "headline": "Blue Lotus Conference",
@@ -169,7 +169,7 @@
                 "consequences": {
                     "political": 3
                 }
-            },   
+            },
             "E17": {
                 "type": "Passive",
                 "headline": "Blue Lotus Conference",
@@ -179,160 +179,153 @@
                     "political": -2
                 }
             },
-             "E25": {
-		"headline": "Trade Poultry and Livestock"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "Fire Nations trading livestock bred with other nations. The list includes and is limited to: Dragon Moose, Turtle Duck and Hippo Cow  ",
-        "consequences": {
-		"political": 1.5,
-          "wallet": 225			,
-          "ghg": 8,
-          "temp": 3
-          
-        }  
-      },
-	    "E26": {
-		"headline": "Trade Precious Metals"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "Fire Nations starts new trade program, trading precious metals with Earth Kingdom and Water Tribe  ",
-        "consequences": {
-		"political": 2,
-          "wallet": 175,
-          "ghg": 1,
-          
-        }  
-      },
-	    "E27": {
-		"headline": "Fire Nation picks up production of glass"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "Fire Lord Elizablaze and Fire Prime Minister Truferno announce additional federal funding to factories involved with manafacturing glass ",
-        "consequences": {
-		"political": 1.5,
-          "wallet": -240,
-          "ghg": 5,
-          "temp": 3,
-		  "percip": 2
-        }  
-      },
-	    "E28": {
-		"headline": "Fire Nation starts new trade deal with Earth Kingdom"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "Fire Lord Elizablaze and Fire Prime Minister Truferno announce new trade deal made with Earth President Michelle Rockabma and her cabinet"
-        "consequences": {
-		"political": 3.5,
-          "wallet": 150,
-          "ghg": 2,
-          
-        }  
-      },
-	  "E29": {
-		"headline": "Uproar in the Fire Nation, as Truferno raises taxes"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "Truferno intorduces carbon tax to reduce green house gas emissions"
-        "consequences": {
-		"political": -5,
-          "wallet": 320,
-          "ghg": -6,
-          
-        }  
-      },
-	    "E30": {
-		"headline": "Fire Nation starts working on urbanization project"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "The Fire Nation government launches is it's new 5 year urbanization project, brought about by the rapidly rising population"
-        "consequences": {
-		"political": -2.3,
-          "wallet": -250,
-          "ghg": 5,
-		  "temp": 4,
-		  "percip": 5          
-        }  
-      },
-	   "E31": {
-		"headline": "Inventor from the Fire Nations builds the first automobile engine that runs on fuel"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "Fire Nation sactioned project to make a more powerful engine than the steam engine comes to fruitition"
-        "consequences": {
-		"political": 2,
-          "wallet": -220,
-          "ghg": 5,
-		  "temp": 4,
-		  "percip": 5   
-    }
-	},
-	   "E32": {
-		"headline": "Coal Mine collapses, 100 miners trapped, 20 dead and counting."
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "Fire Lord and Prime Minister pool all their resources to save the lives of trapped Coal Miners"
-        "consequences": {
-		"political": 6,
-          "wallet": -300,
-          "ghg": 2,
-		  "percip": 3   
-    }
-	},
-	   "E33": {
-		"headline": "Fire Nation trades machines and engines that can be used by non benders"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "In the midst of tensions boiling between benders and non benders, entrpenuers push for a bill to trade tech used by non benders "
-        "consequences": {
-		"political": 6,
-          "wallet": 275,
-          "ghg": 2,
-		  "temp": 1,
-		  "percip": 1   
-    }
-	},
-	
-	   "E34": {
-		"headline": "Fire Nation experiences Steel Industry Boom with the help of Earth corporate leaders"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "Promoting Earth Kingdom Corporations in Steel trade"
-        "consequences": {
-		"political": -6,
-          "wallet": 250,
-          "ghg": 2,
-		  "temp": 1,
-		  "percip": 1   
-    }
-	},
-	
-	   "E35": {
-		"headline": "Non bender protest turns violent after police intervention"
-        "type": "Active",
-        "nation": "FIRE",
-        "desc": "Riot Control squad was deployed in order to intimidate protesters. Protest turns violent "
-        "consequences": {
-		"political": -5,
-          "wallet": -178,
-		  "temp": 2,
-		  "percip": 3   
-    }
-	},
-	"E36": {
-		"headline": "Trade Poultry and Livestock"
-        "type": "Active",
-        "nation": "WATER",
-        "desc": "Water Tribe trading livestock bred with other nations. The list includes and is limited to: Tiger Seal, Arctic Hen and various forms of fish ",
-        "consequences": {
-		"political": 3.5,
-          "wallet": 325,
-          "ghg": 2,
-          "temp": 3,
-		   "percip": 4
-          
-        }  
-      },
-	  }
-	]
+            "E25": {
+                "headline": "Trade Poultry and Livestock",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "Fire Nations trading livestock bred with other nations. The list includes and is limited to: Dragon Moose, Turtle Duck and Hippo Cow  ",
+                "consequences": {
+                    "political": 1.5,
+                    "wallet": 225,
+                    "ghg": 8,
+                    "temp": 3
+                }
+            },
+            "E26": {
+                "headline": "Trade Precious Metals",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "Fire Nations starts new trade program, trading precious metals with Earth Kingdom and Water Tribe  ",
+                "consequences": {
+                    "political": 2,
+                    "wallet": 175,
+                    "ghg": 1
+                }
+            },
+            "E27": {
+                "headline": "Fire Nation picks up production of glass",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "Fire Lord Elizablaze and Fire Prime Minister Truferno announce additional federal funding to factories involved with manafacturing glass ",
+                "consequences": {
+                    "political": 1.5,
+                    "wallet": -240,
+                    "ghg": 5,
+                    "temp": 3,
+                    "percip": 2
+                }
+            },
+            "E28": {
+                "headline": "Fire Nation starts new trade deal with Earth Kingdom",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "Fire Lord Elizablaze and Fire Prime Minister Truferno announce new trade deal made with Earth President Michelle Rockabma and her cabinet",
+                "consequences": {
+                    "political": 3.5,
+                    "wallet": 150,
+                    "ghg": 2
+                }
+            },
+            "E29": {
+                "headline": "Uproar in the Fire Nation, as Truferno raises taxes",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "Truferno intorduces carbon tax to reduce green house gas emissions",
+                "consequences": {
+                    "political": -5,
+                    "wallet": 320,
+                    "ghg": -6
+                }
+            },
+            "E30": {
+                "headline": "Fire Nation starts working on urbanization project",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "The Fire Nation government launches is it's new 5 year urbanization project, brought about by the rapidly rising population",
+                "consequences": {
+                    "political": -2.3,
+                    "wallet": -250,
+                    "ghg": 5,
+                    "temp": 4,
+                    "percip": 5
+                }
+            },
+            "E31": {
+                "headline": "Inventor from the Fire Nations builds the first automobile engine that runs on fuel",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "Fire Nation sactioned project to make a more powerful engine than the steam engine comes to fruitition",
+                "consequences": {
+                    "political": 2,
+                    "wallet": -220,
+                    "ghg": 5,
+                    "temp": 4,
+                    "percip": 5
+                }
+            },
+            "E32": {
+                "headline": "Coal Mine collapses, 100 miners trapped, 20 dead and counting.",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "Fire Lord and Prime Minister pool all their resources to save the lives of trapped Coal Miners",
+                "consequences": {
+                    "political": 6,
+                    "wallet": -300,
+                    "ghg": 2,
+                    "percip": 3
+                }
+            },
+            "E33": {
+                "headline": "Fire Nation trades machines and engines that can be used by non benders",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "In the midst of tensions boiling between benders and non benders, entrpenuers push for a bill to trade tech used by non benders ",
+                "consequences": {
+                    "political": 6,
+                    "wallet": 275,
+                    "ghg": 2,
+                    "temp": 1,
+                    "percip": 1
+                }
+            },
+            "E34": {
+                "headline": "Fire Nation experiences Steel Industry Boom with the help of Earth corporate leaders",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "Promoting Earth Kingdom Corporations in Steel trade",
+                "consequences": {
+                    "political": -6,
+                    "wallet": 250,
+                    "ghg": 2,
+                    "temp": 1,
+                    "percip": 1
+                }
+            },
+            "E35": {
+                "headline": "Non bender protest turns violent after police intervention",
+                "type": "Active",
+                "nation": "FIRE",
+                "desc": "Riot Control squad was deployed in order to intimidate protesters. Protest turns violent ",
+                "consequences": {
+                    "political": -5,
+                    "wallet": -178,
+                    "temp": 2,
+                    "percip": 3
+                }
+            },
+            "E36": {
+                "headline": "Trade Poultry and Livestock",
+                "type": "Active",
+                "nation": "WATER",
+                "desc": "Water Tribe trading livestock bred with other nations. The list includes and is limited to: Tiger Seal, Arctic Hen and various forms of fish ",
+                "consequences": {
+                    "political": 3.5,
+                    "wallet": 325,
+                    "ghg": 2,
+                    "temp": 3,
+                    "percip": 4
+                }
+            }
+        }
+    ]
 }
