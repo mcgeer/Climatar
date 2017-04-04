@@ -67,6 +67,7 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.kotcrab.vis:vis-ui:$visuiVersion"
+        compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     }
 }
 
