@@ -8,6 +8,7 @@ import com.kotcrab.vis.ui.widget.VisTable;
 
 import game.climatar.architecture.AllowController;
 import game.climatar.architecture.AllowModel;
+import game.climatar.architecture.Model;
 import game.climatar.architecture.View;
 import game.climatar.play.PlayController;
 
@@ -47,7 +48,7 @@ public class GHGSystemView extends View {
 	}
 
 	@Override
-	public void update() {
+	public void update(Model model) {
 		
 	}
 

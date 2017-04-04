@@ -16,11 +16,10 @@ public abstract class View {
 	
 	private Controller controller;
 	private Rectangle frame;
-	private Group group;
+	private final Group group = new Group();
 
-	public View() {
-		group = new Group();
-		frame = getFrame(); // create a default frame
+	public void initializeView() {
+		frame = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		// build and layout
 		build(group);
@@ -51,7 +50,7 @@ public abstract class View {
 	public abstract void layout(float x, float y, float width, float height);
 	
 	/** Update presentation values. */
-	public abstract void update();
+	public abstract void update(Model model);
 	
 	/** Dispose all textures/resources used. */
 	public abstract void dispose();
@@ -59,7 +58,18 @@ public abstract class View {
 	 * Default Implementation
 	 */
 	public void layout() {
-		layout(frame.x, frame.y, frame.width, frame.height);
+		Rectangle frame = getFrame();
+		
+		float x = frame.x;
+		float y = frame.y;
+		float width = frame.width;
+		float height = frame.height;
+		
+		group.setPosition(x, y);
+		group.setSize(width, height);
+		group.debug();
+
+		layout(x, y, width, height);
 	}
 
 	public float getHudScale() {
@@ -79,24 +89,14 @@ public abstract class View {
 	}
 	
 	public void setFrame(int x, int y, int width, int height) {
-		if(group == null) return;
-		
 		Rectangle f = getFrame();
 		f.set(x, y, width, height);
-		
-		group.setPosition(x, y);
-		group.setSize(width, height);
-		group.debug();
 		
 		layout();
 	}
 	
 	public Rectangle getFrame() {
-		if(frame == null) {
-			frame = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		} 
-
-		return this.frame;
+		return frame;
 	}
 	
 	public boolean isHidden() {

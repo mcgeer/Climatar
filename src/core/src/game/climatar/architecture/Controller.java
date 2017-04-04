@@ -8,9 +8,11 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public abstract class Controller {
 
+	Model model;
 	private Stage stage;
 	private List<View> views = new ArrayList<View>();
 	
+	protected abstract void layoutView();
 	protected abstract void tick();
 	
 	protected Stage getStage() {
@@ -20,6 +22,10 @@ public abstract class Controller {
 	}
 
 	protected void renderView(float delta) {
+		for(View view : views) {
+			view.update(model);
+		}
+		
 		getStage().act(delta);
 		getStage().draw();
 	}
@@ -65,10 +71,16 @@ public abstract class Controller {
 
 	protected void resizeView(int width, int height) {
 		stage.getViewport().update(width, height, true);
+		
+		for(View view : views) {
+			view.layout();
+		}
 	}
 
 	protected void hideView() {
-		
+		for(View view : this.views) {
+			view.hide();
+		}
 	}
 
 	protected void disposeView() {

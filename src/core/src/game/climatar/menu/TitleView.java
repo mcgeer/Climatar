@@ -15,6 +15,7 @@ import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
 import game.climatar.architecture.AllowController;
+import game.climatar.architecture.Model;
 import game.climatar.architecture.View;
 
 @AllowController(TitleController.class)
@@ -92,8 +93,11 @@ public final class TitleView extends View {
 	}
 
 	@Override
-	public void update() {
+	public void update(Model model) {
 		// no model to update the view with (title screen doens't have a model)
+		String title = (String) model.get("game-title");
+		
+		titleLabel.setText(title);
 	}
 
 	@Override

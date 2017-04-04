@@ -15,22 +15,24 @@ public abstract class Main implements ApplicationListener {
 
 	private List<Controller> controllers = new ArrayList<>();
 	private Controller viewController;
-	
+
 	protected void initialize(Main entryPoint) {
 		Class<? extends Main> entryClass = entryPoint.getClass();
-		
-		for(Field field : entryClass.getDeclaredFields()) {
-			if(Controller.class.isAssignableFrom(field.getType())) {
+
+		for (Field field : entryClass.getDeclaredFields()) {
+			if (Controller.class.isAssignableFrom(field.getType())) {
 				try {
 					Controller controller = (Controller) field.getType().newInstance();
+					controller.model = new Model();
+
 					field.setAccessible(true);
 					field.set(entryPoint, controller);
 					field.setAccessible(false);
-					
+
 					initializeController(controller);
-					
+
 					controllers.add(controller);
-				} catch(Exception e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
@@ -49,7 +51,7 @@ public abstract class Main implements ApplicationListener {
 			this.viewController.hideView();
 		this.viewController = controller;
 		if (this.viewController != null) {
-			// this.viewController.initializeView();
+			this.viewController.layoutView();
 			Gdx.input.setInputProcessor(controller.getStage());
 			this.viewController.resizeView(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		}
@@ -102,27 +104,30 @@ public abstract class Main implements ApplicationListener {
 
 			if (View.class.isAssignableFrom(fieldType)) {
 				View view = (View) fieldType.newInstance();
-				
+
 				field.setAccessible(true);
 				field.set(controller, view);
 				field.setAccessible(false);
-				
-				controller.addView(view);
-				
+
+				// Handled by View#setController()
+				// controller.addView(view);
+
 				if (fieldType.getAnnotation(AllowController.class) != null) {
 					AllowController annotation = fieldType.getAnnotation(AllowController.class);
-					
+
 					boolean valid = false;
 
 					for (Class<? extends Controller> c : annotation.value()) {
 						if (c.isInstance(controller)) {
 							view.setController(controller);
+							view.initializeView();
 							valid = true;
 						}
 					}
 
 					if (!valid) {
-						throw new RuntimeException(fieldType.getSimpleName() + " is not allowed in " + controllerClass.getSimpleName());
+						throw new RuntimeException(
+								fieldType.getSimpleName() + " is not allowed in " + controllerClass.getSimpleName());
 					}
 				}
 			}
