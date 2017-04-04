@@ -9,20 +9,16 @@ public enum NewsEvents {
 	ACTIVE(2),
 	INTER(3);
 
-	private static List <?> yCon;
-	private static List <?> nCon;
+	private  List <ConseqType> yCon;
+	private  List <ConseqType> nCon;
 	NewsEvents (int num){
 		if (num==1){
-			List <?> yCon= new ArrayList<Object>();
-			List <?> nCon=null;
+			yCon= new ArrayList<ConseqType>();
+			nCon=null;
 		}
-		else if (num==2){
-			List <?> yCon= new ArrayList<Object>();
-			List <?> nCon= new ArrayList<Object>();
-		}
-		else if (num==3){
-			List <?> yCon= new ArrayList<Object>();
-			List <?> nCon= null;
+		else {
+			 yCon = new ArrayList<ConseqType>();
+			 nCon = new ArrayList<ConseqType>();
 		}
 	}
 	private String BaseEvent;
@@ -44,6 +40,13 @@ public enum NewsEvents {
 		else{
 			rep=Nation.EARTH;
 		}
+	}
+
+	public void addYConseq(ConseqType T){
+		yCon.add(T);
+	}
+	public void addNConseq(ConseqType T){
+		nCon.add(T);
 	}
 	
 	private static Nation getEventNation(){
