@@ -1,19 +1,15 @@
 package game.climatar.menu;
 
+import com.badlogic.gdx.Application.ApplicationType;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.kotcrab.vis.ui.VisUI;
-import com.kotcrab.vis.ui.building.utilities.Alignment;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
@@ -21,9 +17,11 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 import game.climatar.view.Presentation;
 
 public final class TitlePresentation extends Presentation {
-	
-    // controller
-    private MenuScreenController controller;
+	// constants
+	private static final String TITLE_TEXT = "Climatar";
+
+	// controller
+	private MenuScreenController controller;
 	
     // components
     private VisTextButton startGameButton;
@@ -31,15 +29,11 @@ public final class TitlePresentation extends Presentation {
     private VisTable buttonsTable;
     private VisLabel titleLabel;
 
-    private static final String TITLE_TEXT = "Climatar";
-    
-    private BitmapFont titleFont;
+	private BitmapFont titleFont;
 	
-    public TitlePresentation(MenuScreenController controller, Stage stage, float hudScale, float fadeDuration) {
-	super(hudScale, fadeDuration);
-		
-	this.controller = controller;
-    }
+	public TitlePresentation(MenuScreenController controller) {
+		this.controller = controller;
+	}
 	
     private float cellWidth() {
 	float cellWidth = Gdx.graphics.getWidth();
@@ -53,9 +47,11 @@ public final class TitlePresentation extends Presentation {
 	return cellHeight;
     }
 	
-    private float getTitleScale() {
-	return getHudScale() / 3;
-    }
+	private float getTitleScale() {
+		if(Gdx.app.getType() == ApplicationType.Android) return getHudScale();
+		
+		return getHudScale() / 4;
+	}
 	
     @Override
     public void build(Group group) {
@@ -67,13 +63,13 @@ public final class TitlePresentation extends Presentation {
 	titleLabel = new VisLabel(TITLE_TEXT);
 	titleLabel.setScale(getTitleScale());
 		
-	startGameButton = new VisTextButton("Play", new ChangeListener() {
-		@Override
-		public void changed(ChangeEvent event, Actor actor) {
-		    controller.openGameModeSelectView();
-		}
-	    });
-	startGameButton.getLabel().setFontScale(getHudScale());
+		startGameButton = new VisTextButton("Play", new ChangeListener() {
+			@Override
+			public void changed(ChangeEvent event, Actor actor) {
+				controller.openGameModeSelectPresentation();
+			}
+		});
+		startGameButton.getLabel().setFontScale(getHudScale());
 		
 	loadGameButton = new VisTextButton("Load", new ChangeListener() {
 		@Override
@@ -99,28 +95,32 @@ public final class TitlePresentation extends Presentation {
 		}
 	    };
 		
-	buttonsTable.add(startGameButton).pad(0, 10f, 10f, 10f).height(heightVal).width(widthVal).row();
-	buttonsTable.add(loadGameButton).pad(0, 10f, 10f, 10f).height(heightVal).width(widthVal).row();
-	buttonsTable.pack();
-
-	group.addActor(buttonsTable);
-	group.addActor(titleLabel);
+		buttonsTable.add(startGameButton).pad(0, 10f, 10f, 10f).height(heightVal).width(widthVal).row();
+		buttonsTable.add(loadGameButton).pad(0, 10f, 10f, 10f).height(heightVal).width(widthVal).row();
+		buttonsTable.pack();
 		
-	resize();
-    }
+		group.addActor(buttonsTable);
+		group.addActor(titleLabel);
+	}
 	
-    @Override
-    public void update() {
-		
-    }
+	@Override
+	public void update() {
+		// no model to update the view with (title screen doens't have a model)
+	}
 
-    @Override
-    public void resize() {
-	buttonsTable.pack();
-	buttonsTable.invalidate();
-	buttonsTable.validate();
+	@Override
+	public void layout(float x, float y, float width, float height) {
+		buttonsTable.pack();
+		buttonsTable.invalidate();
+		buttonsTable.validate();
 		
-	titleLabel.setPosition(Gdx.graphics.getWidth()/2f, 2*Gdx.graphics.getHeight()/3, Align.center);
-    }
+		titleLabel.setPosition(width/2f, 2*height/3, Align.center);
+	}
 
+	@Override
+	public void dispose() {
+		titleFont.dispose();
+	}
+	
+	
 }
