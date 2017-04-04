@@ -1,50 +1,67 @@
-package game.climatar.view;
+package game.climatar.architecture;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
-public abstract class Presentation {
+public abstract class View {
 	
-	public Group asActor() {
-		return this.group;
-	}
-
 	private static final float DEFAULT_FADE_DURATION = 0.2f;
 	private static final float DEFAULT_HUD_SCALE = 1f;
 	
 	private float fadeDuration = DEFAULT_FADE_DURATION;
 	private float hudScale = DEFAULT_HUD_SCALE;
 	
-	private Rectangle f;
-
+	private Controller controller;
+	private Rectangle frame;
 	private Group group;
 
+	public View() {
+		group = new Group();
+		frame = getFrame(); // create a default frame
+		
+		// build and layout
+		build(group);
+		layout();
+		
+		hide(false); // hide by default
+	}
+	
+	public void setController(Controller controller) {
+		if(this.controller != null) this.controller.removeView(this);
+		
+		this.controller = controller;
+		this.controller.addView(this);
+	}
+	
+	public Controller getController() {
+		return this.controller;
+	}
+	
+	/*
+	 * Abstract Methods
+	 */
+	
+	/** Builds the presentation */
+	public abstract void build(Group group);
+	
 	/** Layout presentation! */
-	public abstract void layout(float x, float y, float widht, float height);
+	public abstract void layout(float x, float y, float width, float height);
 	
 	/** Update presentation values. */
 	public abstract void update();
 	
 	/** Dispose all textures/resources used. */
 	public abstract void dispose();
-	
-	public void addTo(View view) {
-		group = new Group();
-		hide(false); // hide by default
-		
-		build(group);
-		
-		Rectangle f = getFrame();
-		
-		layout(f.x, f.y, f.width, f.height);
-		
-		view.getStage().addActor(group);
+	/*
+	 * Default Implementation
+	 */
+	public void layout() {
+		layout(frame.x, frame.y, frame.width, frame.height);
 	}
-	
-	public abstract void build(Group group);
-		
+
 	public float getHudScale() {
 		return hudScale;
 	}
@@ -64,22 +81,28 @@ public abstract class Presentation {
 	public void setFrame(int x, int y, int width, int height) {
 		if(group == null) return;
 		
+		Rectangle f = getFrame();
+		f.set(x, y, width, height);
+		
 		group.setPosition(x, y);
 		group.setSize(width, height);
+		group.debug();
 		
-		Rectangle f = getFrame();
-		
-		layout(f.x, f.y, f.width, f.height);
+		layout();
 	}
 	
 	public Rectangle getFrame() {
-		if(f == null) {
-			f = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		if(frame == null) {
+			frame = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		} 
 
-		return this.f;
+		return this.frame;
 	}
-
+	
+	public boolean isHidden() {
+		return group.isVisible();
+	}
+	
 	public void hide(boolean animate) {
 		if(animate) {
 			hide();
@@ -106,6 +129,10 @@ public abstract class Presentation {
 		if(group == null) return;
 		
 		group.addAction(Actions.sequence(Actions.show(), Actions.fadeIn(fadeDuration)));
+	}
+
+	protected Actor get() {
+		return group;
 	}
 
 }

@@ -1,42 +1,29 @@
 package game.climatar;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.kotcrab.vis.ui.VisUI;
 
-import game.climatar.menu.MenuScreenController;
+import game.climatar.architecture.Main;
+import game.climatar.menu.TitleController;
 
-public class ApplicationController extends Game {
-	private static final Color BACKGROUND_COLOUR = Color.BLACK;
-	
-	private MenuScreenController menuScreenController;
+public class ApplicationController extends Main {
 
-	private float hudScale;
-	
-	public ApplicationController(float hudScale) {
-		this.hudScale = hudScale;
-	}
+	private TitleController titleController;
 	
 	@Override
 	public void create() {
-		VisUI.load(); // load the UI skin
+		VisUI.load(); // load the UI skin (now it can be used everywhere)
+
+		/*
+		 * Manages all controllers declared in this class
+		 * => Initializes the controller
+		 * => Initializes the controller's views
+		 * => Binds the controller with the view
+		 */
+		initialize(this);
+
+		titleController.openTitleView();
 		
-		menuScreenController = new MenuScreenController();
-		menuScreenController.setHudScale(hudScale);
-		
-		setScreen(menuScreenController.getView());
+		setViewController(titleController);
 	}
-	
-	@Override
-	public void render() {
-		// Clear screen
-		Gdx.gl.glClearColor(BACKGROUND_COLOUR.r, BACKGROUND_COLOUR.g, BACKGROUND_COLOUR.b, 1f);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-		
-		// Render current screen.
-		super.render();
-	}
-	
+
 }
