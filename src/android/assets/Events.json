@@ -8,7 +8,7 @@
                 "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
                 "consequences": {
                     "political": 0.45,
-                    "wallet": -100,
+                    "wallet": -10,
                     "ghg": -8,
                     "temp": -2,
                     "percip": -10
@@ -21,7 +21,7 @@
                 "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
                 "consequences": {
                     "political": 0.45,
-                    "wallet": -100,
+                    "wallet": -15,
                     "ghg": -8,
                     "temp": -2,
                     "percip": -10
@@ -34,7 +34,7 @@
                 "desc": "First New Moon of the Year",
                 "consequences": {
                     "political": 0.45,
-                    "wallet": -100,
+                    "wallet": -12,
                     "percip": 15
                 }
             },
@@ -90,7 +90,7 @@
                 "desc": "Festival that celeberates the spirit protector Yangchen and Old Iron.",
                 "consequences": {
                     "political": 1,
-                    "wallet": -50,
+                    "wallet": -5,
                     "ghg": -4,
                     "percip": 5
                 }
@@ -149,7 +149,7 @@
                 "nation": "EARTH",
                 "desc": "Water tribe tradition of celeberating the forbidden art of bloodbending.",
                 "consequences": {
-                    "wallet": 100
+                    "wallet": -100
                 }
             },
             "E15": {
@@ -177,6 +177,70 @@
                 "desc": "Annual Blue Conference between leaders of all nations. The Nations left angered.",
                 "consequences": {
                     "political": -2
+                }
+            },
+            "E18": {
+                "type": "Passive",
+                "headline": "World Reccord Iceberg!",
+                "nation": "ALL",
+                "desc": "The Water Tribe released a monstorous iceberg into the sea, causing the world to cool.",
+                "consequences": {
+                    "temp": -2 
+                }
+            },
+            "E19": {
+                "type": "Passive",
+                "headline": "Local Earth Benders widen all rivers towards Full Moon Bay.",
+                "nation": "EARTH",
+                "desc": "The Earth benders develop larger rivers for water accesibility for farmers and citizens alike.",
+                "consequences": {
+                    "percip": 2
+                }
+            },
+            "E20": {
+                "type": "Passive",
+                "headline": "Make it Rain!",
+                "nation": "WATER",
+                "desc": "The Water Tribe honnors an ancient tradition atomizing water into the winds of the world.",
+                "consequences": {
+                    "percip": 2
+                }
+            },
+            "E21": {
+                "type": "Passive",
+                "headline": "Electric Benders At it Again!",
+                "nation": "FIRE",
+                "desc": "Electric benders fill the grid, all combustion generators are shut off.",
+                "consequences": {
+                    "ghg": -8
+                }
+            },
+            "E22": {
+                "type": "Passive",
+                "headline": "Powers Out!!",
+                "nation": "ANY",
+                "desc": "Burn more coal to keep the Nation running.",
+                "consequences": {
+                    "ghg": 4
+                }
+            },
+            "E23": {
+                "type": "Passive",
+                "headline": "Tornado?! Blame the Leader!",
+                "nation": "PLAYER",
+                "desc": "The capital was hit with a tornado and the citizens blame you.",
+                "consequences": {
+                    "political": -3,
+                    "wallet": -50 
+                }
+            },
+            "E24": {
+                "type": "Passive",
+                "headline": "Sky Bison Mating Season!",
+                "nation": "ALL",
+                "desc": "The Sky bison begin reproducing, causing a larger methane emission.",
+                "consequences": {
+                    "ghg": 2
                 }
             },
             "E25": {

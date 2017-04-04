@@ -2,30 +2,57 @@ package game.climatar.menu;
 
 import com.badlogic.gdx.Screen;
 
-import game.climatar.map.MidpointDisplacement;
+import game.climatar.view.Presentation;
+import game.climatar.view.View;
 
 public class MenuScreenController {
 	
-    private MenuScreen menuScreenView;
+	// Model
+	/* ? */
 	
-    public MenuScreenController(float hudScale, float fadeDuration) {
-	// generate a random map for the menu screen background
-	int[][] tileSpec = MidpointDisplacement.getMap(7, 6, 10, 2f);
-	menuScreenView = new MenuScreen(this, hudScale, fadeDuration, tileSpec);
-    }
+	// View
+	private View menuView;
+	private TitlePresentation titlePresentation;
+	private GameModeSelectPresentation gameModeSelectPresentation;
 	
-    public void setHudScale(float hudScale) {
-	menuScreenView.setHudScale(hudScale);
-    }
+	private Presentation lastPresentation = null;
+	
+	public MenuScreenController() {
+		menuView = new View();
+		
+		titlePresentation = new TitlePresentation(this);
+		gameModeSelectPresentation = new GameModeSelectPresentation(this);
+		
+		titlePresentation.addTo(menuView);
+		gameModeSelectPresentation.addTo(menuView);
+		
+		showPresentation(titlePresentation);
+	}
+	
+	public void setHudScale(float hudScale) {
+		titlePresentation.setHudScale(hudScale);
+	}
 
-    public Screen getView() {
-	return menuScreenView;
-    }
+	public Screen getView() {
+		return menuView;
+	}
 
-    public void openGameModeSelectView() {
-	// Just testing out the map don't freak out! - James
-	    
-    }
+	private void showPresentation(Presentation presentation) {
+		if(lastPresentation != null) {
+			lastPresentation.hide();
+		}
+		
+		presentation.show();
+		lastPresentation = presentation;
+	}
+	
+	public void openTitlePresentation() {
+		showPresentation(titlePresentation);
+	}
+	
+	public void openGameModeSelectPresentation() {
+		showPresentation(gameModeSelectPresentation);
+	}
 
     public void openLoadViewScreen() {
 		

@@ -9,32 +9,33 @@ import com.kotcrab.vis.ui.VisUI;
 import game.climatar.menu.MenuScreenController;
 
 public class ApplicationController extends Game {
+	private static final Color BACKGROUND_COLOUR = Color.BLACK;
 	
-	public static final int WIDTH = 200;
-	public static final int HEIGHT = WIDTH * 16 / 9;
-	
-	public static final float HUD_SCALE = 2f;
-	private static final float FADE_OUT_DURATION = 0.2f;
-	
-	private static final Color BG_COLOUR = Color.BLACK;
-
 	private MenuScreenController menuScreenController;
+
+	private float hudScale;
 	
 	public ApplicationController(float hudScale) {
-		
-		menuScreenController = new MenuScreenController(hudScale, FADE_OUT_DURATION);
+		this.hudScale = hudScale;
 	}
 	
 	@Override
 	public void create() {
 		VisUI.load(); // load the UI skin
+		
+		menuScreenController = new MenuScreenController();
+		menuScreenController.setHudScale(hudScale);
+		
 		setScreen(menuScreenController.getView());
 	}
 	
 	@Override
 	public void render() {
-		Gdx.gl.glClearColor(BG_COLOUR.r, BG_COLOUR.g, BG_COLOUR.b, 1f);
+		// Clear screen
+		Gdx.gl.glClearColor(BACKGROUND_COLOUR.r, BACKGROUND_COLOUR.g, BACKGROUND_COLOUR.b, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+		
+		// Render current screen.
 		super.render();
 	}
 	
