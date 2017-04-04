@@ -2,12 +2,14 @@ package game.climatar;
 
 import com.kotcrab.vis.ui.VisUI;
 
-import game.climatar.architecture.Main;
+import game.climatar.architecture.ControllerManager;
 import game.climatar.menu.TitleController;
+import game.climatar.play.PlayController;
 
-public class ApplicationController extends Main {
+public class ApplicationController extends ControllerManager {
 
 	private TitleController titleController;
+	private PlayController playController;
 
 	@Override
 	public void create() {
@@ -20,9 +22,16 @@ public class ApplicationController extends Main {
 		 */
 		initialize(this);
 
-		titleController.openTitleView();
-
-		setViewController(titleController);
+		addViewController(titleController);
+		addViewController(playController);
+	}
+	
+	public void play() {
+		removeViewController(titleController);
+	}
+	
+	public void title() {
+		removeViewController(titleController);
 	}
 
 }

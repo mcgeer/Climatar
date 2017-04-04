@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 public abstract class View {
 	
-	private static final float DEFAULT_FADE_DURATION = 0.2f;
+	static final float DEFAULT_FADE_DURATION = 0.2f;
 	private static final float DEFAULT_HUD_SCALE = 1f;
 	
 	private float fadeDuration = DEFAULT_FADE_DURATION;
@@ -88,7 +88,7 @@ public abstract class View {
 		this.fadeDuration = fadeDuration;
 	}
 	
-	public void setFrame(int x, int y, int width, int height) {
+	public void setFrame(float x, float y, float width, float height) {
 		Rectangle f = getFrame();
 		f.set(x, y, width, height);
 		
@@ -120,15 +120,11 @@ public abstract class View {
 	}
 	
 	public void hide() {
-		if(group == null) return;
-		
 		group.addAction(Actions.sequence(Actions.fadeOut(fadeDuration), Actions.hide()));
 	}
 
 	public void show() {
-		if(group == null) return;
-		
-		group.addAction(Actions.sequence(Actions.show(), Actions.fadeIn(fadeDuration)));
+		group.addAction(Actions.sequence(Actions.alpha(0f), Actions.show(), Actions.fadeIn(fadeDuration)));
 	}
 
 	protected Actor get() {

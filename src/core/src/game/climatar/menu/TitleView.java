@@ -1,6 +1,7 @@
 package game.climatar.menu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -9,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
-import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
@@ -46,10 +46,9 @@ public final class TitleView extends View {
 		titleFont = new BitmapFont(Gdx.files.internal("fonts/title-font.fnt"),
 				Gdx.files.internal("fonts/title-font.png"), false);
 
-		LabelStyle labelStyle = VisUI.getSkin().get(LabelStyle.class);
-		labelStyle.font = titleFont;
-
-		titleLabel = new VisLabel(TITLE_TEXT);
+		LabelStyle titleStyle = new LabelStyle(titleFont, Color.WHITE);
+		
+		titleLabel = new VisLabel(TITLE_TEXT, titleStyle);
 		titleLabel.setScale(getTitleScale());
 
 		startGameButton = new VisTextButton("Play", new ChangeListener() {
@@ -95,9 +94,6 @@ public final class TitleView extends View {
 	@Override
 	public void update(Model model) {
 		// no model to update the view with (title screen doens't have a model)
-		String title = (String) model.get("game-title");
-		
-		titleLabel.setText(title);
 	}
 
 	@Override

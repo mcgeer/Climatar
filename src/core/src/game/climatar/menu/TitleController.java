@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.google.gson.Gson;
 
+import game.climatar.ApplicationController;
 import game.climatar.GameState;
 import game.climatar.architecture.Controller;
 
@@ -19,7 +20,9 @@ public class TitleController extends Controller {
 
 		titleView.setFrame(width / 2, height / 2, width / 2, height / 2);
 		gameModeSelectView.setFrame(0, height / 2, width / 2, height / 2);
-		loadView.setFrame(width/2, 0, width/2, height/2);
+		loadView.setFrame(width / 2, 0, width / 2, height / 2);
+		
+		showView(titleView, gameModeSelectView);
 	}
 
 	@Override
@@ -44,11 +47,11 @@ public class TitleController extends Controller {
 	}
 
 	public void overlordMode() {
-
+		// stub; no time to implement this mode yet
 	}
 
 	public void survivalMode() {
-
+		((ApplicationController) getControllerManager()).play();
 	}
 
 	/**
@@ -97,8 +100,8 @@ public class TitleController extends Controller {
 	public boolean isGameSaved(int slotIndex) {
 		String saveFileName = getSaveFileName(slotIndex);
 		FileHandle handle = Gdx.files.internal(saveFileName);
-		
-		if(handle.exists()) {
+
+		if (handle.exists()) {
 			try {
 				String gameStateJSON = handle.readString();
 
@@ -107,7 +110,7 @@ public class TitleController extends Controller {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return false;
 	}
 

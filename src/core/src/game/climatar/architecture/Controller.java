@@ -3,17 +3,23 @@ package game.climatar.architecture;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public abstract class Controller {
 
 	Model model;
+	ControllerManager manager;
 	private Stage stage;
 	private List<View> views = new ArrayList<View>();
 	
 	protected abstract void layoutView();
 	protected abstract void tick();
+	
+	protected ControllerManager getControllerManager() {
+		return this.manager;
+	}
 	
 	protected Stage getStage() {
 		if(stage == null) stage = new Stage(new ScreenViewport());
@@ -21,12 +27,12 @@ public abstract class Controller {
 		return stage;
 	}
 
-	protected void renderView(float delta) {
+	protected void renderView() {
 		for(View view : views) {
 			view.update(model);
 		}
 		
-		getStage().act(delta);
+		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
 	}
 	
@@ -76,7 +82,7 @@ public abstract class Controller {
 			view.layout();
 		}
 	}
-
+	
 	protected void hideView() {
 		for(View view : this.views) {
 			view.hide();
@@ -88,6 +94,10 @@ public abstract class Controller {
 			v.dispose();
 		}
 	}
-
-	
+	public boolean hasViewsWhichAreRendering() {
+		for(View v : views) {
+			if(!v.isHidden()) return true;
+		}
+		return false;
+	}
 }
