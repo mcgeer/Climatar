@@ -13,61 +13,146 @@ public abstract class Controller {
 	ControllerManager manager;
 	private Stage stage;
 	private List<View> views = new ArrayList<View>();
-	
-	protected abstract void layoutView();
-	protected abstract void tick();
-	
-	protected ControllerManager getControllerManager() {
-		return this.manager;
+	private List<Controller> children = new ArrayList<Controller>();
+
+	void init() {
+		initialize();
+
+		for (Controller child : children) {
+			child.init();
+		}
+	}
+
+	void layoutViews() {
+		layoutView();
+
+		for (Controller c : children) {
+			c.layoutViews();
+		}
+	}
+
+	void renderViews() {
+		renderView();
+
+		for (Controller c : children) {
+			c.renderViews();
+		}
+	}
+
+	void nextTick() {
+		tick();
+
+		for (Controller c : children) {
+			c.nextTick();
+		}
 	}
 	
-	protected Stage getStage() {
-		if(stage == null) stage = new Stage(new ScreenViewport());
+	void resizeViews(int width, int height) {
+		resizeView(width, height);
 		
-		return stage;
+		for(Controller child : children) {
+			child.resizeViews(width, height);
+		}
+	}
+
+	protected abstract void layoutView();
+
+	protected abstract void tick();
+
+	/**
+	 * Optional constructor-like method which can be overridden to set model
+	 * values or view settings.
+	 */
+	protected void initialize() {
 	}
 
 	protected void renderView() {
-		for(View view : views) {
+		for (View view : views) {
 			view.update(model);
 		}
-		
+
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
+
+		for (Controller child : children) {
+			child.renderView();
+		}
 	}
-	
+
+	protected void resizeView(int width, int height) {
+		getStage().getViewport().update(width, height, true);
+
+		for (View view : views) {
+			view.layout();
+		}
+
+		for (Controller child : children) {
+			child.resizeView(width, height);
+		}
+	}
+
+	public boolean hasViewsWhichAreRendering() {
+		for (View v : views) {
+			if (!v.isHidden())
+				return true;
+		}
+
+		for (Controller child : children) {
+			if (child.hasViewsWhichAreRendering())
+				return true;
+		}
+
+		return false;
+	}
+
+	protected ControllerManager getControllerManager() {
+		return this.manager;
+	}
+
+	protected Stage getStage() {
+		if (stage == null)
+			stage = new Stage(new ScreenViewport());
+
+		return stage;
+	}
+
+	public Model getModel() {
+		return this.model;
+	}
+
 	protected void addView(View view) {
-		if(!views.contains(view)) {
+		if (!views.contains(view)) {
 			views.add(view);
 			getStage().addActor(view.get());
 		}
 	}
-	
+
 	protected void removeView(View view) {
 		views.remove(view);
-		
+
 		getStage().getRoot().removeActor(view.get());
 	}
-	
+
 	protected void showView(View... views) {
 		showView(true, views);
 	}
-	
+
 	/**
 	 * @param views
-	 * 	These views should have been added previously. Views that should be shown. All others are hidden.
+	 *            These views should have been added previously. Views that
+	 *            should be shown. All others are hidden.
 	 */
 	protected void showView(boolean animate, View... views) {
-		for(View view : this.views) {
+		for (View view : this.views) {
 			boolean shouldHide = true;
-			
-			for(int i = 0; i < views.length; i++) {
-				if(views[i] == view) {
-					shouldHide = false;		
+
+			for (int i = 0; i < views.length; i++) {
+				if (views[i] == view) {
+					shouldHide = false;
 				}
 			}
-			
-			if(shouldHide) {
+
+			if (shouldHide) {
 				view.hide(animate);
 			} else {
 				view.show(animate);
@@ -75,29 +160,28 @@ public abstract class Controller {
 		}
 	}
 
-	protected void resizeView(int width, int height) {
-		stage.getViewport().update(width, height, true);
-		
-		for(View view : views) {
-			view.layout();
-		}
-	}
-	
 	protected void hideView() {
-		for(View view : this.views) {
+		for (View view : this.views) {
 			view.hide();
+		}
+
+		for (Controller child : children) {
+			child.hideView();
 		}
 	}
 
 	protected void disposeView() {
-		for(View v : views) {
+		for (View v : views) {
 			v.dispose();
 		}
-	}
-	public boolean hasViewsWhichAreRendering() {
-		for(View v : views) {
-			if(!v.isHidden()) return true;
+
+		for (Controller child : children) {
+			child.disposeView();
 		}
-		return false;
 	}
+
+	public void addChildController(Controller childController) {
+		this.children.add(childController);
+	}
+
 }

@@ -3,7 +3,7 @@ package game.climatar.architecture;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class Model {
+public class Model {
 
 	private final Map<String, Object> map = new HashMap<String, Object>();
 

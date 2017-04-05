@@ -7,11 +7,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 
-import game.climatar.architecture.AllowController;
+import game.climatar.architecture.SetController;
 import game.climatar.architecture.Model;
 import game.climatar.architecture.View;
 
-@AllowController(TitleController.class)
+@SetController(TitleController.class)
 public class LoadView extends View {
 
 	// components
