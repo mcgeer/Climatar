@@ -102,9 +102,10 @@ public abstract class ControllerManager implements ApplicationListener {
 			Iterator<Controller> iterable = viewControllersBeingRemoved.iterator();
 			while(iterable.hasNext()) {
 				Controller controller = iterable.next();
-				controller.renderView();
+				
 				if(!controller.hasViewsWhichAreRendering()) {
 					iterable.remove();
+					viewControllers.remove(controller);
 				}
 			}
 			for(Controller c : viewControllers) {
