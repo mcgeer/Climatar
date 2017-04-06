@@ -17,9 +17,9 @@ public class MapView extends View {
 	
 	@Override
 	public void build(Group group) {
-		int[][] mapSpec = MidpointDisplacement.getMap(4, 4, 4, 4);
+		int[][] mapSpec = MidpointDisplacement.getMap(4, 14, 7, 4);
 		
-		map = new DrawableMap(mapSpec);
+		map = new DrawableMap(mapSpec, 0.2f);
 		
 		table = new VisTable();
 		table.add(map);

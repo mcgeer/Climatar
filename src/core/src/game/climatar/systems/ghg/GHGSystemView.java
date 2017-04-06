@@ -6,9 +6,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 
-import game.climatar.architecture.Model;
 import game.climatar.architecture.AllowController;
+import game.climatar.architecture.Model;
 import game.climatar.architecture.View;
+import game.climatar.map.Nation;
+import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
 
 @AllowController({GHGSystemController.class})
 public class GHGSystemView extends View {
@@ -55,7 +57,9 @@ public class GHGSystemView extends View {
 
 	@Override
 	public void update(Model model) {
-		
+		int epu = (int) model.get(GHGProperty.EMISSIONS_PER_UPDATE.id());
+		Nation nation = (Nation) model.get(GHGProperty.NATION.id());
+		GHGEmissionsPerUpdateValue.setText(epu + " " + nation.name() + " EPU");
 	}
 
 	@Override

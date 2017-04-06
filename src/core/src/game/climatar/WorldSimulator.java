@@ -103,10 +103,10 @@ public class WorldSimulator extends Controller {
 	// =================---- Overrides ----====================
 	@Override
 	protected void layoutView() {
+		float PAD = 50;
 		float width = Gdx.graphics.getWidth();
 		float height = Gdx.graphics.getHeight();
-
-		mapView.setFrame(0, 0, width, height);
+		mapView.setFrame(PAD, PAD, width - PAD * 2, height - PAD * 2);
 
 		showView(mapView);
 	}

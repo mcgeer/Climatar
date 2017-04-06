@@ -12,20 +12,22 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 public class DrawableMap extends Actor {
 
 	private static final int TILE_SIZE = 16;
-
+	
 	private Texture computedMapTexture;
 	private Color tint = new Color(Color.WHITE);
 
+	private float scale;
 	private Rectangle frame;
-	
 	private OrthographicCamera camera;
 
-	public DrawableMap(int[][] tileSpec) {
+	public DrawableMap(int[][] tileSpec, float scale) {
+		this.scale = scale;
 		camera = new OrthographicCamera();
 		frame = new Rectangle();
 		
@@ -76,8 +78,8 @@ public class DrawableMap extends Actor {
 				float posX = getX();
 				float posY = getY();
 
-				float maxWidth = frame.width;
-				float maxHeight = frame.height;
+				float maxWidth = frame.width / getScale();
+				float maxHeight = frame.height / getScale();
 
 				float textureWidth = computedMapTexture.getWidth();
 				float textureHeight = computedMapTexture.getHeight();
@@ -94,8 +96,8 @@ public class DrawableMap extends Actor {
 				} else if (getVerticalMapSize() == MapSize.BIGGER_THAN_VIEWPORT) {
 					if (newPosY > 0)
 						newPosY = 0;
-					if (newPosY + textureHeight < maxHeight)
-						newPosY = maxHeight - textureWidth;
+					if (newPosY < maxHeight - textureHeight)
+						newPosY = maxHeight - textureHeight;
 
 					setY(newPosY);
 				}
@@ -111,7 +113,7 @@ public class DrawableMap extends Actor {
 				} else if (getHorizontalMapSize() == MapSize.BIGGER_THAN_VIEWPORT) {
 					if (newPosX > 0)
 						newPosX = 0;
-					if (newPosX + textureWidth < maxWidth)
+					if (newPosX < maxWidth - textureWidth)
 						newPosX = maxWidth - textureWidth;
 
 					setX(newPosX);
@@ -121,18 +123,26 @@ public class DrawableMap extends Actor {
 		
 		setFrame(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
+	
+	public void setScale(float scale) {
+		this.scale = scale;
+	}
+	
+	public float getScale() {
+		return this.scale;
+	}
 
 	public void setFrame(float x, float y, float width, float height) {
-		camera.viewportWidth = width;
-		camera.viewportHeight = height;
+		camera.viewportWidth = width / scale;
+		camera.viewportHeight = height / scale;
 //		camera.position.set(x + width/2, y + height/2, 1);
-		camera.position.set(x + width / 2f, y + height / 2f, 0);		
+		camera.position.set(x + width / scale / 2f, y + height / scale / 2f, 0);		
 		
 		frame.set(x, y, width, height);
 	}
 
 	public MapSize getHorizontalMapSize() {
-		if (frame.width > getWidth()) {
+		if (frame.width / scale >= getWidth()) {
 			return MapSize.SMALLER_THAN_VIEWPORT;
 		} else {
 			return MapSize.BIGGER_THAN_VIEWPORT;
@@ -140,7 +150,7 @@ public class DrawableMap extends Actor {
 	}
 
 	public MapSize getVerticalMapSize() {
-		if (frame.height > getHeight()) {
+		if (frame.height / scale >= getHeight()) {
 			return MapSize.SMALLER_THAN_VIEWPORT;
 		} else {
 			return MapSize.BIGGER_THAN_VIEWPORT;
