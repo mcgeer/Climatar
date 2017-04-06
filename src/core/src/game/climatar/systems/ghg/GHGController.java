@@ -47,4 +47,13 @@ public class GHGController extends Controller {
 		getModel().set(GHGProperty.TOTAL_EMISSIONS_PER_UPDATE.id(), Integer.valueOf(totalEmissionsPerUpdate));
 	}
 
+	/**
+	 *
+	 * @return
+	 */
+	public int getEmissionsPerUpdate(){
+		return (int) getModel().get(GHGProperty.TOTAL_EMISSIONS_PER_UPDATE.id());
+	}
+
+
 }
