@@ -27,6 +27,6 @@ public void layout(float x, float y, float width, float height) {
 
     @Override
     public void update(Model model) {
-        
+
     }
 }

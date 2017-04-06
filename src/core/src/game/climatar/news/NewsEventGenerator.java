@@ -1,25 +1,25 @@
 package game.climatar.news;
-import com.badlogic.gdx.Gdx;
+import java.util.Collections;
+import java.util.LinkedList;
 
-import game.climatar.map.Nation;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.badlogic.gdx.Gdx;
 
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
+import game.climatar.GameState.WorldProperty;
+import game.climatar.map.Nation;
 
 public class NewsEventGenerator {
     private Nation playerNation;
     private static LinkedList<NewsEvents> WorldEvents;
     private static LinkedList<NewsEvents> PlayerEvents;
 
-    NewsEventGenerator(Nation np) {
-        playerNation = np;
+    NewsEventGenerator(game.climatar.GameState gs) {
+   
+        playerNation = (Nation) gs.get(WorldProperty.NATION.id());
         readEvents();
         sortEvents();
     }
