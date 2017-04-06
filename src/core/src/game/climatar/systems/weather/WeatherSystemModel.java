@@ -1,38 +1,27 @@
 package game.climatar.systems.weather;
 
-public class WeatherSystemModel {
+import game.climatar.architecture.Model;
 
-    private int Percipitation;
-    private double Temperature;
+public class WeatherSystemModel extends Model{
 
+    enum WeatherProperty {
+        CURRENT_TEMP, CURRENT_PERCIP, CHANGE_IN_TEMP, CHANGE_IN_PERCIP;
 
-    public WeatherSystemModel(int initialpercipitation,double initialTemperature){
-        Percipitation = initialpercipitation;
-        Temperature = initialTemperature;
-
+        public String id() {
+            return this.name();
+        }
     }
 
-    public double gettemperature(){
+    /**
+     * Initializes this WeatherSystemModel with an initial temperature and percipitation
+     */
 
-        return Temperature;
+    public void inittemp(double initialtemp) {
+        set(WeatherProperty.CURRENT_TEMP.id(), initialtemp);
     }
 
-    public int getPercipitation(){
-        return Percipitation;
-
+    public void initpercip(int initialpercipitation){
+        set(WeatherProperty.CURRENT_PERCIP.id(),initialpercipitation);
     }
 
-    public void updateTemperature(double deltanewTemperature){
-        Temperature += deltanewTemperature;
-    }
-
-    public void updatePercipitation(int deltaNewPercipitation){
-        Percipitation += deltaNewPercipitation;
-    }
-
-    public double UpdateTemperature(){
-        return Temperature;
-    }
-
-    public int UpdatePercipitation(){return Percipitation;}
 }
