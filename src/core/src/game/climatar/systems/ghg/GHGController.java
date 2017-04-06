@@ -1,18 +1,20 @@
 package game.climatar.systems.ghg;
 
 import game.climatar.architecture.Controller;
+import game.climatar.architecture.SetModel;
 import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
 
 /**
  * GHG controller which controls the controllers for the air/earth/water/fire
  * nations
  */
+
 public class GHGController extends Controller {
 	// constants
-	public static final int INITIAL_VALUE_FN = 50;
-	public static final int INITIAL_VALUE_EN = 35;
-	public static final int INITIAL_VALUE_WN = 25;
-	public static final int INITIAL_VALUE_AN = 10;
+	private static final int INITIAL_VALUE_FN = 50;
+	private static final int INITIAL_VALUE_EN = 35;
+	private static final int INITIAL_VALUE_WN = 25;
+	private static final int INITIAL_VALUE_AN = 10;
 
 	// child controllers
 	GHGSystemController earthNationController;
@@ -22,7 +24,6 @@ public class GHGController extends Controller {
 	
 	@Override
 	protected void initialize() {
-		System.out.println(earthNationController.getModel());
 		((GHGSystemModel) earthNationController.getModel()).init(INITIAL_VALUE_EN);
 		((GHGSystemModel) fireNationController.getModel()).init(INITIAL_VALUE_FN);
 		((GHGSystemModel) airNationController.getModel()).init(INITIAL_VALUE_AN);
@@ -43,8 +44,6 @@ public class GHGController extends Controller {
 		totalEmissionsPerUpdate += fireNationController.getEmissionPerUpdate();
 		totalEmissionsPerUpdate += airNationController.getEmissionPerUpdate();
 		totalEmissionsPerUpdate += waterNationController.getEmissionPerUpdate();
-		
-		getModel().set(GHGProperty.TOTAL_EMISSIONS_PER_UPDATE.id(), Integer.valueOf(totalEmissionsPerUpdate));
 	}
 
 	/**
