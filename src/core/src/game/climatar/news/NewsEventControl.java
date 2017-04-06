@@ -1,26 +1,31 @@
 package game.climatar.news;
 
+import game.climatar.GameState;
 import game.climatar.architecture.Controller;
-import game.climatar.map.Nation;
 
 public class NewsEventControl extends Controller{
     private NewsEventGenerator PressMill;
-    private Nation Player;
+    private GameState gs;
+
     NewsView view;
     @Override
     protected void initialize() {
-
-        super.initialize();
-        PressMill= new NewsEventGenerator(Player);
+        
+       super.initialize();
+       
     }
 
     @Override
     protected void layoutView() {
         showView(view);
     }
+    
+    public void generateNews(){
+    	 PressMill= new NewsEventGenerator(gs);
+    }
 
     @Override
     protected void tick() {
-
+       // ControllerManager.delay();
     }
 }

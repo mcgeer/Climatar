@@ -4,14 +4,20 @@ import java.util.List;
 
 import game.climatar.map.Nation;
 
-public enum NewsEvents {
-	PASSIVE(1),
-	ACTIVE(2),
-	INTER(3);
+public class NewsEvent {
+	
+	enum NewsType {
+		PASSIVE,
+		ACTIVE,
+		INTER;
+	}
+	
+	private NewsType type;
 	private  List <ConseqType> yCon;
 	private  List <ConseqType> nCon;
-	NewsEvents (int num){
-		if (num==1){
+	
+	public NewsEvent (NewsType type){
+		if (type==NewsType.PASSIVE){
 			yCon= new ArrayList<ConseqType>();
 			nCon=null;
 		}

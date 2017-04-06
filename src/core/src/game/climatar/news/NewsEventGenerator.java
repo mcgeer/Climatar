@@ -1,32 +1,34 @@
 package game.climatar.news;
-import com.badlogic.gdx.Gdx;
+import java.util.Collections;
+import java.util.LinkedList;
 
-import game.climatar.map.Nation;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.badlogic.gdx.Gdx;
 
-
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
+import game.climatar.GameState;
+import game.climatar.GameState.WorldProperty;
+import game.climatar.map.Nation;
+import game.climatar.news.NewsEvent.NewsType;
 
 public class NewsEventGenerator {
     private Nation playerNation;
-    private static LinkedList<NewsEvents> WorldEvents;
-    private static LinkedList<NewsEvents> PlayerEvents;
+    private static LinkedList<NewsEvent> WorldEvents;
+    private static LinkedList<NewsEvent> PlayerEvents;
 
-    NewsEventGenerator(Nation np) {
-        playerNation = np;
+    public NewsEventGenerator(GameState gs) {
+        playerNation = (Nation) gs.get(WorldProperty.NATION.id());
+        
         readEvents();
         sortEvents();
     }
 
     private void readEvents() {
-        WorldEvents = new LinkedList<NewsEvents>();
-        PlayerEvents= new LinkedList<NewsEvents>();
+        WorldEvents = new LinkedList<NewsEvent>();
+        PlayerEvents= new LinkedList<NewsEvent>();
         boolean isPassive;
         JSONParser parser = new JSONParser();
         try {
@@ -34,15 +36,15 @@ public class NewsEventGenerator {
             for (Object obj : readArray) {
                 isPassive=false;
                 JSONObject newEvent = (JSONObject) obj;
-                NewsEvents storeEvent;
+                NewsEvent storeEvent;
                 if ((String) newEvent.get("type") == "Passive") {
-                    storeEvent = NewsEvents.PASSIVE;
+                    storeEvent = new NewsEvent(NewsType.PASSIVE);
                     isPassive=true;
                 } else if ((String) newEvent.get("type") == "Active" && (String) newEvent.get("nation") == playerNation.getName()) {
-                    storeEvent = NewsEvents.ACTIVE;
+                    storeEvent = new NewsEvent(NewsType.ACTIVE);
 
                 } else {
-                    storeEvent = NewsEvents.INTER;
+                    storeEvent = new NewsEvent(NewsType.INTER);
                     isPassive=true;
                 }
                 storeEvent.setIndex(Integer.parseInt((String) newEvent.get("pid")));
@@ -55,16 +57,20 @@ public class NewsEventGenerator {
                     if (newConseq.containsKey("political")) {
                         storeConseq = ConseqType.POLI;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("political")));
-                    } else if (newConseq.containsKey("wallet")) {
+                    }
+                    if (newConseq.containsKey("wallet")) {
                         storeConseq = ConseqType.WALLET;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("wallet")));
-                    } else if (newConseq.containsKey("ghg")) {
+                    } 
+                    if (newConseq.containsKey("ghg")) {
                         storeConseq = ConseqType.GHG;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("ghg")));
-                    } else if (newConseq.containsKey("temp")) {
+                    }
+                    if (newConseq.containsKey("temp")) {
                         storeConseq = ConseqType.TEMP;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("temp")));
-                    } else if (newConseq.containsKey("percip")) {
+                    }
+                    if (newConseq.containsKey("percip")) {
                         storeConseq = ConseqType.PERCIP;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("percip")));
                     }
@@ -76,16 +82,20 @@ public class NewsEventGenerator {
                     if (newConseq.containsKey("political")) {
                         storeConseq = ConseqType.POLI;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("political")));
-                    } else if (newConseq.containsKey("wallet")) {
+                    }
+                    if (newConseq.containsKey("wallet")) {
                         storeConseq = ConseqType.WALLET;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("wallet")));
-                    } else if (newConseq.containsKey("ghg")) {
+                    } 
+                    if (newConseq.containsKey("ghg")) {
                         storeConseq = ConseqType.GHG;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("ghg")));
-                    } else if (newConseq.containsKey("temp")) {
+                    }
+                    if (newConseq.containsKey("temp")) {
                         storeConseq = ConseqType.TEMP;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("temp")));
-                    } else if (newConseq.containsKey("percip")) {
+                    }
+                    if (newConseq.containsKey("percip")) {
                         storeConseq = ConseqType.PERCIP;
                         storeConseq.addValue(Integer.parseInt((String) newConseq.get("percip")));
                     }
