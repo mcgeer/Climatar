@@ -38,11 +38,16 @@ public class PoliticalSystemController {
 
     /**
      * Get total relation from n
-     * @param n Nation being updated
      * @return Total relation [0, 300]
      */
-    public double update(Nation n){
-        return modelLink.get(n).Update();
+    public double update()
+    {
+        double ret = 0.0;
+        for (Nation n:
+             Nation.values()) {
+            ret += modelLink.get(n).getRelation();
+        }
+        return ret;
     }
 
     /**
@@ -56,14 +61,10 @@ public class PoliticalSystemController {
 
     /**
      * Update relations between n1 and n2 to change by delta
-     * @param n1 Nation one whose relation is changing
-     * @param n2 Nation two whose relation is changing
+     * @param n Nation one whose relation is changing
      * @param delta Change in relation
      */
-    public void updateRelations(Nation n1, Nation n2, double delta){
-        if(n1.equals(n2))
-            return;
-        modelLink.get(n1).deltaRelation(n2, delta);
-        modelLink.get(n2).deltaRelation(n1, delta);
+    public void updateRelations(Nation n, double delta){
+        modelLink.get(n).deltaRelation(delta);
     }
 }

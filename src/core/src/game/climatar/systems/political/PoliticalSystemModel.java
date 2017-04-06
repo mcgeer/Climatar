@@ -7,28 +7,18 @@ import game.climatar.map.Nation;
  * Political System Model
  */
 public class PoliticalSystemModel {
-    //Nation who is modeled
-    private Nation nation;
     //Economic stance
     private int wallet;
-    //Relations with countries
-    private HashMap<Nation, Double> relationsWith;
-
+    //Relations with the people of
+    private double relations;
     /**
      * Create a new Political System Model
      * @param n Nation being modeled
      * @param wallet Initial Net Worth
      */
     public PoliticalSystemModel(Nation n, int wallet){
-        relationsWith = new HashMap<Nation, Double>();
         this.wallet = wallet;
-        nation = n;
-        //All relations to n as neutral good (75%)
-        for (Nation r: Nation.values()) {
-            if(n.equals(r))
-                continue;
-            relationsWith.put(r, 75.0);
-        }
+        this.relations = 70.0;
     }
 
     /**
@@ -36,14 +26,7 @@ public class PoliticalSystemModel {
      * @return total relations in the world summed against this nation
      */
     public Double Update(){
-        Double ret = 0.0;
-        for (Nation n: Nation.values()) {
-            if(n.equals(nation))
-                continue;
-            ret += relationsWith.get(n);
-        }
-
-        return ret;
+        return relations;
     }
 
 
@@ -57,15 +40,12 @@ public class PoliticalSystemModel {
 
     /**
      * Update a relation to another Nation
-     * @param n Relation being fetched
      * @param delta Change in relation with n
      */
-    public void deltaRelation(Nation n, Double delta){
-        if(n.equals(nation))
-            throw new EnumConstantNotPresentException(Nation.class, "Relation between nations n and r, where n == r is invalid.");
-        Double rel = relationsWith.get(n) + delta;
+    public void deltaRelation(Double delta){
+        Double rel = relations + delta;
         //Limit the relation to be between 0 and 100 inclusive, it is a percent
-        relationsWith.put(n, (rel < 0)? 0 : (rel > 100) ? 100 : rel );
+        relations = (rel < 0)? 0 : (rel > 100) ? 100 : rel;
     }
 
 
@@ -79,13 +59,10 @@ public class PoliticalSystemModel {
 
     /**
      * Get the relations to another nation
-     * @param n Nation in relation to this
-     * @return
+     * @return Return the relations within the country with the people
      */
-    public Double getRelationWith(Nation n){
-        if(n.equals(nation))
-            throw new EnumConstantNotPresentException(Nation.class, "Relation between nations n and r, where n == r is invalid.");
-        return relationsWith.get(n);
+    public Double getRelation(){
+        return this.relations;
     }
 
 
