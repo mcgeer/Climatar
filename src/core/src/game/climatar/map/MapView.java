@@ -3,12 +3,12 @@ package game.climatar.map;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.kotcrab.vis.ui.widget.VisTable;
 
+import game.climatar.WorldSimulator;
 import game.climatar.architecture.AllowController;
 import game.climatar.architecture.Model;
 import game.climatar.architecture.View;
-import game.climatar.play.PlayController;
 
-@AllowController({PlayController.class})
+@AllowController({WorldSimulator.class})
 public class MapView extends View {
 
 	private DrawableMap map;

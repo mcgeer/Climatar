@@ -1,13 +1,16 @@
 package game.climatar;
 
+import com.badlogic.gdx.Gdx;
+
+import game.climatar.GameState.WorldProperty;
 import game.climatar.architecture.Controller;
 import game.climatar.architecture.SetModel;
+import game.climatar.map.MapView;
 import game.climatar.map.Nation;
 import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGController;
 import game.climatar.systems.political.PoliticalController;
 import game.climatar.systems.weather.WeatherController;
-import game.climatar.GameState.WorldProperty;
 
 @SetModel(GameState.class)
 public class WorldSimulator extends Controller{
@@ -25,24 +28,26 @@ public class WorldSimulator extends Controller{
 
     //GameStateTEMP
     private GameState gameState;
+    
+    private MapView mapView;
 
     /**
-     * Create a World Simulator, Controlling all aspects of the world, Call Simulate after Creation!
+     * Start a new game, Controlling all aspects of the world, Call Simulate after Creation!
      * @param monitoringGHG Is the GHG system being monitored
      * @param monitoringWeather Is the Weather system being monitored
      * @param monitoringPolitical Is the Political system being monitored
      */
-    public WorldSimulator(Nation player, boolean monitoringGHG, boolean monitoringWeather, boolean monitoringPolitical){
+    public void newGame(Nation player) {
         //Set up what systems are being used
-        ghgIsActive = monitoringGHG;
-        weatherIsActive = monitoringWeather;
-        politicalIsActive = monitoringPolitical;
+        ghgIsActive = true;
+        weatherIsActive = true;
+        politicalIsActive = true;
 
         //Set up the Game State
         gameState.init(player);
 
     }
-
+    
     /**
      * Update Function to handle all requests to step the state of the world
      */
@@ -93,7 +98,12 @@ public class WorldSimulator extends Controller{
     //=================---- Overrides ----====================
     @Override
     protected void layoutView() {
-
+		float width = Gdx.graphics.getWidth();
+		float height = Gdx.graphics.getHeight();
+		
+		mapView.setFrame(0, 0, width, height);
+		
+		showView(mapView);
     }
 
     @Override

@@ -7,11 +7,14 @@ import com.google.gson.Gson;
 import game.climatar.ApplicationController;
 import game.climatar.GameState;
 import game.climatar.architecture.Controller;
+import game.climatar.architecture.View;
+import game.climatar.map.Nation;
 
 public class TitleController extends Controller {
 	private TitleView titleView;
 	private GameModeSelectView gameModeSelectView;
 	private LoadView loadView;
+	private NationSelectView nationSelectView;
 
 	@Override
 	protected void layoutView() {
@@ -51,7 +54,7 @@ public class TitleController extends Controller {
 	}
 
 	public void survivalMode() {
-		((ApplicationController) getControllerManager()).play();
+		showView(nationSelectView);
 	}
 
 	/**
@@ -112,6 +115,10 @@ public class TitleController extends Controller {
 		}
 
 		return false;
+	}
+
+	public void newGame(Nation playerNation) {
+		((ApplicationController) getControllerManager()).newGame(playerNation);
 	}
 
 }

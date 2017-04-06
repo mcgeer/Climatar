@@ -2,14 +2,15 @@ package game.climatar;
 
 import com.kotcrab.vis.ui.VisUI;
 
+import game.climatar.GameState.WorldProperty;
 import game.climatar.architecture.ControllerManager;
+import game.climatar.map.Nation;
 import game.climatar.menu.TitleController;
-import game.climatar.play.PlayController;
 
 public class ApplicationController extends ControllerManager {
 
 	private TitleController titleController;
-	private PlayController playController;
+	private WorldSimulator worldSimulator;
 
 	@Override
 	public void create() {
@@ -25,14 +26,22 @@ public class ApplicationController extends ControllerManager {
 		addViewController(titleController);
 	}
 	
-	public void play() {
+	public void newGame(Nation playerNation) {
+		GameState state = new GameState();
+		
+		state.set(WorldProperty.NATION.id(), playerNation);
+		
+		play(state);
+	}
+	
+	public void play(GameState state) {
 		System.out.println("Play!");
 		removeViewController(titleController);
-		addViewController(playController);
+		addViewController(worldSimulator);
 	}
 	
 	public void title() {
-		removeViewController(playController);
+		removeViewController(worldSimulator);
 		addViewController(titleController);
 	}
 
