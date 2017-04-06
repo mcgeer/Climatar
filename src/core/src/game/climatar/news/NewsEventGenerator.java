@@ -15,27 +15,35 @@ import java.util.LinkedList;
 
 public class NewsEventGenerator {
     private Nation playerNation;
-    private static LinkedList<NewsEvents> PossibleEvents;
+    private static LinkedList<NewsEvents> WorldEvents;
+    private static LinkedList<NewsEvents> PlayerEvents;
 
     NewsEventGenerator(Nation np) {
         playerNation = np;
+        readEvents();
+        sortEvents();
     }
 
-    public void readEvents() {
-        PossibleEvents = new LinkedList<NewsEvents>();
+    private void readEvents() {
+        WorldEvents = new LinkedList<NewsEvents>();
+        PlayerEvents= new LinkedList<NewsEvents>();
+        boolean isPassive;
         JSONParser parser = new JSONParser();
         try {
             JSONArray readArray = (JSONArray) parser.parse(Gdx.files.internal("Events.json").readString());
             for (Object obj : readArray) {
+                isPassive=false;
                 JSONObject newEvent = (JSONObject) obj;
                 NewsEvents storeEvent;
                 if ((String) newEvent.get("type") == "Passive") {
                     storeEvent = NewsEvents.PASSIVE;
+                    isPassive=true;
                 } else if ((String) newEvent.get("type") == "Active" && (String) newEvent.get("nation") == playerNation.getName()) {
                     storeEvent = NewsEvents.ACTIVE;
 
                 } else {
                     storeEvent = NewsEvents.INTER;
+                    isPassive=true;
                 }
                 storeEvent.setIndex(Integer.parseInt((String) newEvent.get("pid")));
                 storeEvent.setDescription((String) newEvent.get("desc"));
@@ -84,8 +92,11 @@ public class NewsEventGenerator {
                     storeEvent.addNConseq(storeConseq);
 
                 }
-                PossibleEvents.add(storeEvent);
-
+                if(isPassive) {
+                    WorldEvents.add(storeEvent);
+                }else{
+                    PlayerEvents.add(storeEvent);
+                }
 
             }
         } catch (ParseException e) {
@@ -96,7 +107,8 @@ public class NewsEventGenerator {
     }
 
     public static void sortEvents() {
-        Collections.sort(PossibleEvents, new indexComparator());
+        Collections.sort(WorldEvents, new indexComparator());
+        Collections.sort(PlayerEvents, new indexComparator());
     }
 
 }

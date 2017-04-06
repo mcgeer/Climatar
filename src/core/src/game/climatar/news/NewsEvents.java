@@ -56,9 +56,9 @@ public enum NewsEvents {
 	private static Nation getEventNation(){
 		return rep;
 	}
-	
+
 	private static void newsExecute(){
-		
+
 	}
 
 	
