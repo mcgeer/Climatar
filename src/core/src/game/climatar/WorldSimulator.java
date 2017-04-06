@@ -6,7 +6,7 @@ import game.climatar.map.Nation;
 import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGController;
 import game.climatar.systems.political.PoliticalController;
-import game.climatar.systems.weather.WeatherSystemController;
+import game.climatar.systems.weather.WeatherController;
 import game.climatar.GameState.WorldProperty;
 
 @SetModel(GameState.class)
@@ -17,7 +17,7 @@ public class WorldSimulator extends Controller{
 
     //Sub-system State Controllers
     private GHGController ghgSystems;
-    private WeatherSystemController weatherSystems;
+    private WeatherController weatherSystems;
     private PoliticalController politicalSystems;
 
     //News Events
@@ -37,11 +37,6 @@ public class WorldSimulator extends Controller{
         ghgIsActive = monitoringGHG;
         weatherIsActive = monitoringWeather;
         politicalIsActive = monitoringPolitical;
-
-        //System Links May not be used
-        //ghgSystems = new GHGController();
-        weatherSystems = new WeatherSystemController();
-        //politicalSystems = new PoliticalController();
 
         //Set up the Game State
         gameState.init(player);
@@ -64,9 +59,6 @@ public class WorldSimulator extends Controller{
         //    gameState.updateWorldPlayerPolitics(politicalSystems.getTotalRelations());
 
 
-        //TODO add conds for GS updates
-        getModel().set(WorldProperty.TOTAL_GHG.id(), ghgSystems.getEmissionsPerUpdate());
-        getModel().set(WorldProperty.AVG_RELATIONS.id(), politicalSystems.getTotalRelations());
 
     }
 
@@ -106,6 +98,11 @@ public class WorldSimulator extends Controller{
 
     @Override
     protected void tick() {
+        //UPDATE WORLD STATE
 
+        //TODO add conds for GS updates
+        getModel().set(WorldProperty.TOTAL_GHG.id(), ghgSystems.getEmissionsPerUpdate());
+        getModel().set(WorldProperty.AVG_RELATIONS.id(), politicalSystems.getTotalRelations());
+        //getModel().set(WorldProperty.AVG_TEMP.id(), )
     }
 }
