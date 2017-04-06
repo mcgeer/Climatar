@@ -1,7 +1,7 @@
 package game.climatar.systems.ghg;
 
 import game.climatar.architecture.Controller;
-import game.climatar.architecture.SetModel;
+import game.climatar.map.Nation;
 import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
 
 /**
@@ -24,10 +24,10 @@ public class GHGController extends Controller {
 	
 	@Override
 	protected void initialize() {
-		((GHGSystemModel) earthNationController.getModel()).init(INITIAL_VALUE_EN);
-		((GHGSystemModel) fireNationController.getModel()).init(INITIAL_VALUE_FN);
-		((GHGSystemModel) airNationController.getModel()).init(INITIAL_VALUE_AN);
-		((GHGSystemModel) waterNationController.getModel()).init(INITIAL_VALUE_WN);
+		((GHGSystemModel) earthNationController.getModel()).init(Nation.EARTH, INITIAL_VALUE_EN);
+		((GHGSystemModel) fireNationController.getModel()).init(Nation.FIRE, INITIAL_VALUE_FN);
+		((GHGSystemModel) airNationController.getModel()).init(Nation.AIR, INITIAL_VALUE_AN);
+		((GHGSystemModel) waterNationController.getModel()).init(Nation.WATER, INITIAL_VALUE_WN);
 	}
 	
 	@Override

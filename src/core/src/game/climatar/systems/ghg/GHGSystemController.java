@@ -22,8 +22,6 @@ public class GHGSystemController extends Controller {
 		float width = Gdx.graphics.getWidth();
 		float height = Gdx.graphics.getHeight();
 		
-		ghgSystemView.setFrame(0, 0, width/2, height/2);
-		
 		showView(ghgSystemView);
 	}
 

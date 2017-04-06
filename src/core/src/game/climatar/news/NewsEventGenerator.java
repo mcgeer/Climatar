@@ -120,5 +120,15 @@ public class NewsEventGenerator {
         Collections.sort(WorldEvents, new indexComparator());
         Collections.sort(PlayerEvents, new indexComparator());
     }
+    public NewsEvent triggerPlayerEvents(){
+        NewsEvent triggerPE=PlayerEvents.removeFirst();
+        PlayerEvents.offerLast(triggerPE);
+        return triggerPE;
+    }
+    public NewsEvent triggerWorldEvents(){
+        NewsEvent triggerWE= WorldEvents.removeFirst();
+        WorldEvents.offerLast(triggerWE);
+        return triggerWE;
+    }
 
 }

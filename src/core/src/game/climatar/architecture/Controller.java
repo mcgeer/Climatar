@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public abstract class Controller {
 
@@ -119,7 +120,7 @@ public abstract class Controller {
 
 	protected Stage getStage() {
 		if (stage == null)
-			stage = new Stage();
+			stage = new Stage(new ScreenViewport());
 
 		return stage;
 	}
