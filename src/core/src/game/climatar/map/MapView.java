@@ -1,7 +1,5 @@
 package game.climatar.map;
 
-import java.util.Arrays;
-
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.kotcrab.vis.ui.widget.VisTable;
 
@@ -19,10 +17,8 @@ public class MapView extends View {
 	
 	@Override
 	public void build(Group group) {
-		int[][] mapSpec = MidpointDisplacement.getMap(4, 2, 2, 2);
-		for(int[] arr : mapSpec) {
-			System.out.println(Arrays.toString(arr));
-		}
+		int[][] mapSpec = MidpointDisplacement.getMap(4, 4, 4, 4);
+		
 		map = new DrawableMap(mapSpec);
 		
 		table = new VisTable();
@@ -33,6 +29,8 @@ public class MapView extends View {
 
 	@Override
 	public void layout(float x, float y, float width, float height) {
+		map.setFrame(x, y, width, height);
+		
 		table.pack();
 		table.invalidate();
 		table.validate();

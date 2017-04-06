@@ -18,9 +18,9 @@ public class TitleController extends Controller {
 		int width = Gdx.graphics.getWidth();
 		int height = Gdx.graphics.getHeight();
 
-		titleView.setFrame(width / 2, height / 2, width / 2, height / 2);
-		gameModeSelectView.setFrame(0, height / 2, width / 2, height / 2);
-		loadView.setFrame(width / 2, 0, width / 2, height / 2);
+		titleView.setFrame(0, 0, width, height);
+		gameModeSelectView.setFrame(0, 0, width, height);
+		loadView.setFrame(0, 0, width, height);
 		
 		showView(titleView);
 	}

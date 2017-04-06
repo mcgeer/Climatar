@@ -2,11 +2,14 @@ package game.climatar.map;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
@@ -18,7 +21,14 @@ public class DrawableMap extends Actor {
 	private Texture computedMapTexture;
 	private Color tint = new Color(Color.WHITE);
 
+	private Rectangle frame;
+	
+	private OrthographicCamera camera;
+
 	public DrawableMap(int[][] tileSpec) {
+		camera = new OrthographicCamera();
+		frame = new Rectangle();
+		
 		// build the tile map with the tile specifications
 		Texture tiles = new Texture(Gdx.files.internal("tiles.png"));
 		TextureRegion[][] splitTiles = TextureRegion.split(tiles, TILE_SIZE, TILE_SIZE);
@@ -53,64 +63,125 @@ public class DrawableMap extends Actor {
 		if (tiles.getTextureData().disposePixmap()) {
 			tileset.dispose();
 		}
-		
+
 		setPosition(0, 0);
 		setSize(computedMapTexture.getWidth(), computedMapTexture.getHeight());
-		
+
 		addListener(new DragListener() {
-			
 			@Override
-			public void drag(InputEvent event, float x, float y, int pointer) {				
+			public void drag(InputEvent event, float x, float y, int pointer) {
 				float dragDistanceX = getDeltaX();
 				float dragDistanceY = getDeltaY();
-				
+
 				float posX = getX();
 				float posY = getY();
-				
-				float maxWidth = Gdx.graphics.getWidth();
-				float maxHeight = Gdx.graphics.getHeight();
+
+				float maxWidth = frame.width;
+				float maxHeight = frame.height;
 
 				float textureWidth = computedMapTexture.getWidth();
 				float textureHeight = computedMapTexture.getHeight();
-				
-				if(canMoveHorizontally()) {
-					float newPosX = posX + dragDistanceX;
-					if(newPosX < 0) newPosX = 0;
-					if(newPosX > maxWidth - textureWidth) newPosX = maxWidth- textureWidth;
-					
-					setX(newPosX);
-				}
-				
-				if(canMoveVertically()) {
-					float newPosY = posY + dragDistanceY;
-					if(newPosY < 0) newPosY = 0;
-					if(newPosY > maxHeight - textureHeight) newPosY = maxHeight - textureHeight;
-					
+
+				float newPosY = posY + dragDistanceY;
+
+				if (getVerticalMapSize() == MapSize.SMALLER_THAN_VIEWPORT) {
+					if (newPosY < 0)
+						newPosY = 0;
+					if (newPosY > maxHeight - textureHeight)
+						newPosY = maxHeight - textureHeight;
+
+					setY(newPosY);
+				} else if (getVerticalMapSize() == MapSize.BIGGER_THAN_VIEWPORT) {
+					if (newPosY > 0)
+						newPosY = 0;
+					if (newPosY + textureHeight < maxHeight)
+						newPosY = maxHeight - textureWidth;
+
 					setY(newPosY);
 				}
-				
+
+				float newPosX = posX + dragDistanceX;
+				if (getHorizontalMapSize() == MapSize.SMALLER_THAN_VIEWPORT) {
+					if (newPosX < 0)
+						newPosX = 0;
+					if (newPosX > maxWidth - textureWidth)
+						newPosX = maxWidth - textureWidth;
+
+					setX(newPosX);
+				} else if (getHorizontalMapSize() == MapSize.BIGGER_THAN_VIEWPORT) {
+					if (newPosX > 0)
+						newPosX = 0;
+					if (newPosX + textureWidth < maxWidth)
+						newPosX = maxWidth - textureWidth;
+
+					setX(newPosX);
+				}
 			}
 		});
-	}
-	
-	public boolean canMoveVertically() {
-		return true;
-	}
-	
-	public boolean canMoveHorizontally() {
-		// TODO: this should have some logic where 
-		return true;
+		
+		setFrame(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
+	public void setFrame(float x, float y, float width, float height) {
+		camera.viewportWidth = width;
+		camera.viewportHeight = height;
+//		camera.position.set(x + width/2, y + height/2, 1);
+		camera.position.set(x + width / 2f, y + height / 2f, 0);		
+		
+		frame.set(x, y, width, height);
+	}
+
+	public MapSize getHorizontalMapSize() {
+		if (frame.width > getWidth()) {
+			return MapSize.SMALLER_THAN_VIEWPORT;
+		} else {
+			return MapSize.BIGGER_THAN_VIEWPORT;
+		}
+	}
+
+	public MapSize getVerticalMapSize() {
+		if (frame.height > getHeight()) {
+			return MapSize.SMALLER_THAN_VIEWPORT;
+		} else {
+			return MapSize.BIGGER_THAN_VIEWPORT;
+		}
+	}
+
+	public float getWidth() {
+		return computedMapTexture.getWidth();
+	}
+
+	public float getHeight() {
+		return computedMapTexture.getHeight();
+	}
+
+	private enum MapSize {
+		BIGGER_THAN_VIEWPORT, SMALLER_THAN_VIEWPORT;
+	}
+	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
+		camera.update();
+		Matrix4 projection = batch.getProjectionMatrix();
+		
+		batch.end();
+		
+		Gdx.gl.glViewport((int) frame.x, (int) frame.y, (int) frame.width, (int) frame.height);
+		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
+		
 		tint.a = parentAlpha;
 		batch.setColor(tint);
 		batch.draw(computedMapTexture, getX(), getY(), getWidth(), getHeight());
+		
+		batch.end();
+		batch.setProjectionMatrix(projection);
+		batch.begin();
+		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
 	public void dispose() {
 		computedMapTexture.dispose();
 	}
-	
+
 }
