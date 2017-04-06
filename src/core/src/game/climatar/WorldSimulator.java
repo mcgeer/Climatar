@@ -13,106 +13,121 @@ import game.climatar.systems.political.PoliticalController;
 import game.climatar.systems.weather.WeatherController;
 
 @SetModel(GameState.class)
-public class WorldSimulator extends Controller{
+public class WorldSimulator extends Controller {
 
-    //Actively logged SubSystems
-    private boolean ghgIsActive, weatherIsActive, politicalIsActive;
+	// Actively logged SubSystems
+	private boolean ghgIsActive, weatherIsActive, politicalIsActive;
 
-    //Sub-system State Controllers
-    private GHGController ghgSystems;
-    private WeatherController weatherSystems;
-    private PoliticalController politicalSystems;
+	// Sub-system State Controllers
+	private GHGController ghgSystems;
+	private WeatherController weatherSystems;
+	private PoliticalController politicalSystems;
 
-    //News Events
-    private NewsEventControl newsController;
+	// News Events
+	private NewsEventControl newsController;
 
-    //GameStateTEMP
-    private GameState gameState;
-    
-    private MapView mapView;
+	private MapView mapView;
 
-    /**
-     * Start a new game, Controlling all aspects of the world, Call Simulate after Creation!
-     * @param monitoringGHG Is the GHG system being monitored
-     * @param monitoringWeather Is the Weather system being monitored
-     * @param monitoringPolitical Is the Political system being monitored
-     */
-    public void newGame(Nation player) {
-        //Set up what systems are being used
-        ghgIsActive = true;
-        weatherIsActive = true;
-        politicalIsActive = true;
+	/**
+	 * Start a new game, Controlling all aspects of the world, Call Simulate
+	 * after Creation!
+	 * 
+	 * @param monitoringGHG
+	 *            Is the GHG system being monitored
+	 * @param monitoringWeather
+	 *            Is the Weather system being monitored
+	 * @param monitoringPolitical
+	 *            Is the Political system being monitored
+	 */
+	public void newGame(Nation player) {
+		// Set up what systems are being used
+		ghgIsActive = true;
+		weatherIsActive = true;
+		politicalIsActive = true;
 
-        //Set up the Game State
-        gameState.init(player);
+		// Set up the Game State
+		((GameState) getModel()).init(player);
+	}
 
-    }
-    
-    /**
-     * Update Function to handle all requests to step the state of the world
-     */
-    public void Simulate(){
-        //GENERATE NEWS
-        //REACT TO NEWS
+	/**
+	 * Update Function to handle all requests to step the state of the world
+	 */
+	public void Simulate() {
+		// GENERATE NEWS
+		// REACT TO NEWS
 
-        //UPDATE Sub Systems
-        //if(ghgIsActive)
-        //    gameState.updateWorldGHG(ghgSystems.getEmissionsPerUpdate());
-        //TODO if(weatherIsActive)
-        //TODO    weatherSystems.Update();
-        //if(politicalIsActive)
-        //    gameState.updateWorldPlayerPolitics(politicalSystems.getTotalRelations());
+		// UPDATE Sub Systems
+		// if(ghgIsActive)
+		// gameState.updateWorldGHG(ghgSystems.getEmissionsPerUpdate());
+		// TODO if(weatherIsActive)
+		// TODO weatherSystems.Update();
+		// if(politicalIsActive)
+		// gameState.updateWorldPlayerPolitics(politicalSystems.getTotalRelations());
 
+	}
 
+	// ========================================================
+	// =============== Set Activated Systems ==================
 
-    }
+	/**
+	 * Enable/Disable GHG Sub System
+	 * 
+	 * @param ghgIsActive
+	 *            Enable/Disable
+	 */
+	public void setGhgIsActive(boolean ghgIsActive) {
+		this.ghgIsActive = ghgIsActive;
+	}
 
-    //========================================================
-    //=============== Set Activated Systems ==================
+	/**
+	 * Enable/Disable Weather Sub System
+	 * 
+	 * @param weatherIsActive
+	 *            Enable/Disable
+	 */
+	public void setWeatherIsActive(boolean weatherIsActive) {
+		this.weatherIsActive = weatherIsActive;
+	}
 
-    /**
-     * Enable/Disable GHG Sub System
-     * @param ghgIsActive Enable/Disable
-     */
-    public void setGhgIsActive(boolean ghgIsActive){
-        this.ghgIsActive = ghgIsActive;
-    }
+	/**
+	 * Enable/Disable Political Sub System
+	 * 
+	 * @param politicalIsActive
+	 *            Enable/Disable
+	 */
+	public void setPoliticalIsActive(boolean politicalIsActive) {
+		this.politicalIsActive = politicalIsActive;
+	}
 
-    /**
-     * Enable/Disable Weather Sub System
-     * @param weatherIsActive Enable/Disable
-     */
-    public void setWeatherIsActive(boolean weatherIsActive){
-        this.weatherIsActive = weatherIsActive;
-    }
-
-    /**
-     * Enable/Disable Political Sub System
-     * @param politicalIsActive Enable/Disable
-     */
-    public void setPoliticalIsActive(boolean politicalIsActive){
-        this.politicalIsActive = politicalIsActive;
-    }
-
-    //========================================================
-    //=================---- Overrides ----====================
-    @Override
-    protected void layoutView() {
+	// ========================================================
+	// =================---- Overrides ----====================
+	@Override
+	protected void layoutView() {
 		float width = Gdx.graphics.getWidth();
 		float height = Gdx.graphics.getHeight();
-		
+
 		mapView.setFrame(0, 0, width, height);
-		
+
 		showView(mapView);
-    }
+	}
 
-    @Override
-    protected void tick() {
-        //UPDATE WORLD STATE
+	@Override
+	protected void tick() {
+		// UPDATE WORLD STATE
+		// TODO add conds for GS updates
+		getModel().set(WorldProperty.TOTAL_GHG.id(), ghgSystems.getEmissionsPerUpdate());
+		getModel().set(WorldProperty.AVG_RELATIONS.id(), politicalSystems.getTotalRelations());
+		// getModel().set(WorldProperty.AVG_TEMP.id(), )
+	}
 
-        //TODO add conds for GS updates
-        getModel().set(WorldProperty.TOTAL_GHG.id(), ghgSystems.getEmissionsPerUpdate());
-        getModel().set(WorldProperty.AVG_RELATIONS.id(), politicalSystems.getTotalRelations());
-        //getModel().set(WorldProperty.AVG_TEMP.id(), )
-    }
+	@Override
+	protected void nextTick() {
+		if (isPlaying()) {
+			super.nextTick();
+		}
+	}
+
+	public boolean isPlaying() {
+		return getModel().get(WorldProperty.PLAYING.id()) != null;
+	}
 }

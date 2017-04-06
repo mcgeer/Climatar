@@ -9,10 +9,19 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public abstract class Controller {
 
 	Model model;
+	private Controller parentController;
 	ControllerManager manager;
 	private Stage stage;
 	private List<View> views = new ArrayList<View>();
 	private List<Controller> children = new ArrayList<Controller>();
+
+	public Controller getParentController() {
+		return this.parentController;
+	}
+	
+	void setParentController(Controller parentController) {
+		this.parentController = parentController;
+	}
 
 	void init() {
 		initialize();
@@ -38,7 +47,7 @@ public abstract class Controller {
 		}
 	}
 
-	void nextTick() {
+	protected void nextTick() {
 		tick();
 
 		for (Controller c : children) {
@@ -80,7 +89,7 @@ public abstract class Controller {
 
 	protected void resizeView(int width, int height) {
 		getStage().getViewport().update(width, height, true);
-		
+
 		for (View view : views) {
 			view.layout();
 		}

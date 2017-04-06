@@ -9,7 +9,7 @@ import game.climatar.map.Nation;
 
 public class GameState extends Model {
     public enum WorldProperty {
-        NATION, AVG_RELATIONS, AVG_TEMP, AVG_PRECIP, TOTAL_GHG;
+        NATION, AVG_RELATIONS, AVG_TEMP, AVG_PRECIP, TOTAL_GHG, PLAYING;
 
         public String id() {
             return this.name();
@@ -21,7 +21,7 @@ public class GameState extends Model {
      */
     public void init(Nation n) {
         set(WorldProperty.NATION.id(), n);
-
+    	set(WorldProperty.PLAYING.id(), true);
         set(WorldProperty.TOTAL_GHG.id(), 0);
         set(WorldProperty.AVG_PRECIP.id(), 0.0);
         set(WorldProperty.AVG_RELATIONS.id(), 0.0);

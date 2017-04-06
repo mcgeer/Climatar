@@ -55,9 +55,9 @@ public abstract class ControllerManager implements ApplicationListener {
 				}
 			}
 		}
-		
+
 		// all controllers, views, models are initialized!
-		for(Controller c : controllers) {
+		for (Controller c : controllers) {
 			c.init();
 		}
 	}
@@ -177,7 +177,9 @@ public abstract class ControllerManager implements ApplicationListener {
 
 			if (Controller.class.isAssignableFrom(fieldType)) {
 				Controller childController = (Controller) fieldType.newInstance();
-				
+
+				childController.setParentController(controller);
+
 				initializeControllerControllers(childController);
 				initializeControllerModel(childController);
 				initializeControllerViews(childController);
@@ -185,7 +187,7 @@ public abstract class ControllerManager implements ApplicationListener {
 				field.setAccessible(true);
 				field.set(controller, childController);
 				field.setAccessible(false);
-				
+
 				controller.addChildController(childController);
 			}
 		}
