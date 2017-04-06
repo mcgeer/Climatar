@@ -1,6 +1,8 @@
 package game.climatar.systems.weather;
-import com.kotcrab.vis.ui.widget.VisLabel;
 import java.util.HashMap;
+
+import com.kotcrab.vis.ui.widget.VisLabel;
+
 import game.climatar.map.Nation;
 
 

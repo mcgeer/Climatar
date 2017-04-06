@@ -6,12 +6,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 
-import game.climatar.architecture.AllowController;
 import game.climatar.architecture.Model;
+import game.climatar.architecture.SetController;
 import game.climatar.architecture.View;
-import game.climatar.play.PlayController;
 
-@AllowController({PlayController.class})
+@SetController({GHGSystemController.class})
 public class GHGSystemView extends View {
 
 	// components
@@ -40,8 +39,8 @@ public class GHGSystemView extends View {
 			}
 		};
 		
-		table.add(GHGEmissionsPerUpdate).width(widthVal).height(heightVal);
-		table.add(GHGEmissionsPerUpdateValue).width(widthVal).height(heightVal);
+		table.add(GHGEmissionsPerUpdate).maxWidth(widthVal).height(heightVal);
+		table.add(GHGEmissionsPerUpdateValue).maxWidth(widthVal).fillX().expandX().width(widthVal).height(heightVal);
 		
 		group.addActor(table);
 	}

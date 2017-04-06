@@ -21,13 +21,14 @@ public abstract class ControllerManager implements ApplicationListener {
 	private List<Controller> controllers = new ArrayList<Controller>();
 	private Set<Controller> viewControllers = new HashSet<Controller>();
 	private List<Controller> viewControllersBeingRemoved = new ArrayList<Controller>();
-	
+
 	private static Stage stage;
 	private InputMultiplexer inputMultiplexer;
 	private boolean globalPause = false;
 
 	protected void initialize(ControllerManager manager) {
-		if(inputMultiplexer != null) throw new RuntimeException("Tried to initialize " + getClass().getSimpleName() + " twice!");
+		if (inputMultiplexer != null)
+			throw new RuntimeException("Tried to initialize " + getClass().getSimpleName() + " twice!");
 		inputMultiplexer = new InputMultiplexer();
 		Gdx.input.setInputProcessor(inputMultiplexer);
 
@@ -37,14 +38,16 @@ public abstract class ControllerManager implements ApplicationListener {
 			if (Controller.class.isAssignableFrom(field.getType())) {
 				try {
 					Controller controller = (Controller) field.getType().newInstance();
-					controller.model = new Model();
+
 					controller.manager = manager;
 
 					field.setAccessible(true);
 					field.set(manager, controller);
 					field.setAccessible(false);
 
-					initializeController(controller);
+					initializeControllerControllers(controller);
+					initializeControllerModel(controller);
+					initializeControllerViews(controller);
 
 					controllers.add(controller);
 				} catch (Exception e) {
@@ -52,25 +55,31 @@ public abstract class ControllerManager implements ApplicationListener {
 				}
 			}
 		}
+		
+		// all controllers, views, models are initialized!
+		for(Controller c : controllers) {
+			c.init();
+		}
 	}
 
 	public void addViewController(Controller controller) {
-		if(viewControllers.contains(controller)) {
+		if (viewControllers.contains(controller)) {
 			return;
 		}
-		
+
 		viewControllers.add(controller);
 		inputMultiplexer.addProcessor(controller.getStage());
-		
-		controller.layoutView();
-		controller.resizeView(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+		controller.layoutViews();
+		controller.resizeViews(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
-	
+
 	public void removeViewController(Controller controller) {
-		if(!viewControllers.contains(controller)) {
+		if (!viewControllers.contains(controller)) {
 			return;
 		}
-		
+
+		inputMultiplexer.removeProcessor(controller.getStage());
 		controller.hideView();
 		viewControllersBeingRemoved.add(controller);
 	}
@@ -83,31 +92,34 @@ public abstract class ControllerManager implements ApplicationListener {
 		if (colour != null) {
 			this.backgroundColour = colour;
 		}
-	}	
-	
+	}
+
 	public static void delay(float seconds, Runnable runnable) {
-		if(stage == null) stage = new Stage();
+		if (stage == null)
+			stage = new Stage();
 		stage.addAction(Actions.sequence(Actions.delay(seconds), Actions.run(runnable)));
 	}
 
 	@Override
 	public void render() {
-		if(!globalPause) {
-			if(stage == null) stage = new Stage();
+		if (!globalPause) {
+			if (stage == null)
+				stage = new Stage();
 			stage.act();
-			
+
 			Gdx.gl.glClearColor(backgroundColour.r, backgroundColour.g, backgroundColour.b, 1f);
 			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
 			Iterator<Controller> iterable = viewControllersBeingRemoved.iterator();
-			while(iterable.hasNext()) {
+			while (iterable.hasNext()) {
 				Controller controller = iterable.next();
-				controller.renderView();
-				if(!controller.hasViewsWhichAreRendering()) {
+
+				if (!controller.hasViewsWhichAreRendering()) {
 					iterable.remove();
+					viewControllers.remove(controller);
 				}
 			}
-			for(Controller c : viewControllers) {
+			for (Controller c : viewControllers) {
 				c.renderView();
 			}
 
@@ -117,25 +129,70 @@ public abstract class ControllerManager implements ApplicationListener {
 
 	private void nextTick() {
 		for (Controller c : controllers) {
-			c.tick();
+			c.nextTick();
 		}
 	}
 
 	@Override
 	public void dispose() {
-		for(Controller c : viewControllers) {
+		for (Controller c : viewControllers) {
 			c.disposeView();
 		}
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		for(Controller c : viewControllers) {
-			c.resizeView(width, height);
+		for (Controller controller : viewControllers) {
+			controller.resizeViews(width, height);
 		}
 	}
 
-	private void initializeController(Controller controller) throws InstantiationException, IllegalAccessException {
+	// TODO: intializeControllerXYZ methods can probably be abstracted into one
+	// big method calling three smaller methods
+
+	private void initializeControllerModel(Controller controller)
+			throws InstantiationException, IllegalAccessException {
+		Class<? extends Controller> controllerClass = controller.getClass();
+
+		Model model;
+
+		SetModel annotation = controllerClass.getAnnotation(SetModel.class);
+		if (annotation != null) {
+			Class<? extends Model> modelClass = annotation.value();
+			model = modelClass.newInstance();
+
+		} else {
+			model = new Model();
+		}
+
+		controller.model = model;
+	}
+
+	private void initializeControllerControllers(Controller controller)
+			throws InstantiationException, IllegalAccessException {
+		Class<? extends Controller> controllerClass = controller.getClass();
+
+		for (Field field : controllerClass.getDeclaredFields()) {
+			Class<?> fieldType = field.getType();
+
+			if (Controller.class.isAssignableFrom(fieldType)) {
+				Controller childController = (Controller) fieldType.newInstance();
+				
+				initializeControllerControllers(childController);
+				initializeControllerModel(childController);
+				initializeControllerViews(childController);
+
+				field.setAccessible(true);
+				field.set(controller, childController);
+				field.setAccessible(false);
+				
+				controller.addChildController(childController);
+			}
+		}
+	}
+
+	private void initializeControllerViews(Controller controller)
+			throws InstantiationException, IllegalAccessException {
 		Class<? extends Controller> controllerClass = controller.getClass();
 
 		for (Field field : controllerClass.getDeclaredFields()) {
@@ -151,8 +208,8 @@ public abstract class ControllerManager implements ApplicationListener {
 				// The next line is handled by View#setController()
 				// controller.addView(view);
 
-				if (fieldType.getAnnotation(AllowController.class) != null) {
-					AllowController annotation = fieldType.getAnnotation(AllowController.class);
+				SetController annotation = fieldType.getAnnotation(SetController.class);
+				if (annotation != null) {
 
 					boolean valid = false;
 

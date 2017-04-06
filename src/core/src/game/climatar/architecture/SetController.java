@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface AllowController {
+public @interface SetController {
 	
 	Class<? extends Controller>[] value();
 	

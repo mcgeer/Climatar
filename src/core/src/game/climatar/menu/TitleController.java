@@ -22,7 +22,7 @@ public class TitleController extends Controller {
 		gameModeSelectView.setFrame(0, height / 2, width / 2, height / 2);
 		loadView.setFrame(width / 2, 0, width / 2, height / 2);
 		
-		showView(titleView, gameModeSelectView);
+		showView(titleView);
 	}
 
 	@Override

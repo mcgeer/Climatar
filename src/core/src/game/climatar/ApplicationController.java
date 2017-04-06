@@ -23,15 +23,17 @@ public class ApplicationController extends ControllerManager {
 		initialize(this);
 
 		addViewController(titleController);
-		addViewController(playController);
 	}
 	
 	public void play() {
+		System.out.println("Play!");
 		removeViewController(titleController);
+		addViewController(playController);
 	}
 	
 	public void title() {
-		removeViewController(titleController);
+		removeViewController(playController);
+		addViewController(titleController);
 	}
 
 }
