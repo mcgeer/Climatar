@@ -7,6 +7,7 @@ import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGController;
 import game.climatar.systems.political.PoliticalController;
 import game.climatar.systems.weather.WeatherSystemController;
+import game.climatar.GameState.WorldProperty;
 
 @SetModel(GameState.class)
 public class WorldSimulator extends Controller{
@@ -61,6 +62,12 @@ public class WorldSimulator extends Controller{
         //TODO    weatherSystems.Update();
         //if(politicalIsActive)
         //    gameState.updateWorldPlayerPolitics(politicalSystems.getTotalRelations());
+
+
+        //TODO add conds for GS updates
+        getModel().set(WorldProperty.TOTAL_GHG.id(), ghgSystems.getEmissionsPerUpdate());
+        getModel().set(WorldProperty.AVG_RELATIONS.id(), politicalSystems.getTotalRelations());
+
     }
 
     //========================================================
