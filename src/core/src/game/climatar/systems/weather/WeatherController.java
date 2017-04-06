@@ -1,40 +1,49 @@
 package game.climatar.systems.weather;
 
+import java.util.HashMap;
+
 import game.climatar.architecture.Controller;
+import game.climatar.architecture.SetModel;
+import game.climatar.map.Nation;
+import game.climatar.systems.weather.WeatherSystemController;
 
-/**
- * Created by Leo_Yuan on 17/4/6.
- */
+public class WeatherController extends Controller {
+    
+    // initial conditions
+    private static final double INITIAL_TEMPERATURE_FN = 0;
+    private static final double INITIAL_TEMPERATURE_EN = 0;
+    private static final double INITIAL_TEMPERATURE_WN = 0;
+    private static final double INITIAL_TEMPERATURE_AN = 0;
 
-public class WeatherController extends Controller{
-    // constants
-    //Set the limit for bad conditions
-    private static final int BadPercipitation = 25;
-    private static final double BadTemperature = 50;
+    private static final double INITIAL_PRECIPITATION_FN = 0;
+    private static final double INITIAL_PRECIPITATION_EN = 0;
+    private static final double INITIAL_PRECIPITATION_WN = 0;
+    private static final double INITIAL_PRECIPITATION_AN = 0;
 
+    WeatherSystemController earthNationController;
+    WeatherSystemController fireNationController;
+    WeatherSystemController waterNationController;
+    WeatherSystemController airNationController;
 
-
-    //set initial values for each nation
-    private int initialPercipitationFN = 50, initialPercipitationAN = 50, initialPercipitationWN = 50, initialPercipitationEN = 50;
-    private double initialTemperatureFN = 35, initialTemperatureAN = 5, initialTemperatureWN = -10,initialTemperatureEN = 28;
-
-    // child controllers
-    WeatherSystemController earthNationWeatherController;
-    WeatherSystemController fireNationWeatherController;
-    WeatherSystemController waterNationWeatherController;
-    WeatherSystemController airNationWeatherController;
+    private HashMap<Nation, WeatherSystemController> weatherSystems = new HashMap<Nation, WeatherSystemController>();
 
     @Override
     protected void initialize() {
-        System.out.println(earthNationWeatherController.getModel());
-        ((WeatherSystemModel) earthNationWeatherController.getModel()).initpercip(initialPercipitationEN);
-        ((WeatherSystemModel) earthNationWeatherController.getModel()).inittemp((initialTemperatureEN));
-        ((WeatherSystemModel) fireNationWeatherController.getModel()).initpercip(initialPercipitationFN);
-        ((WeatherSystemModel) fireNationWeatherController.getModel()).inittemp((initialTemperatureFN));
-        ((WeatherSystemModel) airNationWeatherController.getModel()).initpercip(initialPercipitationAN);
-        ((WeatherSystemModel) airNationWeatherController.getModel()).inittemp((initialTemperatureAN));
-        ((WeatherSystemModel) waterNationWeatherController.getModel()).initpercip(initialPercipitationWN);
-        ((WeatherSystemModel) waterNationWeatherController.getModel()).inittemp((initialTemperatureWN));
+	//Setup Controllers
+        ((WeatherSystemModel) earthNationController.getModel())
+	    .init(INITIAL_TEMPERATURE_FN, INITIAL_PRECIPITATION_FN);
+        ((WeatherSystemModel) fireNationController.getModel())
+	    .init(INITIAL_TEMPERATURE_EN, INITIAL_PRECIPITATION_EN);
+        ((WeatherSystemModel) airNationController.getModel())
+	    .init(INITIAL_TEMPERATURE_WN, INITIAL_PRECIPITATION_WN);
+        ((WeatherSystemModel) waterNationController.getModel())
+	    .init(INITIAL_TEMPERATURE_AN, INITIAL_PRECIPITATION_AN);
+
+        //Setup Map
+        weatherSystems.put(Nation.FIRE, fireNationController);
+        weatherSystems.put(Nation.EARTH, earthNationController);
+        weatherSystems.put(Nation.AIR, airNationController);
+        weatherSystems.put(Nation.WATER, waterNationController);
     }
 
     @Override
@@ -44,23 +53,14 @@ public class WeatherController extends Controller{
 
     @Override
     protected void tick() {
-        // set the model's total emissions (by all nations)
-
-        double fireTemp = fireNationWeatherController.getTemp();
-        int firePercip = fireNationWeatherController.getPercip();
-        double earthTemp=earthNationWeatherController.getTemp();
-        int earthPercip = earthNationWeatherController.getPercip();
-        double airTemp = airNationWeatherController.getTemp();
-        int airPercip = airNationWeatherController.getPercip();
-        double WaterTemp = waterNationWeatherController.getTemp();
-        int WaterPercip = waterNationWeatherController.getPercip();
 
     }
-
+     
     /**
-     *
-     * @return
+     * @param n Nation being fetched
+     * @return Controller for Nation n
      */
-
-
+    public WeatherSystemController getWeatherSystemController(Nation n) {
+	return weatherSystems.get(n);
+    }
 }

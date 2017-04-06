@@ -1,83 +1,59 @@
 package game.climatar.systems.weather;
-import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
-import com.kotcrab.vis.ui.widget.VisLabel;
-import game.climatar.architecture.SetModel;
+ 
 import game.climatar.architecture.Controller;
-import game.climatar.map.Nation;
+import game.climatar.architecture.SetModel;
 import game.climatar.systems.weather.WeatherSystemModel.WeatherProperty;
-
+ 
 @SetModel(WeatherSystemModel.class)
-public class WeatherSystemController extends Controller{
-
-    private WeatherSystemView weatherSystemView;
-
+public class WeatherSystemController extends Controller {
+ 
+    private WeatherSystemView systemView;
+ 
     @Override
     protected void initialize() {
-        getModel().set(WeatherSystemModel.WeatherProperty.CHANGE_IN_PERCIP.id(), 0);
-        getModel().set(WeatherSystemModel.WeatherProperty.CHANGE_IN_TEMP.id(), 0);
+	getModel().set(WeatherProperty.DELTA_TEMPERATURE.id(), 0);
+	getModel().set(WeatherProperty.TEMPERATURE.id(), 0);
+	getModel().set(WeatherProperty.DELTA_PRECIPITATION.id(), 0);
+	getModel().set(WeatherProperty.PRECIPITATION.id(), 0);
     }
-
-
-
-    //Set the limit for bad conditions
-    private static final int BadPercipitation = 25;
-    private static final double BadTemperature = 50;
-
-
-
-
-    public boolean IsSafeTemperature(){
-        if ((double) getModel().get(WeatherProperty.CURRENT_TEMP.id())>BadTemperature){
-            return false;
-        }
-        else
-            return true;
-
-    }
-
-    public boolean IsDrought() {
-        if ((int) getModel().get(WeatherProperty.CURRENT_PERCIP.id()) < BadPercipitation)
-            return true;
-
-        else
-            return false;
-    }
-
-    @Override
-    protected void tick() {
-        // Update the EmissionsPerUpdate value based on DeltaEmissions
-        double currenttemp = (double) getModel().get(WeatherProperty.CURRENT_TEMP.id());
-        double deltatemp = (double) getModel().get(WeatherProperty.CHANGE_IN_TEMP.id());
-        int currentPerci = (int)getModel().get(WeatherProperty.CURRENT_PERCIP.id());
-        int deltaPerci = (int)getModel().get(WeatherProperty.CHANGE_IN_PERCIP.id());
-
-
-        currentPerci+=deltaPerci;
-        currenttemp+=deltatemp;
-
-        getModel().set(WeatherProperty.CURRENT_PERCIP.id(), currentPerci);
-        getModel().set(WeatherProperty.CURRENT_TEMP.id(), currenttemp);
-    }
-
-
-    public double getTemp() {
-        return (double) getModel().get(WeatherProperty.CURRENT_TEMP.id());
-    }
-
-    public int getPercip() {
-        return (int) getModel().get(WeatherProperty.CURRENT_PERCIP.id());
-    }
-
-
+ 
     @Override
     protected void layoutView() {
-        float width = Gdx.graphics.getWidth();
-        float height = Gdx.graphics.getHeight();
-
-        weatherSystemView.setFrame(0, 0, width/2, height/2);
-
-        showView(weatherSystemView);
+	float width = Gdx.graphics.getWidth();
+	float height = Gdx.graphics.getHeight();
+ 
+	systemView.setFrame(0, 0, width/2, height/2);
+	showView(systemView);
     }
-}
+ 
+    @Override
+    protected void tick() {
+	// update the temperature 
+	double temperature = (double) getModel().get(WeatherProperty.TEMPERATURE.id());
+	double deltaTemperature = (double) getModel().get(WeatherProperty.DELTA_TEMPERATURE.id());
+	getModel().set(WeatherProperty.TEMPERATURE.id(), temperature + deltaTemperature);
+
+	// update the precipitation
+	double precipitation = (double) getModel().get(WeatherProperty.PRECIPITATION.id());
+	double deltaPrecipitation = (double) getModel().get(WeatherProperty.DELTA_PRECIPITATION.id());
+	getModel().set(WeatherProperty.TEMPERATURE.id(), precipitation + deltaPrecipitation);
+    }
+ 
+    public void setDeltaTemperature(double delta) {
+	getModel().set(WeatherProperty.DELTA_TEMPERATURE.id(), delta);
+    }
+ 
+    public void setDeltaPrecipitation(double delta) {
+	getModel().set(WeatherProperty.DELTA_PRECIPITATION.id(), delta);
+    }
+ 
+    public double getTemperature() {
+	return (double) getModel().get(WeatherProperty.TEMPERATURE.id());
+    }
+ 
+    public double getPrecipitation() {
+	return (double) getModel().get(WeatherProperty.PRECIPITATION.id());
+    }
+}   

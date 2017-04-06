@@ -43,7 +43,6 @@ public class PoliticalController extends Controller {
         politicalSystems.put(Nation.EARTH, earthNationController);
         politicalSystems.put(Nation.AIR, airNationController);
         politicalSystems.put(Nation.WATER, waterNationController);
-
     }
 
     @Override
