@@ -4,6 +4,7 @@ import game.climatar.map.Nation;
 import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGController;
 import game.climatar.systems.ghg.GHGSystemController;
+import game.climatar.systems.political.PoliticalController;
 import game.climatar.systems.political.PoliticalSystemController;
 import game.climatar.systems.weather.WeatherSystemController;
 
@@ -15,7 +16,7 @@ public class WorldSimulator {
     //Sub-system State Controllers
     private GHGController ghgSystems;
     private WeatherSystemController weatherSystems;
-    private PoliticalSystemController politicalSystems;
+    private PoliticalController politicalSystems;
 
     //News Events
     private NewsEventControl newsController;
@@ -36,9 +37,9 @@ public class WorldSimulator {
         politicalIsActive = monitoringPolitical;
 
         //System Links May not be used
-        ghgSystems = new GHGController();
+        //ghgSystems = new GHGController();
         weatherSystems = new WeatherSystemController();
-        politicalSystems = new PoliticalSystemController();
+        //politicalSystems = new PoliticalController();
 
         //Set up the Game State
         gameState = new GameState2(player);
@@ -57,8 +58,8 @@ public class WorldSimulator {
             gameState.updateWorldGHG(ghgSystems.getEmissionsPerUpdate());
         //TODO if(weatherIsActive)
         //TODO    weatherSystems.Update();
-        //if(politicalIsActive)
-        //    gameState.updateWorldPlayerPolitics(politicalSystems.update(gameState.getPlayer()));
+        if(politicalIsActive)
+            gameState.updateWorldPlayerPolitics(politicalSystems.getTotalRelations());
     }
 
     //========================================================

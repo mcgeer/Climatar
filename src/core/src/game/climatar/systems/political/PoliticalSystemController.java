@@ -1,70 +1,80 @@
 package game.climatar.systems.political;
 
-import java.util.HashMap;
-import game.climatar.map.Nation;
+import com.badlogic.gdx.Gdx;
+import game.climatar.architecture.Controller;
+import game.climatar.architecture.SetModel;
 
+import game.climatar.systems.political.PoliticalSystemModel.PoliticalProperty;
 /**
  * Control all political systems
  */
-public class PoliticalSystemController {
+@SetModel(PoliticalSystemModel.class)
+public class PoliticalSystemController extends Controller {
 
-    //Refs to models and views
-    private HashMap<Nation, PoliticalSystemModel> modelLink;
-    private HashMap<Nation, PoliticalSystemView> viewLink;
+    private PoliticalSystemView politicalSystemView;
 
-    /**
-     * New Political controller for all nations
-     */
-    public PoliticalSystemController(){
-        modelLink = new HashMap<Nation, PoliticalSystemModel>();
-        viewLink = new HashMap<Nation, PoliticalSystemView>();
+    @Override
+    protected void initialize() {
+        getModel().set(PoliticalProperty.RELATIONS.id(), 0);
+        getModel().set(PoliticalProperty.WALLET.id(), 0);
+    }
 
-        //Fire Nation
-        modelLink.put(Nation.FIRE, new PoliticalSystemModel(Nation.FIRE, 5000));
-        viewLink.put(Nation.FIRE, new PoliticalSystemView());
+    @Override
+    protected void layoutView() {
+        float width = Gdx.graphics.getWidth();
+        float height = Gdx.graphics.getHeight();
 
-        //Air Nation
-        modelLink.put(Nation.AIR, new PoliticalSystemModel(Nation.AIR, 1000));
-        viewLink.put(Nation.AIR, new PoliticalSystemView());
+        politicalSystemView.setFrame(0, 0, width/2, height/2);
 
-        //Water Nation
-        modelLink.put(Nation.WATER, new PoliticalSystemModel(Nation.WATER, 1000));
-        viewLink.put(Nation.WATER, new PoliticalSystemView());
+        showView(politicalSystemView);
+    }
 
-        //Earth Nation
-        modelLink.put(Nation.EARTH, new PoliticalSystemModel(Nation.EARTH, 8000));
-        viewLink.put(Nation.EARTH, new PoliticalSystemView());
+    @Override
+    protected void tick() {
+        // Update the Wallet
+        int wallet = (int) getModel().get(PoliticalProperty.WALLET.id());
+        wallet += (int) getModel().get(PoliticalProperty.DELTA_WALLET.id());
+
+        getModel().set(PoliticalProperty.WALLET.id(), wallet);
+
+        //Update the Relations
+        int relations = (int) getModel().get(PoliticalProperty.RELATIONS.id());
+        relations += (int) getModel().get(PoliticalProperty.DELTA_RELATIONS.id());
+
+        getModel().set(PoliticalProperty.RELATIONS.id(), relations);
+
+        //Reset Deltas For this class
+        getModel().set(PoliticalProperty.DELTA_RELATIONS.id(), 0.0);
+        getModel().set(PoliticalProperty.DELTA_WALLET.id(), 0);
     }
 
     /**
-     * Get total relation from n
-     * @return Total relation [0, 300]
+     * Set a change to be in effect on next update for a nations emissions
+     * @param deltaWallet Change being applied int in [-10, 10] - {0}
      */
-    public double update()
-    {
-        double ret = 0.0;
-        for (Nation n:
-             Nation.values()) {
-            ret += modelLink.get(n).getRelation();
-        }
-        return ret;
+    public void setDeltaWallet(int deltaWallet){
+        getModel().set(PoliticalProperty.DELTA_WALLET.id(), deltaWallet);
     }
 
     /**
-     * Change wallet of n by delta
-     * @param n Nation under effect
-     * @param delta Change in Economic stance
+     * Set a change to be in effect next update for a nations public relations
+     * @param deltaRelations Changeto be applied to relations
      */
-    public void deltaWallet(Nation n, int delta){
-        modelLink.get(n).deltaWallet(delta);
+    public void setDeltaRelations(int deltaRelations){
+        getModel().set(PoliticalProperty.DELTA_RELATIONS.id(), deltaRelations);
     }
 
     /**
-     * Update relations between n1 and n2 to change by delta
-     * @param n Nation one whose relation is changing
-     * @param delta Change in relation
+     * Get the Wallet amount
      */
-    public void updateRelations(Nation n, double delta){
-        modelLink.get(n).deltaRelation(delta);
+    public int getWallet(){
+        return (int) getModel().get(PoliticalProperty.WALLET.id());
+    }
+
+    /**
+     * Get the Relations level
+     */
+    public double getRelations(){
+        return (double) getModel().get(PoliticalProperty.RELATIONS.id());
     }
 }
