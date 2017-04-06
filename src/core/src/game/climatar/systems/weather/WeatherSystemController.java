@@ -1,47 +1,35 @@
 package game.climatar.systems.weather;
 import java.util.HashMap;
 
+import com.badlogic.gdx.Gdx;
 import com.kotcrab.vis.ui.widget.VisLabel;
-
+import game.climatar.architecture.SetModel;
+import game.climatar.architecture.Controller;
 import game.climatar.map.Nation;
+import game.climatar.systems.weather.WeatherSystemModel.WeatherProperty;
+
+@SetModel(WeatherSystemModel.class)
+public class WeatherSystemController extends Controller{
+
+    private WeatherSystemView weatherSystemView;
+
+    @Override
+    protected void initialize() {
+        getModel().set(WeatherSystemModel.WeatherProperty.CHANGE_IN_PERCIP.id(), 0);
+        getModel().set(WeatherSystemModel.WeatherProperty.CHANGE_IN_TEMP.id(), 0);
+    }
 
 
-public class WeatherSystemController {
-
-    private HashMap<Nation, WeatherSystemModel> modelLink;
-    private HashMap<Nation, WeatherSystemView> viewLink;
 
     //Set the limit for bad conditions
     private static final int BadPercipitation = 25;
     private static final double BadTemperature = 50;
 
-    //set initial values for each nation
-    private int initialPercipitationFN = 50, initialPercipitationAN = 50, initialPercipitationWN = 50, initialPercipitationEN = 50;
-    private double initialTemperatureFN = 35, initialTempertureAN = 5, initialTemperatureWN = -10,initialTemperatureEN = 28;
 
 
-    //initialize the controller
-    public WeatherSystemController(){
-        modelLink = new HashMap<Nation, WeatherSystemModel>();
-        viewLink = new HashMap<Nation, WeatherSystemView>();
 
-        //Initialize Fire
-        modelLink.put(Nation.FIRE, new WeatherSystemModel(initialPercipitationFN, initialTemperatureFN));
-        viewLink.put(Nation.FIRE, new WeatherSystemView());
-        //Initialize Air
-        modelLink.put(Nation.AIR, new WeatherSystemModel(initialPercipitationAN, initialTempertureAN));
-        viewLink.put(Nation.AIR, new WeatherSystemView());
-        //Initialize Water
-        modelLink.put(Nation.WATER, new WeatherSystemModel(initialPercipitationWN, initialTemperatureWN));
-        viewLink.put(Nation.WATER, new WeatherSystemView());
-        //Initialize Earth
-        modelLink.put(Nation.EARTH, new WeatherSystemModel(initialPercipitationEN, initialTemperatureEN));
-        viewLink.put(Nation.EARTH, new WeatherSystemView());
-    }
-
-
-    public boolean IsSafeTemperature(Nation nation){
-        if (GetTemperatureLevel(nation)>BadTemperature){
+    public boolean IsSafeTemperature(){
+        if ((double) getModel().get(WeatherProperty.CURRENT_TEMP.id())>BadTemperature){
             return false;
         }
         else
@@ -49,27 +37,47 @@ public class WeatherSystemController {
 
     }
 
-    public boolean IsDrought(Nation nation) {
-        if (GetPercipitationLevel(nation) < BadPercipitation)
+    public boolean IsDrought() {
+        if ((int) getModel().get(WeatherProperty.CURRENT_PERCIP.id()) < BadPercipitation)
             return true;
 
         else
             return false;
     }
 
-    public Double GetTemperatureLevel(Nation nation){
+    @Override
+    protected void tick() {
+        // Update the EmissionsPerUpdate value based on DeltaEmissions
+        double currenttemp = (double) getModel().get(WeatherProperty.CURRENT_TEMP.id());
+        double deltatemp = (double) getModel().get(WeatherProperty.CHANGE_IN_TEMP.id());
+        int currentPerci = (int)getModel().get(WeatherProperty.CURRENT_PERCIP.id());
+        int deltaPerci = (int)getModel().get(WeatherProperty.CHANGE_IN_PERCIP.id());
 
-        return modelLink.get(nation).gettemperature();
 
+        currentPerci+=deltaPerci;
+        currenttemp+=deltatemp;
 
+        getModel().set(WeatherProperty.CURRENT_PERCIP.id(), currentPerci);
+        getModel().set(WeatherProperty.CURRENT_TEMP.id(), currenttemp);
     }
 
-    public int GetPercipitationLevel(Nation nation){
-        return modelLink.get(nation).getPercipitation();
+
+    public double getTemp() {
+        return (double) getModel().get(WeatherProperty.CURRENT_TEMP.id());
     }
 
-    public void GetWeatherLabel (Nation nation){
-        VisLabel weathertemperaturelabel = new VisLabel("Current Temperature: "+ GetTemperatureLevel(nation)+"Degree");
-        VisLabel weatherPercipitationlabel = new VisLabel("Current Percipitation: "+GetPercipitationLevel(nation)+"mm");
+    public int getPercip() {
+        return (int) getModel().get(WeatherProperty.CURRENT_PERCIP.id());
+    }
+
+
+    @Override
+    protected void layoutView() {
+        float width = Gdx.graphics.getWidth();
+        float height = Gdx.graphics.getHeight();
+
+        weatherSystemView.setFrame(0, 0, width/2, height/2);
+
+        showView(weatherSystemView);
     }
 }
