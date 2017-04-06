@@ -29,6 +29,7 @@ public class PoliticalController extends Controller {
 
 
     private HashMap<Nation, PoliticalSystemController> politicalSystems = new HashMap<Nation, PoliticalSystemController>();
+
     @Override
     protected void initialize() {
         //Setup Controllers
@@ -55,10 +56,18 @@ public class PoliticalController extends Controller {
 
     }
 
+    /**
+     * @param n Nation being fetched
+     * @return Controller for Nation n
+     */
     public PoliticalSystemController getPoliticalSystemController(Nation n){
         return politicalSystems.get(n);
     }
 
+    /**
+     * Average World Local reputations
+     * @return AVG local reputations
+     */
     public double getTotalRelations(){
         double totalEmissionsPerUpdate = 0;
 

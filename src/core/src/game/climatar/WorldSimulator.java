@@ -1,14 +1,15 @@
 package game.climatar;
 
+import game.climatar.architecture.Controller;
+import game.climatar.architecture.SetModel;
 import game.climatar.map.Nation;
 import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGController;
-import game.climatar.systems.ghg.GHGSystemController;
 import game.climatar.systems.political.PoliticalController;
-import game.climatar.systems.political.PoliticalSystemController;
 import game.climatar.systems.weather.WeatherSystemController;
 
-public class WorldSimulator {
+@SetModel(GameState.class)
+public class WorldSimulator extends Controller{
 
     //Actively logged SubSystems
     private boolean ghgIsActive, weatherIsActive, politicalIsActive;
@@ -21,8 +22,8 @@ public class WorldSimulator {
     //News Events
     private NewsEventControl newsController;
 
-    //GameState
-    private GameState2 gameState;
+    //GameStateTEMP
+    private GameState gameState;
 
     /**
      * Create a World Simulator, Controlling all aspects of the world, Call Simulate after Creation!
@@ -42,7 +43,7 @@ public class WorldSimulator {
         //politicalSystems = new PoliticalController();
 
         //Set up the Game State
-        gameState = new GameState2(player);
+        gameState.init(player);
 
     }
 
@@ -54,12 +55,12 @@ public class WorldSimulator {
         //REACT TO NEWS
 
         //UPDATE Sub Systems
-        if(ghgIsActive)
-            gameState.updateWorldGHG(ghgSystems.getEmissionsPerUpdate());
+        //if(ghgIsActive)
+        //    gameState.updateWorldGHG(ghgSystems.getEmissionsPerUpdate());
         //TODO if(weatherIsActive)
         //TODO    weatherSystems.Update();
-        if(politicalIsActive)
-            gameState.updateWorldPlayerPolitics(politicalSystems.getTotalRelations());
+        //if(politicalIsActive)
+        //    gameState.updateWorldPlayerPolitics(politicalSystems.getTotalRelations());
     }
 
     //========================================================
@@ -87,5 +88,17 @@ public class WorldSimulator {
      */
     public void setPoliticalIsActive(boolean politicalIsActive){
         this.politicalIsActive = politicalIsActive;
+    }
+
+    //========================================================
+    //=================---- Overrides ----====================
+    @Override
+    protected void layoutView() {
+
+    }
+
+    @Override
+    protected void tick() {
+
     }
 }

@@ -1,4 +1,7 @@
 package game.climatar.systems.political;
+
+import java.util.HashMap;
+
 import game.climatar.architecture.Model;
 import game.climatar.map.Nation;
 
@@ -16,12 +19,14 @@ public class PoliticalSystemModel extends Model {
     }
 
     /**
-     * Initializes this PoliticalSystem with an initialwallet and relations
+     * Initializes this GHGSystemModel with an initial emission level of initialEmissions
      */
     public void init(int initialWallet) {
-        set(PoliticalProperty.DELTA_WALLET.id(), 0);
-        set(PoliticalProperty.DELTA_RELATIONS.id(), 0.0);
+        set(PoliticalProperty.DELTA_WALLET.id(), initialWallet);
+        set(PoliticalProperty.DELTA_RELATIONS.id(), 75.0);
         set(PoliticalProperty.WALLET.id(), initialWallet);
         set(PoliticalProperty.RELATIONS.id(), 75.0);
     }
+
+
 }

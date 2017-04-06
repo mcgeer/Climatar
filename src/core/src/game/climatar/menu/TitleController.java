@@ -60,7 +60,7 @@ public class TitleController extends Controller {
 	 * @param slot
 	 *            Slot to save to.
 	 * @param state
-	 *            GameState to save.
+	 *            GameStateTEMP to save.
 	 */
 	public void saveState(int slot, GameState state) {
 		String saveFileName = getSaveFileName(slot);

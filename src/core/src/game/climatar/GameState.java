@@ -1,35 +1,31 @@
 package game.climatar;
 
+import game.climatar.architecture.Model;
 import game.climatar.map.Nation;
 
+/**
+ * Created by riley_000 on 2017-04-06.
+ */
 
-import game.climatar.map.Nation.*;
+public class GameState extends Model {
+    enum WorldProperty {
+        NATION, AVG_RELATIONS, AVG_TEMP, AVG_PRECIP, TOTAL_GHG;
 
-public class GameState {
-
-    //The world states
-    private int TotalGHG;
-    private int PoliticalSafety;
-    private int AveragePercp;
-    private double AverageTemp;
-
-    //The Nation states
-    private int GHG;
-    private int political;
-    private int percp;
-    private double temp;
-
-
-    public boolean IsWorldAlive(){
-        if(TotalGHG>= 90 || PoliticalSafety<=1000||AveragePercp >= 500||AverageTemp >=60)
-        return false;
-        else return true;
+        public String id() {
+            return this.name();
+        }
     }
 
-    public boolean IsNationAlive(Nation n){
-        if(GHG >=90||political<=1000||percp>=500||temp>=60)
-            return false;
-        else return true;
+    /**
+     * Initialize World State with Nation n
+     */
+    public void init(Nation n) {
+        set(WorldProperty.NATION.id(), n);
+
+        set(WorldProperty.TOTAL_GHG.id(), 0);
+        set(WorldProperty.AVG_PRECIP.id(), 0.0);
+        set(WorldProperty.AVG_RELATIONS.id(), 0.0);
+        set(WorldProperty.AVG_TEMP.id(), 0.0);
     }
 
 }
