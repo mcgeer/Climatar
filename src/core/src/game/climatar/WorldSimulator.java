@@ -1,6 +1,5 @@
 package game.climatar;
 
-import game.climatar.map.GameState;
 import game.climatar.map.Nation;
 import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGSystemController;
@@ -21,7 +20,7 @@ public class WorldSimulator {
     private NewsEventControl newsController;
 
     //GameState
-    private GameState gameState;
+    private GameState2 gameState;
 
     /**
      * Create a World Simulator, Controlling all aspects of the world, Call Simulate after Creation!
@@ -41,7 +40,7 @@ public class WorldSimulator {
         politicalSystems = new PoliticalSystemController();
 
         //Set up the Game State
-        gameState = new GameState(player);
+        gameState = new GameState2(player);
 
     }
 

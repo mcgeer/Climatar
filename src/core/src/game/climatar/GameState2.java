@@ -1,6 +1,8 @@
-package game.climatar.map;
+package game.climatar;
 
-public class GameState {
+import game.climatar.map.Nation;
+
+public class GameState2 {
     //Nation the Player Controls
     private Nation player;
 
@@ -15,7 +17,7 @@ public class GameState {
      * Create a new Game state with the player Nation
      * @param nation
      */
-    public GameState(Nation nation){
+    public GameState2(Nation nation){
         player = nation;
     }
 
