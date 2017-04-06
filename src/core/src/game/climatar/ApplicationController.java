@@ -35,7 +35,6 @@ public class ApplicationController extends ControllerManager {
 	}
 	
 	public void play(GameState state) {
-		System.out.println("Play!");
 		removeViewController(titleController);
 		addViewController(worldSimulator);
 	}

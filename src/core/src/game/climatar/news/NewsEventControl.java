@@ -1,9 +1,7 @@
 package game.climatar.news;
 
-import game.climatar.architecture.Controller;
 import game.climatar.GameState;
-import game.climatar.architecture.ControllerManager;
-import game.climatar.map.Nation;
+import game.climatar.architecture.Controller;
 
 public class NewsEventControl extends Controller{
     private NewsEventGenerator PressMill;
@@ -14,12 +12,16 @@ public class NewsEventControl extends Controller{
     protected void initialize() {
         
        super.initialize();
-        PressMill= new NewsEventGenerator(gs);
+       
     }
 
     @Override
     protected void layoutView() {
         showView(view);
+    }
+    
+    public void generateNews(){
+    	 PressMill= new NewsEventGenerator(gs);
     }
 
     @Override

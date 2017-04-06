@@ -26,7 +26,6 @@ public class WeatherController extends Controller{
 
     @Override
     protected void initialize() {
-        System.out.println(earthNationWeatherController.getModel());
         ((WeatherSystemModel) earthNationWeatherController.getModel()).initpercip(initialPercipitationEN);
         ((WeatherSystemModel) earthNationWeatherController.getModel()).inittemp((initialTemperatureEN));
         ((WeatherSystemModel) fireNationWeatherController.getModel()).initpercip(initialPercipitationFN);

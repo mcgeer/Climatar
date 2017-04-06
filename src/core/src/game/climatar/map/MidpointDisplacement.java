@@ -18,12 +18,6 @@ public class MidpointDisplacement {
 	private static float forestThreshold = 0.8f;
 	private static float hillsThreshold = 0.88f;
 
-	public static void main(String[] args) {
-		for (int[] arr : getMap(7, 6, 4, 2f)) {
-			System.out.println(Arrays.toString(arr));
-		}
-	}
-
 	public static int[][] getMap(int n, int wmult, int hmult, float smoothness) {
 
 		// get the dimensions of the map
