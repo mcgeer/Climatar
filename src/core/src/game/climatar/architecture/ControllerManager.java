@@ -208,7 +208,7 @@ public abstract class ControllerManager implements ApplicationListener {
 				// The next line is handled by View#setController()
 				// controller.addView(view);
 
-				SetController annotation = fieldType.getAnnotation(SetController.class);
+				AllowController annotation = fieldType.getAnnotation(AllowController.class);
 				if (annotation != null) {
 
 					boolean valid = false;

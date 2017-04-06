@@ -7,10 +7,10 @@ import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 
 import game.climatar.architecture.Model;
-import game.climatar.architecture.SetController;
+import game.climatar.architecture.AllowController;
 import game.climatar.architecture.View;
 
-@SetController({GHGSystemController.class})
+@AllowController({GHGSystemController.class})
 public class GHGSystemView extends View {
 
 	// components
