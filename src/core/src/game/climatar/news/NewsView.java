@@ -29,4 +29,8 @@ public void layout(float x, float y, float width, float height) {
     public void update(Model model) {
 
     }
+
+    public boolean getUserInput(){
+        return true;
+    }
 }

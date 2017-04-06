@@ -63,8 +63,8 @@ public class NewsEvent {
 		return rep;
 	}
 
-	private static void newsExecute(){
-
+	public NewsType getType(){
+		return type;
 	}
 
 	

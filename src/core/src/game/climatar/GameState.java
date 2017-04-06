@@ -14,6 +14,7 @@ public class GameState extends Model {
         public String id() {
             return this.name();
         }
+
     }
 
     /**
