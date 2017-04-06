@@ -30,8 +30,8 @@ public class GHGSystemController extends Controller {
 	@Override
 	protected void tick() {
 		// Update the EmissionsPerUpdate value based on DeltaEmissions
-		int emissionsPerUpdate = (int) getModel().get(GHGProperty.EMISSIONS_PER_UPDATE.id());
-		int deltaEmissions = (int) getModel().get(GHGProperty.DELTA_EMISSIONS.id());
+		int emissionsPerUpdate = (Integer) getModel().get(GHGProperty.EMISSIONS_PER_UPDATE.id());
+		int deltaEmissions = (Integer) getModel().get(GHGProperty.DELTA_EMISSIONS.id());
 		
 		emissionsPerUpdate += deltaEmissions;
 		
@@ -40,7 +40,6 @@ public class GHGSystemController extends Controller {
 	
     /**
      * Set a change to be in effect on next update for a nations emissions
-     * @param n Nation who is consequently having a change in emissions
      * @param deltaEmissions Change being applied int in [-10, 10] - {0}
      */
     public void setDeltaEmissions(int deltaEmissions){
@@ -48,7 +47,7 @@ public class GHGSystemController extends Controller {
     }
 
 	public int getEmissionPerUpdate() {
-		return (int) getModel().get(GHGProperty.EMISSIONS_PER_UPDATE.id());
+		return (Integer) getModel().get(GHGProperty.EMISSIONS_PER_UPDATE.id());
 	}
 
 }
