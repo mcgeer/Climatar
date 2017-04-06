@@ -8,7 +8,6 @@ public enum NewsEvents {
 	PASSIVE(1),
 	ACTIVE(2),
 	INTER(3);
-
 	private  List <ConseqType> yCon;
 	private  List <ConseqType> nCon;
 	NewsEvents (int num){
@@ -23,7 +22,7 @@ public enum NewsEvents {
 	}
 	private String BaseEvent;
 	private static Nation rep;
-	
+	private Integer pid;
 	public void setDescription(String s){
 		BaseEvent=s;
 	}
@@ -41,6 +40,9 @@ public enum NewsEvents {
 			rep=Nation.EARTH;
 		}
 	}
+	public void setIndex(int p){
+		pid=p;
+	}
 
 	public void addYConseq(ConseqType T){
 		yCon.add(T);
@@ -48,7 +50,9 @@ public enum NewsEvents {
 	public void addNConseq(ConseqType T){
 		nCon.add(T);
 	}
-	
+	public Integer getIndex(){
+		return pid;
+	}
 	private static Nation getEventNation(){
 		return rep;
 	}
