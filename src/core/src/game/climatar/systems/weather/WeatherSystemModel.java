@@ -2,7 +2,7 @@ package game.climatar.systems.weather;
 
 public class WeatherSystemModel {
 
-    private  int Percipitation;
+    private int Percipitation;
     private double Temperature;
 
 
