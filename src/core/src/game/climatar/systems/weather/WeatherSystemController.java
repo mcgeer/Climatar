@@ -30,13 +30,13 @@ public class WeatherSystemController extends Controller {
 	@Override
 	protected void tick() {
 		// update the temperature
-		double temperature = (double) getModel().get(WeatherProperty.TEMPERATURE.id());
-		double deltaTemperature = (double) getModel().get(WeatherProperty.DELTA_TEMPERATURE.id());
+		double temperature = (Double) getModel().get(WeatherProperty.TEMPERATURE.id());
+		double deltaTemperature = (Double) getModel().get(WeatherProperty.DELTA_TEMPERATURE.id());
 		getModel().set(WeatherProperty.TEMPERATURE.id(), temperature + deltaTemperature);
 
 		// update the precipitation
-		double precipitation = (double) getModel().get(WeatherProperty.PRECIPITATION.id());
-		double deltaPrecipitation = (double) getModel().get(WeatherProperty.DELTA_PRECIPITATION.id());
+		double precipitation = (Double) getModel().get(WeatherProperty.PRECIPITATION.id());
+		double deltaPrecipitation = (Double) getModel().get(WeatherProperty.DELTA_PRECIPITATION.id());
 		getModel().set(WeatherProperty.TEMPERATURE.id(), precipitation + deltaPrecipitation);
 	}
 
@@ -49,10 +49,10 @@ public class WeatherSystemController extends Controller {
 	}
 
 	public double getTemperature() {
-		return (double) getModel().get(WeatherProperty.TEMPERATURE.id());
+		return (Double) getModel().get(WeatherProperty.TEMPERATURE.id());
 	}
 
 	public double getPrecipitation() {
-		return (double) getModel().get(WeatherProperty.PRECIPITATION.id());
+		return (Double) getModel().get(WeatherProperty.PRECIPITATION.id());
 	}
 }

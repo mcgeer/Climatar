@@ -4,7 +4,8 @@ public enum Nation {
 	FIRE("Fire"),
 	WATER("Water"),
 	AIR("Air"),
-	EARTH("Earth");
+	EARTH("Earth"),
+	BLUE_LOTUS("UN");
 
 	private String name;
 	 Nation(String s){
@@ -13,7 +14,4 @@ public enum Nation {
 	public String getName(){
 		return name;
 	}
-	
-
-	
 }

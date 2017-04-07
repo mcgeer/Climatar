@@ -7,7 +7,6 @@ import game.climatar.architecture.Controller;
 import game.climatar.architecture.SetModel;
 import game.climatar.map.MapView;
 import game.climatar.map.Nation;
-import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGController;
 import game.climatar.systems.political.PoliticalController;
 import game.climatar.systems.weather.WeatherController;
@@ -24,10 +23,10 @@ public class WorldSimulator extends Controller {
 	private PoliticalController politicalSystems;
 
 	// News Events
-	private NewsEventControl newsController;
+	//	private NewsEventControl newsController;
 
 	private MapView mapView;
-
+	
 	/**
 	 * Start a new game, Controlling all aspects of the world, Call Simulate
 	 * after Creation!

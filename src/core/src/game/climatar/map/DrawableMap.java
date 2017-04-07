@@ -11,14 +11,23 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+
+import java.util.List;
+import java.util.HashMap;
+
+class Coordinates<T> {
+	public T x;
+	public T y;
+	public Coordinates(T x, T y) {
+		this.x = x;
+		this.y = y;
+	}
+}
 
 public class DrawableMap extends Actor {
 
 	private static final int TILE_SIZE = 16;
-	
+
 	private Texture computedMapTexture;
 	private Color tint = new Color(Color.WHITE);
 
@@ -26,108 +35,96 @@ public class DrawableMap extends Actor {
 	private Rectangle frame;
 	private OrthographicCamera camera;
 
-	public DrawableMap(int[][] tileSpec, float scale) {
+	public DrawableMap(WorldMap world, float scale) {
 		this.scale = scale;
 		camera = new OrthographicCamera();
 		frame = new Rectangle();
-		
+
 		// build the tile map with the tile specifications
-		Texture tiles = new Texture(Gdx.files.internal("tiles.png"));
-		TextureRegion[][] splitTiles = TextureRegion.split(tiles, TILE_SIZE, TILE_SIZE);
+		Texture terrainTiles = new Texture(Gdx.files.internal("tiles.png"));
+		TextureRegion[][] terrainSplits = TextureRegion.split(terrainTiles, TILE_SIZE, TILE_SIZE);
 
-		int mapWidth = tileSpec[0].length;
-		int mapHeight = tileSpec.length;
+		Texture nationTiles = new Texture(Gdx.files.internal("nation-tiles-wide.png"));
+		TextureRegion[][] nationSplits = TextureRegion.split(nationTiles, TILE_SIZE, TILE_SIZE);
 
+		int mapWidth = world.terrain.get(0).size();
+		int mapHeight = world.terrain.size();
 		Pixmap fullMap = new Pixmap(mapWidth * TILE_SIZE, mapHeight * TILE_SIZE, Format.RGB888);
 
-		tiles.getTextureData().prepare();
-		Pixmap tileset = tiles.getTextureData().consumePixmap();
+		terrainTiles.getTextureData().prepare();
+		Pixmap terrainTileset = terrainTiles.getTextureData().consumePixmap();
+		
+		nationTiles.getTextureData().prepare();
+		Pixmap nationTileset = nationTiles.getTextureData().consumePixmap();
+
+		HashMap<String, Coordinates<Integer>> nationTileLookup = new HashMap<String, Coordinates<Integer>>();
+		nationTileLookup.put("Fire", new Coordinates<Integer>(0, 0));
+		nationTileLookup.put("Water", new Coordinates<Integer>(1, 0));
+		nationTileLookup.put("Earth", new Coordinates<Integer>(1, 1));
+		nationTileLookup.put("Air", new Coordinates<Integer>(0, 1));
+		nationTileLookup.put("UN", new Coordinates<Integer>(1, 2));
 
 		// reading topleft -> right -> down
 		for (int y = 0; y < mapHeight; y++) {
 			for (int x = 0; x < mapWidth; x++) {
 				// indexed by [row][column]
-				int tileID = tileSpec[y][x];
+
+				// draw terrain tiles
+				
+				int terrainID = world.terrain.get(y).get(x);
 				// tileID runs 0 through 8, conveniently in the
 				// same order as our split tiles texture...
-				int ty = (int) tileID / 3;
-				int tx = tileID % 3;
+				int ty = (int) terrainID / 3;
+				int tx = terrainID % 3;
 
-				TextureRegion region = splitTiles[ty][tx];
+				TextureRegion terrainRegion = terrainSplits[ty][tx];
 
-				fullMap.drawPixmap(tileset, x * TILE_SIZE, y * TILE_SIZE, region.getRegionX(), region.getRegionY(),
-						region.getRegionWidth(), region.getRegionHeight());
+				fullMap.drawPixmap(terrainTileset,
+								   x * TILE_SIZE,
+								   y * TILE_SIZE,
+								   terrainRegion.getRegionX(),
+								   terrainRegion.getRegionY(),
+								   terrainRegion.getRegionWidth(),
+								   terrainRegion.getRegionHeight());
+
+				// draw nation border tiles
+
+				Nation nation = world.nations.get(y).get(x);
+				Coordinates<Integer> c = nationTileLookup.get(nation.getName());
+
+				TextureRegion nationRegion = nationSplits[c.y][c.x];
+
+				fullMap.drawPixmap(nationTileset,
+								   x * TILE_SIZE,
+								   y * TILE_SIZE,
+								   nationRegion.getRegionX(),
+								   nationRegion.getRegionY(),
+								   nationRegion.getRegionWidth(),
+								   nationRegion.getRegionHeight());
+
 			}
 		}
 
 		computedMapTexture = new Texture(fullMap);
 
-		if (tiles.getTextureData().disposePixmap()) {
-			tileset.dispose();
+		if (terrainTiles.getTextureData().disposePixmap()) {
+			terrainTileset.dispose();
+		}
+
+		if (nationTiles.getTextureData().disposePixmap()) {
+			nationTileset.dispose();
 		}
 
 		setPosition(0, 0);
 		setSize(computedMapTexture.getWidth(), computedMapTexture.getHeight());
 
-		addListener(new DragListener() {
-			@Override
-			public void drag(InputEvent event, float x, float y, int pointer) {
-				float dragDistanceX = getDeltaX();
-				float dragDistanceY = getDeltaY();
-
-				float posX = getX();
-				float posY = getY();
-
-				float maxWidth = frame.width / getScale();
-				float maxHeight = frame.height / getScale();
-
-				float textureWidth = computedMapTexture.getWidth();
-				float textureHeight = computedMapTexture.getHeight();
-
-				float newPosY = posY + dragDistanceY;
-
-				if (getVerticalMapSize() == MapSize.SMALLER_THAN_VIEWPORT) {
-					if (newPosY < 0)
-						newPosY = 0;
-					if (newPosY > maxHeight - textureHeight)
-						newPosY = maxHeight - textureHeight;
-
-					setY(newPosY);
-				} else if (getVerticalMapSize() == MapSize.BIGGER_THAN_VIEWPORT) {
-					if (newPosY > 0)
-						newPosY = 0;
-					if (newPosY < maxHeight - textureHeight)
-						newPosY = maxHeight - textureHeight;
-
-					setY(newPosY);
-				}
-
-				float newPosX = posX + dragDistanceX;
-				if (getHorizontalMapSize() == MapSize.SMALLER_THAN_VIEWPORT) {
-					if (newPosX < 0)
-						newPosX = 0;
-					if (newPosX > maxWidth - textureWidth)
-						newPosX = maxWidth - textureWidth;
-
-					setX(newPosX);
-				} else if (getHorizontalMapSize() == MapSize.BIGGER_THAN_VIEWPORT) {
-					if (newPosX > 0)
-						newPosX = 0;
-					if (newPosX < maxWidth - textureWidth)
-						newPosX = maxWidth - textureWidth;
-
-					setX(newPosX);
-				}
-			}
-		});
-		
 		setFrame(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
-	
+
 	public void setScale(float scale) {
 		this.scale = scale;
 	}
-	
+
 	public float getScale() {
 		return this.scale;
 	}
@@ -135,10 +132,22 @@ public class DrawableMap extends Actor {
 	public void setFrame(float x, float y, float width, float height) {
 		camera.viewportWidth = width / scale;
 		camera.viewportHeight = height / scale;
-//		camera.position.set(x + width/2, y + height/2, 1);
-		camera.position.set(x + width / scale / 2f, y + height / scale / 2f, 0);		
-		
+		// camera.position.set(x + width/2, y + height/2, 1);
+		camera.position.set(x + width / scale / 2f, y + height / scale / 2f, 0);
+
 		frame.set(x, y, width, height);
+	}
+
+	public float getWidth() {
+		return computedMapTexture.getWidth();
+	}
+
+	public float getHeight() {
+		return computedMapTexture.getHeight();
+	}
+
+	public enum MapSize {
+		BIGGER_THAN_VIEWPORT, SMALLER_THAN_VIEWPORT;
 	}
 
 	public MapSize getHorizontalMapSize() {
@@ -157,33 +166,21 @@ public class DrawableMap extends Actor {
 		}
 	}
 
-	public float getWidth() {
-		return computedMapTexture.getWidth();
-	}
-
-	public float getHeight() {
-		return computedMapTexture.getHeight();
-	}
-
-	private enum MapSize {
-		BIGGER_THAN_VIEWPORT, SMALLER_THAN_VIEWPORT;
-	}
-	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		camera.update();
 		Matrix4 projection = batch.getProjectionMatrix();
-		
+
 		batch.end();
-		
+
 		Gdx.gl.glViewport((int) frame.x, (int) frame.y, (int) frame.width, (int) frame.height);
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		
+
 		tint.a = parentAlpha;
 		batch.setColor(tint);
 		batch.draw(computedMapTexture, getX(), getY(), getWidth(), getHeight());
-		
+
 		batch.end();
 		batch.setProjectionMatrix(projection);
 		batch.begin();
@@ -192,6 +189,10 @@ public class DrawableMap extends Actor {
 
 	public void dispose() {
 		computedMapTexture.dispose();
+	}
+
+	public Rectangle getFrame() {
+		return frame;
 	}
 
 }
