@@ -22,9 +22,16 @@ public class GHGSystemController extends Controller {
 		float width = Gdx.graphics.getWidth();
 		float height = Gdx.graphics.getHeight();
 		ghgSystemView.setFrame(10.0f, width/2 - (width/2) * 1/5, width/2, height/2 );
+
+	}
+
+	public void show(){
 		showView(ghgSystemView);
 	}
 
+	public void hide(){
+		showView(null);
+	}
 	@Override
 	protected void tick() {
 		// Update the EmissionsPerUpdate value based on DeltaEmissions
