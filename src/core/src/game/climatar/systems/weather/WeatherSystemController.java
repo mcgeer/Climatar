@@ -23,9 +23,17 @@ public class WeatherSystemController extends Controller {
 		float width = Gdx.graphics.getWidth();
 		float height = Gdx.graphics.getHeight();
 
-		showView(systemView);
 		systemView.setFrame(10.0f, 0, width / 2, height / 2);
 	}
+
+	public void show(){
+
+        showView(systemView);
+    }
+
+    public void hide(){
+        showView();
+    }
 
 	@Override
 	protected void tick() {
