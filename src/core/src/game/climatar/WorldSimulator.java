@@ -118,6 +118,19 @@ public class WorldSimulator extends Controller {
         this.politicalIsActive = politicalIsActive;
     }
 
+
+    public boolean getPoliticalIsActive(){
+        return this.politicalIsActive;
+    }
+
+    public boolean getGHGIsActive(){
+        return this.ghgIsActive;
+    }
+
+    public boolean getWeatherIsActive(){
+        return this.weatherIsActive;
+    }
+
     // ========================================================
     // =================---- Overrides ----====================
     @Override
@@ -185,7 +198,6 @@ public class WorldSimulator extends Controller {
     public void passConseq(List<ConseqType> yConseq) {
         //Update
         resumeGame();
-
     }
 
 }

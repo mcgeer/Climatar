@@ -2,6 +2,7 @@ package game.climatar.systems.ghg;
 
 import java.util.HashMap;
 
+import game.climatar.WorldSimulator;
 import game.climatar.architecture.Controller;
 import game.climatar.map.Nation;
 import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
@@ -12,6 +13,9 @@ import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
  */
 
 public class GHGController extends Controller {
+
+	//Activated
+	private boolean isActive = true;
 	// constants
 	private static final int INITIAL_VALUE_FN = 50;
 	private static final int INITIAL_VALUE_EN = 35;
@@ -39,7 +43,7 @@ public class GHGController extends Controller {
 		ghgSystems.put(Nation.AIR, airNationController);
 		ghgSystems.put(Nation.WATER, waterNationController);
 	}
-	
+
 	@Override
 	protected void layoutView() {
 		
@@ -48,8 +52,22 @@ public class GHGController extends Controller {
 	@Override
 	protected void tick() {
 		// set the model's total emissions (by all nations)
-
 	}
+
+	public void Activiate(){
+		for (Nation n : Nation.values()) {
+			ghgSystems.get(n).show();
+		}
+		isActive = true;
+	}
+
+	public void DeActivate(){
+		for (Nation n : Nation.values()) {
+			ghgSystems.get(n).hide();
+		}
+		isActive = false;
+	}
+
 
 	public int gettotalEmmisions(){
 		int totalEmissionsPerUpdate = 0;
@@ -59,25 +77,13 @@ public class GHGController extends Controller {
 		totalEmissionsPerUpdate += airNationController.getEmissionPerUpdate();
 		totalEmissionsPerUpdate += waterNationController.getEmissionPerUpdate();
 		return totalEmissionsPerUpdate;
+	}
 
+	public void setNationGHGDelta(Nation n, int delta){
+		if(isActive)
+			ghgSystems.get(n).setDeltaEmissions(delta);
 	}
-	public GHGSystemController getEarthSubControl(){
-		return earthNationController;
-	}
-	public GHGSystemController getFireSubControl(){
-		return fireNationController;
-	}
-	public GHGSystemController getWaterSubControl(){
-		return waterNationController;
-	}
-	public GHGSystemController getAirSubControl(){
-		return airNationController;
 
-	}
-	/**
-	 *
-	 * @return
-	 */
 	public int getEmissionsPerUpdate(){
 		return (Integer) getModel().get(GHGProperty.TOTAL_EMISSIONS_PER_UPDATE.id());
 	}
@@ -85,5 +91,4 @@ public class GHGController extends Controller {
 	public GHGSystemController getGHGSystemController(Nation n) {
 		return ghgSystems.get(n);
 	}
-
 }
