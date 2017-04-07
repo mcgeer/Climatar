@@ -33,11 +33,10 @@ public class WorldSimulator extends Controller {
     private NewsEventControl newsController;
 
     private MapView mapView;
-
     private GreyView greyView;
-
     private UIView uiView;
-
+    private PauseView pauseView;
+    
 
 
 
@@ -83,12 +82,15 @@ public class WorldSimulator extends Controller {
 
     }
 
+    public void showOverlayPauseMenu() {
+    }
+    
     private void pauseGame() {
         // TODO Auto-generated method stub
         isPaused = true;
     }
 
-    public void resumeGame() {
+    private void resumeGame() {
         isPaused = false;
     }
 
@@ -144,8 +146,9 @@ public class WorldSimulator extends Controller {
         float height = Gdx.graphics.getHeight();
         mapView.setFrame(PAD, PAD, width - PAD * 2, height - PAD * 2);
         uiView.setFrame(0, height - width, width / 4, width);
+        pauseView.setFrame(width - width / 4 , height - width / 4, width / 4, width / 4);
         greyView.setFrame(0,0,width*3, height/3.25f);
-        showView(mapView, greyView,uiView);
+        showView(mapView, greyView, pauseView, uiView);
     }
 
     @Override

@@ -24,6 +24,7 @@ public class UIView extends View {
 	private VisTable table;
     private VisTable t;
 	private VisImageButton[] nationButtons;
+	
 	private Nation selectedNation;
 
 	private Drawable fireTexture;
@@ -31,6 +32,9 @@ public class UIView extends View {
 	private Drawable  airTexture;
 	private Drawable earthTexture;
 	private Drawable backButtonTexture;
+	
+	private Value heightVal;
+	private Value widthVal;
 
 	public Nation getSelectedNation() {
 		return selectedNation;
@@ -43,7 +47,6 @@ public class UIView extends View {
 	@Override
 	public void build(Group group) {
 		backButtonTexture = new TextureRegionDrawable(new TextureRegion(new Texture("back.png")));
-		
 		fireTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Nation.FIRE.getImageFileName())));
 		waterTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Nation.WATER.getImageFileName())));
 		airTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Nation.AIR.getImageFileName())));
@@ -53,14 +56,14 @@ public class UIView extends View {
 		group.debug();
 		nationButtons = new VisImageButton[Nation.values().length];
 
-		Value width = new Value() {
+		widthVal = new Value() {
 			@Override
 			public float get(Actor context) {
 				return getFrame().getWidth();
 			}
 		};
 
-		Value height = new Value() {
+		heightVal = new Value() {
 			@Override
 			public float get(Actor context) {
 				return getFrame().getHeight() / Nation.values().length;
@@ -83,10 +86,10 @@ public class UIView extends View {
 					sim.openNationView(nation);
 				}
 			});
-			table.add(nationButtons[i]).width(width).height(height).row();
+			table.add(nationButtons[i]).width(widthVal).height(heightVal).row();
 			i++;
 		}
-
+		
 		group.addActor(table);
 
 
@@ -97,6 +100,7 @@ public class UIView extends View {
 
 	@Override
 	public void layout(float x, float y, float width, float height) {
+
 		table.pack();
 		table.invalidate();
 		table.validate();
