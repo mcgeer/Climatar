@@ -1,5 +1,7 @@
 package game.climatar.systems.ghg;
 
+import com.badlogic.gdx.math.MathUtils;
+
 import game.climatar.architecture.Model;
 import game.climatar.map.Nation;
 

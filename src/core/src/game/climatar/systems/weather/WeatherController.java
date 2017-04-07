@@ -2,6 +2,8 @@ package game.climatar.systems.weather;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.math.MathUtils;
+
 import game.climatar.architecture.Controller;
 import game.climatar.map.Nation;
 
@@ -64,7 +66,10 @@ public class WeatherController extends Controller {
 
     @Override
     protected void tick() {
-
+    	for(Nation n : Nation.values()) {
+    		setPrecipitationDelta(n, MathUtils.random(-1f, 1f));
+    		setTemperatureDelta(n, MathUtils.random(-1f, 1f));
+    	}
     }
 
     public void setPrecipitationDelta(Nation n, double delta){

@@ -2,6 +2,8 @@ package game.climatar.systems.political;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.math.MathUtils;
+
 import game.climatar.architecture.Controller;
 import game.climatar.architecture.SetModel;
 import game.climatar.map.Nation;
@@ -63,7 +65,11 @@ public class PoliticalController extends Controller {
 
     @Override
     protected void tick() {
-
+    	for(Nation n : Nation.values()) {
+    		setRelationDelta(n, MathUtils.random(-1f, 1f));
+    		setWalletDelta(n, MathUtils.random(-5, 5));
+    	}
+    	
     }
 
     public void setRelationDelta(Nation n, double delta){

@@ -11,7 +11,6 @@ import game.climatar.architecture.SetModel;
 import game.climatar.map.MapView;
 import game.climatar.map.Nation;
 import game.climatar.news.ConseqType;
-import game.climatar.news.ConseqType.Consequence;
 import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGController;
 import game.climatar.systems.political.PoliticalController;
@@ -43,16 +42,20 @@ public class WorldSimulator extends Controller {
     private PauseView pauseView;
     private OverlayMenuView overlayMenuView;
 
+    @Override
+    protected void initialize() {
+		music = Gdx.audio.newMusic(Gdx.files.internal("love.mp3"));
+		music.setVolume(1.0f);
+		music.setLooping(true);
+		music.play();
+    }
+    
     /**
      * Start a new game, Controlling all aspects of the world, Call Simulate
      * after Creation!
      */
     public void newGame(Nation player) {
 		// get those positive vibes going
-		music = Gdx.audio.newMusic(Gdx.files.internal("love.mp3"));
-		music.setVolume(1.0f);
-		music.setLooping(true);
-		music.play();
 		
         // Set up what systems are being used
 		setGhgIsActive(true);
@@ -250,20 +253,21 @@ public class WorldSimulator extends Controller {
 
     public void passConseq(List<ConseqType> yConseq,
 						   Nation nation) {
-
-		for (ConseqType c : yConseq) {
-
-			double value = c.getValue();
-			
-			switch (c.getConsequence()) {
-			case POLI: applyPolitical(nation, value);
-			case WALLET: applyWallet(nation, value);
-			case GHG: applyGHG(nation, value);
-			case TEMP: applyTemperature(nation, value);
-			case PERCIP: applyPrecipitation(nation, value);
-			default: break;
-			}
-		}
+    	if(yConseq != null) {
+    		for (ConseqType c : yConseq) {
+    			
+    			double value = c.getValue();
+    			
+    			switch (c.getConsequence()) {
+    			case POLI: applyPolitical(nation, value);
+    			case WALLET: applyWallet(nation, value);
+    			case GHG: applyGHG(nation, value);
+    			case TEMP: applyTemperature(nation, value);
+    			case PERCIP: applyPrecipitation(nation, value);
+    			default: break;
+    			}
+    		}
+    	}
 		
         //Update
         resumeGame();

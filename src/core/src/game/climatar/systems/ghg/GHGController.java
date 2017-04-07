@@ -2,6 +2,8 @@ package game.climatar.systems.ghg;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.math.MathUtils;
+
 import game.climatar.architecture.Controller;
 import game.climatar.map.Nation;
 import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
@@ -51,6 +53,9 @@ public class GHGController extends Controller {
 	@Override
 	protected void tick() {
 		// set the model's total emissions (by all nations)
+		for(Nation n : Nation.values()) {
+			setNationGHGDelta(n, MathUtils.random(-1, 1));
+		}
 	}
 
 	public int gettotalEmmisions(){

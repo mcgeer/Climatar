@@ -42,7 +42,7 @@ public class WeatherSystemController extends Controller {
 		// update the precipitation
 		double precipitation = (Double) getModel().get(WeatherProperty.PRECIPITATION.id());
 		double deltaPrecipitation = (Double) getModel().get(WeatherProperty.DELTA_PRECIPITATION.id());
-		getModel().set(WeatherProperty.TEMPERATURE.id(), precipitation + deltaPrecipitation);
+		getModel().set(WeatherProperty.PRECIPITATION.id(), precipitation + deltaPrecipitation);
 	}
 
 	public void setDeltaTemperature(double delta) {

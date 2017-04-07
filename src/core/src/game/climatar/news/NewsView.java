@@ -128,10 +128,10 @@ public class NewsView extends View {
 //        table.add(okayButton);
 //        table.add(noButton);
 
-        if(currentEvent.getType().equals(NewsEvent.NewsType.ACTIVE))
-            noButton.setVisible(true);
-        else
-            noButton.setVisible(false);
+//        if(currentEvent.getType().equals(NewsEvent.NewsType.ACTIVE))
+//            noButton.setVisible(true);
+//        else
+//            noButton.setVisible(false);
 
 
     }

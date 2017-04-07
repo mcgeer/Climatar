@@ -1,11 +1,10 @@
 package game.climatar.news;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
-import game.climatar.architecture.Controller;
 import game.climatar.GameState;
 import game.climatar.WorldSimulator;
+import game.climatar.architecture.Controller;
 import game.climatar.map.Nation;
 
 public class NewsEventControl extends Controller {
