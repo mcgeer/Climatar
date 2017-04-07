@@ -11,9 +11,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 import java.util.List;
 import java.util.HashMap;
@@ -30,7 +27,7 @@ class Coordinates<T> {
 public class DrawableMap extends Actor {
 
 	private static final int TILE_SIZE = 16;
-	
+
 	private Texture computedMapTexture;
 	private Color tint = new Color(Color.WHITE);
 
@@ -42,7 +39,7 @@ public class DrawableMap extends Actor {
 		this.scale = scale;
 		camera = new OrthographicCamera();
 		frame = new Rectangle();
-		
+
 		// build the tile map with the tile specifications
 		Texture terrainTiles = new Texture(Gdx.files.internal("tiles.png"));
 		TextureRegion[][] terrainSplits = TextureRegion.split(terrainTiles, TILE_SIZE, TILE_SIZE);
@@ -121,65 +118,13 @@ public class DrawableMap extends Actor {
 		setPosition(0, 0);
 		setSize(computedMapTexture.getWidth(), computedMapTexture.getHeight());
 
-		addListener(new DragListener() {
-			@Override
-			public void drag(InputEvent event, float x, float y, int pointer) {
-				float dragDistanceX = getDeltaX();
-				float dragDistanceY = getDeltaY();
-
-				float posX = getX();
-				float posY = getY();
-
-				float maxWidth = frame.width / getScale();
-				float maxHeight = frame.height / getScale();
-
-				float textureWidth = computedMapTexture.getWidth();
-				float textureHeight = computedMapTexture.getHeight();
-
-				float newPosY = posY + dragDistanceY;
-
-				if (getVerticalMapSize() == MapSize.SMALLER_THAN_VIEWPORT) {
-					if (newPosY < 0)
-						newPosY = 0;
-					if (newPosY > maxHeight - textureHeight)
-						newPosY = maxHeight - textureHeight;
-
-					setY(newPosY);
-				} else if (getVerticalMapSize() == MapSize.BIGGER_THAN_VIEWPORT) {
-					if (newPosY > 0)
-						newPosY = 0;
-					if (newPosY < maxHeight - textureHeight)
-						newPosY = maxHeight - textureHeight;
-
-					setY(newPosY);
-				}
-
-				float newPosX = posX + dragDistanceX;
-				if (getHorizontalMapSize() == MapSize.SMALLER_THAN_VIEWPORT) {
-					if (newPosX < 0)
-						newPosX = 0;
-					if (newPosX > maxWidth - textureWidth)
-						newPosX = maxWidth - textureWidth;
-
-					setX(newPosX);
-				} else if (getHorizontalMapSize() == MapSize.BIGGER_THAN_VIEWPORT) {
-					if (newPosX > 0)
-						newPosX = 0;
-					if (newPosX < maxWidth - textureWidth)
-						newPosX = maxWidth - textureWidth;
-
-					setX(newPosX);
-				}
-			}
-		});
-		
 		setFrame(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
-	
+
 	public void setScale(float scale) {
 		this.scale = scale;
 	}
-	
+
 	public float getScale() {
 		return this.scale;
 	}
@@ -187,10 +132,22 @@ public class DrawableMap extends Actor {
 	public void setFrame(float x, float y, float width, float height) {
 		camera.viewportWidth = width / scale;
 		camera.viewportHeight = height / scale;
-//		camera.position.set(x + width/2, y + height/2, 1);
-		camera.position.set(x + width / scale / 2f, y + height / scale / 2f, 0);		
-		
+		// camera.position.set(x + width/2, y + height/2, 1);
+		camera.position.set(x + width / scale / 2f, y + height / scale / 2f, 0);
+
 		frame.set(x, y, width, height);
+	}
+
+	public float getWidth() {
+		return computedMapTexture.getWidth();
+	}
+
+	public float getHeight() {
+		return computedMapTexture.getHeight();
+	}
+
+	public enum MapSize {
+		BIGGER_THAN_VIEWPORT, SMALLER_THAN_VIEWPORT;
 	}
 
 	public MapSize getHorizontalMapSize() {
@@ -209,33 +166,21 @@ public class DrawableMap extends Actor {
 		}
 	}
 
-	public float getWidth() {
-		return computedMapTexture.getWidth();
-	}
-
-	public float getHeight() {
-		return computedMapTexture.getHeight();
-	}
-
-	private enum MapSize {
-		BIGGER_THAN_VIEWPORT, SMALLER_THAN_VIEWPORT;
-	}
-	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		camera.update();
 		Matrix4 projection = batch.getProjectionMatrix();
-		
+
 		batch.end();
-		
+
 		Gdx.gl.glViewport((int) frame.x, (int) frame.y, (int) frame.width, (int) frame.height);
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		
+
 		tint.a = parentAlpha;
 		batch.setColor(tint);
 		batch.draw(computedMapTexture, getX(), getY(), getWidth(), getHeight());
-		
+
 		batch.end();
 		batch.setProjectionMatrix(projection);
 		batch.begin();
@@ -244,6 +189,10 @@ public class DrawableMap extends Actor {
 
 	public void dispose() {
 		computedMapTexture.dispose();
+	}
+
+	public Rectangle getFrame() {
+		return frame;
 	}
 
 }

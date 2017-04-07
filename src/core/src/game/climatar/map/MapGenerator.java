@@ -1,8 +1,7 @@
 package game.climatar.map;
 
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 abstract class Thresholder<T> {
 	abstract T threshold(float x);
