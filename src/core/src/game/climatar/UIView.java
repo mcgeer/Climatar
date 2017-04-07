@@ -1,11 +1,9 @@
 package game.climatar;
 
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -25,8 +23,6 @@ public class UIView extends View {
     private VisTable t;
 	private VisImageButton[] nationButtons;
 	
-	private Nation selectedNation;
-
 	private Drawable fireTexture;
 	private Drawable  waterTexture;
 	private Drawable  airTexture;
@@ -35,14 +31,6 @@ public class UIView extends View {
 	
 	private Value heightVal;
 	private Value widthVal;
-
-	public Nation getSelectedNation() {
-		return selectedNation;
-	}
-
-	public void setSelectedNation(Nation selectedNation) {
-		this.selectedNation = selectedNation;
-	}
 
 	@Override
 	public void build(Group group) {
@@ -122,10 +110,6 @@ public class UIView extends View {
 			return waterTexture;
 		}
 		return null;
-	}
-
-	private Drawable getBackButtonDrawable() {
-		return backButtonTexture;
 	}
 
 	@Override

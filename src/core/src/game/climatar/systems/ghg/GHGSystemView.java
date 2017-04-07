@@ -1,12 +1,8 @@
 package game.climatar.systems.ghg;
 
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
@@ -14,7 +10,6 @@ import com.kotcrab.vis.ui.widget.VisTable;
 import game.climatar.architecture.AllowController;
 import game.climatar.architecture.Model;
 import game.climatar.architecture.View;
-import game.climatar.map.Nation;
 import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
 
 @AllowController({GHGSystemController.class})

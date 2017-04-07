@@ -183,9 +183,7 @@ public class WorldSimulator extends Controller {
         greyView.setFrame(0,0,width*3, height/3.25f);
         overlayMenuView.setFrame(0, 2*height/5, width, height/5);
         
-        overlayMenuView.hide();
-
-        showView(mapView, greyView, pauseView, uiView, overlayMenuView);
+        showView(mapView, pauseView, uiView);
     }
 
     @Override
@@ -218,13 +216,24 @@ public class WorldSimulator extends Controller {
         return getModel().get(WorldProperty.PLAYING.id()) != null;
     }
 
+    private Nation selectedNation = null;
     public void openNationView(Nation nation) {
-        for (Nation n : Nation.values()) {
+    	for (Nation n : Nation.values()) {
             if (n != nation) {
                 hideNationView(n);
             }
         }
-        uiView.setSelectedNation(nation);
+        
+    	if(nation == selectedNation) {
+    		hideNationView(nation);
+    		greyView.hide();
+    		selectedNation = null;
+    		return;
+    	}
+    	
+    	selectedNation = nation;
+    	
+    	greyView.show();
         weatherSystems.getWeatherSystemController(nation).show();
         politicalSystems.getPoliticalSystemController(nation).show();
         ghgSystems.getGHGSystemController(nation).show();
