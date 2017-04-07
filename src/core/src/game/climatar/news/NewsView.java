@@ -42,7 +42,6 @@ public class NewsView extends View {
 
     @Override
     public void build(Group group) {
-        group.debug();
         table = new VisTable();
         okayButton = new VisTextButton("Okay");
         noButton = new VisTextButton("No");
@@ -109,24 +108,25 @@ public class NewsView extends View {
             return;
         }
 
-        table.clear();
-
         NewsEvent currentEvent = ((NewsEventControl) getController()).currentEvent;
+        eventMessageLabel.setText(currentEvent.getDescription());
+        
+//        table.clear();
+
 
         Pixmap p = new Pixmap(50, 50, Pixmap.Format.RGBA8888);
         p.setColor(1/255,1/255,1/255,0.3f);
         p.fill();
 
         table.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture(p))));
-
-        VisLabel label = new VisLabel(currentEvent.getDescription());
-        label.setWrap(true);
-        label.setWidth(100); // or even as low as 10
-        table.add(label).width(getFrame().getWidth());// <--- here you define the width! not ^
-        table.row();
+//        VisLabel label = new VisLabel(currentEvent.getDescription());
+//        label.setWrap(true);
+//        label.setWidth(100); // or even as low as 10
+//        table.add(label).width(getFrame().getWidth());// <--- here you define the width! not ^
+//        table.row();
         //newtable.pad(5,5,5,5);
-        table.add(okayButton);
-        table.add(noButton);
+//        table.add(okayButton);
+//        table.add(noButton);
 
         if(currentEvent.getType().equals(NewsEvent.NewsType.ACTIVE))
             noButton.setVisible(true);

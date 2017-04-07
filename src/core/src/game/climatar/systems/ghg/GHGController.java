@@ -39,6 +39,8 @@ public class GHGController extends Controller {
 		ghgSystems.put(Nation.EARTH, earthNationController);
 		ghgSystems.put(Nation.AIR, airNationController);
 		ghgSystems.put(Nation.WATER, waterNationController);
+		
+		getModel().set(GHGProperty.TOTAL_EMISSIONS_PER_UPDATE.id(), 0.0);
 	}
 
 	@Override
@@ -66,8 +68,8 @@ public class GHGController extends Controller {
 			ghgSystems.get(n).setDeltaEmissions(delta);
 	}
 
-	public int getEmissionsPerUpdate(){
-		return (Integer) getModel().get(GHGProperty.TOTAL_EMISSIONS_PER_UPDATE.id());
+	public double getEmissionsPerUpdate(){
+		return (Double) getModel().get(GHGProperty.TOTAL_EMISSIONS_PER_UPDATE.id());
 	}
 
 	public GHGSystemController getGHGSystemController(Nation n) {
