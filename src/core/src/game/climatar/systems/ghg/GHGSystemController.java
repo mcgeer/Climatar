@@ -30,7 +30,7 @@ public class GHGSystemController extends Controller {
 	}
 
 	public void hide(){
-		showView(null);
+		showView();
 	}
 	@Override
 	protected void tick() {
