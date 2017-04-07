@@ -12,6 +12,7 @@ import com.badlogic.gdx.Gdx;
 import game.climatar.GameState;
 import game.climatar.GameState.WorldProperty;
 import game.climatar.map.Nation;
+import game.climatar.news.ConseqType.Consequence;
 import game.climatar.news.NewsEvent.NewsType;
 
 public class NewsEventGenerator {
@@ -112,6 +113,16 @@ public class NewsEventGenerator {
                     PlayerEvents.add(storeEvent);
                 }
 
+            }
+            for(NewsEvent ep: PlayerEvents){
+            	System.out.println(ep.getDescription()+", "+ep.getIndex()+", "+ep.getType()+", ");
+            	for(ConseqType c : ep.getYConseq()){
+            		System.out.println(c.getValue());
+            	}
+            	System.out.println(" ");
+            	for(ConseqType c : ep.getNConseq()){
+            		System.out.println(c.getValue());
+            	}
             }
         } catch (ParseException e) {
             e.printStackTrace();

@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+public class ConseqType{
 
-public enum ConseqType {
+	enum Consequence {
 	
 	POLI("political"),
     WALLET("wallet"),
@@ -12,16 +13,29 @@ public enum ConseqType {
     TEMP("temp"),
     PERCIP("percip"),
 	DEF("Default");
+		private String name;
+		Consequence(String s){
+		name=s;
+			
+	}
+	}
 
-	private String name;
+	private Consequence con;
+	
 	private double valueChanged;
 	
-	ConseqType (String s){
-		name=s;
+	ConseqType (Consequence c){
+		con=c;
 	}
 
 	public void addValue(double v){
 		valueChanged=v;
 	}
-	
+
+	public double  getValue() {
+		// TODO Auto-generated method stub
+		return valueChanged;
+	}
 }
+	
+

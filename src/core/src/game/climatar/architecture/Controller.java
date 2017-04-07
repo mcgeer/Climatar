@@ -1,6 +1,7 @@
 package game.climatar.architecture;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -203,6 +204,10 @@ public abstract class Controller {
 
 	public void addChildController(Controller childController) {
 		this.children.add(childController);
+	}
+
+	public List<Controller> getChildren() {
+		return children;
 	}
 
 }
