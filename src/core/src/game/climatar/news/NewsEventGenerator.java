@@ -77,7 +77,7 @@ public class NewsEventGenerator {
                     storeEvent.addYConseq(storeConseq);
 
                 }
-                for (Object elm : (JSONArray) newEvent.get("reprecussions")) {
+                for (Object elm : (JSONArray) newEvent.get("repercussions")) {
                     JSONObject newConseq = (JSONObject) elm;
                     if (newConseq.containsKey("political")) {
                         storeConseq = ConseqType.POLI;
