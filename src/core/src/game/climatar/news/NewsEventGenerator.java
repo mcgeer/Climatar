@@ -12,6 +12,7 @@ import com.badlogic.gdx.Gdx;
 import game.climatar.GameState;
 import game.climatar.GameState.WorldProperty;
 import game.climatar.map.Nation;
+import game.climatar.news.ConseqType.Consequence;
 import game.climatar.news.NewsEvent.NewsType;
 
 public class NewsEventGenerator {
@@ -60,27 +61,27 @@ public class NewsEventGenerator {
 
 				JSONObject newConseq = (JSONObject) newEvent.get("consequences");
 				if (newConseq.containsKey("political")) {
-                    ConseqType storeConseq = ConseqType.POLI;
+                    ConseqType storeConseq = new ConseqType(Consequence.POLI);
 					storeConseq.addValue(new Double(newConseq.get("political").toString()));
                     storeEvent.addYConseq(storeConseq);
 				}
 				if (newConseq.containsKey("wallet")) {
-                    ConseqType storeConseq = ConseqType.WALLET;
+                    ConseqType storeConseq = new ConseqType(Consequence.WALLET);
 					storeConseq.addValue(new Double(newConseq.get("wallet").toString()));
                     storeEvent.addYConseq(storeConseq);
 				} 
 				if (newConseq.containsKey("ghg")) {
-                    ConseqType storeConseq = ConseqType.GHG;
+                    ConseqType storeConseq = new ConseqType(Consequence.GHG);
 					storeConseq.addValue(new Double(newConseq.get("ghg").toString()));
                     storeEvent.addYConseq(storeConseq);
 				}
 				if (newConseq.containsKey("temp")) {
-                    ConseqType storeConseq = ConseqType.TEMP;
+                    ConseqType storeConseq = new ConseqType(Consequence.TEMP);
 					storeConseq.addValue(new Double(newConseq.get("temp").toString()));
                     storeEvent.addYConseq(storeConseq);
 				}
 				if (newConseq.containsKey("percip")) {
-                    ConseqType storeConseq = ConseqType.PERCIP;
+                    ConseqType storeConseq = new ConseqType(Consequence.PERCIP);
 					storeConseq.addValue(new Double(newConseq.get("percip").toString()));
                     storeEvent.addYConseq(storeConseq);
 				}
@@ -90,27 +91,27 @@ public class NewsEventGenerator {
 				JSONObject newRepur = (JSONObject) newEvent.get("repercussions");
 				if (newRepur != null) {
 					if (newRepur.containsKey("political")) {
-                        ConseqType storeRepur = ConseqType.POLI;
+                        ConseqType storeRepur = new ConseqType(Consequence.POLI);
 						storeRepur.addValue(new Double(newRepur.get("political").toString()));
                         storeEvent.addNConseq(storeRepur);
 					}
 					if (newRepur.containsKey("wallet")) {
-                        ConseqType storeRepur = ConseqType.WALLET;
+                        ConseqType storeRepur = new ConseqType(Consequence.WALLET);
 						storeRepur.addValue(new Double(newRepur.get("wallet").toString()));
                         storeEvent.addNConseq(storeRepur);
 					} 
 					if (newRepur.containsKey("ghg")) {
-                        ConseqType storeRepur = ConseqType.GHG;
+                        ConseqType storeRepur = new ConseqType(Consequence.GHG);
 						storeRepur.addValue(new Double(newRepur.get("ghg").toString()));
                         storeEvent.addNConseq(storeRepur);
 					}
 					if (newRepur.containsKey("temp")) {
-                        ConseqType storeRepur = ConseqType.TEMP;
+                        ConseqType storeRepur = new ConseqType(Consequence.TEMP);
 						storeRepur.addValue(new Double(newRepur.get("temp").toString()));
                         storeEvent.addNConseq(storeRepur);
 					}
 					if (newRepur.containsKey("percip")) {
-                        ConseqType storeRepur = ConseqType.PERCIP;
+                        ConseqType storeRepur = new ConseqType(Consequence.PERCIP);
 						storeRepur.addValue(new Double(newRepur.get("percip").toString()));
                         storeEvent.addNConseq(storeRepur);
                     }
@@ -124,6 +125,16 @@ public class NewsEventGenerator {
                     PlayerEvents.add(storeEvent);
                 }
 
+            }
+            for(NewsEvent ep: PlayerEvents){
+            	System.out.println(ep.getDescription()+", "+ep.getIndex()+", "+ep.getType()+", ");
+            	for(ConseqType c : ep.getYConseq()){
+            		System.out.println(c.getValue());
+            	}
+            	System.out.println(" ");
+            	for(ConseqType c : ep.getNConseq()){
+            		System.out.println(c.getValue());
+            	}
             }
         } catch (ParseException e) {
             e.printStackTrace();
