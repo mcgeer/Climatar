@@ -22,7 +22,7 @@ public class MapView extends View {
 	public void build(Group group) {
 		WorldMap world = MapGenerator.generateMap(4, 14, 7, 4);
 		
-		map = new DrawableMap(world, 0.2f);
+		map = new DrawableMap(world, 0.4f);
 		
 		table = new VisTable();
 		table.add(map);
@@ -32,9 +32,8 @@ public class MapView extends View {
 		group.addListener(new DragListener() {
 			@Override
 			public void drag(InputEvent event, float x, float y, int pointer) {
-				System.out.println("Drawing!");
-				float dragDistanceX = getDeltaX();
-				float dragDistanceY = getDeltaY();
+				float dragDistanceX = -1*getDeltaX() / map.getScale();
+				float dragDistanceY = -1*getDeltaY() / map.getScale();
 
 				float posX = map.getX();
 				float posY = map.getY();
@@ -102,6 +101,5 @@ public class MapView extends View {
 	@Override
 	public void dispose() {
 		map.dispose();
-	}
-	
+	}	
 }
