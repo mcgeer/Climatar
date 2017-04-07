@@ -1,11 +1,9 @@
 package game.climatar.news;
 
-import game.climatar.GameState;
-
 import game.climatar.architecture.Controller;
+import game.climatar.GameState;
 import game.climatar.architecture.ControllerManager;
-
-
+import game.climatar.map.Nation;
 
 public class NewsEventControl extends Controller{
     private NewsEventGenerator PressMill;
@@ -25,25 +23,23 @@ public class NewsEventControl extends Controller{
     }
 
     @Override
-    protected void tick() {
-        NewsEvent currentEvent=PressMill.triggerPlayerEvents();
-        boolean yesEvent=view.getUserInput();
-       if(yesEvent){
-           //Pass consequences
-       }else{
-           //Pass rep
-       }
-       ControllerManager.delay(15, new Runnable(){public void run(){pauseTrigger();}});
-
-    }
-    public void pauseTrigger(){
-        NewsEvent currentEvent= PressMill.triggerWorldEvents();
-        if(currentEvent.getType()== NewsEvent.NewsType.PASSIVE){
-            //Do Shit
-        }else if(currentEvent.getType()== NewsEvent.NewsType.INTER){
-            //Do some other shit
+      protected void tick() {
+            NewsEvent currentEvent=PressMill.triggerPlayerEvents();
+            boolean yesEvent=view.getUserInput();
+           if(yesEvent){
+               //Pass consequences
+           }else{
+               //Pass rep
+           }
+           ControllerManager.delay(15, new Runnable(){public void run(){pauseTrigger();}});
+    
         }
-    }
-
-
+        public void pauseTrigger(){
+            NewsEvent currentEvent= PressMill.triggerWorldEvents();
+            if(currentEvent.getType()== NewsEvent.NewsType.PASSIVE){
+                //Do Shit
+            }else if(currentEvent.getType()== NewsEvent.NewsType.INTER){
+                //Do some other shit
+            }
+        }
 }
