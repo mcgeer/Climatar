@@ -26,6 +26,7 @@ public class WorldSimulator extends Controller {
 	//	private NewsEventControl newsController;
 
 	private MapView mapView;
+	private UIView uiView;
 	
 	/**
 	 * Start a new game, Controlling all aspects of the world, Call Simulate
@@ -128,5 +129,9 @@ public class WorldSimulator extends Controller {
 
 	public boolean isPlaying() {
 		return getModel().get(WorldProperty.PLAYING.id()) != null;
+	}
+
+	public void openNationView(Nation nation) {
+		
 	}
 }

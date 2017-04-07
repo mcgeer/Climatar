@@ -11,7 +11,7 @@ import game.climatar.map.Nation;
 public class PoliticalSystemModel extends Model {
 
     enum PoliticalProperty {
-        WALLET, DELTA_WALLET ,RELATIONS, DELTA_RELATIONS;
+        WALLET, DELTA_WALLET ,RELATIONS, DELTA_RELATIONS, NATION;
 
         public String id() {
             return this.name();
@@ -21,11 +21,12 @@ public class PoliticalSystemModel extends Model {
     /**
      * Initializes this GHGSystemModel with an initial emission level of initialEmissions
      */
-    public void init(int initialWallet) {
+    public void init(Nation n, int initialWallet) {
         set(PoliticalProperty.DELTA_WALLET.id(), initialWallet);
         set(PoliticalProperty.DELTA_RELATIONS.id(), 75.0);
         set(PoliticalProperty.WALLET.id(), initialWallet);
         set(PoliticalProperty.RELATIONS.id(), 75.0);
+        set(PoliticalProperty.NATION.id(), n);
     }
 
 

@@ -24,7 +24,7 @@ public class WeatherSystemController extends Controller {
 		float height = Gdx.graphics.getHeight();
 
 		showView(systemView);
-		systemView.setFrame(0, 0, width / 2, height / 2);
+		systemView.setFrame(10.0f, 0, width / 2, height / 2);
 	}
 
 	@Override

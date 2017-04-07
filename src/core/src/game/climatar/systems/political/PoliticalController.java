@@ -33,10 +33,10 @@ public class PoliticalController extends Controller {
     @Override
     protected void initialize() {
         //Setup Controllers
-        ((PoliticalSystemModel) earthNationController.getModel()).init(INITIAL_WALLET_EN);
-        ((PoliticalSystemModel) fireNationController.getModel()).init(INITIAL_WALLET_FN);
-        ((PoliticalSystemModel) airNationController.getModel()).init(INITIAL_WALLET_AN);
-        ((PoliticalSystemModel) waterNationController.getModel()).init(INITIAL_WALLET_WN);
+        ((PoliticalSystemModel) earthNationController.getModel()).init(Nation.EARTH, INITIAL_WALLET_EN);
+        ((PoliticalSystemModel) fireNationController.getModel()).init(Nation.FIRE, INITIAL_WALLET_FN);
+        ((PoliticalSystemModel) airNationController.getModel()).init(Nation.AIR, INITIAL_WALLET_AN);
+        ((PoliticalSystemModel) waterNationController.getModel()).init(Nation.WATER, INITIAL_WALLET_WN);
 
         //Setup Map
         politicalSystems.put(Nation.FIRE, fireNationController);
