@@ -67,6 +67,14 @@ public class NewsEvent {
 		return type;
 	}
 
+	public List<ConseqType> getYConseq(){
+		return yCon;
+	}
+	public List<ConseqType> getNConseq(){
+		return nCon;
+	}
+ 
+	
 	
 	
 	

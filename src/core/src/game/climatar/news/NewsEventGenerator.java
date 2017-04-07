@@ -19,6 +19,7 @@ public class NewsEventGenerator {
     private static LinkedList<NewsEvent> WorldEvents;
     private static LinkedList<NewsEvent> PlayerEvents;
 
+ 
     public NewsEventGenerator(GameState gs) {
         playerNation = (Nation) gs.get(WorldProperty.NATION.id());
         

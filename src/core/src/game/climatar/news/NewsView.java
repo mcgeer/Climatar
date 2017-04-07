@@ -1,5 +1,7 @@
 package game.climatar.news;
 
+import java.util.List;
+
 import com.badlogic.gdx.scenes.scene2d.Group;
 
 import game.climatar.architecture.Model;
@@ -34,7 +36,7 @@ public void layout(float x, float y, float width, float height) {
 
     }
 
-    public boolean getUserInput(){
-        return true;
+    public List<ConseqType> getUserInput(NewsEvent currentEvent){
+        return null;
     }
 }
