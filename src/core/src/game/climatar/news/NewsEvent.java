@@ -74,10 +74,6 @@ public class NewsEvent {
 	public List<ConseqType> getNConseq(){
 		return nCon;
 	}
- 
-	
-	
-	
-	
+
 }
 

@@ -131,18 +131,11 @@ public class NewsView extends View {
     }
 
     private void responceOkay(){
-        switch(currentEvent.getType()){
-            case ACTIVE:
-                //TODO Call Controller Responce Active Yes
-                break;
-            case PASSIVE:
-                //TODO Call Controller Responce Passive
-                break;
-        }
+            ((NewsEventControl) getController()).respondActiveYes();
     }
 
     private void responceNo(){
-        //TODO call Controller Responce No
+        ((NewsEventControl) getController()).respondActiveNo();
     }
 
 }
