@@ -61,6 +61,6 @@ public class WeatherController extends Controller {
      * @return Controller for Nation n
      */
     public WeatherSystemController getWeatherSystemController(Nation n) {
-	return weatherSystems.get(n);
+    	return weatherSystems.get(n);
     }
 }

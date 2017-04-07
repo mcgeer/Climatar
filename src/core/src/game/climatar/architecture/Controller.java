@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+import game.climatar.ApplicationController;
 
 public abstract class Controller {
 
@@ -79,8 +82,9 @@ public abstract class Controller {
 		for (View view : views) {
 			view.update(model);
 		}
-
+		
 		getStage().act(Gdx.graphics.getDeltaTime());
+		getStage().getViewport().apply();
 		getStage().draw();
 
 		for (Controller child : children) {
@@ -120,7 +124,7 @@ public abstract class Controller {
 
 	protected Stage getStage() {
 		if (stage == null)
-			stage = new Stage(new ScreenViewport());
+			stage = new Stage(new ScreenViewport(new OrthographicCamera(ApplicationController.WIDTH, ApplicationController.HEIGHT)));
 
 		return stage;
 	}
@@ -155,9 +159,11 @@ public abstract class Controller {
 		for (View view : this.views) {
 			boolean shouldHide = true;
 
-			for (int i = 0; i < views.length; i++) {
-				if (views[i] == view) {
-					shouldHide = false;
+			if(views != null) {
+				for (int i = 0; i < views.length; i++) {
+					if (views[i] == view) {
+						shouldHide = false;
+					}
 				}
 			}
 

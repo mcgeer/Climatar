@@ -1,5 +1,7 @@
 package game.climatar.map;
 
+import java.util.HashMap;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -11,9 +13,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-
-import java.util.List;
-import java.util.HashMap;
 
 class Coordinates<T> {
 	public T x;
@@ -243,11 +242,11 @@ public class DrawableMap extends Actor {
 		camera.update();
 		Matrix4 projection = batch.getProjectionMatrix();
 
-		batch.end();
+//		batch.end();
 
-		Gdx.gl.glViewport((int) frame.x, (int) frame.y, (int) frame.width, (int) frame.height);
-		batch.setProjectionMatrix(camera.combined);
-		batch.begin();
+//		Gdx.gl.glViewport((int) frame.x, (int) frame.y, (int) frame.width, (int) frame.height);
+//		batch.setProjectionMatrix(camera.combined);
+//		batch.begin();
 
 		tint.a = parentAlpha;
 		batch.setColor(tint);
@@ -263,10 +262,10 @@ public class DrawableMap extends Actor {
 		if (visibilityLookup.get(Nation.AIR))
 			batch.draw(air, getX(), getY(), getWidth(), getHeight());
 
-		batch.end();
-		batch.setProjectionMatrix(projection);
-		batch.begin();
-		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+//		batch.end();
+//		batch.setProjectionMatrix(projection);
+//		batch.begin();
+//		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
 	public void dispose() {

@@ -127,12 +127,12 @@ public class WorldSimulator extends Controller {
 	// =================---- Overrides ----====================
 	@Override
 	protected void layoutView() {
-		float PAD = 50;
+		float PAD = 0;
 		float width = Gdx.graphics.getWidth();
 		float height = Gdx.graphics.getHeight();
 		mapView.setFrame(PAD, PAD, width - PAD * 2, height - PAD * 2);
-
-		showView(mapView);
+		uiView.setFrame(0, height - width, width/4, width);
+		showView(mapView, uiView);
 	}
 
 	@Override
@@ -172,6 +172,11 @@ public class WorldSimulator extends Controller {
 	}
 
 	public void openNationView(Nation nation) {
+		for(Nation n : Nation.values()) {
+			if(n != nation && n != Nation.BLUE_LOTUS) {
+				hideNationView(n);
+			}
+		}
 		weatherSystems.getWeatherSystemController(nation).show();
 		politicalSystems.getPoliticalSystemController(nation).show();
 		ghgSystems.getGHGSystemController(nation).show();

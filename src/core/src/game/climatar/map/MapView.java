@@ -69,7 +69,7 @@ public class MapView extends View {
 						newPosX = 0;
 					if (newPosX > maxWidth - textureWidth)
 						newPosX = maxWidth - textureWidth;
-
+					
 					map.setX(newPosX);
 				} else if (map.getHorizontalMapSize() == MapSize.BIGGER_THAN_VIEWPORT) {
 					if (newPosX > 0)
@@ -81,7 +81,6 @@ public class MapView extends View {
 				}
 			}
 		});
-
 	}
 	
 	@Override
@@ -91,7 +90,6 @@ public class MapView extends View {
 		table.pack();
 		table.invalidate();
 		table.validate();
-		table.layout();
 	}
 
 	@Override
@@ -102,5 +100,5 @@ public class MapView extends View {
 	@Override
 	public void dispose() {
 		map.dispose();
-	}	
+	}
 }

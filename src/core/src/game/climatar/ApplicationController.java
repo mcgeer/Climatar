@@ -9,6 +9,9 @@ import game.climatar.menu.TitleController;
 
 public class ApplicationController extends ControllerManager {
 
+	public static final float WIDTH = 400;
+	public static final float HEIGHT = 16 / 9 * 400;
+	
 	private TitleController titleController;
 	private WorldSimulator worldSimulator;
 
