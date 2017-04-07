@@ -174,12 +174,14 @@ public class WorldSimulator extends Controller {
         weatherSystems.getWeatherSystemController(nation).show();
         politicalSystems.getPoliticalSystemController(nation).show();
         ghgSystems.getGHGSystemController(nation).show();
+		mapView.setVisibility(nation, true);
     }
 
     public void hideNationView(Nation nation) {
         weatherSystems.getWeatherSystemController(nation).hide();
         politicalSystems.getPoliticalSystemController(nation).hide();
         ghgSystems.getGHGSystemController(nation).hide();
+		mapView.setVisibility(nation, false);
     }
 
     public void passConseq(List<ConseqType> yConseq) {
