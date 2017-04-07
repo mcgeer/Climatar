@@ -35,7 +35,7 @@ public class NewsEvent {
 	}
 	public String getDescription(){return BaseEvent;}
 	public void setNation(String s){
-			if(s=="FIRE"){
+		if(s=="FIRE"){
 			rep=Nation.FIRE;
 		}
 		else if(s=="WATER"){
@@ -48,6 +48,11 @@ public class NewsEvent {
 			rep=Nation.EARTH;
 		}
 	}
+
+	public Nation getNation() {
+		return rep;
+	}
+	
 	public void setIndex(int p){
 		pid=p;
 	}

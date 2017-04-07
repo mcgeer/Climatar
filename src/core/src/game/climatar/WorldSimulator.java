@@ -11,6 +11,7 @@ import game.climatar.architecture.SetModel;
 import game.climatar.map.MapView;
 import game.climatar.map.Nation;
 import game.climatar.news.ConseqType;
+import game.climatar.news.ConseqType.Consequence;
 import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGController;
 import game.climatar.systems.political.PoliticalController;
@@ -247,8 +248,119 @@ public class WorldSimulator extends Controller {
         mapView.setVisibility(nation, false);
     }
 
-    public void passConseq(List<ConseqType> yConseq) {
+    public void passConseq(List<ConseqType> yConseq,
+						   Nation nation) {
+
+		for (ConseqType c : yConseq) {
+
+			double value = c.getValue();
+			
+			switch (c.getConsequence()) {
+			case POLI: applyPolitical(nation, value);
+			case WALLET: applyWallet(nation, value);
+			case GHG: applyGHG(nation, value);
+			case TEMP: applyTemperature(nation, value);
+			case PERCIP: applyPrecipitation(nation, value);
+			default: break;
+			}
+		}
+		
         //Update
         resumeGame();
     }
+
+	private void applyPolitical(Nation nation, double value) {
+		switch (nation) {
+		case FIRE:
+			politicalSystems.getFireSubControl().setDeltaRelations(value);
+			break;
+		case WATER:
+			politicalSystems.getWaterSubControl().setDeltaRelations(value);
+			break;
+		case EARTH:
+			politicalSystems.getEarthSubControl().setDeltaRelations(value);
+			break;
+		case AIR:
+			politicalSystems.getAirSubControl().setDeltaRelations(value);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void applyWallet(Nation nation, double value) {
+		switch (nation) {
+		case FIRE:
+			politicalSystems.getFireSubControl().setDeltaWallet((int) value);
+			break;
+		case WATER:
+			politicalSystems.getWaterSubControl().setDeltaWallet((int) value);
+			break;
+		case EARTH:
+			politicalSystems.getEarthSubControl().setDeltaWallet((int) value);
+			break;
+		case AIR:
+			politicalSystems.getAirSubControl().setDeltaWallet((int) value);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void applyGHG(Nation nation, double value) {
+		switch (nation) {
+		case FIRE:
+			ghgSystems.setNationGHGDelta(nation, (int) value);
+			break;
+		case WATER:
+			ghgSystems.setNationGHGDelta(nation, (int) value);
+			break;
+		case EARTH:
+			ghgSystems.setNationGHGDelta(nation, (int) value);
+			break;
+		case AIR:
+			ghgSystems.setNationGHGDelta(nation, (int) value);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void applyTemperature(Nation nation, double value) {
+		switch (nation) {
+		case FIRE:
+			weatherSystems.getFireSubControl().setDeltaTemperature(value);
+			break;
+		case WATER:
+			weatherSystems.getWaterSubControl().setDeltaTemperature(value);
+			break;
+		case EARTH:
+			weatherSystems.getEarthSubControl().setDeltaTemperature(value);
+			break;
+		case AIR:
+			weatherSystems.getAirSubControl().setDeltaTemperature(value);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void applyPrecipitation(Nation nation, double value) {
+		switch (nation) {
+		case FIRE:
+			weatherSystems.getFireSubControl().setDeltaPrecipitation(value);
+			break;
+		case WATER:
+			weatherSystems.getWaterSubControl().setDeltaPrecipitation(value);
+			break;
+		case EARTH:
+			weatherSystems.getEarthSubControl().setDeltaPrecipitation(value);
+			break;
+		case AIR:
+			weatherSystems.getAirSubControl().setDeltaPrecipitation(value);
+			break;
+		default:
+			break;
+		}
+	}
 }

@@ -66,12 +66,12 @@ public class NewsEventControl extends Controller {
     }
 
     public void respondActiveYes() {
-        getWS().passConseq(currentEvent.getYConseq());
+        getWS().passConseq(currentEvent.getYConseq(), currentEvent.getNation());
         this.showView();
     }
 
     public void respondActiveNo() {
-        getWS().passConseq(currentEvent.getNConseq());
+        getWS().passConseq(currentEvent.getNConseq(), currentEvent.getNation());
         this.showView();
     }
 
