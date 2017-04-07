@@ -25,7 +25,7 @@ public class PoliticalSystemController extends Controller {
 		float width = Gdx.graphics.getWidth();
 		float height = Gdx.graphics.getHeight();
 
-		politicalSystemView.setFrame(0.0f, width/2 - (width/2) * 3/5, width/2, height/2 );
+		politicalSystemView.setFrame(10.0f, width/2 - (width/2) * 3/5, width/2, height/2 );
 
 		showView(politicalSystemView);
 	}

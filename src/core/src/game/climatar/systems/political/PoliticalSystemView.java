@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
+import com.badlogic.gdx.utils.Align;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 
@@ -47,19 +48,12 @@ public class PoliticalSystemView extends View {
 			}
 		};
 
-		//1: GHG
-		//2: Rel
-		//3: Wallet
-		//4: Weather
-		//5: Temperature
-
-		table.add(relationsLabel).maxWidth(widthVal).height(heightVal);
-		table.add(relationValueLabel).maxWidth(widthVal).fillX().expandX().width(widthVal).height(heightVal);
+		table.add(relationsLabel).maxWidth(widthVal).height(heightVal).align(Align.left);
+		table.add(relationValueLabel).maxWidth(widthVal).fillX().expandX().width(widthVal).height(heightVal).align(Align.right);
 		table.row();
-		table.add(walletLabel).maxWidth(widthVal).height(heightVal);
-		table.add(walletValueLabel).maxWidth(widthVal).fillX().expandX().width(widthVal).height(heightVal);
-		table.row(); //GHG
-		table.add("");
+		table.add(walletLabel).maxWidth(widthVal).height(heightVal).align(Align.left);
+		table.add(walletValueLabel).maxWidth(widthVal).fillX().expandX().width(widthVal).height(heightVal).align(Align.right);
+
 		group.addActor(table);
 	}
 
