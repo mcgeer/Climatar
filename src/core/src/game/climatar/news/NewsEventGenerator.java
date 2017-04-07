@@ -60,63 +60,51 @@ public class NewsEventGenerator {
 
 				JSONObject newConseq = (JSONObject) newEvent.get("consequences");
 				if (newConseq.containsKey("political")) {
-                    ConseqType storeConseq = ConseqType.POLI;
-					storeConseq.addValue(new Double(newConseq.get("political").toString()));
-                    storeEvent.addYConseq(storeConseq);
+					Double value = new Double(newConseq.get("political").toString());
+					storeEvent.addYConseq(ConseqType(Consequence.POLI, value));
 				}
 				if (newConseq.containsKey("wallet")) {
-                    ConseqType storeConseq = ConseqType.WALLET;
-					storeConseq.addValue(new Double(newConseq.get("wallet").toString()));
-                    storeEvent.addYConseq(storeConseq);
+					Double value = new Double(newConseq.get("wallet").toString());
+					storeEvent.addYConseq(ConseqType(Consequence.WALLET, value));
 				} 
 				if (newConseq.containsKey("ghg")) {
-                    ConseqType storeConseq = ConseqType.GHG;
-					storeConseq.addValue(new Double(newConseq.get("ghg").toString()));
-                    storeEvent.addYConseq(storeConseq);
+					Double value = new Double(newConseq.get("ghg").toString());
+					storeEvent.addYConseq(ConseqType(Consequence.GHG, value));
 				}
 				if (newConseq.containsKey("temp")) {
-                    ConseqType storeConseq = ConseqType.TEMP;
-					storeConseq.addValue(new Double(newConseq.get("temp").toString()));
-                    storeEvent.addYConseq(storeConseq);
+					Double value = new Double(newConseq.get("temp").toString());
+					storeEvent.addYConseq(ConseqType(Consequence.TEMP, value));
 				}
 				if (newConseq.containsKey("percip")) {
-                    ConseqType storeConseq = ConseqType.PERCIP;
-					storeConseq.addValue(new Double(newConseq.get("percip").toString()));
-                    storeEvent.addYConseq(storeConseq);
+					Double value = new Double(newConseq.get("percip").toString());
+					storeEvent.addYConseq(ConseqType(Consequence.PERCIP, value));
 				}
 
-
+				
 
 				JSONObject newRepur = (JSONObject) newEvent.get("repercussions");
 				if (newRepur != null) {
 					if (newRepur.containsKey("political")) {
-                        ConseqType storeRepur = ConseqType.POLI;
-						storeRepur.addValue(new Double(newRepur.get("political").toString()));
-                        storeEvent.addNConseq(storeRepur);
+						Double value = new Double(newRepur.get("political").toString());
+						storeEvent.addNConseq(ConseqType(Consequence.POLI, value));
 					}
 					if (newRepur.containsKey("wallet")) {
-                        ConseqType storeRepur = ConseqType.WALLET;
-						storeRepur.addValue(new Double(newRepur.get("wallet").toString()));
-                        storeEvent.addNConseq(storeRepur);
+						Double value = new Double(newRepur.get("wallet").toString());
+						storeEvent.addNConseq(ConseqType(Consequence.WALLET, value));
 					} 
 					if (newRepur.containsKey("ghg")) {
-                        ConseqType storeRepur = ConseqType.GHG;
-						storeRepur.addValue(new Double(newRepur.get("ghg").toString()));
-                        storeEvent.addNConseq(storeRepur);
+						Double value = new Double(newRepur.get("ghg").toString());
+						storeEvent.addNConseq(ConseqType(Consequence.GHG, value));
 					}
 					if (newRepur.containsKey("temp")) {
-                        ConseqType storeRepur = ConseqType.TEMP;
-						storeRepur.addValue(new Double(newRepur.get("temp").toString()));
-                        storeEvent.addNConseq(storeRepur);
+						Double value = new Double(newRepur.get("temp").toString());
+						storeEvent.addNConseq(ConseqType(Consequence.TEMP, value));
 					}
 					if (newRepur.containsKey("percip")) {
-                        ConseqType storeRepur = ConseqType.PERCIP;
-						storeRepur.addValue(new Double(newRepur.get("percip").toString()));
-                        storeEvent.addNConseq(storeRepur);
+						Double value = new Double(newRepur.get("percip").toString());
+						storeEvent.addNConseq(ConseqType(Consequence.PERCIP, value));
                     }
-
 				}
-
 
                 if(isPassive) {
                     WorldEvents.add(storeEvent);
