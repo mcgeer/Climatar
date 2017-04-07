@@ -1,21 +1,17 @@
 package game.climatar.systems.weather;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.utils.Align;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 
-import game.climatar.systems.weather.WeatherSystemModel.WeatherProperty;
 import game.climatar.architecture.AllowController;
 import game.climatar.architecture.Model;
 import game.climatar.architecture.View;
 import game.climatar.map.Nation;
+import game.climatar.systems.weather.WeatherSystemModel.WeatherProperty;
 
 @AllowController(WeatherSystemController.class)
 public class WeatherSystemView extends View {
@@ -27,11 +23,8 @@ public class WeatherSystemView extends View {
     private VisLabel TempValueLabel;
     private VisLabel PercipValueLabel;
 
-    private BitmapFont labelFont;
-
     @Override
     public void build(Group group) {
-
         table = new VisTable();
 
         TemperatureLabel = new VisLabel("Temperature: ");
@@ -86,6 +79,5 @@ public class WeatherSystemView extends View {
 
     @Override
     public void dispose() {
-        labelFont.dispose();
     }
 }

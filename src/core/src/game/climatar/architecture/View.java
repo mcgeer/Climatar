@@ -67,7 +67,6 @@ public abstract class View {
 		
 		group.setPosition(x, y);
 		group.setSize(width, height);
-		group.debug();
 
 		layout(x, y, width, height);
 	}
