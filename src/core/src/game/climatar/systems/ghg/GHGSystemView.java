@@ -26,24 +26,29 @@ public class GHGSystemView extends View {
 		
 		GHGEmissionsPerUpdate = new VisLabel("GHG Emissions: ");
 		GHGEmissionsPerUpdateValue = new VisLabel("0/sec");
-		
+
 		Value widthVal = new Value() {
 			@Override
 			public float get(Actor context) {
 				return getFrame().width/2 - 20;
 			}
 		};
-		
+
 		Value heightVal = new Value() {
 			@Override
 			public float get(Actor context) {
 				return getFrame().height/8;
 			}
 		};
-		
+
+		//1: GHG
+		//2: Rel
+		//3: Wallet
+		//4: Weather
+		//5: Temperature
+
 		table.add(GHGEmissionsPerUpdate).maxWidth(widthVal).height(heightVal);
 		table.add(GHGEmissionsPerUpdateValue).maxWidth(widthVal).fillX().expandX().width(widthVal).height(heightVal);
-		
 		group.addActor(table);
 	}
 
@@ -58,8 +63,7 @@ public class GHGSystemView extends View {
 	@Override
 	public void update(Model model) {
 		int epu = (Integer) model.get(GHGProperty.EMISSIONS_PER_UPDATE.id());
-		Nation nation = (Nation) model.get(GHGProperty.NATION.id());
-		GHGEmissionsPerUpdateValue.setText(epu + " " + nation.name() + " EPU");
+		GHGEmissionsPerUpdateValue.setText(epu + " EPU");
 	}
 
 	@Override
