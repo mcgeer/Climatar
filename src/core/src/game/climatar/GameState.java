@@ -8,7 +8,7 @@ import game.climatar.map.Nation;
  */
 
 public class GameState extends Model {
-    public enum WorldProperty {
+    public  enum WorldProperty {
         NATION, AVG_RELATIONS, AVG_TEMP, AVG_PRECIP, TOTAL_GHG, PLAYING;
 
         public String id() {

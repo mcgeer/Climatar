@@ -1,5 +1,7 @@
 package game.climatar;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 
 import game.climatar.GameState.WorldProperty;
@@ -7,6 +9,7 @@ import game.climatar.architecture.Controller;
 import game.climatar.architecture.SetModel;
 import game.climatar.map.MapView;
 import game.climatar.map.Nation;
+import game.climatar.news.ConseqType;
 import game.climatar.news.NewsEventControl;
 import game.climatar.systems.ghg.GHGController;
 import game.climatar.systems.political.PoliticalController;
@@ -16,7 +19,7 @@ import game.climatar.systems.weather.WeatherController;
 public class WorldSimulator extends Controller {
 
 	// Actively logged SubSystems
-	private boolean ghgIsActive, weatherIsActive, politicalIsActive;
+	private boolean ghgIsActive, weatherIsActive, politicalIsActive, isPaused, eventGen;
 
 	// Sub-system State Controllers
 	private GHGController ghgSystems;
@@ -26,10 +29,12 @@ public class WorldSimulator extends Controller {
 	private NewsEventControl newsEventControl;
 
 	// News Events
-	//	private NewsEventControl newsController;
+		private NewsEventControl newsController;
+		private List <ConseqType> currentAE;
+		private List <ConseqType> currentPE;
+		
 
 	private MapView mapView;
-	private UIView uiView;
 	
 	/**
 	 * Start a new game, Controlling all aspects of the world, Call Simulate
@@ -50,6 +55,9 @@ public class WorldSimulator extends Controller {
 
 		// Set up the Game State
 		((GameState) getModel()).init(player);
+	
+		newsController= new NewsEventControl();
+		
 	}
 
 	/**
@@ -58,7 +66,11 @@ public class WorldSimulator extends Controller {
 	public void Simulate() {
 		// GENERATE NEWS
 		// REACT TO NEWS
-
+		if(isPaused==false){
+		newsController.getNewsEvent();
+		pauseGame();eventGen=true;
+		}
+		
 		// UPDATE Sub Systems
 		// if(ghgIsActive)
 		// gameState.updateWorldGHG(ghgSystems.getEmissionsPerUpdate());
@@ -66,7 +78,16 @@ public class WorldSimulator extends Controller {
 		// TODO weatherSystems.Update();
 		// if(politicalIsActive)
 		// gameState.updateWorldPlayerPolitics(politicalSystems.getTotalRelations());
+		
 
+	}
+
+	private void pauseGame() {
+		// TODO Auto-generated method stub
+		isPaused=true;
+	}
+	public void resumeGame(){
+		isPaused=false;
 	}
 
 	// ========================================================
@@ -117,10 +138,26 @@ public class WorldSimulator extends Controller {
 	@Override
 	protected void tick() {
 		// UPDATE WORLD STATE
+		if(isPaused==false){
+		if(eventGen==false){
+		Simulate();
+		}else{
 		// TODO add conds for GS updates
+		// getModel().set(WorldProperty.AVG_TEMP.id(), );
 		getModel().set(WorldProperty.TOTAL_GHG.id(), ghgSystems.getEmissionsPerUpdate());
 		getModel().set(WorldProperty.AVG_RELATIONS.id(), politicalSystems.getTotalRelations());
-		// getModel().set(WorldProperty.AVG_TEMP.id(), )
+		setEvent();
+		}
+		}
+		else{
+		//DO NOTHING	
+		}
+	
+	}
+
+	private void setEvent() {
+		eventGen=false;
+		
 	}
 
 	@Override
@@ -145,4 +182,11 @@ public class WorldSimulator extends Controller {
 		politicalSystems.getPoliticalSystemController(nation).hide();
 		ghgSystems.getGHGSystemController(nation).hide();
 	}
+
+	public void passConseq(List<ConseqType> yConseq) {
+		//Update
+		resumeGame();
+		
+	}
+
 }
