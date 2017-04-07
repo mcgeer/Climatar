@@ -5,6 +5,7 @@ import java.util.HashMap;
 import game.climatar.architecture.Controller;
 import game.climatar.architecture.SetModel;
 import game.climatar.map.Nation;
+import game.climatar.systems.political.PoliticalSystemController;
 import game.climatar.systems.weather.WeatherSystemController;
 
 public class WeatherController extends Controller {
@@ -46,6 +47,19 @@ public class WeatherController extends Controller {
         weatherSystems.put(Nation.AIR, airNationController);
         weatherSystems.put(Nation.WATER, waterNationController);
     }
+    public WeatherSystemController getEarthSubControl(){
+		return earthNationController;
+	}
+	public WeatherSystemController getFireSubControl(){
+		return fireNationController;
+	}
+	public WeatherSystemController getWaterSubControl(){
+		return waterNationController;
+	}
+	public WeatherSystemController getAirSubControl(){
+		return airNationController;
+
+	}
 
     @Override
     protected void layoutView() {

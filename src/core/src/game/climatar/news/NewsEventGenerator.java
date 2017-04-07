@@ -33,7 +33,9 @@ public class NewsEventGenerator {
         boolean isPassive;
         JSONParser parser = new JSONParser();
         try {
-            JSONArray readArray = (JSONArray) parser.parse(Gdx.files.internal("Events.json").readString());
+			
+            JSONObject json = (JSONObject) parser.parse(Gdx.files.internal("Events.json").readString());
+			JSONArray readArray = (JSONArray) json.get("Events");
             for (Object obj : readArray) {
                 isPassive=false;
                 JSONObject newEvent = (JSONObject) obj;
@@ -52,57 +54,55 @@ public class NewsEventGenerator {
                 storeEvent.setDescription((String) newEvent.get("desc"));
                 storeEvent.setNation((String) newEvent.get("nation"));
                 ConseqType storeConseq = ConseqType.DEF;
+				JSONObject newConseq = (JSONObject) newEvent.get("consequences");
+				if (newConseq.containsKey("political")) {
+					storeConseq = ConseqType.POLI;
+					storeConseq.addValue(new Double(newConseq.get("political").toString()));
+				}
+				if (newConseq.containsKey("wallet")) {
+					storeConseq = ConseqType.WALLET;
+					storeConseq.addValue(new Double(newConseq.get("wallet").toString()));
+				} 
+				if (newConseq.containsKey("ghg")) {
+					storeConseq = ConseqType.GHG;
+					storeConseq.addValue(new Double(newConseq.get("ghg").toString()));
+				}
+				if (newConseq.containsKey("temp")) {
+					storeConseq = ConseqType.TEMP;
+					storeConseq.addValue(new Double(newConseq.get("temp").toString()));
+				}
+				if (newConseq.containsKey("percip")) {
+					storeConseq = ConseqType.PERCIP;
+					storeConseq.addValue(new Double(newConseq.get("percip").toString()));
+				}
+				storeEvent.addYConseq(storeConseq);
 
-                for (Object elm : (JSONArray) newEvent.get("consequences")) {
-                    JSONObject newConseq = (JSONObject) elm;
-                    if (newConseq.containsKey("political")) {
-                        storeConseq = ConseqType.POLI;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("political")));
-                    }
-                    if (newConseq.containsKey("wallet")) {
-                        storeConseq = ConseqType.WALLET;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("wallet")));
-                    } 
-                    if (newConseq.containsKey("ghg")) {
-                        storeConseq = ConseqType.GHG;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("ghg")));
-                    }
-                    if (newConseq.containsKey("temp")) {
-                        storeConseq = ConseqType.TEMP;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("temp")));
-                    }
-                    if (newConseq.containsKey("percip")) {
-                        storeConseq = ConseqType.PERCIP;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("percip")));
-                    }
-                    storeEvent.addYConseq(storeConseq);
+				ConseqType storeRepur = ConseqType.DEF;
+				JSONObject newRepur = (JSONObject) newEvent.get("repercussions");
+				if (newRepur != null) {
+					if (newRepur.containsKey("political")) {
+						storeRepur = ConseqType.POLI;
+						storeRepur.addValue(new Double(newRepur.get("political").toString()));
+					}
+					if (newRepur.containsKey("wallet")) {
+						storeRepur = ConseqType.WALLET;
+						storeRepur.addValue(new Double(newRepur.get("wallet").toString()));
+					} 
+					if (newRepur.containsKey("ghg")) {
+						storeRepur = ConseqType.GHG;
+						storeRepur.addValue(new Double(newRepur.get("ghg").toString()));
+					}
+					if (newRepur.containsKey("temp")) {
+						storeRepur = ConseqType.TEMP;
+						storeRepur.addValue(new Double(newRepur.get("temp").toString()));
+					}
+					if (newRepur.containsKey("percip")) {
+						storeRepur = ConseqType.PERCIP;
+						storeRepur.addValue(new Double(newRepur.get("percip").toString()));
+					}
+				}
+				storeEvent.addNConseq(storeRepur);
 
-                }
-                for (Object elm : (JSONArray) newEvent.get("repercussions")) {
-                    JSONObject newConseq = (JSONObject) elm;
-                    if (newConseq.containsKey("political")) {
-                        storeConseq = ConseqType.POLI;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("political")));
-                    }
-                    if (newConseq.containsKey("wallet")) {
-                        storeConseq = ConseqType.WALLET;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("wallet")));
-                    } 
-                    if (newConseq.containsKey("ghg")) {
-                        storeConseq = ConseqType.GHG;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("ghg")));
-                    }
-                    if (newConseq.containsKey("temp")) {
-                        storeConseq = ConseqType.TEMP;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("temp")));
-                    }
-                    if (newConseq.containsKey("percip")) {
-                        storeConseq = ConseqType.PERCIP;
-                        storeConseq.addValue(Integer.parseInt((String) newConseq.get("percip")));
-                    }
-                    storeEvent.addNConseq(storeConseq);
-
-                }
                 if(isPassive) {
                     WorldEvents.add(storeEvent);
                 }else{
