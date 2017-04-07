@@ -14,8 +14,7 @@ public class NewsEventControl extends Controller{
     NewsView view;
     @Override
     protected void initialize() {
-        
-       super.initialize();
+        gs = (GameState) getParentController().getModel();
         PressMill= new NewsEventGenerator(gs);
     }
 

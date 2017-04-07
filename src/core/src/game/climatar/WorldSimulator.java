@@ -27,7 +27,7 @@ public class WorldSimulator extends Controller {
 	private NewsEventControl newsController;
 
 	private MapView mapView;
-
+	
 	/**
 	 * Start a new game, Controlling all aspects of the world, Call Simulate
 	 * after Creation!

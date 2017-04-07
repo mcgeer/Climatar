@@ -25,6 +25,10 @@ public void layout(float x, float y, float width, float height) {
 }
 
 
+	public void showNewsEvent(NewsEvent event) {
+		
+	}
+
     @Override
     public void update(Model model) {
 
