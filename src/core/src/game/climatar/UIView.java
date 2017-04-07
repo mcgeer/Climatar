@@ -66,8 +66,6 @@ public class UIView extends View {
 
 		int i = 0;
 		for (Nation n : Nation.values()) {
-			if (n == Nation.BLUE_LOTUS)
-				continue;
 			final Nation nation = n;
 			final WorldSimulator sim = (WorldSimulator) getController();
 

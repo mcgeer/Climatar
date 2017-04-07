@@ -167,7 +167,7 @@ public class WorldSimulator extends Controller {
 
     public void openNationView(Nation nation) {
         for (Nation n : Nation.values()) {
-            if (n != nation && n != Nation.BLUE_LOTUS) {
+            if (n != nation) {
                 hideNationView(n);
             }
         }
