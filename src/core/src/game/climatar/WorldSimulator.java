@@ -65,8 +65,8 @@ public class WorldSimulator extends Controller {
 		// GENERATE NEWS
 		// REACT TO NEWS
 		if(isPaused==false){
-		newsController.getActiveEvent();
-		pauseGame();
+		newsController.getNewsEvent();
+		pauseGame();eventGen=true;
 		}
 		
 		// UPDATE Sub Systems
@@ -136,17 +136,26 @@ public class WorldSimulator extends Controller {
 	@Override
 	protected void tick() {
 		// UPDATE WORLD STATE
-		Simulate();
 		if(isPaused==false){
+		if(eventGen==false){
+		Simulate();
+		}else{
 		// TODO add conds for GS updates
-			
+		// getModel().set(WorldProperty.AVG_TEMP.id(), );
 		getModel().set(WorldProperty.TOTAL_GHG.id(), ghgSystems.getEmissionsPerUpdate());
 		getModel().set(WorldProperty.AVG_RELATIONS.id(), politicalSystems.getTotalRelations());
+		setEvent();
+		}
 		}
 		else{
 		//DO NOTHING	
 		}
-		// getModel().set(WorldProperty.AVG_TEMP.id(), )
+	
+	}
+
+	private void setEvent() {
+		eventGen=false;
+		
 	}
 
 	@Override
@@ -159,4 +168,23 @@ public class WorldSimulator extends Controller {
 	public boolean isPlaying() {
 		return getModel().get(WorldProperty.PLAYING.id()) != null;
 	}
+
+	public void openNationView(Nation nation) {
+		weatherSystems.getWeatherSystemController(nation).show();
+		politicalSystems.getPoliticalSystemController(nation).show();
+		ghgSystems.getGHGSystemController(nation).show();
+	}
+
+	public void hideNationView(Nation nation){
+		weatherSystems.getWeatherSystemController(nation).hide();
+		politicalSystems.getPoliticalSystemController(nation).hide();
+		ghgSystems.getGHGSystemController(nation).hide();
+	}
+
+	public void passConseq(List<ConseqType> yConseq) {
+		//Update
+		resumeGame();
+		
+	}
+
 }

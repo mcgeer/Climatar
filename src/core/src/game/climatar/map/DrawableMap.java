@@ -24,11 +24,101 @@ class Coordinates<T> {
 	}
 }
 
+abstract class TileRenderer {
+	abstract void draw(Coordinates<Integer> coords, Pixmap map);
+}
+
+class TerrainTileRenderer extends TileRenderer {
+	private Pixmap tilesPixmap;
+	private TextureRegion[][] tileRegions;
+	private List<List<Integer>> world;
+	private int tileSize;
+
+	private Pixmap debug;
+	
+	public TerrainTileRenderer(List<List<Integer>> world,
+							   int tileSize) {
+		this.world = world;
+		this.tileSize = tileSize;
+		// build the tile map with the tile specifications
+		Texture tilesTexture = new Texture(Gdx.files.internal("tiles.png"));
+		tilesTexture.getTextureData().prepare();
+		this.tilesPixmap = tilesTexture.getTextureData().consumePixmap();
+		this.tileRegions = TextureRegion.split(tilesTexture, tileSize, tileSize);
+		
+		if (tilesTexture.getTextureData().disposePixmap()) {
+			tilesTexture.dispose();
+		}
+	}
+
+	public void draw(Coordinates<Integer> coords, Pixmap map) {
+		int terrainID = world.get(coords.y).get(coords.x);
+		
+		// tileID runs 0 through 8, conveniently in the
+		// same order as our split tiles texture...
+		int ty = (int) terrainID / 3;
+		int tx = terrainID % 3;
+
+		TextureRegion tileRegion = tileRegions[ty][tx];
+
+		map.drawPixmap(tilesPixmap,
+					   coords.x * tileSize,
+					   coords.y * tileSize,
+					   tileRegion.getRegionX(),
+					   tileRegion.getRegionY(),
+					   tileRegion.getRegionWidth(),
+					   tileRegion.getRegionHeight());
+	}
+}
+
+class NationTileRenderer extends TileRenderer {
+	private Nation nation;
+	private List<List<Nation>> world;
+	private Pixmap tilePixmap;
+	private int tileSize;
+	public NationTileRenderer(Nation nation,
+							  List<List<Nation>> world,
+							  String textureName,
+							  int tileSize) {
+		this.nation = nation;
+		this.world = world;
+		this.tileSize = tileSize;
+
+		Texture tileTexture = new Texture(Gdx.files.internal(textureName));
+		tileTexture.getTextureData().prepare();
+		this.tilePixmap = tileTexture.getTextureData().consumePixmap();
+		
+		if (tileTexture.getTextureData().disposePixmap()) {
+			tileTexture.dispose();
+		}
+	}
+	
+	public void draw(Coordinates<Integer> coords, Pixmap map) {
+		// this comment makes this implementation look nicer
+		if (world.get(coords.y).get(coords.x) == nation)
+			map.drawPixmap(tilePixmap,
+						   coords.x * tileSize,
+						   coords.y * tileSize,
+						   0,
+						   0,
+						   tileSize,
+						   tileSize);
+		
+	}
+}
+
 public class DrawableMap extends Actor {
 
 	private static final int TILE_SIZE = 16;
 
-	private Texture computedMapTexture;
+	private Texture terrain;
+	private Texture fire;
+	private Texture water;
+	private Texture earth;
+	private Texture air;
+
+	private HashMap<Nation, Boolean> visibilityLookup;
+	
 	private Color tint = new Color(Color.WHITE);
 
 	private float scale;
@@ -40,84 +130,62 @@ public class DrawableMap extends Actor {
 		camera = new OrthographicCamera();
 		frame = new Rectangle();
 
-		// build the tile map with the tile specifications
-		Texture terrainTiles = new Texture(Gdx.files.internal("tiles.png"));
-		TextureRegion[][] terrainSplits = TextureRegion.split(terrainTiles, TILE_SIZE, TILE_SIZE);
-
-		Texture nationTiles = new Texture(Gdx.files.internal("nation-tiles-wide.png"));
-		TextureRegion[][] nationSplits = TextureRegion.split(nationTiles, TILE_SIZE, TILE_SIZE);
+		// set up the renderers
+		TerrainTileRenderer terrainRenderer = new TerrainTileRenderer(world.terrain,
+																	  TILE_SIZE);
+		NationTileRenderer fireNationRenderer = new NationTileRenderer(Nation.FIRE,
+																	   world.nations, 
+																	   "tile-fire.png",
+																	   TILE_SIZE);
+		NationTileRenderer waterNationRenderer = new NationTileRenderer(Nation.WATER,
+																		world.nations, 
+																		"tile-water.png",
+																		TILE_SIZE);
+		NationTileRenderer earthNationRenderer = new NationTileRenderer(Nation.EARTH,
+																		world.nations, 
+																		"tile-earth.png",
+																		TILE_SIZE);
+		NationTileRenderer airNationRenderer = new NationTileRenderer(Nation.AIR,
+																	  world.nations, 
+																	  "tile-air.png",
+																	  TILE_SIZE);
 
 		int mapWidth = world.terrain.get(0).size();
 		int mapHeight = world.terrain.size();
-		Pixmap fullMap = new Pixmap(mapWidth * TILE_SIZE, mapHeight * TILE_SIZE, Format.RGB888);
 
-		terrainTiles.getTextureData().prepare();
-		Pixmap terrainTileset = terrainTiles.getTextureData().consumePixmap();
-		
-		nationTiles.getTextureData().prepare();
-		Pixmap nationTileset = nationTiles.getTextureData().consumePixmap();
-
-		HashMap<String, Coordinates<Integer>> nationTileLookup = new HashMap<String, Coordinates<Integer>>();
-		nationTileLookup.put("Fire", new Coordinates<Integer>(0, 0));
-		nationTileLookup.put("Water", new Coordinates<Integer>(1, 0));
-		nationTileLookup.put("Earth", new Coordinates<Integer>(1, 1));
-		nationTileLookup.put("Air", new Coordinates<Integer>(0, 1));
-		nationTileLookup.put("UN", new Coordinates<Integer>(1, 2));
+		Pixmap terrainMap = new Pixmap(mapWidth * TILE_SIZE, mapHeight * TILE_SIZE, Format.RGB888);
+		Pixmap fireNationMap = new Pixmap(mapWidth * TILE_SIZE, mapHeight * TILE_SIZE, Format.RGBA8888);
+		Pixmap waterNationMap = new Pixmap(mapWidth * TILE_SIZE, mapHeight * TILE_SIZE, Format.RGBA8888);
+		Pixmap earthNationMap = new Pixmap(mapWidth * TILE_SIZE, mapHeight * TILE_SIZE, Format.RGBA8888);
+		Pixmap airNationMap = new Pixmap(mapWidth * TILE_SIZE, mapHeight * TILE_SIZE, Format.RGBA8888);
 
 		// reading topleft -> right -> down
 		for (int y = 0; y < mapHeight; y++) {
 			for (int x = 0; x < mapWidth; x++) {
-				// indexed by [row][column]
-
-				// draw terrain tiles
-				
-				int terrainID = world.terrain.get(y).get(x);
-				// tileID runs 0 through 8, conveniently in the
-				// same order as our split tiles texture...
-				int ty = (int) terrainID / 3;
-				int tx = terrainID % 3;
-
-				TextureRegion terrainRegion = terrainSplits[ty][tx];
-
-				fullMap.drawPixmap(terrainTileset,
-								   x * TILE_SIZE,
-								   y * TILE_SIZE,
-								   terrainRegion.getRegionX(),
-								   terrainRegion.getRegionY(),
-								   terrainRegion.getRegionWidth(),
-								   terrainRegion.getRegionHeight());
-
-				// draw nation border tiles
-
-				Nation nation = world.nations.get(y).get(x);
-				Coordinates<Integer> c = nationTileLookup.get(nation.getName());
-
-				TextureRegion nationRegion = nationSplits[c.y][c.x];
-
-				fullMap.drawPixmap(nationTileset,
-								   x * TILE_SIZE,
-								   y * TILE_SIZE,
-								   nationRegion.getRegionX(),
-								   nationRegion.getRegionY(),
-								   nationRegion.getRegionWidth(),
-								   nationRegion.getRegionHeight());
-
+				Coordinates<Integer> coords = new Coordinates<Integer>(x, y);
+				terrainRenderer.draw(coords, terrainMap);
+				fireNationRenderer.draw(coords, fireNationMap);
+				waterNationRenderer.draw(coords, waterNationMap);
+				earthNationRenderer.draw(coords, earthNationMap);
+				airNationRenderer.draw(coords, airNationMap);
 			}
 		}
 
-		computedMapTexture = new Texture(fullMap);
+		terrain = new Texture(terrainMap);
+		fire = new Texture(fireNationMap);
+		water = new Texture(waterNationMap);
+		earth = new Texture(earthNationMap);
+		air = new Texture(airNationMap);
 
-		if (terrainTiles.getTextureData().disposePixmap()) {
-			terrainTileset.dispose();
-		}
-
-		if (nationTiles.getTextureData().disposePixmap()) {
-			nationTileset.dispose();
-		}
+		// setup visibility lookup
+		visibilityLookup = new HashMap<Nation, Boolean>();
+		visibilityLookup.put(Nation.FIRE, false);
+		visibilityLookup.put(Nation.WATER, false);
+		visibilityLookup.put(Nation.EARTH, false);
+		visibilityLookup.put(Nation.AIR, false);
 
 		setPosition(0, 0);
-		setSize(computedMapTexture.getWidth(), computedMapTexture.getHeight());
-
+		setSize(terrain.getWidth(), terrain.getHeight());
 		setFrame(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
@@ -139,11 +207,11 @@ public class DrawableMap extends Actor {
 	}
 
 	public float getWidth() {
-		return computedMapTexture.getWidth();
+		return terrain.getWidth();
 	}
 
 	public float getHeight() {
-		return computedMapTexture.getHeight();
+		return terrain.getHeight();
 	}
 
 	public enum MapSize {
@@ -166,6 +234,10 @@ public class DrawableMap extends Actor {
 		}
 	}
 
+	public void setVisibility(Nation nation, Boolean isVisible) {
+		visibilityLookup.put(nation, isVisible);
+	}
+	
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		camera.update();
@@ -179,7 +251,17 @@ public class DrawableMap extends Actor {
 
 		tint.a = parentAlpha;
 		batch.setColor(tint);
-		batch.draw(computedMapTexture, getX(), getY(), getWidth(), getHeight());
+		batch.draw(terrain, getX(), getY(), getWidth(), getHeight());
+
+		// draw nation layers
+		if (visibilityLookup.get(Nation.FIRE))
+			batch.draw(fire, getX(), getY(), getWidth(), getHeight());
+		if (visibilityLookup.get(Nation.WATER))
+			batch.draw(water, getX(), getY(), getWidth(), getHeight());
+		if (visibilityLookup.get(Nation.EARTH))
+			batch.draw(earth, getX(), getY(), getWidth(), getHeight());
+		if (visibilityLookup.get(Nation.AIR))
+			batch.draw(air, getX(), getY(), getWidth(), getHeight());
 
 		batch.end();
 		batch.setProjectionMatrix(projection);
@@ -188,7 +270,11 @@ public class DrawableMap extends Actor {
 	}
 
 	public void dispose() {
-		computedMapTexture.dispose();
+		terrain.dispose();
+		fire.dispose();
+		water.dispose();
+		earth.dispose();
+		air.dispose();
 	}
 
 	public Rectangle getFrame() {

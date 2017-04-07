@@ -27,7 +27,15 @@ public class PoliticalSystemController extends Controller {
 
 		politicalSystemView.setFrame(10.0f, width/2 - (width/2) * 3/5, width/2, height/2 );
 
+
+	}
+
+	public void show(){
 		showView(politicalSystemView);
+	}
+
+	public void hide(){
+		showView();
 	}
 
 	@Override
