@@ -36,9 +36,9 @@ public class MapGenerator {
 
 	private static Thresholder<Nation> nationThresholder = new Thresholder<Nation>() {
 			// thresholds determining cutoffs for nations
-			float waterNation = 0.3f;
-			float internationalWaters = 0.4f;
-			float earthOrFireNation = 0.83f;
+			float waterNation = 0.23f;
+			float internationalWaters = 0.38f;
+			float earthOrFireNation = 0.82f;
 
 			Nation threshold(float x) {
 				if (x < waterNation) return Nation.WATER;

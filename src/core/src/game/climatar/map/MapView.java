@@ -20,7 +20,7 @@ public class MapView extends View {
 		
 		WorldMap world = MapGenerator.generateMap(4, 14, 7, 4);
 		
-		map = new DrawableMap(world.terrain, 0.2f);
+		map = new DrawableMap(world, 0.2f);
 		
 		table = new VisTable();
 		table.add(map);

@@ -16,6 +16,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 import java.util.List;
+import java.util.HashMap;
+
+class Coordinates<T> {
+	public T x;
+	public T y;
+	public Coordinates(T x, T y) {
+		this.x = x;
+		this.y = y;
+	}
+}
 
 public class DrawableMap extends Actor {
 
@@ -28,44 +38,84 @@ public class DrawableMap extends Actor {
 	private Rectangle frame;
 	private OrthographicCamera camera;
 
-	public DrawableMap(List<List<Integer>> terrain, float scale) {
+	public DrawableMap(WorldMap world, float scale) {
 		this.scale = scale;
 		camera = new OrthographicCamera();
 		frame = new Rectangle();
 		
 		// build the tile map with the tile specifications
-		Texture tiles = new Texture(Gdx.files.internal("tiles.png"));
-		TextureRegion[][] splitTiles = TextureRegion.split(tiles, TILE_SIZE, TILE_SIZE);
+		Texture terrainTiles = new Texture(Gdx.files.internal("tiles.png"));
+		TextureRegion[][] terrainSplits = TextureRegion.split(terrainTiles, TILE_SIZE, TILE_SIZE);
 
-		int mapWidth = terrain.get(0).size();
-		int mapHeight = terrain.size();
+		Texture nationTiles = new Texture(Gdx.files.internal("nation-tiles-wide.png"));
+		TextureRegion[][] nationSplits = TextureRegion.split(nationTiles, TILE_SIZE, TILE_SIZE);
 
+		int mapWidth = world.terrain.get(0).size();
+		int mapHeight = world.terrain.size();
 		Pixmap fullMap = new Pixmap(mapWidth * TILE_SIZE, mapHeight * TILE_SIZE, Format.RGB888);
 
-		tiles.getTextureData().prepare();
-		Pixmap tileset = tiles.getTextureData().consumePixmap();
+		terrainTiles.getTextureData().prepare();
+		Pixmap terrainTileset = terrainTiles.getTextureData().consumePixmap();
+		
+		nationTiles.getTextureData().prepare();
+		Pixmap nationTileset = nationTiles.getTextureData().consumePixmap();
+
+		HashMap<String, Coordinates<Integer>> nationTileLookup = new HashMap<String, Coordinates<Integer>>();
+		nationTileLookup.put("Fire", new Coordinates<Integer>(0, 0));
+		nationTileLookup.put("Water", new Coordinates<Integer>(1, 0));
+		nationTileLookup.put("Earth", new Coordinates<Integer>(1, 1));
+		nationTileLookup.put("Air", new Coordinates<Integer>(0, 1));
+		nationTileLookup.put("UN", new Coordinates<Integer>(1, 2));
 
 		// reading topleft -> right -> down
 		for (int y = 0; y < mapHeight; y++) {
 			for (int x = 0; x < mapWidth; x++) {
 				// indexed by [row][column]
-				int tileID = terrain.get(y).get(x);
+
+				// draw terrain tiles
+				
+				int terrainID = world.terrain.get(y).get(x);
 				// tileID runs 0 through 8, conveniently in the
 				// same order as our split tiles texture...
-				int ty = (int) tileID / 3;
-				int tx = tileID % 3;
+				int ty = (int) terrainID / 3;
+				int tx = terrainID % 3;
 
-				TextureRegion region = splitTiles[ty][tx];
+				TextureRegion terrainRegion = terrainSplits[ty][tx];
 
-				fullMap.drawPixmap(tileset, x * TILE_SIZE, y * TILE_SIZE, region.getRegionX(), region.getRegionY(),
-						region.getRegionWidth(), region.getRegionHeight());
+				fullMap.drawPixmap(terrainTileset,
+								   x * TILE_SIZE,
+								   y * TILE_SIZE,
+								   terrainRegion.getRegionX(),
+								   terrainRegion.getRegionY(),
+								   terrainRegion.getRegionWidth(),
+								   terrainRegion.getRegionHeight());
+
+				// draw nation border tiles
+
+				Nation nation = world.nations.get(y).get(x);
+				Coordinates<Integer> c = nationTileLookup.get(nation.getName());
+
+				TextureRegion nationRegion = nationSplits[c.y][c.x];
+
+				fullMap.drawPixmap(nationTileset,
+								   x * TILE_SIZE,
+								   y * TILE_SIZE,
+								   nationRegion.getRegionX(),
+								   nationRegion.getRegionY(),
+								   nationRegion.getRegionWidth(),
+								   nationRegion.getRegionHeight());
+
 			}
 		}
 
 		computedMapTexture = new Texture(fullMap);
 
-		if (tiles.getTextureData().disposePixmap()) {
-			tileset.dispose();
+		if (terrainTiles.getTextureData().disposePixmap()) {
+			terrainTileset.dispose();
+		}
+
+		if (nationTiles.getTextureData().disposePixmap()) {
+			nationTileset.dispose();
 		}
 
 		setPosition(0, 0);
