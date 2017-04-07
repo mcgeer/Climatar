@@ -182,7 +182,7 @@ public class WorldSimulator extends Controller {
         ghgSystems.getGHGSystemController(nation).hide();
     }
 
-    public void passConseq(List<ConseqType> yConseq) {
+    public void passConseq(List<ConseqType> yConseq, Nation nation) {
         //Update
         resumeGame();
 

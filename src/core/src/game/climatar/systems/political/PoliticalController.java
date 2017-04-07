@@ -44,6 +44,19 @@ public class PoliticalController extends Controller {
         politicalSystems.put(Nation.AIR, airNationController);
         politicalSystems.put(Nation.WATER, waterNationController);
     }
+ public PoliticalSystemController getEarthSubControl(){
+		return earthNationController;
+	}
+	public PoliticalSystemController getFireSubControl(){
+		return fireNationController;
+	}
+	public PoliticalSystemController getWaterSubControl(){
+		return waterNationController;
+	}
+	public PoliticalSystemController getAirSubControl(){
+		return airNationController;
+
+	}
 
     @Override
     protected void layoutView() {

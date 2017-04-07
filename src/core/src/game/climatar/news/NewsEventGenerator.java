@@ -33,7 +33,8 @@ public class NewsEventGenerator {
         boolean isPassive;
         JSONParser parser = new JSONParser();
         try {
-            JSONArray readArray = (JSONArray) parser.parse(Gdx.files.internal("Events.json").readString());
+            JSONObject json = (JSONObject) parser.parse(Gdx.files.internal("Events.json").readString());
+            JSONArray readArray = (JSONArray) json.get("Events");
             for (Object obj : readArray) {
                 isPassive=false;
                 JSONObject newEvent = (JSONObject) obj;
@@ -52,8 +53,8 @@ public class NewsEventGenerator {
                 storeEvent.setDescription((String) newEvent.get("desc"));
                 storeEvent.setNation((String) newEvent.get("nation"));
                 ConseqType storeConseq = ConseqType.DEF;
-
-                for (Object elm : (JSONArray) newEvent.get("consequences")) {
+                JSONArray readnestArray = (JSONArray) newEvent.get("consequences");
+                for (Object elm : readnestArray) {
                     JSONObject newConseq = (JSONObject) elm;
                     if (newConseq.containsKey("political")) {
                         storeConseq = ConseqType.POLI;
