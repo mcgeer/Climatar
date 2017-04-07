@@ -32,6 +32,7 @@ public class NewsEvent {
 	public void setDescription(String s){
 		BaseEvent=s;
 	}
+	public String getDescription(){return BaseEvent;}
 	public void setNation(String s){
 			if(s=="FIRE"){
 			rep=Nation.FIRE;
