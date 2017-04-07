@@ -234,8 +234,16 @@ public class DrawableMap extends Actor {
 		}
 	}
 
+	public Boolean getVisibility(Nation nation) {
+		return visibilityLookup.get(nation);
+	}
+	
 	public void setVisibility(Nation nation, Boolean isVisible) {
 		visibilityLookup.put(nation, isVisible);
+	}
+	
+	public void toggleVisibility(Nation nation) {
+		setVisibility(nation, !getVisibility(nation));
 	}
 	
 	@Override
@@ -280,5 +288,4 @@ public class DrawableMap extends Actor {
 	public Rectangle getFrame() {
 		return frame;
 	}
-
 }

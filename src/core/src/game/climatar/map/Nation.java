@@ -4,8 +4,7 @@ public enum Nation {
 	FIRE("Fire", "fire.png"), 
 	WATER("Water", "water.png"), 
 	AIR("Air", "air.png"), 
-	EARTH("Earth", "earth.png"), 
-	BLUE_LOTUS("UN", "");
+	EARTH("Earth", "earth.png");
 
 	private String name;
 	private String imageFileName;
