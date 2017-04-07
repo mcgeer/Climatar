@@ -22,8 +22,8 @@ public class NewsEventGenerator {
  
     public NewsEventGenerator(GameState gs) {
         playerNation = (Nation) gs.get(WorldProperty.NATION.id());
-        
         readEvents();
+        
         sortEvents();
     }
 
@@ -118,6 +118,7 @@ public class NewsEventGenerator {
     }
 
     public static void sortEvents() {
+    	System.out.println("Sort");
         Collections.sort(WorldEvents, new indexComparator());
         Collections.sort(PlayerEvents, new indexComparator());
     }

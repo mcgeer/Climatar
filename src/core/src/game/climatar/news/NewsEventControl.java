@@ -20,8 +20,11 @@ public class NewsEventControl extends Controller {
     @Override
     protected void initialize() {
         gs = (GameState) getParentController().getModel();
-        PressMill = new NewsEventGenerator(gs);
+        
         turn = 0;
+    }
+    public void startGeneration(){
+    	PressMill = new NewsEventGenerator(gs);
     }
 
     @Override
