@@ -2,11 +2,15 @@ package game.climatar.news;
 
 import java.util.List;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
@@ -109,6 +113,12 @@ public class NewsView extends View {
             return;
 
         VisTable newtable = new VisTable();
+
+        Pixmap p = new Pixmap(50, 50, Pixmap.Format.RGBA8888);
+        p.setColor(1/255,1/255,1/255,0.3f);
+        p.fill();
+
+        newtable.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture(p))));
 
         VisLabel label = new VisLabel(currentEvent.getDescription());
         label.setWrap(true);
