@@ -1,9 +1,13 @@
 package game.climatar.systems.political;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
@@ -47,6 +51,8 @@ public class PoliticalSystemView extends View {
 				return getFrame().height/8;
 			}
 		};
+
+
 
 		table.add(relationsLabel).maxWidth(widthVal).height(heightVal).align(Align.left);
 		table.add(relationValueLabel).maxWidth(widthVal).fillX().expandX().width(widthVal).height(heightVal).align(Align.right);

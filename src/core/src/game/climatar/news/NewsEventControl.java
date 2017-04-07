@@ -28,7 +28,7 @@ public class NewsEventControl extends Controller {
     protected void layoutView() {
         float width = Gdx.graphics.getWidth();
         float height = Gdx.graphics.getHeight();
-        view.setFrame(10.0f, height / 2, 3 * width / 4, height / 2);
+        view.setFrame(width/4 + 10, 11 * height / 32, 5 * width/8 , 4* height / 8);
         showView(view);
     }
 

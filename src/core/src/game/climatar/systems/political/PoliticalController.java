@@ -29,6 +29,7 @@ public class PoliticalController extends Controller {
 
 
     private HashMap<Nation, PoliticalSystemController> politicalSystems = new HashMap<Nation, PoliticalSystemController>();
+    private boolean isActive = true;
 
     @Override
     protected void initialize() {
@@ -66,6 +67,30 @@ public class PoliticalController extends Controller {
     @Override
     protected void tick() {
 
+    }
+
+    public void Activiate(){
+        for (Nation n : Nation.values()) {
+            politicalSystems.get(n).show();
+        }
+        isActive = true;
+    }
+
+    public void DeActivate(){
+        for (Nation n : Nation.values()) {
+            politicalSystems.get(n).hide();
+        }
+        isActive = false;
+    }
+
+    public void setRelationDelta(Nation n, double delta){
+        if(isActive)
+            politicalSystems.get(n).setDeltaRelations(delta);
+    }
+
+    public void setWalletDelta(Nation n, int delta){
+        if(isActive)
+            politicalSystems.get(n).setDeltaWallet(delta);
     }
 
     /**

@@ -1,29 +1,829 @@
 {
-	"Events": [{
-		"pid": "5",
-		"type": "Passive",
-		"headline": "Northern Winds Spirit Festival",
-		"nation": "AIR",
-		"desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
-		"consequences": {
-			"political": 0.45,
-			"wallet": -10,
-			"ghg": -8,
-			"temp": -2,
-			"percip": -10
-		}
-	}, {
-		"pid": "5",
-		"type": "Passive",
-		"headline": "Northern Winds Spirit Festival",
-		"nation": "AIR",
-		"desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
-		"consequences": {
-			"political": 0.45,
-			"wallet": -10,
-			"ghg": -8,
-			"temp": -2,
-			"percip": -10
-		}
-	}]
+    "Events": [
+	{
+	    "pid": "5",
+	    "type": "Passive",
+	    "headline": "Northern Winds Spirit Festival",
+	    "nation": "AIR",
+	    "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
+	    "consequences": {
+                "political": 0.45,
+                "wallet": -10,
+                "ghg": -8,
+                "temp": -2,
+                "percip": -10
+	    }
+	    
+        },
+	{
+	    "pid": "5",
+	    "type": "Passive",
+	    "headline": "Glacier Spirit Festival",
+	    "nation": "WATER",
+	    "desc": "Winter is Coming, and the shifting winds come with the migration of the spirits.",
+	    "consequences": {
+		"political": 0.45,
+		"wallet": -15,
+		"ghg": -8,
+		"temp": -2,
+		"percip": -10
+	    }
+	},
+	{
+	    "pid": "2",
+	    "type": "Passive",
+	    "headline": "Blue Moon Celebration",
+	    "nation": "WATER",
+	    "desc": "First New Moon of the Year",
+	    "consequences": {
+		"political": 0.45,
+		"wallet": -12,
+		"percip": 15
+	    }
+	},
+	{
+	    "pid": "5",
+	    "type": "Passive",
+	    "headline": "Lion Turtle Festival",
+	    "nation": "EARTH",
+	    "desc": "A day to honour the revered Lionturtle.",
+	    "consequences": {
+		"political": 0.45,
+		"wallet": -100,
+		"temp": 4,
+		"percip": -4
+	    }
+	},	    
+	{
+	    "pid": "2",
+	    "type": "Passive",
+	    "headline": "Tsungi Horn Awards",
+	    "nation": "EARTH",
+	    "desc": "Award Ceremony that honors the best talent in the music industry.",
+	    "consequences": {
+		"political": 1.5,
+		"wallet": -75
+	    }
+	},
+	{
+	    "pid": "4",
+	    "type": "Passive",
+	    "headline": "Sozin's Comet",
+	    "nation": "FIRE",
+	    "desc": "A day that celebrates when everything changed, because the Fire Nation attacked.",
+	    "consequences": {
+		"political": -3,
+		"wallet": -100,
+		"percip": -3
+	    }
+	},
+	{
+	    "pid": "2",
+	    "type": "Passive",
+	    "headline": "Dragon Warrior Festival",
+	    "nation": "FIRE",
+	    "desc": "Festival in honor for Fire Nations best warriors dragons and wagons.",
+	    "consequences": {
+		"political": 1,
+		"wallet": -70,
+		"ghg": 4,
+		"percip": -3
+	    }
+	},
+	{
+	    "pid": "3",
+	    "type": "Passive",
+	    "headline": "Yangchen Festival",
+	    "nation": "AIR",
+	    "desc": "Festival that celeberates the spirit protector Yangchen and Old Iron.",
+	    "consequences": {
+		"political": 1,
+		"wallet": -5,
+		"ghg": -4,
+		"percip": 5
+	    }
+	},
+	{
+	    "pid": "1",
+	    "type": "Passive",
+	    "headline": "Avatar Day",
+	    "nation": "ALL",
+	    "desc": "Festival that celebrates the birth of the Avatar.",
+	    "consequences": {
+		"political": 0.5,
+		"ghg": -4,
+		"percip": 5,
+		"temp": -2
+	    }
+	},
+	{
+	    "pid": "4",
+	    "type": "Passive",
+	    "headline": "Pro-Bending Tournament",
+	    "nation": "ALL",
+	    "desc": "Lose in a Pro-bending Tournament, the most popular sport in the World of Avatar.",
+	    "consequences": {
+		"wallet": -35
+	    }
+	},
+	{
+	    "pid": "4",
+	    "type": "Passive",
+	    "headline": "Pro-Bending Tournament",
+	    "nation": "PLAYER",
+	    "desc": "Win in a Pro-bending Tournament, the most popular sport in the World of Avatar.",
+	    "consequences": {
+		"wallet": 200
+	    }
+	},
+	{
+	    "pid": "1",
+	    "type": "Passive",
+	    "headline": "Midnight Ang Festival",
+	    "nation": "PLAYER",
+	    "desc": "Non bender revolution against benders, which involves them holding a shyamalamalam at midnight.",
+	    "consequences": {
+		"political": -5
+	    }
+	},
+	{
+	    "pid": "3",
+	    "type": "Passive",
+	    "headline": "Bloodbending Celebrations",
+	    "nation": "WATER",
+	    "desc": "Water tribe tradition of celeberating the forbidden art of bloodbending.",
+	    "consequences": {
+		"political": -5
+	    }
+	},
+	{
+	    "pid": "3",
+	    "type": "Passive",
+	    "headline": "Wan Shi Tong Film Festival",
+	    "nation": "EARTH",
+	    "desc": "Water tribe tradition of celeberating the forbidden art of bloodbending.",
+	    "consequences": {
+		"wallet": -100
+	    }
+	},
+	{
+	    "pid": "5",
+	    "type": "Passive",
+	    "headline": "Ba Sing Sei Manuscript Convention",
+	    "nation": "EARTH",
+	    "desc": "Global Festival that showcases the best written work for that year.",
+	    "consequences": {
+		"wallet": 50
+	    }
+	},
+	{
+	    "pid": "2",
+	    "type": "Passive",
+	    "headline": "Blue Lotus Conference",
+	    "nation": "ALL",
+	    "desc": "Annual Blue Conference between leaders of all nations.",
+	    "consequences": {
+		"political": 3
+	    }
+	},
+	{
+	    "pid": "2",
+	    "type": "Passive",
+	    "headline": "Blue Lotus Conference",
+	    "nation": "ALL",
+	    "desc": "Annual Blue Conference between leaders of all nations. The Nations left angered.",
+	    "consequences": {
+		"political": -2
+	    }
+	},
+	{
+	    "pid": "6",
+	    "type": "Passive",
+	    "headline": "World Reccord Iceberg!",
+	    "nation": "ALL",
+	    "desc": "The Water Tribe released a monstorous iceberg into the sea, causing the world to cool.",
+	    "consequences": {
+		"temp": -2 
+	    }
+	},
+	{
+	    "pid": "3",
+	    "type": "Passive",
+	    "headline": "Local Earth Benders widen all rivers towards Full Moon Bay.",
+	    "nation": "EARTH",
+	    "desc": "The Earth benders develop larger rivers for water accesibility for farmers and citizens alike.",
+	    "consequences": {
+		"percip": 2
+	    }
+	},
+	{
+	    "pid": "6",
+	    "type": "Passive",
+	    "headline": "Make it Rain!",
+	    "nation": "WATER",
+	    "desc": "The Water Tribe honnors an ancient tradition atomizing water into the winds of the world.",
+	    "consequences": {
+		"percip": 2
+	    }
+	},
+	{
+	    "pid": "4",
+	    "type": "Passive",
+	    "headline": "Electric Benders At it Again!",
+	    "nation": "FIRE",
+	    "desc": "Electric benders fill the grid, all combustion generators are shut off.",
+	    "consequences": {
+		"ghg": -8
+	    }
+	},
+	{
+	    "pid": "5",
+	    "type": "Passive",
+	    "headline": "Powers Out!!",
+	    "nation": "ANY",
+	    "desc": "Burn more coal to keep the Nation running.",
+	    "consequences": {
+		"ghg": 4
+	    }
+	},
+	{
+	    "pid": "3",
+	    "type": "Passive",
+	    "headline": "Tornado?! Blame the Leader!",
+	    "nation": "PLAYER",
+	    "desc": "The capital was hit with a tornado and the citizens blame you.",
+	    "consequences": {
+		"political": -3,
+		"wallet": -50 
+	    }
+	},
+	{
+	    "pid": "3",
+	    "type": "Passive",
+	    "headline": "Sky Bison Mating Season!",
+	    "nation": "ALL",
+	    "desc": "The Sky bison begin reproducing, causing a larger methane emission.",
+	    "consequences": {
+		"ghg": 2
+	    }
+	},
+	{
+	    "pid": "3",
+	    "headline": "Trade Poultry and Livestock",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "Fire Nations trading livestock bred with other nations. The list includes and is limited to: Dragon Moose, Turtle Duck and Hippo Cow  ",
+	    "consequences": {
+		"political": 1.5,
+		"wallet": 225,
+		"ghg": 8,
+		"temp": 3
+	    },
+	    "repercussions": {
+		"political": -3,
+		"wallet": -200,
+		"ghg": -6,
+		"temp": -2
+	    }
+	},
+	{
+	    "pid": "3",
+	    "headline": "Trade Precious Metals",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "Fire Nations starts new trade program, trading precious metals with Earth Kingdom and Water Tribe  ",
+	    "consequences": {
+		"political": 2,
+		"wallet": 175,
+		"ghg": 1
+	    },
+	    "repercussions": {
+		"political": -2,
+		"wallet": -175,
+		"ghg": -1
+	    }
+	},
+	{
+	    "pid": "1",
+	    "headline": "Fire Nation picks up production of glass",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "Fire Lord Elizablaze and Fire Prime Minister Truferno announce additional federal funding to factories involved with manafacturing glass ",
+	    "consequences": {
+		"political": 1.5,
+		"wallet": -240,
+		"ghg": 5,
+		"temp": 3,
+		"percip": 2
+	    },
+	    "repercussions": {
+		"political": -1.5,
+		"ghg": -5,
+		"temp": -2,
+		"percip": -1
+	    }
+	},
+	{
+	    "pid": "2",
+	    "headline": "Fire Nation starts new trade deal with Earth Kingdom",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "Fire Lord Elizablaze and Fire Prime Minister Truferno announce new trade deal made with Earth President Michelle Rockabma and her cabinet",
+	    "consequences": {
+		"political": 3.5,
+		"wallet": 150,
+		"ghg": 2
+	    },
+	    "repercussions": {
+		"political": -5,
+		"wallet": 50,
+		"ghg": 4,
+		"temp": 1
+	    }
+	},
+	{
+	    "pid": "2",
+	    "headline": "Uproar in the Fire Nation, as Truferno raises taxes",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "Truferno intorduces carbon tax to reduce green house gas emissions",
+	    "consequences": {
+		"political": -5,
+		"wallet": 320,
+		"ghg": -6
+	    },
+	    "repercussions": {
+		"political": 6,
+		"wallet": -236,
+		"ghg": 4
+	    }
+	},
+	{
+	    "pid": "1",
+	    "headline": "Fire Nation starts working on urbanization project",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "The Fire Nation government launches is it's new 5 year urbanization project, brought about by the rapidly rising population",
+	    "consequences": {
+		"political": -2.3,
+		"wallet": -250,
+		"ghg": 5,
+		"temp": 4,
+		"percip": 5
+	    },
+	    "repercussions": {
+		"political": -1.5,
+		"ghg": -6
+	    }
+	},
+	{
+	    "pid": "4",
+	    "headline": "Inventor from the Fire Nations builds the first automobile engine that runs on fuel",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "Fire Nation sactioned project to make a more powerful engine than the steam engine comes to fruitition",
+	    "consequences": {
+		"political": 2,
+		"wallet": -220,
+		"ghg": 5,
+		"temp": 4,
+		"percip": -5 
+	    },
+	    "repercussions": {
+		"ghg": -6,
+		"temp": -4,
+		"percip": 5
+	    }
+	    
+	},
+	{
+	    "pid": "5",
+	    "headline": "Coal Mine collapses, 100 miners trapped, 20 dead and counting.",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "Fire Lord and Prime Minister pool all their resources to save the lives of trapped Coal Miners",
+	    "consequences": {
+		"political": 6,
+		"wallet": -300,
+		"ghg": 5,
+		"percip": 3
+	    },
+	    "repercussions": {
+		"political": -9.2,
+		"ghg": 1,
+		"percip": 3
+	    }
+	},
+	{
+	    "pid": "5",
+	    "headline": "Fire Nation trades machines and engines that can be used by non benders",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "In the midst of tensions boiling between benders and non benders, entrpenuers push for a bill to trade tech used by non benders ",
+	    "consequences": {
+		"political": 6,
+		"wallet": 275,
+		"ghg": 2,
+		"temp": 1,
+		"percip": 1
+	    },
+	    "repercussions": {
+		"political": -9.2,
+		"ghg": 1,
+		"percip": 3
+	    }
+	},
+	{
+	    "pid": "3",
+	    "headline": "Fire Nation experiences Steel Industry Boom with the help of Earth corporate leaders",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "Promoting Earth Kingdom Corporations in Steel trade",
+	    "consequences": {
+		"political": -6,
+		"wallet": 250,
+		"ghg": 2,
+		"temp": 1
+	    },
+	    "repercussions": {
+		"political": 4,
+		"ghg": 5
+	    }
+	},
+	{
+	    "pid": "1",
+	    "headline": "Non bender protest turns violent after police intervention",
+	    "type": "Active",
+	    "nation": "FIRE",
+	    "desc": "Riot Control squad was deployed in order to intimidate protesters. Protest turns violent ",
+	    "consequences": {
+		"political": -5,
+		"wallet": -178,
+		"temp": 2,
+		"percip": 3
+	    },"repercussions": {
+		"political": -3,
+		"wallet": -205   
+	    }
+	},
+	{
+	    "pid": "3",
+	    "headline": "Trade Poultry and Livestock",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "Water Tribe trading livestock bred with other nations. The list includes and is limited to: Tiger Seal, Arctic Hen and various forms of fish ",
+	    "consequences": {
+		"political": 3.5,
+		"wallet": 325,
+		"ghg": 2,
+		"temp": 3,
+		"percip": 4
+	    },
+	    "repercussions": {
+		"political": -3,
+		"wallet": -200,
+		"ghg": -6,
+		"temp": -2
+	    }
+	},
+	{
+	    "pid": "2",
+	    "headline": "Trade boats and ships for trasnsport",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "Water Tribe trading new boats and ship, with other nations",
+	    "consequences": {
+		"political": 4,
+		"wallet": 400,
+		"percip": -4
+	    },
+	    "repercussions": {
+		"political": -3,
+		"temp": 2,
+		"percip": -2
+	    }
+	},
+	{
+	    "pid": "4",
+	    "headline": "Water Nation sanctions new tourism program",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "Water Tribe Council allocates funding to build resorts and tourist spots ",
+	    "consequences": {
+		"political": 6,
+		"wallet": -269,
+		"temp": 3,
+		"percip": 5
+		
+	    },
+	    "repercussions": {
+		"political": -3,
+		"temp": -2,
+		"percip": -2
+	    }
+	},
+	{
+	    "pid": "1",
+	    "headline": "Water Nation starts building a new cruise line, run completely by benders",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "Water Tribe starts construction of new mass cruse liner, to promote tourism ",
+	    "consequences": {
+		"political": 4.5,
+		"wallet": -200,
+		"ghg": 2,
+		"temp": 3,
+		"percip": 5
+		
+	    },
+	    "repercussions": {
+		"political": -3.24,
+		"ghg": -1,
+		"temp": -2,
+		"percip": -2
+	    }
+	},
+	{
+	    "pid": "1",
+	    "headline": "Water Nation promotes, trade of water animals despite PETA protest",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "Water Tribe Council makes a controversial decision to trade water animals for transportation and clothing ",
+	    "consequences": {
+		"political": -6.2,
+		"wallet": 359,
+		"ghg": -2,
+		"temp": -2,
+		"percip": 5
+		
+	    },
+	    "repercussions": {
+		"political": 5,
+		"temp": 3,
+		"percip": -4
+	    }
+	},
+	{
+	    "pid": "3",
+	    "headline": "Water Nation promotes healer program",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "Water Tribe Council announces new healer program for international students ",
+	    "consequences": {
+		"political": -3,
+		"wallet": 212,
+		"ghg": 5,
+		"temp": 4,
+		"percip": -1
+		
+	    },
+	    "repercussions": {
+		"wallet": -102,
+		"ghg": -3,
+		"percip": 5
+		
+	    }
+	},
+	{
+	    "pid": "5",
+	    "headline": "Iceberg removal operations, the newest for benders",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "350 new jobs created for benders thanks to the new Iceberg removal operations ",
+	    "consequences": {
+		"political": 3.74,
+		"wallet": 100,
+		"ghg": 2,
+		"temp": 3,
+		"percip": 6
+		
+	    },
+	    "repercussions": {
+		"political": -2.74,
+		"wallet": 100,
+		"ghg": -2,
+		"temp": -3,
+		"percip": -6
+		
+	    }
+	},
+	{
+	    "pid": "5",
+	    "headline": "Non bender revolution turns ugly",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "Riot Control squad was deployed in order to intimidate protesters. Protest turns violent ",
+	    "consequences": {
+		"political": -5,
+		"wallet": -178,
+		"temp": 2,
+		"percip": 3
+	    },"repercussions": {
+		"political": -3,
+		"wallet": -205 
+	    }
+	},
+	{
+	    "pid": "4",
+	    "headline": "Glacier Restoration",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "New Glacier Restoration Project ",
+	    "consequences": {
+		"political": 5,
+		"wallet": -300,
+		"ghg": -3,
+		"temp": -5,
+		"percip": -5
+	    },
+	    "repercussions": {
+		"political": -4,
+		"percip": 5    
+	    }
+	},
+	{
+	    "pid": "5",
+	    "headline": "Water Nation allows EK and FN to open factories on the poles",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "Water Nation to start installing factories for the Fire Nation and Earth Kingdom",
+	    "consequences": {
+		"political": -5,
+		"wallet": 423,
+		"ghg": 6,
+		"temp": 5,
+		"percip": 6
+	    },
+	    "repercussions": {
+		"political": 4,
+		"ghg": -4,
+		"temp": -5,
+		"percip": -6    
+	    }
+	},
+	{
+	    "pid": "1",
+	    "headline": "Communal Strife instigated by tax raise",
+	    "type": "Active",
+	    "nation": "WATER",
+	    "desc": "The rich and poor are at odds as Water Tribe Council raises taxes",
+	    "consequences": {
+		"political": -5.12,
+		"wallet": 320,
+		"ghg": -6
+	    },
+	    "repercussions": {
+		"political": 6,
+		"wallet": -236,
+		"ghg": 4
+	    }
+	},
+	{
+	    "pid": "2",
+	    "headline": "Trade Vegetation",
+	    "type": "Active",
+	    "nation": "AIR",
+	    "desc": "Air nomads trade vegetation with other nations ",
+	    "consequences": {
+		"political": 1.5,
+		"wallet": 225,
+		"ghg": 4,
+		"temp": 4
+	    },
+	    "repercussions": {
+		"political": -3,
+		"wallet": -110,
+		"ghg": 2,
+		"temp": -2
+	    }
+	},
+	{
+	    "pid": "3",
+	    "headline": "New Tourist Program",
+	    "type": "Active",
+	    "nation": "AIR",
+	    "desc": " Air Nomads build infrastrcture for a spiritual retreat with a hot spa",
+	    "consequences": {
+		"political": 4,
+		"wallet": 175,
+		"ghg": 1,
+		"temp": 3,
+		"percip": 4
+	    },
+	    "repercussions": {
+		"political": -2,
+		"ghg": -1,
+		"temp": -3,
+		"percip": -4
+	    }
+	},
+	{
+	    "pid": "3",
+	    "headline": "Fire Nation picks up production of clothes",
+	    "type": "Active",
+	    "nation": "AIR",
+	    "desc": "Air Dalai Lama promotes for commercialisation of the Nomads Cloth Industry",
+	    "consequences": {
+		"political": -3.2,
+		"wallet": -240,
+		"ghg": 5,
+		"temp": 3,
+		"percip": 2
+	    },
+	    "repercussions": {
+		"political": 1.4,
+		"ghg": -5,
+		"temp": -2,
+		"percip": -1
+	    }
+	},
+	{
+	    "pid": "2",
+	    "headline": "Air Nomads stance against religious extremists",
+	    "type": "Active",
+	    "nation": "AIR",
+	    "desc": "Air Nomads Council refuses to acknowledge radicalist splinter Acolytes, as a major threat",
+	    "consequences": {
+		"political": -3.5,
+		"ghg": 2,
+		"temp": 3,
+		"percip": 4
+	    },
+	    "repercussions": {
+		"political": 2.1,
+		"wallet": 50,
+		"ghg": -4,
+		"temp": 1
+	    }
+	},
+	{
+	    "pid": "4",
+	    "headline": "Non bender revolution turns ugly",
+	    "type": "Active",
+	    "nation": "AIR",
+	    "desc": "Acolytes presence turns peaceful debate into a violent affair ",
+	    "consequences": {
+		"political": -5,
+		"wallet": -178,
+		"temp": 2,
+		"percip": 3
+	    },"repercussions": {
+		"political": -3,
+		"wallet": -205
+	    }
+	},
+	{
+	    "pid": "5",
+	    "headline": "Uproar in the Air Assembly, as Council raises taxes",
+	    "type": "Active",
+	    "nation": "AIR",
+	    "desc": "Taxes raised for this seasons harves",
+	    "consequences": {
+		"political": -5,
+		"wallet": 224,
+		"ghg": -6
+	    },
+	    "repercussions": {
+		"political": 6,
+		"wallet": -173,
+		"ghg": 4
+	    }
+	},
+	{
+	    "pid": "3",
+	    "headline": "Air Nation experiences an agricultural boom, after north wind festival",
+	    "type": "Active",
+	    "nation": "AIR",
+	    "desc": "The spirits smile of the Air Nomads who have experienced great boom, which affects trade",
+	    "consequences": {
+		"political": 6,
+		"wallet": 250,
+		"ghg": 3,
+		"temp": 1
+	    },
+	    "repercussions": {
+		"political": -4,
+		"ghg": 5
+		
+	    }
+	},
+	{
+	    "pid": "6",
+	    "headline": "Temple Restoration",
+	    "type": "Active",
+	    "nation": "AIR",
+	    "desc": "New Templer restoration project implemented ",
+	    "consequences": {
+		"political": 5,
+		"wallet": -300,
+		"ghg": -3,
+		"temp": -5,
+		"percip": -5
+	    },
+	    "repercussions": {
+		"political": -4,
+		"percip": 5    
+	    }
+	}
+    ]
 }

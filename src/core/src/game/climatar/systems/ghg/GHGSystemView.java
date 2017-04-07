@@ -1,8 +1,12 @@
 package game.climatar.systems.ghg;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
@@ -47,6 +51,8 @@ public class GHGSystemView extends View {
 		//3: Wallet
 		//4: Weather
 		//5: Temperature
+
+
 
 		table.add(GHGEmissionsPerUpdate).maxWidth(widthVal).height(heightVal).align(Align.left);
 		table.add(GHGEmissionsPerUpdateValue).maxWidth(widthVal).fillX().expandX().width(widthVal).height(heightVal).align(Align.right);

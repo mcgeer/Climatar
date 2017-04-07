@@ -1,8 +1,13 @@
 package game.climatar.systems.weather;
 
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
@@ -27,6 +32,8 @@ public class WeatherSystemView extends View {
     public void build(Group group) {
         table = new VisTable();
 
+
+
         TemperatureLabel = new VisLabel("Temperature: ");
         TempValueLabel = new VisLabel("20°C");
         PercipitationLabel = new VisLabel("Precipitation: ");
@@ -45,6 +52,9 @@ public class WeatherSystemView extends View {
                 return getFrame().height / 8;
             }
         };
+
+
+
 
         table.add(TemperatureLabel).maxWidth(widthVal).height(heightVal).align(Align.left);
         table.add(TempValueLabel).maxWidth(widthVal).fillX().expandX().width(widthVal).height(heightVal).align(Align.right);
@@ -74,7 +84,7 @@ public class WeatherSystemView extends View {
 
         int percipupdate = (Integer) model.get(WeatherProperty.DELTA_PRECIPITATION.id());
         int percip = (Integer) model.get(WeatherProperty.PRECIPITATION.id());
-        TempValueLabel.setText(percip + percipupdate + "mm");
+        PercipValueLabel.setText(percip + percipupdate + "mm");
     }
 
     @Override

@@ -14,13 +14,13 @@ public enum ConseqType {
 	DEF("Default");
 
 	private String name;
-	private int valueChanged;
+	private double valueChanged;
 	
 	ConseqType (String s){
 		name=s;
 	}
 
-	public void addValue(int v){
+	public void addValue(double v){
 		valueChanged=v;
 	}
 	

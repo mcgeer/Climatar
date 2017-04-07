@@ -41,7 +41,7 @@ public class MapGenerator {
 
 			Nation threshold(float x) {
 				if (x < waterNation) return Nation.WATER;
-				else if (x < internationalWaters) return Nation.BLUE_LOTUS;
+				else if (x < internationalWaters) return null;
 				// this is pretty sketchy, but we'll reassign some
 				// earth nation tiles as fire nation tiles later.
 				else if (x < earthOrFireNation) return Nation.EARTH;

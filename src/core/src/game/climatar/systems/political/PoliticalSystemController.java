@@ -73,7 +73,7 @@ public class PoliticalSystemController extends Controller {
 	 * @param deltaRelations
 	 *            Changeto be applied to relations
 	 */
-	public void setDeltaRelations(int deltaRelations) {
+	public void setDeltaRelations(double deltaRelations) {
 		getModel().set(PoliticalProperty.DELTA_RELATIONS.id(), deltaRelations);
 	}
 
