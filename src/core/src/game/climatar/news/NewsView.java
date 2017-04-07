@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -32,9 +33,6 @@ public class NewsView extends View {
     private VisTextButton okayButton, noButton;
 
     private boolean isBuilt = false;
-
-    //News Event
-    private NewsEvent currentEvent;
 
 
     @Override
@@ -109,9 +107,12 @@ public class NewsView extends View {
 
     @Override
     public void update(Model model) {
-        if(!isBuilt || currentEvent == null)
+        if(!isBuilt || ((NewsEventControl) getController()).currentEvent == null) {
+            //System.out.print("FUCK");
             return;
+        }
 
+        NewsEvent currentEvent = ((NewsEventControl) getController()).currentEvent;
         VisTable newtable = new VisTable();
 
         Pixmap p = new Pixmap(50, 50, Pixmap.Format.RGBA8888);
@@ -128,7 +129,6 @@ public class NewsView extends View {
         newtable.add(okayButton);
         newtable.add(noButton);
 
-
         if(currentEvent.getType().equals(NewsEvent.NewsType.ACTIVE))
             noButton.setVisible(true);
         else
@@ -136,10 +136,6 @@ public class NewsView extends View {
 
         this.table = newtable;
 
-    }
-
-    public void getUserInput(NewsEvent ct) {
-        currentEvent = ct;
     }
 
     private void responceOkay(){

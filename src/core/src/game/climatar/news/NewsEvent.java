@@ -25,6 +25,7 @@ public class NewsEvent {
 			 yCon = new ArrayList<ConseqType>();
 			 nCon = new ArrayList<ConseqType>();
 		}
+		this.type = type;
 	}
 	private String BaseEvent;
 	private static Nation rep;

@@ -21,8 +21,8 @@ public class WeatherSystemModel extends Model {
 		     double initialPrecipitation) {
  
 	set(WeatherProperty.TEMPERATURE.id(), initialTemperature);
-	set(WeatherProperty.DELTA_TEMPERATURE.id(), 0);
+	set(WeatherProperty.DELTA_TEMPERATURE.id(), 0.0);
 	set(WeatherProperty.PRECIPITATION.id(), initialPrecipitation);
-	set(WeatherProperty.DELTA_PRECIPITATION.id(), 0);
+	set(WeatherProperty.DELTA_PRECIPITATION.id(), 0.0);
     }
 }

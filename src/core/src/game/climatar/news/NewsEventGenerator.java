@@ -16,13 +16,13 @@ import game.climatar.news.NewsEvent.NewsType;
 
 public class NewsEventGenerator {
     private Nation playerNation;
-    private static LinkedList<NewsEvent> WorldEvents;
-    private static LinkedList<NewsEvent> PlayerEvents;
+    private LinkedList<NewsEvent> WorldEvents;
+    private LinkedList<NewsEvent> PlayerEvents;
 
  
-    public NewsEventGenerator(GameState gs) {
-        playerNation = (Nation) gs.get(WorldProperty.NATION.id());
-        
+    public NewsEventGenerator(Nation n) {
+        playerNation = n;
+
         readEvents();
         sortEvents();
     }
@@ -53,55 +53,66 @@ public class NewsEventGenerator {
                 storeEvent.setIndex(Integer.parseInt((String) newEvent.get("pid")));
                 storeEvent.setDescription((String) newEvent.get("desc"));
                 storeEvent.setNation((String) newEvent.get("nation"));
-                ConseqType storeConseq = ConseqType.DEF;
+
 				JSONObject newConseq = (JSONObject) newEvent.get("consequences");
 				if (newConseq.containsKey("political")) {
-					storeConseq = ConseqType.POLI;
+                    ConseqType storeConseq = ConseqType.POLI;
 					storeConseq.addValue(new Double(newConseq.get("political").toString()));
+                    storeEvent.addYConseq(storeConseq);
 				}
 				if (newConseq.containsKey("wallet")) {
-					storeConseq = ConseqType.WALLET;
+                    ConseqType storeConseq = ConseqType.WALLET;
 					storeConseq.addValue(new Double(newConseq.get("wallet").toString()));
+                    storeEvent.addYConseq(storeConseq);
 				} 
 				if (newConseq.containsKey("ghg")) {
-					storeConseq = ConseqType.GHG;
+                    ConseqType storeConseq = ConseqType.GHG;
 					storeConseq.addValue(new Double(newConseq.get("ghg").toString()));
+                    storeEvent.addYConseq(storeConseq);
 				}
 				if (newConseq.containsKey("temp")) {
-					storeConseq = ConseqType.TEMP;
+                    ConseqType storeConseq = ConseqType.TEMP;
 					storeConseq.addValue(new Double(newConseq.get("temp").toString()));
+                    storeEvent.addYConseq(storeConseq);
 				}
 				if (newConseq.containsKey("percip")) {
-					storeConseq = ConseqType.PERCIP;
+                    ConseqType storeConseq = ConseqType.PERCIP;
 					storeConseq.addValue(new Double(newConseq.get("percip").toString()));
+                    storeEvent.addYConseq(storeConseq);
 				}
-				storeEvent.addYConseq(storeConseq);
 
-				ConseqType storeRepur = ConseqType.DEF;
+
+
 				JSONObject newRepur = (JSONObject) newEvent.get("repercussions");
 				if (newRepur != null) {
 					if (newRepur.containsKey("political")) {
-						storeRepur = ConseqType.POLI;
+                        ConseqType storeRepur = ConseqType.POLI;
 						storeRepur.addValue(new Double(newRepur.get("political").toString()));
+                        storeEvent.addNConseq(storeRepur);
 					}
 					if (newRepur.containsKey("wallet")) {
-						storeRepur = ConseqType.WALLET;
+                        ConseqType storeRepur = ConseqType.WALLET;
 						storeRepur.addValue(new Double(newRepur.get("wallet").toString()));
+                        storeEvent.addNConseq(storeRepur);
 					} 
 					if (newRepur.containsKey("ghg")) {
-						storeRepur = ConseqType.GHG;
+                        ConseqType storeRepur = ConseqType.GHG;
 						storeRepur.addValue(new Double(newRepur.get("ghg").toString()));
+                        storeEvent.addNConseq(storeRepur);
 					}
 					if (newRepur.containsKey("temp")) {
-						storeRepur = ConseqType.TEMP;
+                        ConseqType storeRepur = ConseqType.TEMP;
 						storeRepur.addValue(new Double(newRepur.get("temp").toString()));
+                        storeEvent.addNConseq(storeRepur);
 					}
 					if (newRepur.containsKey("percip")) {
-						storeRepur = ConseqType.PERCIP;
+                        ConseqType storeRepur = ConseqType.PERCIP;
 						storeRepur.addValue(new Double(newRepur.get("percip").toString()));
-					}
+                        storeEvent.addNConseq(storeRepur);
+                    }
+
 				}
-				storeEvent.addNConseq(storeRepur);
+
 
                 if(isPassive) {
                     WorldEvents.add(storeEvent);
@@ -117,17 +128,19 @@ public class NewsEventGenerator {
 
     }
 
-    public static void sortEvents() {
+    public void sortEvents() {
         Collections.sort(WorldEvents, new indexComparator());
         Collections.sort(PlayerEvents, new indexComparator());
     }
     public NewsEvent triggerPlayerEvents(){
-        NewsEvent triggerPE=PlayerEvents.removeFirst();
+        NewsEvent triggerPE=PlayerEvents.getFirst();
+        PlayerEvents.removeFirst();
         PlayerEvents.offerLast(triggerPE);
         return triggerPE;
     }
     public NewsEvent triggerWorldEvents(){
-        NewsEvent triggerWE= WorldEvents.removeFirst();
+        NewsEvent triggerWE= WorldEvents.getFirst();
+        WorldEvents.removeFirst();
         WorldEvents.offerLast(triggerWE);
         return triggerWE;
     }

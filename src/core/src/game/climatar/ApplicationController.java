@@ -31,7 +31,7 @@ public class ApplicationController extends ControllerManager {
 	
 	public void newGame(Nation playerNation) {
 		GameState state = new GameState();
-		
+		worldSimulator.newGame(playerNation);
 		state.set(WorldProperty.NATION.id(), playerNation);
 		
 		play(state);

@@ -46,8 +46,8 @@ public class PoliticalSystemController extends Controller {
 		getModel().set(PoliticalProperty.WALLET.id(), wallet);
 
 		// Update the Relations
-		int relations = (Integer) getModel().get(PoliticalProperty.RELATIONS.id());
-		relations += (Integer) getModel().get(PoliticalProperty.DELTA_RELATIONS.id());
+		double relations = (Double) getModel().get(PoliticalProperty.RELATIONS.id());
+		relations += (Double) getModel().get(PoliticalProperty.DELTA_RELATIONS.id());
 
 		getModel().set(PoliticalProperty.RELATIONS.id(), relations);
 

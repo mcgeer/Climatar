@@ -19,7 +19,7 @@ import game.climatar.systems.weather.WeatherController;
 public class WorldSimulator extends Controller {
 
     // Actively logged SubSystems
-    private boolean ghgIsActive, weatherIsActive, politicalIsActive, isPaused, eventGen;
+    private boolean ghgIsActive, weatherIsActive, politicalIsActive, isPaused = false, eventGen = false;
     private List<ConseqType> currentAE;
     private List<ConseqType> currentPE;
 
@@ -41,22 +41,19 @@ public class WorldSimulator extends Controller {
     /**
      * Start a new game, Controlling all aspects of the world, Call Simulate
      * after Creation!
-     *
-     * @param monitoringGHG       Is the GHG system being monitored
-     * @param monitoringWeather   Is the Weather system being monitored
-     * @param monitoringPolitical Is the Political system being monitored
      */
     public void newGame(Nation player) {
         // Set up what systems are being used
         ghgIsActive = true;
         weatherIsActive = true;
         politicalIsActive = true;
-
         // Set up the Game State
         ((GameState) getModel()).init(player);
-        
+
+        newsController.startGeneration();
         overlayMenuView.hide(false);
     }
+
 
     /**
      * Update Function to handle all requests to step the state of the world
@@ -64,11 +61,11 @@ public class WorldSimulator extends Controller {
     public void Simulate() {
         // GENERATE NEWS
         // REACT TO NEWS
-        if (isPaused == false) {
-            newsController.getNewsEvent();
-            pauseGame();
-            eventGen = true;
-        }
+        if(!newsController.getNewsEvent())
+            return;
+        pauseGame();
+        eventGen = true;
+
 
         // UPDATE Sub Systems
         // if(ghgIsActive)
@@ -80,20 +77,20 @@ public class WorldSimulator extends Controller {
 
 
     }
-    
-    boolean overlayMenuIsShowing = false;
-    
-	public void toggleOverlayMenu() {
-		if(!overlayMenuIsShowing) {
-	    	overlayMenuView.show();
-		} else {
-	    	overlayMenuView.hide();
-		}
-		
-		overlayMenuIsShowing = !overlayMenuIsShowing;
-	}
 
-    
+    boolean overlayMenuIsShowing = false;
+
+    public void toggleOverlayMenu() {
+        if (!overlayMenuIsShowing) {
+            overlayMenuView.show();
+        } else {
+            overlayMenuView.hide();
+        }
+
+        overlayMenuIsShowing = !overlayMenuIsShowing;
+    }
+
+
     private void pauseGame() {
         isPaused = true;
     }
@@ -133,15 +130,15 @@ public class WorldSimulator extends Controller {
     }
 
 
-    public boolean getPoliticalIsActive(){
+    public boolean getPoliticalIsActive() {
         return this.politicalIsActive;
     }
 
-    public boolean getGHGIsActive(){
+    public boolean getGHGIsActive() {
         return this.ghgIsActive;
     }
 
-    public boolean getWeatherIsActive(){
+    public boolean getWeatherIsActive() {
         return this.weatherIsActive;
     }
 
@@ -154,14 +151,16 @@ public class WorldSimulator extends Controller {
         float height = Gdx.graphics.getHeight();
         mapView.setFrame(PAD, PAD, width - PAD * 2, height - PAD * 2);
         uiView.setFrame(0, height - width, width / 4, width);
-        pauseView.setFrame(width - width / 4 , height - width / 4, width / 4, width / 4);
-        greyView.setFrame(0,0,width*3, height/3.25f);
-        overlayMenuView.setFrame(0, 2*height/5, width, height/5);
+        pauseView.setFrame(width - width / 4, height - width / 4, width / 4, width / 4);
+        greyView.setFrame(0, 0, width * 3, height / 3.25f);
+        overlayMenuView.setFrame(0, 2 * height / 5, width, height / 5);
         showView(mapView, greyView, pauseView, uiView, overlayMenuView);
     }
 
     @Override
     protected void tick() {
+        //Simulate();
+
         // UPDATE WORLD STATE
         if (isPaused == false) {
             if (eventGen == false) {
@@ -184,13 +183,6 @@ public class WorldSimulator extends Controller {
 
     }
 
-    @Override
-    protected void nextTick() {
-        if (isPlaying()) {
-            super.nextTick();
-        }
-    }
-
     public boolean isPlaying() {
         return getModel().get(WorldProperty.PLAYING.id()) != null;
     }
@@ -205,14 +197,14 @@ public class WorldSimulator extends Controller {
         weatherSystems.getWeatherSystemController(nation).show();
         politicalSystems.getPoliticalSystemController(nation).show();
         ghgSystems.getGHGSystemController(nation).show();
-		mapView.setVisibility(nation, true);
+        mapView.setVisibility(nation, true);
     }
 
     public void hideNationView(Nation nation) {
         weatherSystems.getWeatherSystemController(nation).hide();
         politicalSystems.getPoliticalSystemController(nation).hide();
         ghgSystems.getGHGSystemController(nation).hide();
-		mapView.setVisibility(nation, false);
+        mapView.setVisibility(nation, false);
     }
 
     public void passConseq(List<ConseqType> yConseq) {
@@ -220,35 +212,35 @@ public class WorldSimulator extends Controller {
         resumeGame();
     }
 
-	public void togglePoliticalSystem() {
-		if(politicalIsActive) {
-			politicalSystems.DeActivate();
-		} else {
-			politicalSystems.Activiate();
-		}
-		
-		politicalIsActive = !politicalIsActive;
-	}
+    public void togglePoliticalSystem() {
+        if (politicalIsActive) {
+            politicalSystems.DeActivate();
+        } else {
+            politicalSystems.Activiate();
+        }
 
-	public void toggleWeatherSystem() {
-		if(weatherIsActive) {
-			weatherSystems.DeActivate();
-		} else {
-			weatherSystems.Activiate();
-		}
-		
-		weatherIsActive = !weatherIsActive;
-	}
+        politicalIsActive = !politicalIsActive;
+    }
 
-	public void toggleGHGSystem() {
-		if(ghgIsActive) {
-			ghgSystems.Activiate();
-		} else {
-			ghgSystems.DeActivate();
-		}
-		
-		ghgIsActive = !ghgIsActive;
-	}
+    public void toggleWeatherSystem() {
+        if (weatherIsActive) {
+            weatherSystems.DeActivate();
+        } else {
+            weatherSystems.Activiate();
+        }
+
+        weatherIsActive = !weatherIsActive;
+    }
+
+    public void toggleGHGSystem() {
+        if (ghgIsActive) {
+            ghgSystems.Activiate();
+        } else {
+            ghgSystems.DeActivate();
+        }
+
+        ghgIsActive = !ghgIsActive;
+    }
 
 
 }
