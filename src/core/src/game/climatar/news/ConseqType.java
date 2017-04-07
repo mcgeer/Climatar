@@ -1,40 +1,42 @@
 package game.climatar.news;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-public class ConseqType{
 
-	enum Consequence {
+public class ConseqType {
+
+	public enum Consequence {
 	
-	POLI("political"),
-    WALLET("wallet"),
-    GHG("ghg"),
-    TEMP("temp"),
-    PERCIP("percip"),
-	DEF("Default");
+		POLI("political"),
+		WALLET("wallet"),
+		GHG("ghg"),
+		TEMP("temp"),
+		PERCIP("percip"),
+		DEF("Default");
 		private String name;
 		Consequence(String s){
-		name=s;
+			name=s;
 			
-	}
+		}
 	}
 
-	private Consequence con;
+	private Consequence consequence;
+	private double value;
 	
-	private double valueChanged;
-	
-	ConseqType (Consequence c){
-		con=c;
+	ConseqType (Consequence consequence, double value){
+		this.consequence = consequence;
+		this.value = value;
 	}
 
-	public void addValue(double v){
-		valueChanged=v;
-	}
-
-	public double  getValue() {
+	public double getValue() {
 		// TODO Auto-generated method stub
-		return valueChanged;
+		return value;
+	}
+
+	public Consequence getConsequence() {
+		return consequence;
 	}
 }
 	

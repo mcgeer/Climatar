@@ -1,4 +1,5 @@
 package game.climatar.news;
+
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -14,6 +15,8 @@ import game.climatar.GameState.WorldProperty;
 import game.climatar.map.Nation;
 import game.climatar.news.ConseqType.Consequence;
 import game.climatar.news.NewsEvent.NewsType;
+
+import game.climatar.news.ConseqType.Consequence;
 
 public class NewsEventGenerator {
     private Nation playerNation;
@@ -62,23 +65,23 @@ public class NewsEventGenerator {
 				JSONObject newConseq = (JSONObject) newEvent.get("consequences");
 				if (newConseq.containsKey("political")) {
 					Double value = new Double(newConseq.get("political").toString());
-					storeEvent.addYConseq(ConseqType(Consequence.POLI, value));
+					storeEvent.addYConseq(new ConseqType(Consequence.POLI, value));
 				}
 				if (newConseq.containsKey("wallet")) {
 					Double value = new Double(newConseq.get("wallet").toString());
-					storeEvent.addYConseq(ConseqType(Consequence.WALLET, value));
+					storeEvent.addYConseq(new ConseqType(Consequence.WALLET, value));
 				} 
 				if (newConseq.containsKey("ghg")) {
 					Double value = new Double(newConseq.get("ghg").toString());
-					storeEvent.addYConseq(ConseqType(Consequence.GHG, value));
+					storeEvent.addYConseq(new ConseqType(Consequence.GHG, value));
 				}
 				if (newConseq.containsKey("temp")) {
 					Double value = new Double(newConseq.get("temp").toString());
-					storeEvent.addYConseq(ConseqType(Consequence.TEMP, value));
+					storeEvent.addYConseq(new ConseqType(Consequence.TEMP, value));
 				}
 				if (newConseq.containsKey("percip")) {
 					Double value = new Double(newConseq.get("percip").toString());
-					storeEvent.addYConseq(ConseqType(Consequence.PERCIP, value));
+					storeEvent.addYConseq(new ConseqType(Consequence.PERCIP, value));
 				}
 
 				
@@ -87,23 +90,23 @@ public class NewsEventGenerator {
 				if (newRepur != null) {
 					if (newRepur.containsKey("political")) {
 						Double value = new Double(newRepur.get("political").toString());
-						storeEvent.addNConseq(ConseqType(Consequence.POLI, value));
+						storeEvent.addNConseq(new ConseqType(Consequence.POLI, value));
 					}
 					if (newRepur.containsKey("wallet")) {
 						Double value = new Double(newRepur.get("wallet").toString());
-						storeEvent.addNConseq(ConseqType(Consequence.WALLET, value));
+						storeEvent.addNConseq(new ConseqType(Consequence.WALLET, value));
 					} 
 					if (newRepur.containsKey("ghg")) {
 						Double value = new Double(newRepur.get("ghg").toString());
-						storeEvent.addNConseq(ConseqType(Consequence.GHG, value));
+						storeEvent.addNConseq(new ConseqType(Consequence.GHG, value));
 					}
 					if (newRepur.containsKey("temp")) {
 						Double value = new Double(newRepur.get("temp").toString());
-						storeEvent.addNConseq(ConseqType(Consequence.TEMP, value));
+						storeEvent.addNConseq(new ConseqType(Consequence.TEMP, value));
 					}
 					if (newRepur.containsKey("percip")) {
 						Double value = new Double(newRepur.get("percip").toString());
-						storeEvent.addNConseq(ConseqType(Consequence.PERCIP, value));
+						storeEvent.addNConseq(new ConseqType(Consequence.PERCIP, value));
                     }
 				}
 
