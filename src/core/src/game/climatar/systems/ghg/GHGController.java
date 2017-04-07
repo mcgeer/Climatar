@@ -45,7 +45,18 @@ public class GHGController extends Controller {
 		totalEmissionsPerUpdate += airNationController.getEmissionPerUpdate();
 		totalEmissionsPerUpdate += waterNationController.getEmissionPerUpdate();
 	}
-
+	public GHGSystemController getEarthSubControl(){
+		return earthNationController;
+	}
+	public GHGSystemController getFireSubControl(){
+		return fireNationController;
+	}
+	public GHGSystemController getWaterSubControl(){
+		return waterNationController;
+	}
+	public GHGSystemController getAirSubControl(){
+		return airNationController;
+	}
 	/**
 	 *
 	 * @return
