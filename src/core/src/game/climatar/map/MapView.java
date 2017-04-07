@@ -17,9 +17,10 @@ public class MapView extends View {
 	
 	@Override
 	public void build(Group group) {
-		int[][] mapSpec = MidpointDisplacement.getMap(4, 14, 7, 4);
 		
-		map = new DrawableMap(mapSpec, 0.2f);
+		WorldMap world = MapGenerator.generateMap(4, 14, 7, 4);
+		
+		map = new DrawableMap(world.terrain, 0.2f);
 		
 		table = new VisTable();
 		table.add(map);

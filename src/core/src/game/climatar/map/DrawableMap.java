@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
+import java.util.List;
+
 public class DrawableMap extends Actor {
 
 	private static final int TILE_SIZE = 16;
@@ -26,7 +28,7 @@ public class DrawableMap extends Actor {
 	private Rectangle frame;
 	private OrthographicCamera camera;
 
-	public DrawableMap(int[][] tileSpec, float scale) {
+	public DrawableMap(List<List<Integer>> terrain, float scale) {
 		this.scale = scale;
 		camera = new OrthographicCamera();
 		frame = new Rectangle();
@@ -35,8 +37,8 @@ public class DrawableMap extends Actor {
 		Texture tiles = new Texture(Gdx.files.internal("tiles.png"));
 		TextureRegion[][] splitTiles = TextureRegion.split(tiles, TILE_SIZE, TILE_SIZE);
 
-		int mapWidth = tileSpec[0].length;
-		int mapHeight = tileSpec.length;
+		int mapWidth = terrain.get(0).size();
+		int mapHeight = terrain.size();
 
 		Pixmap fullMap = new Pixmap(mapWidth * TILE_SIZE, mapHeight * TILE_SIZE, Format.RGB888);
 
@@ -47,7 +49,7 @@ public class DrawableMap extends Actor {
 		for (int y = 0; y < mapHeight; y++) {
 			for (int x = 0; x < mapWidth; x++) {
 				// indexed by [row][column]
-				int tileID = tileSpec[y][x];
+				int tileID = terrain.get(y).get(x);
 				// tileID runs 0 through 8, conveniently in the
 				// same order as our split tiles texture...
 				int ty = (int) tileID / 3;
