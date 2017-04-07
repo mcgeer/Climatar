@@ -1,7 +1,5 @@
 package game.climatar;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -21,6 +19,7 @@ public class PauseView extends View {
 
 	private VisImageButton pauseButton;
 	private Drawable pauseButtonTexture;
+	private Drawable backButtonTexture;
 
 	private Value widthVal = new Value() {
 		@Override
@@ -39,6 +38,8 @@ public class PauseView extends View {
 	@Override
 	public void build(Group group) {
 		pauseButtonTexture = new TextureRegionDrawable(new TextureRegion(new Texture("pause.png")));
+		backButtonTexture = new TextureRegionDrawable(new TextureRegion(new Texture("back.png")));
+		
 		pauseButton = new VisImageButton(pauseButtonTexture);
 		pauseButton.addListener(new ChangeListener() {
 			@Override
@@ -60,15 +61,21 @@ public class PauseView extends View {
 		
 	}
 
+	public WorldSimulator getWS() {
+		return (WorldSimulator) getController();
+	}
+	
 	@Override
 	public void update(Model model) {
-		// TODO Auto-generated method stub
-		
+		if(getWS().overlayMenuIsShowing) {
+			pauseButton.getStyle().imageUp = (backButtonTexture);
+		} else {
+			pauseButton.getStyle().imageUp = (pauseButtonTexture);
+		}
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
 		
 	}
 
