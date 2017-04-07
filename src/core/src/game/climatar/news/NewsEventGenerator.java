@@ -28,6 +28,7 @@ public class NewsEventGenerator {
     }
 
     private void readEvents() {
+		System.out.println("READING EVENTS");
         WorldEvents = new LinkedList<NewsEvent>();
         PlayerEvents= new LinkedList<NewsEvent>();
         boolean isPassive;
@@ -40,10 +41,13 @@ public class NewsEventGenerator {
                 isPassive=false;
                 JSONObject newEvent = (JSONObject) obj;
                 NewsEvent storeEvent;
-                if ((String) newEvent.get("type") == "Passive") {
+				System.out.println(playerNation.getName());
+				System.out.println((String) newEvent.get("type"));
+                if (((String) newEvent.get("type")).equals("Passive")) {
                     storeEvent = new NewsEvent(NewsType.PASSIVE);
                     isPassive=true;
-                } else if ((String) newEvent.get("type") == "Active" && (String) newEvent.get("nation") == playerNation.getName()) {
+                } else if (((String) newEvent.get("type")).equals("Active") &&
+						   ((String) newEvent.get("nation")).equals(playerNation.getName())) {
                     storeEvent = new NewsEvent(NewsType.ACTIVE);
 
                 } else {

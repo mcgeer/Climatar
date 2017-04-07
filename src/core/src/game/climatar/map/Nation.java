@@ -1,10 +1,10 @@
 package game.climatar.map;
 
 public enum Nation {
-	FIRE("Fire", "fire.png"), 
-	WATER("Water", "water.png"), 
-	AIR("Air", "air.png"), 
-	EARTH("Earth", "earth.png");
+	FIRE("FIRE", "fire.png"), 
+	WATER("WATER", "water.png"), 
+	AIR("AIR", "air.png"), 
+	EARTH("EARTH", "earth.png");
 
 	private String name;
 	private String imageFileName;
