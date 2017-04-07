@@ -40,6 +40,7 @@ public class NewsView extends View {
 
     @Override
     public void build(Group group) {
+        group.debug();
         table = new VisTable();
 
         eventMessageLabel = new VisLabel("");
@@ -63,7 +64,7 @@ public class NewsView extends View {
             }
         });
 
-
+        //TODO REMOVE BELOW
         //Layout
         Value widthVal = new Value() {
             @Override
@@ -85,7 +86,7 @@ public class NewsView extends View {
         table.add(noButton);
 
         group.addActor(table);
-
+        //TODO UNTIL HERE
         isBuilt = true;
     }
 
@@ -112,7 +113,8 @@ public class NewsView extends View {
         VisLabel label = new VisLabel(currentEvent.getDescription());
         label.setWrap(true);
         label.setWidth(100); // or even as low as 10
-        newtable.add(label).width(10f);// <--- here you define the width! not ^
+        newtable.add(label).width(getFrame().getWidth());// <--- here you define the width! not ^
+        newtable.pad(5,5,5,5);
         newtable.add(okayButton);
         newtable.add(noButton);
 
