@@ -19,11 +19,11 @@ public class NewsEventGenerator {
     private LinkedList<NewsEvent> WorldEvents;
     private LinkedList<NewsEvent> PlayerEvents;
 
- 
     public NewsEventGenerator(Nation n) {
         playerNation = n;
 
         readEvents();
+        
         sortEvents();
     }
 

@@ -2,7 +2,6 @@ package game.climatar.systems.ghg;
 
 import java.util.HashMap;
 
-import game.climatar.WorldSimulator;
 import game.climatar.architecture.Controller;
 import game.climatar.map.Nation;
 import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
@@ -14,8 +13,6 @@ import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
 
 public class GHGController extends Controller {
 
-	//Activated
-	private boolean isActive = true;
 	// constants
 	private static final int INITIAL_VALUE_FN = 50;
 	private static final int INITIAL_VALUE_EN = 35;
@@ -54,21 +51,6 @@ public class GHGController extends Controller {
 		// set the model's total emissions (by all nations)
 	}
 
-	public void Activiate(){
-		for (Nation n : Nation.values()) {
-			ghgSystems.get(n).show();
-		}
-		isActive = true;
-	}
-
-	public void DeActivate(){
-		for (Nation n : Nation.values()) {
-			ghgSystems.get(n).hide();
-		}
-		isActive = false;
-	}
-
-
 	public int gettotalEmmisions(){
 		int totalEmissionsPerUpdate = 0;
 
@@ -80,7 +62,7 @@ public class GHGController extends Controller {
 	}
 
 	public void setNationGHGDelta(Nation n, int delta){
-		if(isActive)
+		if(isActive())
 			ghgSystems.get(n).setDeltaEmissions(delta);
 	}
 

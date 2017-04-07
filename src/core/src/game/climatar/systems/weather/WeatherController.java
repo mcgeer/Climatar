@@ -3,10 +3,7 @@ package game.climatar.systems.weather;
 import java.util.HashMap;
 
 import game.climatar.architecture.Controller;
-import game.climatar.architecture.SetModel;
 import game.climatar.map.Nation;
-import game.climatar.systems.political.PoliticalSystemController;
-import game.climatar.systems.weather.WeatherSystemController;
 
 public class WeatherController extends Controller {
     
@@ -27,7 +24,6 @@ public class WeatherController extends Controller {
     WeatherSystemController airNationController;
 
     private HashMap<Nation, WeatherSystemController> weatherSystems = new HashMap<Nation, WeatherSystemController>();
-    private boolean isActive = true;
 
     @Override
     protected void initialize() {
@@ -71,27 +67,13 @@ public class WeatherController extends Controller {
 
     }
 
-    public void Activiate(){
-        for (Nation n : Nation.values()) {
-            weatherSystems.get(n).show();
-        }
-        isActive = true;
-    }
-
-    public void DeActivate(){
-        for (Nation n : Nation.values()) {
-            weatherSystems.get(n).hide();
-        }
-        isActive = false;
-    }
-
     public void setPrecipitationDelta(Nation n, double delta){
-        if(isActive)
+        if(isActive())
             weatherSystems.get(n).setDeltaPrecipitation(delta);
     }
 
     public void setTemperatureDelta(Nation n, double delta){
-        if(isActive)
+        if(isActive())
             weatherSystems.get(n).setDeltaTemperature(delta);
     }
 

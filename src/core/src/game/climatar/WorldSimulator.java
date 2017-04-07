@@ -3,6 +3,7 @@ package game.climatar;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 
 import game.climatar.GameState.WorldProperty;
 import game.climatar.architecture.Controller;
@@ -17,6 +18,9 @@ import game.climatar.systems.weather.WeatherController;
 
 @SetModel(GameState.class)
 public class WorldSimulator extends Controller {
+
+	// sick tunes
+	Music music;
 
     // Actively logged SubSystems
     private boolean ghgIsActive, weatherIsActive, politicalIsActive, isPaused = false, eventGen = false;
@@ -43,13 +47,19 @@ public class WorldSimulator extends Controller {
      * after Creation!
      */
     public void newGame(Nation player) {
+		// get those positive vibes going
+		music = Gdx.audio.newMusic(Gdx.files.internal("love.mp3"));
+		music.setVolume(1.0f);
+		music.setLooping(true);
+		music.play();
+		
         // Set up what systems are being used
-        ghgIsActive = true;
-        weatherIsActive = true;
-        politicalIsActive = true;
+		setGhgIsActive(true);
+		setPoliticalIsActive(true);
+		setWeatherIsActive(true);
+
         // Set up the Game State
         ((GameState) getModel()).init(player);
-
         newsController.startGeneration();
         overlayMenuView.hide(false);
     }
@@ -93,10 +103,12 @@ public class WorldSimulator extends Controller {
 
     private void pauseGame() {
         isPaused = true;
+		music.pause();
     }
 
     private void resumeGame() {
         isPaused = false;
+		music.play();
     }
 
     // ========================================================
@@ -107,40 +119,56 @@ public class WorldSimulator extends Controller {
      *
      * @param ghgIsActive Enable/Disable
      */
-    public void setGhgIsActive(boolean ghgIsActive) {
-        this.ghgIsActive = ghgIsActive;
+    public void setGhgIsActive(boolean active) {
+        ghgSystems.setActive(active);
     }
 
     /**
      * Enable/Disable Weather Sub System
      *
-     * @param weatherIsActive Enable/Disable
+     * @param active Enable/Disable
      */
-    public void setWeatherIsActive(boolean weatherIsActive) {
-        this.weatherIsActive = weatherIsActive;
+    public void setWeatherIsActive(boolean active) {
+        weatherSystems.setActive(active);;
     }
 
     /**
      * Enable/Disable Political Sub System
      *
-     * @param politicalIsActive Enable/Disable
+     * @param active Enable/Disable
      */
-    public void setPoliticalIsActive(boolean politicalIsActive) {
-        this.politicalIsActive = politicalIsActive;
+    public void setPoliticalIsActive(boolean active) {
+        politicalSystems.setActive(active);;
     }
 
 
-    public boolean getPoliticalIsActive() {
-        return this.politicalIsActive;
+
+    public boolean getPoliticalIsActive(){
+        return politicalSystems.isActive();
     }
 
-    public boolean getGHGIsActive() {
-        return this.ghgIsActive;
+    public boolean getGHGIsActive(){
+        return ghgSystems.isActive();
     }
 
-    public boolean getWeatherIsActive() {
-        return this.weatherIsActive;
+    public boolean getWeatherIsActive(){
+        return weatherSystems.isActive();
     }
+    
+    public void togglePoliticalSystem() {
+		boolean active = getPoliticalIsActive();
+		setPoliticalIsActive(!active);
+	}
+    
+    public void toggleGHGSystem() {
+		boolean active = getGHGIsActive();
+		setGhgIsActive(!active);
+	}
+
+    public void toggleWeatherSystem() {
+		boolean active = getWeatherIsActive();
+		setWeatherIsActive(!active);
+	}
 
     // ========================================================
     // =================---- Overrides ----====================
@@ -151,9 +179,12 @@ public class WorldSimulator extends Controller {
         float height = Gdx.graphics.getHeight();
         mapView.setFrame(PAD, PAD, width - PAD * 2, height - PAD * 2);
         uiView.setFrame(0, height - width, width / 4, width);
-        pauseView.setFrame(width - width / 4, height - width / 4, width / 4, width / 4);
-        greyView.setFrame(0, 0, width * 3, height / 3.25f);
-        overlayMenuView.setFrame(0, 2 * height / 5, width, height / 5);
+        pauseView.setFrame(width - width / 4 , height - width / 4, width / 4, width / 4);
+        greyView.setFrame(0,0,width*3, height/3.25f);
+        overlayMenuView.setFrame(0, 2*height/5, width, height/5);
+        
+        overlayMenuView.hide();
+
         showView(mapView, greyView, pauseView, uiView, overlayMenuView);
     }
 
@@ -211,36 +242,4 @@ public class WorldSimulator extends Controller {
         //Update
         resumeGame();
     }
-
-    public void togglePoliticalSystem() {
-        if (politicalIsActive) {
-            politicalSystems.DeActivate();
-        } else {
-            politicalSystems.Activiate();
-        }
-
-        politicalIsActive = !politicalIsActive;
-    }
-
-    public void toggleWeatherSystem() {
-        if (weatherIsActive) {
-            weatherSystems.DeActivate();
-        } else {
-            weatherSystems.Activiate();
-        }
-
-        weatherIsActive = !weatherIsActive;
-    }
-
-    public void toggleGHGSystem() {
-        if (ghgIsActive) {
-            ghgSystems.Activiate();
-        } else {
-            ghgSystems.DeActivate();
-        }
-
-        ghgIsActive = !ghgIsActive;
-    }
-
-
 }

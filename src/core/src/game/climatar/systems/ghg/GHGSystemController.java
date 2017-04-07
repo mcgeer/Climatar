@@ -35,7 +35,6 @@ public class GHGSystemController extends Controller {
 	protected void tick() {
 		if(getModel().get(GHGProperty.EMISSIONS_PER_UPDATE.id()) == null)
 			return;
-
 		// Update the EmissionsPerUpdate value based on DeltaEmissions
 		int emissionsPerUpdate = (Integer) getModel().get(GHGProperty.EMISSIONS_PER_UPDATE.id());
 		int deltaEmissions = (Integer) getModel().get(GHGProperty.DELTA_EMISSIONS.id());
