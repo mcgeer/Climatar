@@ -16,9 +16,9 @@ public class MapGenerator {
 			float shallowWater = 0.4f;
 			float desert = 0.45f;
 			float plains = 0.54f;
-			float grassland = 0.75f;
-			float forest = 0.8f;
-			float hills = 0.88f;
+			float grassland = 0.68f;
+			float forest = 0.74f;
+			float hills = 0.8f;
 
 			Integer threshold(float x) {
 				if (x < ice) return 0;
@@ -37,7 +37,7 @@ public class MapGenerator {
 			// thresholds determining cutoffs for nations
 			float waterNation = 0.23f;
 			float internationalWaters = 0.38f;
-			float earthOrFireNation = 0.82f;
+			float earthOrFireNation = 0.76f;
 
 			Nation threshold(float x) {
 				if (x < waterNation) return Nation.WATER;
