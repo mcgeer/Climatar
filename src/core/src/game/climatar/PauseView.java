@@ -1,5 +1,7 @@
 package game.climatar;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -13,7 +15,6 @@ import com.kotcrab.vis.ui.widget.VisImageButton;
 import game.climatar.architecture.AllowController;
 import game.climatar.architecture.Model;
 import game.climatar.architecture.View;
-import game.climatar.map.Nation;
 
 @AllowController(WorldSimulator.class)
 public class PauseView extends View {
@@ -42,13 +43,12 @@ public class PauseView extends View {
 		pauseButton.addListener(new ChangeListener() {
 			@Override
 			public void changed(ChangeEvent event, Actor actor) {
-				((WorldSimulator)getController()).showOverlayPauseMenu();
+				((WorldSimulator)getController()).toggleOverlayMenu();
 			}
 		});
+		
 		pauseButton.setWidth(widthVal.get(pauseButton));
 		pauseButton.setHeight(heightVal.get(pauseButton));
-		
-		
 		
 		group.addActor(pauseButton);
 	}
