@@ -76,15 +76,12 @@ public class WeatherSystemView extends View {
 
     @Override
     public void update(Model model) {
-        double tempupdate = (double) (Integer) model.get(WeatherProperty.DELTA_TEMPERATURE.id());
-        double temp = (double) (Integer) model.get(WeatherProperty.TEMPERATURE.id());
+        double temp = (Double) model.get(WeatherProperty.TEMPERATURE.id());
+        double precip = (Double) model.get(WeatherProperty.PRECIPITATION.id());
 
-        Nation nation = (Nation) model.get(WeatherProperty.NATION.id());
-        TempValueLabel.setText(tempupdate + temp + "°C");
+        TempValueLabel.setText(temp + "°C");
 
-        int percipupdate = (Integer) model.get(WeatherProperty.DELTA_PRECIPITATION.id());
-        int percip = (Integer) model.get(WeatherProperty.PRECIPITATION.id());
-        PercipValueLabel.setText(percip + percipupdate + "mm");
+        PercipValueLabel.setText(precip + " mm");
     }
 
     @Override

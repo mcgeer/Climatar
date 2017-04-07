@@ -73,7 +73,7 @@ public class PoliticalSystemView extends View {
 
 	@Override
 	public void update(Model model) {
-		int relations = (Integer) model.get(PoliticalSystemModel.PoliticalProperty.RELATIONS.id());
+		double relations = (Double) model.get(PoliticalSystemModel.PoliticalProperty.RELATIONS.id());
 		int wallet = (Integer) model.get(PoliticalSystemModel.PoliticalProperty.WALLET.id());
 		Nation nation = (Nation) model.get(PoliticalSystemModel.PoliticalProperty.NATION.id());
 		relationValueLabel.setText(relations + " %Pop");
