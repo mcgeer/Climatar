@@ -13,8 +13,6 @@ public class GHGSystemController extends Controller {
 	
 	@Override
 	protected void initialize() {
-		getModel().set(GHGProperty.DELTA_EMISSIONS.id(), 0);
-		getModel().set(GHGProperty.EMISSIONS_PER_UPDATE.id(), 0);
 	}
 	
 	@Override

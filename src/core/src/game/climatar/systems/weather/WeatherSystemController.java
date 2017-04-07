@@ -12,10 +12,7 @@ public class WeatherSystemController extends Controller {
 
 	@Override
 	protected void initialize() {
-		getModel().set(WeatherProperty.DELTA_TEMPERATURE.id(), 0);
-		getModel().set(WeatherProperty.TEMPERATURE.id(), 0);
-		getModel().set(WeatherProperty.DELTA_PRECIPITATION.id(), 0);
-		getModel().set(WeatherProperty.PRECIPITATION.id(), 0);
+
 	}
 
 	@Override

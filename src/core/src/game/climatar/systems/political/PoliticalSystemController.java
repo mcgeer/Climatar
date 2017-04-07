@@ -16,8 +16,7 @@ public class PoliticalSystemController extends Controller {
 
 	@Override
 	protected void initialize() {
-		getModel().set(PoliticalProperty.RELATIONS.id(), 0);
-		getModel().set(PoliticalProperty.WALLET.id(), 0);
+
 	}
 
 	@Override

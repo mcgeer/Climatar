@@ -36,10 +36,7 @@ public class WorldSimulator extends Controller {
     private GreyView greyView;
     private UIView uiView;
     private PauseView pauseView;
-    
-
-
-
+    private OverlayMenuView overlayMenuView;
 
     /**
      * Start a new game, Controlling all aspects of the world, Call Simulate
@@ -57,6 +54,8 @@ public class WorldSimulator extends Controller {
         newsController.startGeneration();
         // Set up the Game State
         ((GameState) getModel()).init(player);
+        
+        overlayMenuView.hide(false);
     }
 
     /**
@@ -82,12 +81,21 @@ public class WorldSimulator extends Controller {
 
 
     }
+    
+    boolean overlayMenuIsShowing = false;
+    
+	public void toggleOverlayMenu() {
+		if(!overlayMenuIsShowing) {
+	    	overlayMenuView.show();
+		} else {
+	    	overlayMenuView.hide();
+		}
+		
+		overlayMenuIsShowing = !overlayMenuIsShowing;
+	}
 
-    public void showOverlayPauseMenu() {
-    }
     
     private void pauseGame() {
-        // TODO Auto-generated method stub
         isPaused = true;
     }
 
@@ -149,7 +157,8 @@ public class WorldSimulator extends Controller {
         uiView.setFrame(0, height - width, width / 4, width);
         pauseView.setFrame(width - width / 4 , height - width / 4, width / 4, width / 4);
         greyView.setFrame(0,0,width*3, height/3.25f);
-        showView(mapView, greyView, pauseView, uiView);
+        overlayMenuView.setFrame(0, 2*height/5, width, height/5);
+        showView(mapView, greyView, pauseView, uiView, overlayMenuView);
     }
 
     @Override
@@ -211,5 +220,36 @@ public class WorldSimulator extends Controller {
         //Update
         resumeGame();
     }
+
+	public void togglePoliticalSystem() {
+		if(politicalIsActive) {
+			politicalSystems.DeActivate();
+		} else {
+			politicalSystems.Activiate();
+		}
+		
+		politicalIsActive = !politicalIsActive;
+	}
+
+	public void toggleWeatherSystem() {
+		if(weatherIsActive) {
+			weatherSystems.DeActivate();
+		} else {
+			weatherSystems.Activiate();
+		}
+		
+		weatherIsActive = !weatherIsActive;
+	}
+
+	public void toggleGHGSystem() {
+		if(ghgIsActive) {
+			ghgSystems.Activiate();
+		} else {
+			ghgSystems.DeActivate();
+		}
+		
+		ghgIsActive = !ghgIsActive;
+	}
+
 
 }

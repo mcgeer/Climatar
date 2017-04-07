@@ -11,15 +11,15 @@ import game.climatar.systems.weather.WeatherSystemController;
 public class WeatherController extends Controller {
     
     // initial conditions
-    private static final double INITIAL_TEMPERATURE_FN = 0;
-    private static final double INITIAL_TEMPERATURE_EN = 0;
-    private static final double INITIAL_TEMPERATURE_WN = 0;
-    private static final double INITIAL_TEMPERATURE_AN = 0;
+    private static final double INITIAL_TEMPERATURE_FN = 32;
+    private static final double INITIAL_TEMPERATURE_EN = 28;
+    private static final double INITIAL_TEMPERATURE_WN = -15;
+    private static final double INITIAL_TEMPERATURE_AN = 12;
 
-    private static final double INITIAL_PRECIPITATION_FN = 0;
-    private static final double INITIAL_PRECIPITATION_EN = 0;
-    private static final double INITIAL_PRECIPITATION_WN = 0;
-    private static final double INITIAL_PRECIPITATION_AN = 0;
+    private static final double INITIAL_PRECIPITATION_FN = 50;
+    private static final double INITIAL_PRECIPITATION_EN = 35;
+    private static final double INITIAL_PRECIPITATION_WN = 30;
+    private static final double INITIAL_PRECIPITATION_AN = 20;
 
     WeatherSystemController earthNationController;
     WeatherSystemController fireNationController;
@@ -33,13 +33,13 @@ public class WeatherController extends Controller {
     protected void initialize() {
 	//Setup Controllers
         ((WeatherSystemModel) earthNationController.getModel())
-	    .init(INITIAL_TEMPERATURE_FN, INITIAL_PRECIPITATION_FN);
-        ((WeatherSystemModel) fireNationController.getModel())
 	    .init(INITIAL_TEMPERATURE_EN, INITIAL_PRECIPITATION_EN);
+        ((WeatherSystemModel) fireNationController.getModel())
+	    .init(INITIAL_TEMPERATURE_FN, INITIAL_PRECIPITATION_FN);
         ((WeatherSystemModel) airNationController.getModel())
-	    .init(INITIAL_TEMPERATURE_WN, INITIAL_PRECIPITATION_WN);
-        ((WeatherSystemModel) waterNationController.getModel())
 	    .init(INITIAL_TEMPERATURE_AN, INITIAL_PRECIPITATION_AN);
+        ((WeatherSystemModel) waterNationController.getModel())
+	    .init(INITIAL_TEMPERATURE_WN, INITIAL_PRECIPITATION_WN);
 
         //Setup Map
         weatherSystems.put(Nation.FIRE, fireNationController);
