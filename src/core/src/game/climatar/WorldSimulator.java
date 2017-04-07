@@ -19,7 +19,7 @@ import game.climatar.systems.weather.WeatherController;
 public class WorldSimulator extends Controller {
 
     // Actively logged SubSystems
-    private boolean ghgIsActive, weatherIsActive, politicalIsActive, isPaused, eventGen;
+    private boolean isPaused, eventGen;
     private List<ConseqType> currentAE;
     private List<ConseqType> currentPE;
 
@@ -48,20 +48,19 @@ public class WorldSimulator extends Controller {
      */
     public void newGame(Nation player) {
         // Set up what systems are being used
-        ghgIsActive = true;
-        weatherIsActive = true;
-        politicalIsActive = true;
+        ghgSystems.Activiate();
+        politicalSystems.Activiate();
+        weatherSystems.Activiate();
 
         // Set up the Game State
         ((GameState) getModel()).init(player);
-        
-        overlayMenuView.hide(false);
     }
 
     /**
      * Update Function to handle all requests to step the state of the world
      */
     public void Simulate() {
+    	System.out.println("TEST");
         // GENERATE NEWS
         // REACT TO NEWS
         if (isPaused == false) {
@@ -105,45 +104,42 @@ public class WorldSimulator extends Controller {
     // ========================================================
     // =============== Set Activated Systems ==================
 
-    /**
-     * Enable/Disable GHG Sub System
-     *
-     * @param ghgIsActive Enable/Disable
-     */
-    public void setGhgIsActive(boolean ghgIsActive) {
-        this.ghgIsActive = ghgIsActive;
-    }
-
-    /**
-     * Enable/Disable Weather Sub System
-     *
-     * @param weatherIsActive Enable/Disable
-     */
-    public void setWeatherIsActive(boolean weatherIsActive) {
-        this.weatherIsActive = weatherIsActive;
-    }
-
-    /**
-     * Enable/Disable Political Sub System
-     *
-     * @param politicalIsActive Enable/Disable
-     */
-    public void setPoliticalIsActive(boolean politicalIsActive) {
-        this.politicalIsActive = politicalIsActive;
-    }
-
-
     public boolean getPoliticalIsActive(){
-        return this.politicalIsActive;
+        return politicalSystems.isActive();
     }
 
     public boolean getGHGIsActive(){
-        return this.ghgIsActive;
+        return ghgSystems.isActive();
     }
 
     public boolean getWeatherIsActive(){
-        return this.weatherIsActive;
+        return weatherSystems.isActive();
     }
+    
+	public void togglePoliticalSystem() {
+		if(politicalSystems.isActive()) {
+			politicalSystems.DeActivate();
+		} else {
+			politicalSystems.Activiate();
+		}
+	}
+
+	public void toggleWeatherSystem() {
+		if(weatherSystems.isActive()) {
+			weatherSystems.DeActivate();
+		} else {
+			weatherSystems.Activiate();
+		}
+	}
+
+	public void toggleGHGSystem() {
+		if(ghgSystems.isActive()) {
+			ghgSystems.Activiate();
+		} else {
+			ghgSystems.DeActivate();
+		}
+		
+	}
 
     // ========================================================
     // =================---- Overrides ----====================
@@ -157,7 +153,9 @@ public class WorldSimulator extends Controller {
         pauseView.setFrame(width - width / 4 , height - width / 4, width / 4, width / 4);
         greyView.setFrame(0,0,width*3, height/3.25f);
         overlayMenuView.setFrame(0, 2*height/5, width, height/5);
+        
         showView(mapView, greyView, pauseView, uiView, overlayMenuView);
+        overlayMenuView.hide();
     }
 
     @Override
@@ -220,35 +218,6 @@ public class WorldSimulator extends Controller {
         resumeGame();
     }
 
-	public void togglePoliticalSystem() {
-		if(politicalIsActive) {
-			politicalSystems.DeActivate();
-		} else {
-			politicalSystems.Activiate();
-		}
-		
-		politicalIsActive = !politicalIsActive;
-	}
-
-	public void toggleWeatherSystem() {
-		if(weatherIsActive) {
-			weatherSystems.DeActivate();
-		} else {
-			weatherSystems.Activiate();
-		}
-		
-		weatherIsActive = !weatherIsActive;
-	}
-
-	public void toggleGHGSystem() {
-		if(ghgIsActive) {
-			ghgSystems.Activiate();
-		} else {
-			ghgSystems.DeActivate();
-		}
-		
-		ghgIsActive = !ghgIsActive;
-	}
 
 
 }

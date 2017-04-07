@@ -9,6 +9,7 @@ import game.climatar.systems.weather.WeatherSystemModel.WeatherProperty;
 public class WeatherSystemController extends Controller {
 
 	private WeatherSystemView systemView;
+	private boolean isActive = true;
 
 	@Override
 	protected void initialize() {
@@ -34,15 +35,17 @@ public class WeatherSystemController extends Controller {
 
 	@Override
 	protected void tick() {
-		// update the temperature
-		double temperature = (Double) getModel().get(WeatherProperty.TEMPERATURE.id());
-		double deltaTemperature = (Double) getModel().get(WeatherProperty.DELTA_TEMPERATURE.id());
-		getModel().set(WeatherProperty.TEMPERATURE.id(), temperature + deltaTemperature);
+		if(isActive) {
+			// update the temperature
+			double temperature = (Double) getModel().get(WeatherProperty.TEMPERATURE.id());
+			double deltaTemperature = (Double) getModel().get(WeatherProperty.DELTA_TEMPERATURE.id());
+			getModel().set(WeatherProperty.TEMPERATURE.id(), temperature + deltaTemperature);
 
-		// update the precipitation
-		double precipitation = (Double) getModel().get(WeatherProperty.PRECIPITATION.id());
-		double deltaPrecipitation = (Double) getModel().get(WeatherProperty.DELTA_PRECIPITATION.id());
-		getModel().set(WeatherProperty.TEMPERATURE.id(), precipitation + deltaPrecipitation);
+			// update the precipitation
+			double precipitation = (Double) getModel().get(WeatherProperty.PRECIPITATION.id());
+			double deltaPrecipitation = (Double) getModel().get(WeatherProperty.DELTA_PRECIPITATION.id());
+			getModel().set(WeatherProperty.TEMPERATURE.id(), precipitation + deltaPrecipitation);
+		}
 	}
 
 	public void setDeltaTemperature(double delta) {
@@ -59,5 +62,9 @@ public class WeatherSystemController extends Controller {
 
 	public double getPrecipitation() {
 		return (Double) getModel().get(WeatherProperty.PRECIPITATION.id());
+	}
+
+	public void setIsActive(boolean active) {
+		this.isActive = active;
 	}
 }

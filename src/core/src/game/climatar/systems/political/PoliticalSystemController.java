@@ -12,12 +12,8 @@ import game.climatar.systems.political.PoliticalSystemModel.PoliticalProperty;
 @SetModel(PoliticalSystemModel.class)
 public class PoliticalSystemController extends Controller {
 
+	private boolean isActive = true;
 	private PoliticalSystemView politicalSystemView;
-
-	@Override
-	protected void initialize() {
-
-	}
 
 	@Override
 	protected void layoutView() {
@@ -25,10 +21,12 @@ public class PoliticalSystemController extends Controller {
 		float height = Gdx.graphics.getHeight();
 
 		politicalSystemView.setFrame(10.0f, width/2 - (width/2) * 3/5, width/2, height/2 );
-
-
 	}
 
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+	
 	public void show(){
 		showView(politicalSystemView);
 	}
@@ -39,21 +37,23 @@ public class PoliticalSystemController extends Controller {
 
 	@Override
 	protected void tick() {
-		// Update the Wallet
-		int wallet = (Integer) getModel().get(PoliticalProperty.WALLET.id());
-		wallet += (Integer) getModel().get(PoliticalProperty.DELTA_WALLET.id());
+		if(isActive) {
+			// Update the Wallet
+			int wallet = (Integer) getModel().get(PoliticalProperty.WALLET.id());
+			wallet += (Integer) getModel().get(PoliticalProperty.DELTA_WALLET.id());
 
-		getModel().set(PoliticalProperty.WALLET.id(), wallet);
+			getModel().set(PoliticalProperty.WALLET.id(), wallet);
 
-		// Update the Relations
-		int relations = (Integer) getModel().get(PoliticalProperty.RELATIONS.id());
-		relations += (Integer) getModel().get(PoliticalProperty.DELTA_RELATIONS.id());
+			// Update the Relations
+			int relations = (Integer) getModel().get(PoliticalProperty.RELATIONS.id());
+			relations += (Integer) getModel().get(PoliticalProperty.DELTA_RELATIONS.id());
 
-		getModel().set(PoliticalProperty.RELATIONS.id(), relations);
+			getModel().set(PoliticalProperty.RELATIONS.id(), relations);
 
-		// Reset Deltas For this class
-		getModel().set(PoliticalProperty.DELTA_RELATIONS.id(), 0.0);
-		getModel().set(PoliticalProperty.DELTA_WALLET.id(), 0);
+			// Reset Deltas For this class
+			getModel().set(PoliticalProperty.DELTA_RELATIONS.id(), 0.0);
+			getModel().set(PoliticalProperty.DELTA_WALLET.id(), 0);
+		}
 	}
 
 	/**

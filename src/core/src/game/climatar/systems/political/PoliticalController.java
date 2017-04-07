@@ -1,12 +1,10 @@
 package game.climatar.systems.political;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import game.climatar.architecture.Controller;
 import game.climatar.architecture.SetModel;
 import game.climatar.map.Nation;
-import game.climatar.systems.ghg.GHGSystemController;
 
 /**
  * Created by riley_000 on 2017-04-05.
@@ -29,7 +27,7 @@ public class PoliticalController extends Controller {
 
 
     private HashMap<Nation, PoliticalSystemController> politicalSystems = new HashMap<Nation, PoliticalSystemController>();
-    private boolean isActive = true;
+    private boolean isActive = false;
 
     @Override
     protected void initialize() {
@@ -72,6 +70,7 @@ public class PoliticalController extends Controller {
     public void Activiate(){
         for (Nation n : Nation.values()) {
             politicalSystems.get(n).show();
+            politicalSystems.get(n).setIsActive(true);
         }
         isActive = true;
     }
@@ -79,6 +78,7 @@ public class PoliticalController extends Controller {
     public void DeActivate(){
         for (Nation n : Nation.values()) {
             politicalSystems.get(n).hide();
+            politicalSystems.get(n).setIsActive(false);
         }
         isActive = false;
     }
@@ -97,7 +97,7 @@ public class PoliticalController extends Controller {
      * @param n Nation being fetched
      * @return Controller for Nation n
      */
-    public PoliticalSystemController getPoliticalSystemController(Nation n){
+    public PoliticalSystemController getPoliticalSystemController(Nation n){    	
         return politicalSystems.get(n);
     }
 
@@ -115,5 +115,8 @@ public class PoliticalController extends Controller {
 
         return totalEmissionsPerUpdate * 0.25;
     }
+	public boolean isActive() {
+		return isActive;
+	}
 
 }

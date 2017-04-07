@@ -2,7 +2,6 @@ package game.climatar.systems.ghg;
 
 import java.util.HashMap;
 
-import game.climatar.WorldSimulator;
 import game.climatar.architecture.Controller;
 import game.climatar.map.Nation;
 import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
@@ -15,7 +14,7 @@ import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
 public class GHGController extends Controller {
 
 	//Activated
-	private boolean isActive = true;
+	private boolean isActive = false;
 	// constants
 	private static final int INITIAL_VALUE_FN = 50;
 	private static final int INITIAL_VALUE_EN = 35;
@@ -57,6 +56,7 @@ public class GHGController extends Controller {
 	public void Activiate(){
 		for (Nation n : Nation.values()) {
 			ghgSystems.get(n).show();
+			ghgSystems.get(n).setIsActive(true);
 		}
 		isActive = true;
 	}
@@ -64,6 +64,7 @@ public class GHGController extends Controller {
 	public void DeActivate(){
 		for (Nation n : Nation.values()) {
 			ghgSystems.get(n).hide();
+			ghgSystems.get(n).setIsActive(false);
 		}
 		isActive = false;
 	}
@@ -90,5 +91,9 @@ public class GHGController extends Controller {
 
 	public GHGSystemController getGHGSystemController(Nation n) {
 		return ghgSystems.get(n);
+	}
+
+	public boolean isActive() {
+		return isActive;
 	}
 }

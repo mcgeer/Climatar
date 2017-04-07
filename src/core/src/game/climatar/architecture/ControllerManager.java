@@ -48,7 +48,7 @@ public abstract class ControllerManager implements ApplicationListener {
 					initializeControllerControllers(controller);
 					initializeControllerModel(controller);
 					initializeControllerViews(controller);
-
+					
 					controllers.add(controller);
 				} catch (Exception e) {
 					e.printStackTrace();

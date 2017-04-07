@@ -10,6 +10,7 @@ import game.climatar.systems.ghg.GHGSystemModel.GHGProperty;
 public class GHGSystemController extends Controller {
 	
 	private GHGSystemView ghgSystemView;
+	private boolean isActive = true;
 	
 	@Override
 	protected void initialize() {
@@ -32,13 +33,15 @@ public class GHGSystemController extends Controller {
 	}
 	@Override
 	protected void tick() {
-		// Update the EmissionsPerUpdate value based on DeltaEmissions
-		int emissionsPerUpdate = (Integer) getModel().get(GHGProperty.EMISSIONS_PER_UPDATE.id());
-		int deltaEmissions = (Integer) getModel().get(GHGProperty.DELTA_EMISSIONS.id());
-		
-		emissionsPerUpdate += deltaEmissions;
-		
-		getModel().set(GHGProperty.EMISSIONS_PER_UPDATE.id(), emissionsPerUpdate);
+		if(isActive) {
+			// Update the EmissionsPerUpdate value based on DeltaEmissions
+			int emissionsPerUpdate = (Integer) getModel().get(GHGProperty.EMISSIONS_PER_UPDATE.id());
+			int deltaEmissions = (Integer) getModel().get(GHGProperty.DELTA_EMISSIONS.id());
+			
+			emissionsPerUpdate += deltaEmissions;
+			
+			getModel().set(GHGProperty.EMISSIONS_PER_UPDATE.id(), emissionsPerUpdate);
+		}
 	}
 	
     /**
@@ -51,6 +54,10 @@ public class GHGSystemController extends Controller {
 
 	public int getEmissionPerUpdate() {
 		return (Integer) getModel().get(GHGProperty.EMISSIONS_PER_UPDATE.id());
+	}
+
+	public void setIsActive(boolean active) {
+		this.isActive = active;
 	}
 
 }
