@@ -42,7 +42,6 @@ public class OverlayMenuView extends View {
 
 	@Override
 	public void build(Group group) {
-		group.debug();
 		table = new Table();
 		
 		Pixmap p = new Pixmap(1,1,Format.RGBA8888);

@@ -41,7 +41,6 @@ public class UIView extends View {
 		earthTexture = new TextureRegionDrawable(new TextureRegion(new Texture(Nation.EARTH.getImageFileName())));
 		
 		table = new VisTable();
-		group.debug();
 		nationButtons = new VisImageButton[Nation.values().length];
 
 		widthVal = new Value() {

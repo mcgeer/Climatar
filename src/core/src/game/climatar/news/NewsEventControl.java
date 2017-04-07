@@ -47,18 +47,22 @@ public class NewsEventControl extends Controller {
     protected void tick() {
 
     }
+    
+    boolean switcher = false;
 
     public boolean getNewsEvent() {
         if(!readyForAction) {
             return false;
         }
         System.out.println("HAS IT");
-        if (false) {
+        if (switcher) {
             currentEvent = PressMill.triggerPlayerEvents();
             System.out.println(currentEvent == null);
+            switcher = true;
         } else {
             currentEvent = PressMill.triggerWorldEvents();
             System.out.println(currentEvent == null);
+            switcher = false;
         }
         turn++;
         this.showView(view);
@@ -67,12 +71,12 @@ public class NewsEventControl extends Controller {
 
     public void respondActiveYes() {
         getWS().passConseq(currentEvent.getYConseq(), currentEvent.getNation());
-        this.showView();
+        view.hide(false);
     }
 
     public void respondActiveNo() {
         getWS().passConseq(currentEvent.getNConseq(), currentEvent.getNation());
-        this.showView();
+        view.hide(false);
     }
 
 }
