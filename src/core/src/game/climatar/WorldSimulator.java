@@ -23,7 +23,7 @@ public class WorldSimulator extends Controller {
 	Music music;
 
     // Actively logged SubSystems
-    private boolean ghgIsActive, weatherIsActive, politicalIsActive, isPaused, eventGen;
+    private boolean ghgIsActive, weatherIsActive, politicalIsActive, isPaused=false, eventGen=false;
     private List<ConseqType> currentAE;
     private List<ConseqType> currentPE;
 
@@ -61,7 +61,7 @@ public class WorldSimulator extends Controller {
         ghgIsActive = true;
         weatherIsActive = true;
         politicalIsActive = true;
-
+        newsController.startGeneration();
         // Set up the Game State
         ((GameState) getModel()).init(player);
         
@@ -75,6 +75,7 @@ public class WorldSimulator extends Controller {
         // GENERATE NEWS
         // REACT TO NEWS
         if (isPaused == false) {
+        	System.out.println("OP");
             newsController.getNewsEvent();
             pauseGame();
             eventGen = true;
