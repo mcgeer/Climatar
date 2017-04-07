@@ -24,7 +24,7 @@ public class WorldSimulator extends Controller {
 	private PoliticalController politicalSystems;
 
 	// News Events
-	private NewsEventControl newsController;
+	//	private NewsEventControl newsController;
 
 	private MapView mapView;
 	

@@ -57,7 +57,7 @@ public class GHGSystemView extends View {
 
 	@Override
 	public void update(Model model) {
-		int epu = (int) model.get(GHGProperty.EMISSIONS_PER_UPDATE.id());
+		int epu = (Integer) model.get(GHGProperty.EMISSIONS_PER_UPDATE.id());
 		Nation nation = (Nation) model.get(GHGProperty.NATION.id());
 		GHGEmissionsPerUpdateValue.setText(epu + " " + nation.name() + " EPU");
 	}

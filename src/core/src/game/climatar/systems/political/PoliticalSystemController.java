@@ -33,14 +33,14 @@ public class PoliticalSystemController extends Controller {
 	@Override
 	protected void tick() {
 		// Update the Wallet
-		int wallet = (int) getModel().get(PoliticalProperty.WALLET.id());
-		wallet += (int) getModel().get(PoliticalProperty.DELTA_WALLET.id());
+		int wallet = (Integer) getModel().get(PoliticalProperty.WALLET.id());
+		wallet += (Integer) getModel().get(PoliticalProperty.DELTA_WALLET.id());
 
 		getModel().set(PoliticalProperty.WALLET.id(), wallet);
 
 		// Update the Relations
-		int relations = (int) getModel().get(PoliticalProperty.RELATIONS.id());
-		relations += (int) getModel().get(PoliticalProperty.DELTA_RELATIONS.id());
+		int relations = (Integer) getModel().get(PoliticalProperty.RELATIONS.id());
+		relations += (Integer) getModel().get(PoliticalProperty.DELTA_RELATIONS.id());
 
 		getModel().set(PoliticalProperty.RELATIONS.id(), relations);
 
@@ -73,13 +73,13 @@ public class PoliticalSystemController extends Controller {
 	 * Get the Wallet amount
 	 */
 	public int getWallet() {
-		return (int) getModel().get(PoliticalProperty.WALLET.id());
+		return (Integer) getModel().get(PoliticalProperty.WALLET.id());
 	}
 
 	/**
 	 * Get the Relations level
 	 */
 	public double getRelations() {
-		return (double) getModel().get(PoliticalProperty.RELATIONS.id());
+		return (Double) getModel().get(PoliticalProperty.RELATIONS.id());
 	}
 }
