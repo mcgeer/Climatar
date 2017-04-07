@@ -11,7 +11,7 @@ public class MapGenerator {
 	
 	private static Thresholder<Integer> terrainThresholder = new Thresholder<Integer>() {
 			// thresholds determining cutoffs for different terrain types
-			float ice = 0.205f;
+			float ice = 0.15f;
 			float deepWater = 0.34f;
 			float shallowWater = 0.4f;
 			float desert = 0.45f;

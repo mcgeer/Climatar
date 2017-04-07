@@ -3,6 +3,7 @@ package game.climatar;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 
 import game.climatar.GameState.WorldProperty;
 import game.climatar.architecture.Controller;
@@ -17,6 +18,9 @@ import game.climatar.systems.weather.WeatherController;
 
 @SetModel(GameState.class)
 public class WorldSimulator extends Controller {
+
+	// sick tunes
+	Music music;
 
     // Actively logged SubSystems
     private boolean ghgIsActive, weatherIsActive, politicalIsActive, isPaused, eventGen;
@@ -47,6 +51,12 @@ public class WorldSimulator extends Controller {
      * @param monitoringPolitical Is the Political system being monitored
      */
     public void newGame(Nation player) {
+		// get those positive vibes going
+		music = Gdx.audio.newMusic(Gdx.files.internal("love.mp3"));
+		music.setVolume(1.0f);
+		music.setLooping(true);
+		music.play();
+		
         // Set up what systems are being used
         ghgIsActive = true;
         weatherIsActive = true;
@@ -96,10 +106,12 @@ public class WorldSimulator extends Controller {
     
     private void pauseGame() {
         isPaused = true;
+		music.pause();
     }
 
     private void resumeGame() {
         isPaused = false;
+		music.play();
     }
 
     // ========================================================
