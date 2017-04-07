@@ -120,7 +120,7 @@ public abstract class ControllerManager implements ApplicationListener {
 				}
 			}
 			for (Controller c : viewControllers) {
-				c.renderView();
+				c.renderViews();
 			}
 
 			nextTick();

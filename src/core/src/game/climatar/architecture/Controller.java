@@ -12,7 +12,7 @@ import game.climatar.ApplicationController;
 
 public abstract class Controller {
 
-	private boolean isActive;
+	private boolean isActive = true;
 	Model model;
 	private Controller parentController;
 	ControllerManager manager;
@@ -33,6 +33,7 @@ public abstract class Controller {
 	}
 	
 	public void setActive(boolean active) {
+		System.out.println(active ? "active" :"deactivating");
 		this.isActive = active;
 	}
 
@@ -99,10 +100,6 @@ public abstract class Controller {
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().getViewport().apply();
 		getStage().draw();
-
-		for (Controller child : children) {
-			child.renderView();
-		}
 	}
 
 	protected void resizeView(int width, int height) {
@@ -110,10 +107,6 @@ public abstract class Controller {
 
 		for (View view : views) {
 			view.layout();
-		}
-
-		for (Controller child : children) {
-			child.resizeView(width, height);
 		}
 	}
 

@@ -23,7 +23,7 @@ public class WorldSimulator extends Controller {
 	Music music;
 
     // Actively logged SubSystems
-    private boolean ghgIsActive, weatherIsActive, politicalIsActive, isPaused=false, eventGen=false;
+    private boolean isPaused=false, eventGen=false;
     private List<ConseqType> currentAE;
     private List<ConseqType> currentPE;
 
@@ -58,9 +58,10 @@ public class WorldSimulator extends Controller {
 		music.play();
 		
         // Set up what systems are being used
-        ghgIsActive = true;
-        weatherIsActive = true;
-        politicalIsActive = true;
+		setGhgIsActive(true);
+		setPoliticalIsActive(true);
+		setWeatherIsActive(true);
+		
         newsController.startGeneration();
         // Set up the Game State
         ((GameState) getModel()).init(player);
@@ -123,40 +124,55 @@ public class WorldSimulator extends Controller {
      *
      * @param ghgIsActive Enable/Disable
      */
-    public void setGhgIsActive(boolean ghgIsActive) {
-        this.ghgIsActive = ghgIsActive;
+    public void setGhgIsActive(boolean active) {
+        ghgSystems.setActive(active);
     }
 
     /**
      * Enable/Disable Weather Sub System
      *
-     * @param weatherIsActive Enable/Disable
+     * @param active Enable/Disable
      */
-    public void setWeatherIsActive(boolean weatherIsActive) {
-        this.weatherIsActive = weatherIsActive;
+    public void setWeatherIsActive(boolean active) {
+        weatherSystems.setActive(active);;
     }
 
     /**
      * Enable/Disable Political Sub System
      *
-     * @param politicalIsActive Enable/Disable
+     * @param active Enable/Disable
      */
-    public void setPoliticalIsActive(boolean politicalIsActive) {
-        this.politicalIsActive = politicalIsActive;
+    public void setPoliticalIsActive(boolean active) {
+        politicalSystems.setActive(active);;
     }
 
 
     public boolean getPoliticalIsActive(){
-        return this.politicalIsActive;
+        return politicalSystems.isActive();
     }
 
     public boolean getGHGIsActive(){
-        return this.ghgIsActive;
+        return ghgSystems.isActive();
     }
 
     public boolean getWeatherIsActive(){
-        return this.weatherIsActive;
+        return weatherSystems.isActive();
     }
+    
+    public void togglePoliticalSystem() {
+		boolean active = getPoliticalIsActive();
+		setPoliticalIsActive(!active);
+	}
+    
+    public void toggleGHGSystem() {
+		boolean active = getGHGIsActive();
+		setGhgIsActive(!active);
+	}
+
+    public void toggleWeatherSystem() {
+		boolean active = getWeatherIsActive();
+		setWeatherIsActive(!active);
+	}
 
     // ========================================================
     // =================---- Overrides ----====================
@@ -170,6 +186,9 @@ public class WorldSimulator extends Controller {
         pauseView.setFrame(width - width / 4 , height - width / 4, width / 4, width / 4);
         greyView.setFrame(0,0,width*3, height/3.25f);
         overlayMenuView.setFrame(0, 2*height/5, width, height/5);
+        
+        overlayMenuView.hide();
+        
         showView(mapView, greyView, pauseView, uiView, overlayMenuView);
     }
 
@@ -232,36 +251,5 @@ public class WorldSimulator extends Controller {
         //Update
         resumeGame();
     }
-
-	public void togglePoliticalSystem() {
-		if(politicalIsActive) {
-			politicalSystems.DeActivate();
-		} else {
-			politicalSystems.Activiate();
-		}
-		
-		politicalIsActive = !politicalIsActive;
-	}
-
-	public void toggleWeatherSystem() {
-		if(weatherIsActive) {
-			weatherSystems.DeActivate();
-		} else {
-			weatherSystems.Activiate();
-		}
-		
-		weatherIsActive = !weatherIsActive;
-	}
-
-	public void toggleGHGSystem() {
-		if(ghgIsActive) {
-			ghgSystems.Activiate();
-		} else {
-			ghgSystems.DeActivate();
-		}
-		
-		ghgIsActive = !ghgIsActive;
-	}
-
 
 }

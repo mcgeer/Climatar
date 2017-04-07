@@ -108,18 +108,6 @@ public class UIView extends View {
 
 	@Override
 	public void update(Model model) {
-		for(VisImageButton b : nationButtons) {
-			if(b == null) continue;
-			if(b.getUserObject() != null) {
-				Nation nation = (Nation) b.getUserObject();
-				
-				if(nation == selectedNation) {
-					b.setBackground(getBackButtonDrawable());
-				} else {
-					b.setBackground(getNationDrawable(nation));
-				}
-			}
-		}
 	}
 	
 	private Drawable getNationDrawable(Nation nation) {
