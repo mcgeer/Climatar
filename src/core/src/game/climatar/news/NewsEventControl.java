@@ -10,14 +10,16 @@ public class NewsEventControl extends Controller {
     private NewsEventGenerator PressMill;
     private NewsEvent currentEvent;
     private GameState gs;
-    private WorldSimulator ws;
     private int turn;
     NewsView view;
+
+    public WorldSimulator getWS(){
+        return (WorldSimulator) getParentController();
+    }
 
     @Override
     protected void initialize() {
         gs = (GameState) getParentController().getModel();
-        ws = (WorldSimulator) getParentController();
         PressMill = new NewsEventGenerator(gs);
         turn = 0;
     }
@@ -46,12 +48,12 @@ public class NewsEventControl extends Controller {
     }
 
     public void respondActiveYes() {
-        ws.passConseq(currentEvent.getYConseq());
+        getWS().passConseq(currentEvent.getYConseq());
         this.showView(null);
     }
 
     public void respondActiveNo() {
-        ws.passConseq(currentEvent.getNConseq());
+        getWS().passConseq(currentEvent.getNConseq());
         this.showView(null);
     }
 

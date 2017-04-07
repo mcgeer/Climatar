@@ -1,6 +1,7 @@
 package game.climatar.map;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
