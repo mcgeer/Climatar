@@ -1,6 +1,9 @@
 package game.climatar.news;
 
 import game.climatar.architecture.Controller;
+
+import java.util.List;
+
 import game.climatar.GameState;
 import game.climatar.architecture.ControllerManager;
 import game.climatar.map.Nation;
@@ -23,14 +26,9 @@ public class NewsEventControl extends Controller{
 
     @Override
       protected void tick() {
-            NewsEvent currentEvent=PressMill.triggerPlayerEvents();
-            boolean yesEvent=view.getUserInput();
-           if(yesEvent){
-               //Pass consequences
-           }else{
-               //Pass rep
-           }
-           ControllerManager.delay(15, new Runnable(){public void run(){pauseTrigger();}});
+          
+           
+          
     
         }
         public void pauseTrigger(){
@@ -41,4 +39,11 @@ public class NewsEventControl extends Controller{
                 //Do some other shit
             }
         }
+
+		public List<ConseqType> getActiveEvent() {
+			 NewsEvent currentEvent=PressMill.triggerPlayerEvents();
+			return view.getUserInput(currentEvent);
+			
+			
+		}
 }
