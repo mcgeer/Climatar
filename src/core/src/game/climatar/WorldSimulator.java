@@ -34,7 +34,11 @@ public class WorldSimulator extends Controller {
 
     private MapView mapView;
 
+    private GreyView greyView;
+
     private UIView uiView;
+
+
 
 
 
@@ -140,7 +144,8 @@ public class WorldSimulator extends Controller {
         float height = Gdx.graphics.getHeight();
         mapView.setFrame(PAD, PAD, width - PAD * 2, height - PAD * 2);
         uiView.setFrame(0, height - width, width / 4, width);
-        showView(mapView, uiView);
+        greyView.setFrame(0,0,width*3, height/3.25f);
+        showView(mapView, greyView,uiView);
     }
 
     @Override
@@ -184,6 +189,7 @@ public class WorldSimulator extends Controller {
                 hideNationView(n);
             }
         }
+        uiView.setSelectedNation(nation);
         weatherSystems.getWeatherSystemController(nation).show();
         politicalSystems.getPoliticalSystemController(nation).show();
         ghgSystems.getGHGSystemController(nation).show();

@@ -1,9 +1,11 @@
 package game.climatar;
 
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Value;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -20,6 +22,7 @@ import game.climatar.map.Nation;
 public class UIView extends View {
 
 	private VisTable table;
+    private VisTable t;
 	private VisImageButton[] nationButtons;
 	private Nation selectedNation;
 
@@ -76,6 +79,7 @@ public class UIView extends View {
 			nationButtons[i].addListener(new ChangeListener() {
 				@Override
 				public void changed(ChangeEvent event, Actor actor) {
+
 					sim.openNationView(nation);
 				}
 			});
@@ -84,7 +88,12 @@ public class UIView extends View {
 		}
 
 		group.addActor(table);
+
+
+
 	}
+
+
 
 	@Override
 	public void layout(float x, float y, float width, float height) {
