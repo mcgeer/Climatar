@@ -1,8 +1,7 @@
 package game.climatar.map;
 
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 abstract class Thresholder<T> {
 	abstract T threshold(float x);
@@ -36,9 +35,9 @@ public class MapGenerator {
 
 	private static Thresholder<Nation> nationThresholder = new Thresholder<Nation>() {
 			// thresholds determining cutoffs for nations
-			float waterNation = 0.3f;
-			float internationalWaters = 0.4f;
-			float earthOrFireNation = 0.83f;
+			float waterNation = 0.23f;
+			float internationalWaters = 0.38f;
+			float earthOrFireNation = 0.82f;
 
 			Nation threshold(float x) {
 				if (x < waterNation) return Nation.WATER;
