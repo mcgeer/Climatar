@@ -9,7 +9,8 @@ public class WeatherSystemModel extends Model {
 	DELTA_TEMPERATURE,
 	TEMPERATURE,
 	DELTA_PRECIPITATION,
-	PRECIPITATION;
+	PRECIPITATION,
+		NATION;
  
 	public String id() {
 	    return this.name();
