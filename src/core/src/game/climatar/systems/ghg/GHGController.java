@@ -48,14 +48,19 @@ public class GHGController extends Controller {
 	@Override
 	protected void tick() {
 		// set the model's total emissions (by all nations)
+
+	}
+
+	public int gettotalEmmisions(){
 		int totalEmissionsPerUpdate = 0;
-		
+
 		totalEmissionsPerUpdate += earthNationController.getEmissionPerUpdate();
 		totalEmissionsPerUpdate += fireNationController.getEmissionPerUpdate();
 		totalEmissionsPerUpdate += airNationController.getEmissionPerUpdate();
 		totalEmissionsPerUpdate += waterNationController.getEmissionPerUpdate();
-	}
 
+		return totalEmissionsPerUpdate;
+	}
 	/**
 	 *
 	 * @return
