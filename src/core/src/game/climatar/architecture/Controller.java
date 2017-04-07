@@ -1,10 +1,10 @@
 package game.climatar.architecture;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -208,6 +208,22 @@ public abstract class Controller {
 
 	public List<Controller> getChildren() {
 		return children;
+	}
+
+	public void registerInput(InputMultiplexer inputMultiplexer) {
+		for(Controller child : children) {
+			child.registerInput(inputMultiplexer);
+		}
+		
+		inputMultiplexer.addProcessor(getStage());
+	}
+	
+	public void deregisterInput(InputMultiplexer inputMultiplexer) {
+		for(Controller child : children) {
+			child.deregisterInput(inputMultiplexer);
+		}
+		
+		inputMultiplexer.removeProcessor(getStage());
 	}
 
 }

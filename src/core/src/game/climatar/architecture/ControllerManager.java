@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -70,18 +69,9 @@ public abstract class ControllerManager implements ApplicationListener {
 
 		viewControllers.add(controller);
 
-		// Add controller + children from input listener! (and setup their views!)
-		LinkedList<Controller> controllersToAdd = new LinkedList<Controller>();
-		controllersToAdd.add(controller);
-		
-		Controller controllerToAdd;
-		while((controllerToAdd = controllersToAdd.poll()) != null) {
-			controllersToAdd.addAll(controllerToAdd.getChildren());
-			
-			inputMultiplexer.addProcessor(controllerToAdd.getStage());
-			controllerToAdd.layoutViews();
-			controllerToAdd.resizeViews(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		}
+		controller.registerInput(inputMultiplexer);
+		controller.layoutViews();
+		controller.resizeViews(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 	}
 
@@ -90,17 +80,8 @@ public abstract class ControllerManager implements ApplicationListener {
 			return;
 		}
 		
-		// Remove controller + children from input listener! (and hide their views!)
-		LinkedList<Controller> controllersToRemove = new LinkedList<Controller>();
-		controllersToRemove.add(controller);
-		
-		Controller controllerToRemove;
-		while((controllerToRemove = controllersToRemove.poll()) != null) {
-			controllersToRemove.addAll(controllerToRemove.getChildren());
-			
-			inputMultiplexer.removeProcessor(controllerToRemove.getStage());
-			controllerToRemove.hideView();
-		}
+		controller.deregisterInput(inputMultiplexer);
+		controller.hideView();
 		
 		viewControllersBeingRemoved.add(controller);
 	}
